@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#121212; --ev:#ffd24a; --ink:#f2f4f8; --mute:#7d879b; --pad:40px; --lw:2px;
+    --bg:#121212; --bg90:rgba(18,18,18,.9); --bg80:rgba(18,18,18,.8); --ev:#ffd24a; --ink:#f2f4f8; --mute:#7d879b; --pad:40px; --lw:2px;
     --fs-l:44px; --fs-m:26px; --fs-s:18px;      /* drei Schriftgrößen: groß · mittel · klein (werden per JS an die Fenstergröße angepasst) */
     --font:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
   }
@@ -21,7 +21,7 @@
 
   /* Steuerung unten */
   .controls{position:absolute;left:0;right:0;bottom:0;padding:10px var(--pad) 14px;display:flex;gap:18px;align-items:flex-start;
-    background:linear-gradient(transparent,color-mix(in srgb,var(--bg) 90%,transparent) 55%)}
+    background:linear-gradient(transparent,var(--bg90) 55%)}
   #play{width:30px;height:30px;margin-top:22px;padding:0;background:transparent;border:0;display:grid;place-items:center}
   #play svg{width:20px;height:20px;fill:#fff}
   #play:hover svg{opacity:.7}
@@ -45,7 +45,7 @@
   .mk.act,.mk:hover{opacity:1;transform:scaleY(1.9);box-shadow:0 0 12px var(--ev)}
   #track.ev .mk{display:block}
   #event{position:absolute;left:50%;bottom:122px;transform:translateX(-50%) translateY(8px);max-width:min(860px,calc(100% - 80px));text-align:center;
-    font-size:var(--fs-m);font-weight:300;line-height:1.3;color:#fff;padding:10px 20px;background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:var(--lw) solid var(--ev);
+    font-size:var(--fs-m);font-weight:300;line-height:1.3;color:#fff;padding:10px 20px;background:var(--bg80);border-bottom:var(--lw) solid var(--ev);
     opacity:0;transition:opacity .7s,transform .7s;pointer-events:none;z-index:40}
   #event.on{opacity:1;transform:translateX(-50%)}
   #event .ey{color:var(--ev);font-weight:500;margin-right:.55em;font-variant-numeric:tabular-nums}
@@ -65,7 +65,7 @@
   @keyframes blink{50%{opacity:0}}
   #bl,#br{position:absolute;display:none}
   #bl{left:14vw;top:12vh}
-  #br{right:14vw;bottom:40vh;width:max-content}
+  #br{right:8vw;bottom:36vh;width:max-content}
   #bc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
   #qs.bridge.on #bc{display:block}
   #bl{transition:opacity .8s}
@@ -73,7 +73,7 @@
   #qs.docked2 #bnext{opacity:0 !important;pointer-events:none}
   #qs.bridge #bl,#qs.bridge #br{display:block}
   #qs.bridge #qtext{display:none}
-  #qs.bridge{transition-duration:1.6s,1.6s}
+  #qs.bridge{transition-duration:.9s,.9s}
   #bl .l1,#bl .l2{opacity:0;transform:translateY(10px);transition:opacity .9s,transform .9s}
   #bl .in{opacity:1 !important;transform:none !important}
   #bl .l1{font-size:var(--fs-s);color:var(--mute)}
@@ -200,7 +200,10 @@ let SZMIN = 2, SZMAX = 10;                      // Punktradius (px): kleinster /
 let DOT = 3000;                                  // Personen pro Punkt (per Regler im E-Menü änderbar)
 const SEC_PER_YEAR = 0.7;
 function yps(){                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
-  if (scene === 1){ const p = clamp((t - FIRST) / (LAST - FIRST), 0, 1); return lerp(0.4, 2.1, p * p * 0.6 + p * 0.4); }
+  if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
+    const k = clamp((t - FIRST) / 9, 0, 1);
+    return lerp(0.45, 1 / SEC_PER_YEAR, k * k * (3 - 2 * k));
+  }
   return 1 / SEC_PER_YEAR;
 }
 const SPEED = 380;                                // Punkte-Geschwindigkeit (virtuelle px/s)
@@ -504,6 +507,10 @@ function draw(s){
 /* ---- Differenz-Bildschirm: Balken pro Jahr (Geburten − Gestorbene) ---- */
 const bc = $('bc'), bctx = bc.getContext('2d');
 let bcClear = true;
+function niceStep(raw){
+  const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+  return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+}
 function drawBridge(){
   if (scene !== 2){ if (!bcClear){ bctx.setTransform(1,0,0,1,0,0); bctx.clearRect(0, 0, bc.width, bc.height); bcClear = true; } return; }
   bcClear = false;
@@ -512,10 +519,10 @@ function drawBridge(){
   if (bc.width !== Math.round(w * DPR) || bc.height !== Math.round(h * DPR)){ bc.width = Math.round(w * DPR); bc.height = Math.round(h * DPR); }
   const c = bctx; c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, w, h);
   const el = bridgeFull ? 1e9 : vt - bridgeT0;
-  const axisA = clamp((el - 500) / 800, 0, 1);               // erst die Zeitlinie ...
+  const axisA = clamp((el - 200) / 600, 0, 1);               // erst die Zeitlinie ...
   if (axisA <= 0) return;
-  const prog = clamp((el - 1700) / 3400, 0, 1) * (LAST - FIRST + 1);   // ... dann die Balken nach und nach
-  const x0 = 130, x1 = w - 60, top = h * 0.72, bot = h - 62, n = LAST - FIRST + 1;
+  const prog = clamp((el - 700) / 2800, 0, 1) * (LAST - FIRST + 1);   // ... dann die Balken nach und nach
+  const x0 = 130, x1 = w - 60, top = h * 0.74, bot = h - 62, n = LAST - FIRST + 1;
   let lo = 0, hi = 0;
   DATA.forEach(d => { const v = d.wb - d.wd; lo = Math.min(lo, v); hi = Math.max(hi, v); });
   hi = Math.max(hi, -lo * 0.12);
@@ -574,6 +581,10 @@ function drawBridge(){
 /* ---- Schleife ---- */
 let last = performance.now(), lastYear = 0;
 function frame(now){
+  try { frameBody(now); } catch (e) { console.error(e); }
+  requestAnimationFrame(frame);
+}
+function frameBody(now){
   if (cv.width === 0 || Math.abs(cv.clientWidth * Math.min(devicePixelRatio || 1, 2) - cv.width) > 1) resize();
   const dt = Math.min(0.25, (now - last) / 1000); last = now;
   if (!paused) vt += dt * 1000;
@@ -601,7 +612,6 @@ function frame(now){
   if (scene === 3){ const on = evEl.classList.contains('on'); for (const y in mks){ mks[y].classList.toggle('seen', +y <= yy); mks[y].classList.toggle('act', on && evYear === +y); } }
   draw(state(t));
   drawBridge();
-  requestAnimationFrame(frame);
 }
 
 /* ---- Text-Szenen ---- */
@@ -699,7 +709,7 @@ function showBridge(instant){
   bnext.classList.remove('on'); bridgeDone = false;
   qs.className = 'on bridge';
   if (instant){ finishBridge(); return; }
-  later(1500, () => {
+  later(500, () => {
     l[0].classList.add('in'); l[1].classList.add('in');
     later(700, () => countUp($('bdef'), cumN[LAST], 2600, () => {
       later(1500, () => typeInto(btext, BQ, () => {
@@ -862,7 +872,12 @@ for (const k in COLORS){
   inp.addEventListener('input', () => { COLORS[k] = inp.value; applyColorVars(); if (fin.classList.contains('on')) renderFinal(); saveSettings(); });
 }
 const bgIn = $('c-bg');
-function applyBg(){ document.documentElement.style.setProperty('--bg', BGS[scene]); bgIn.value = BGS[scene]; }
+function applyBg(){
+  const c = BGS[scene], n = parseInt(c.slice(1), 16), rgb = (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255);
+  const r = document.documentElement.style;
+  r.setProperty('--bg', c); r.setProperty('--bg90', 'rgba(' + rgb + ',.9)'); r.setProperty('--bg80', 'rgba(' + rgb + ',.8)');
+  bgIn.value = c;
+}
 bgIn.addEventListener('input', () => { BGS[scene] = bgIn.value; applyBg(); saveSettings(); });
 $('copyset').onclick = () => {
   const txt = JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS});
