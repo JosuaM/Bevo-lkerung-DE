@@ -617,9 +617,9 @@ function typeInto(el, str, cb){
     if (typing !== ty) return;
     if (ty.i < str.length){
       const ch = str[ty.i++]; ty.sp.textContent = str.slice(0, ty.i);
-      let d = 45 + Math.random() * 60;                           // Buchstabe
-      if (ch === ' ' || ch === '\n') d = 200 + Math.random() * 280;  // Pause zwischen Wörtern
-      else if (Math.random() < 0.07) d += 180 + Math.random() * 260; // kurzes Zögern
+      let d = 26 + Math.random() * 36;                           // Buchstabe
+      if (ch === ' ' || ch === '\n') d = 110 + Math.random() * 150;  // Pause zwischen Wörtern
+      else if (Math.random() < 0.07) d += 90 + Math.random() * 150; // kurzes Zögern
       later(d, step);
     } else { typing = null; ty.cb && ty.cb(); }
   })();
@@ -655,7 +655,7 @@ function sceneIntro(instant){
     placeIntro(); void qtext.offsetWidth;
     qtext.style.transition = ''; qtext.style.opacity = 1;
     if (instant){ introFull(); return; }
-    later(1800, () => typeInto(qtext, Q2, () => { introTyped = true; later(1500, () => goScene(1)); }));
+    later(1200, () => typeInto(qtext, Q2, () => { introTyped = true; later(1500, () => goScene(1)); }));
   });
 }
 let introRun = 0;
