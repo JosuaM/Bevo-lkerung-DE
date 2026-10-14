@@ -602,7 +602,7 @@ function frameBody(now){
     t += dt / 0.45;
     if (t >= LAST){ t = LAST; setPaused(true); }
   }
-  if (isAnim() && (!paused || dragging)){
+  if (isAnim()){                                   // Punkte laufen auch bei Pause weiter, mit den Werten des gewählten Jahres
     const P = PHASES[phase], k = yps(), d = s.d;
     emit(dt, 'up',   d[P.up.key]   / DOT * k, true,  P.up.ck);
     emit(dt, 'down', d[P.down.key] / DOT * k, false, P.down.ck);
