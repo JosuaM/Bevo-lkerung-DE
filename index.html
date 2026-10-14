@@ -199,7 +199,9 @@ const FIRST = 1991, LAST = 2023, END = LAST + 0.999;
 let SZMIN = 2, SZMAX = 10;                      // Punktradius (px): kleinster / größter Punkt, per E-Menü
 let DOT = 3000;                                  // Personen pro Punkt (per Regler im E-Menü änderbar)
 const SEC_PER_YEAR = 0.7;
-function yps(){                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
+let ypsCur = 1.0;                                  // Animation 2: ruhiges Tempo, in Ereignisjahren deutlich langsamer
+function yps(){
+  if (scene === 3) return ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
   if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
     const k = clamp((t - FIRST) / 9, 0, 1);
     return lerp(0.45, 1 / SEC_PER_YEAR, k * k * (3 - 2 * k));
@@ -492,6 +494,7 @@ function drawDash(s){
   if (!dashDef){ return; }
   try { dashDef.draw(api); }
   catch (e){                                        // Fehler im Dashboard eines Kollegen sollen die Seite nicht anhalten
+    console.error('Dashboard ' + dashDef.id, e);
     ctx.font = `400 ${FS.s}px ${FONT}`; ctx.fillStyle = '#ff7a7a'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
     ctx.fillText('Fehler in dashboards/' + dashDef.id + '.js: ' + e.message, 40, 40);
   }
@@ -591,6 +594,7 @@ function frameBody(now){
   runTimers();
   layout();
   const s = state(t);
+  if (scene === 3){ const target = EVENTS[clamp(Math.floor(t), FIRST, LAST)] ? 0.4 : 1.0; ypsCur += (target - ypsCur) * Math.min(1, dt * 4); }
   if (isAnim() && !paused){
     t += dt * yps();
     if (t >= END){ t = END; goScene(scene === 1 ? 2 : 4); }
