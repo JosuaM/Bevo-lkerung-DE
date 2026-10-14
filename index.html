@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bevölkerung Deutschlands 1991–2023</title>
+<style>
+  :root{ --bg1:#000; --bg2:#000; --ink:#e8edf6; --mute:#8d9bb3; }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg2);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",system-ui,sans-serif;overflow:hidden}
+  #stage{position:fixed;inset:0;background:#000}
+  canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  header{position:absolute;left:24px;right:24px;top:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  h1{margin:0;font-size:18px;font-weight:600;letter-spacing:.2px}
+  .sub{color:var(--mute);font-size:12px;margin-top:4px;line-height:1.4}
+  .controls{position:absolute;left:0;right:0;bottom:0;padding:12px 24px 14px;display:flex;gap:14px;align-items:flex-start;
+    background:linear-gradient(transparent,rgba(0,0,0,.9) 55%)}
+  button{background:#1b2740;color:var(--ink);border:1px solid #2c3b5c;border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+  button:hover{background:#243357}
+  #play{width:44px;height:44px;padding:0;margin-top:14px;border-radius:50%;background:transparent;border:2px solid #fff;color:#fff;font-size:15px;line-height:1}
+  #play:hover{background:rgba(255,255,255,.15)}
+
+  /* Zeitstrahl */
+  #track{position:relative;flex:1;height:72px;margin:0 18px 0 8px;cursor:pointer;touch-action:none;outline:none;user-select:none}
+  #rail,#fill{position:absolute;left:0;top:30px;height:4px;border-radius:2px}
+  #rail{right:0;background:#2c3b5c}
+  #fill{width:0;background:#fff}
+  .tick{position:absolute;top:40px;width:1px;height:6px;background:#3d4f78;transform:translateX(-.5px)}
+  .tick.major{height:11px;background:#7f93bd}
+  .tlab{position:absolute;top:54px;transform:translateX(-50%);font-size:11px;color:#9fb0cf;font-variant-numeric:tabular-nums}
+  .mk{position:absolute;top:27px;width:10px;height:10px;margin-left:-5px;background:#ffb454;transform:rotate(45deg);border-radius:2px;
+    box-shadow:0 0 8px rgba(255,180,84,.6)}
+  #track.noev .mk{display:none}
+  #head{position:absolute;top:0;left:0;width:0;height:100%;pointer-events:none}
+  #head .lbl{position:absolute;left:0;top:-14px;transform:translateX(-50%);font-size:30px;line-height:1;font-weight:800;color:#fff;
+    font-variant-numeric:tabular-nums}
+  #head .stem{position:absolute;left:-1px;top:22px;width:2px;height:17px;background:#fff}
+  #head .dot{position:absolute;left:-8px;top:24px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #fff;
+    box-shadow:0 0 12px rgba(255,255,255,.7)}
+  #track:focus-visible #head .dot{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
+
+  #event{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);font-size:14px;color:#fff;padding:6px 14px;border-radius:999px;
+    background:rgba(122,162,255,.18);border:1px solid rgba(122,162,255,.5);opacity:0;transition:opacity .5s;white-space:nowrap}
+
+  /* Ergebnis-Karte */
+  #card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);width:min(520px,calc(100% - 32px));padding:22px 24px;border-radius:16px;
+    background:rgba(13,20,34,.94);border:1px solid #34476f;box-shadow:0 20px 60px rgba(0,0,0,.55);opacity:0;pointer-events:none;
+    transition:opacity .5s,transform .5s;backdrop-filter:blur(6px)}
+  #card.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  #card h2{margin:0 0 14px;font-size:16px;font-weight:600}
+  .row{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid #22304d;font-size:14px;color:#c9d3e6}
+  .row b{color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .row.big{border-bottom:0;padding-top:14px;font-size:15px}
+  .row.big b{font-size:26px;font-weight:800}
+  .pos{color:#4ade9a !important} .neg{color:#ff7a7a !important}
+  .note{font-size:11.5px;color:var(--mute);line-height:1.5;margin-top:10px}
+  .btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .btns .primary{background:#3563d6;border-color:#4d78e6}
+  .btns .primary:hover{background:#4672e8}
+  /* Fragen-Bildschirm */
+  #qs{position:fixed;inset:0;z-index:50;background:#000;color:#fff;opacity:0;pointer-events:none;transition:opacity .7s,background .9s;cursor:pointer}
+  #qs.on{opacity:1;pointer-events:auto}
+  #qs.docked{opacity:1;background:transparent;pointer-events:none}
+  #qs.docked #qtext{left:24px;top:20px;transform:translate(0,0);width:min(620px,calc(100% - 48px));text-align:left;font-size:20px;font-weight:600}
+  #qtext,#btext{font-weight:600;line-height:1.25;color:#fff}
+  #qtext{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1040px,calc(100% - 64px));text-align:center;
+    font-size:clamp(28px,4.4vw,62px);
+    transition:opacity .45s,left .9s cubic-bezier(.65,0,.25,1),top .9s cubic-bezier(.65,0,.25,1),transform .9s cubic-bezier(.65,0,.25,1),width .9s,font-size .9s cubic-bezier(.65,0,.25,1)}
+.g{transition:color 1s}
+  .hl .g{color:#6c7791}
+  .caret{display:inline-block;width:.07em;height:.95em;margin-left:.08em;background:#fff;vertical-align:-.1em;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  #bl,#br{position:absolute;display:none}
+  #bl{left:40px;top:34px}
+  #br{right:40px;bottom:40px;width:max-content;max-width:min(680px,calc(100% - 80px));text-align:left}
+  #bl{transition:opacity .8s}
+  #qs.docked2{opacity:1;background:transparent;pointer-events:none}
+  #qs.docked2 #bl{opacity:0}
+  #qs.docked2 #bnext{opacity:0 !important;pointer-events:none}
+  #qs.bridge #bl,#qs.bridge #br{display:block}
+  #qs.bridge #qtext{display:none}
+  #qs.bridge{transition-duration:1.6s,1.6s}
+  #bl .l1,#bl .l2,#bl .l3{opacity:0;transform:translateY(10px);transition:opacity .9s,transform .9s}
+  #bl .in{opacity:1 !important;transform:none !important}
+  #bl .l1{font-size:14px;letter-spacing:.6px;color:#8d9bb3;text-transform:uppercase}
+  #bl .l2{font-size:clamp(44px,6vw,84px);font-weight:800;color:#ff7a7a;line-height:1.1;font-variant-numeric:tabular-nums}
+  #bl .l3{font-size:15px;color:#aebbd1;margin-top:4px;font-variant-numeric:tabular-nums}
+  #btext{font-size:clamp(22px,2.7vw,38px)}
+  #bnext{margin-top:18px;opacity:0;transition:opacity .5s;background:transparent;border:1px solid #fff;color:#fff;font-size:14px;padding:8px 16px}
+  #bnext.on{opacity:1}
+  /* Abschluss-Bildschirm: Defizit gegen Wanderungssaldo */
+  #fin{position:fixed;inset:0;z-index:60;background:#000;color:#fff;opacity:0;pointer-events:none;transition:opacity 1.4s}
+  #fin.on{opacity:1;pointer-events:auto}
+  #fin .ftitle{position:absolute;left:24px;top:20px;font-size:20px;font-weight:600;color:#6c7791}
+  #fin .fblob{position:absolute;border-radius:50%;opacity:0;transition:opacity 1s;transform:translate(-50%,-50%)}
+  #fbL{background:rgba(255,122,122,.28);border:2px solid #ff7a7a;box-shadow:0 0 30px rgba(255,122,122,.35)}
+  #fbR{background:rgba(56,224,255,.26);border:2px solid #38e0ff;box-shadow:0 0 30px rgba(56,224,255,.35)}
+  #fin .fside{position:absolute;transform:translateX(-50%);width:42vw;text-align:center;opacity:0;transition:opacity 1s}
+  #fin .in{opacity:1 !important}
+  #fin .fl1{font-size:14px;letter-spacing:.6px;color:#8d9bb3;text-transform:uppercase}
+  #fin .fl2{font-size:clamp(34px,5vw,72px);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+  #fin .fl3{font-size:14px;color:#aebbd1;margin-top:4px;font-variant-numeric:tabular-nums}
+  #fcap{position:absolute;left:50%;transform:translateX(-50%);bottom:84px;width:min(760px,calc(100% - 48px));text-align:center;
+    font-size:clamp(18px,2.2vw,28px);font-weight:600;line-height:1.35;opacity:0;transition:opacity 1s}
+  #fcap b{font-weight:800;color:#38e0ff}
+  #fbtn{position:absolute;left:0;right:0;bottom:24px;display:flex;gap:10px;justify-content:center;opacity:0;transition:opacity .8s;pointer-events:none}
+  #fbtn.in{pointer-events:auto}
+  #fbtn button{background:transparent;border:1px solid #fff;color:#fff}
+  @media (max-width:900px){ header{flex-direction:column;gap:10px} }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="event"></div>
+  <div id="card"></div>
+  <div id="qs">
+    <div id="qtext"></div>
+    <div id="bl"><div class="l1">Geburtendefizit seit 1991</div><div class="l2" id="bdef"></div><div class="l3" id="bsub"></div></div>
+    <div id="br"><div id="btext"></div><button id="bnext">Weiter zu Animation 2 →</button></div>
+  </div>
+  <div id="fin">
+    <div class="ftitle">Geburtendefizit gegen Wanderungssaldo · 1991–2023</div>
+    <div class="fblob" id="fbL"></div><div class="fblob" id="fbR"></div>
+    <div class="fside" id="fsL"><div class="fl1">Geburtendefizit</div><div class="fl2" id="fvL" style="color:#ff7a7a"></div><div class="fl3" id="fnL"></div></div>
+    <div class="fside" id="fsR"><div class="fl1" id="flR">Wanderungssaldo</div><div class="fl2" id="fvR" style="color:#38e0ff"></div><div class="fl3" id="fnR"></div></div>
+    <div id="fcap"></div>
+    <div id="fbtn"><button id="fAgain">Nochmal ansehen</button><button id="fRestart">Von vorn beginnen</button></div>
+  </div>
+  <div class="controls">
+    <button id="play" aria-label="Pause">❚❚</button>
+    <div id="track" tabindex="0" role="slider" aria-label="Jahr" aria-valuemin="1991" aria-valuemax="2023">
+      <div id="rail"></div><div id="fill"></div>
+      <div id="head"><div class="stem"></div><div class="dot"></div><div class="lbl" id="headlbl">1991</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
+const BASE = 79753227;                            // Bevölkerung Deutschlands am 31.12.1990
+const FIRST = 1991, LAST = 2023, END = LAST + 0.999;
+const DOT = 2500;                                 // Personen pro Punkt
+const SEC_PER_YEAR = 0.7;
+const SPEED = 380;                                // Punkte-Geschwindigkeit (virtuelle px/s)
+const byYear = {}; DATA.forEach(d => byYear[d.y] = d);
+
+// Summen seit 1991 (jeweils bis einschließlich Jahr y)
+const cumN = {[FIRST-1]: 0}, cumB = {[FIRST-1]: 0}, cumD = {[FIRST-1]: 0}, cumZ = {[FIRST-1]: 0}, cumF = {[FIRST-1]: 0};
+DATA.forEach(d => {
+  cumB[d.y] = cumB[d.y-1] + d.wb; cumD[d.y] = cumD[d.y-1] + d.wd; cumN[d.y] = cumB[d.y] - cumD[d.y];
+  cumZ[d.y] = cumZ[d.y-1] + d.zu; cumF[d.y] = cumF[d.y-1] + d.fort;
+});
+const fmt = n => Math.round(n).toLocaleString('de-DE');
+const sgn = n => (Math.round(n) >= 0 ? '+' : '−') + Math.abs(Math.round(n)).toLocaleString('de-DE');
+
+const PHASES = [
+  { color:'#ffffff', sub:'Nur Lebendgeborene und Sterbefälle – Zu- und Abwanderung bleiben außen vor.<br>1 Punkt = 2.500 Personen',
+    label:'ohne Zu- und Abwanderung', horizontal:true, up:{key:'wb', col:'#4ade9a', name:'Lebendgeborene'}, down:{key:'wd', col:'#ff7a7a', name:'Gestorbene'} },
+  { color:'#ffffff', horizontal:true, sub:'Tatsächliche Bevölkerung – Fokus auf Zu- und Fortzüge über die Grenze.<br>1 Punkt = 2.500 Personen',
+    label:'tatsächliche Bevölkerung', up:{key:'zu', col:'#38e0ff', name:'Zuzüge'}, down:{key:'fort', col:'#ffb454', name:'Fortzüge'} },
+];
+let phase = 0;
+
+// ---- Canvas im virtuellen Koordinatensystem (mind. 1280 x 720)
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+let W = 1280, H = 720, SC = 1, HB = 80;
+function resize(){
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const rw = cv.clientWidth, rh = cv.clientHeight;
+  if (!rw || !rh) return;
+  SC = Math.min(rw / 1280, rh / 720);
+  W = rw / SC; H = rh / SC;
+  cv.width = rw * dpr; cv.height = rh * dpr; ctx.setTransform(dpr*SC, 0, 0, dpr*SC, 0, 0);
+  HB = 100 / SC;                                   // Platz oben für die angedockte Frage
+}
+addEventListener('resize', resize); resize();
+
+// ---- Zustand / Steuerung
+let t = FIRST, playing = false, done = false;
+const playBtn = document.getElementById('play'), card = document.getElementById('card');
+const lerp = (a,b,x) => a + (b-a)*x, clamp = (x,a,b) => Math.max(a, Math.min(b, x));
+function setPlaying(p){ playing = p; playBtn.textContent = p ? '❚❚' : (done ? '↺' : '▶');
+  playBtn.setAttribute('aria-label', p ? 'Pause' : (done ? 'Nochmal' : 'Abspielen')); }
+function restart(){ t = FIRST; done = false; particles.length = 0; hideCard(); setPlaying(true); }
+playBtn.onclick = () => { if (done) restart(); else setPlaying(!playing); };
+
+function setPhase(i){
+  phase = i;
+  track.classList.add('noev');
+  restart();
+  resize();
+}
+
+// ---- Zeitstrahl
+const track = document.getElementById('track'), rail = document.getElementById('rail');
+const fillEl = document.getElementById('fill'), headEl = document.getElementById('head'), headLbl = document.getElementById('headlbl');
+const posPct = y => (y - FIRST) / (LAST - FIRST) * 100;
+const EVENTS = {2011:'2011 · Zensus: Bevölkerungszahl neu berechnet', 2015:'2015 · Fluchtmigration', 2022:'2022 · Zuzug aus der Ukraine'};
+for (let y = FIRST; y <= LAST; y++){
+  const major = y % 5 === 0 || y === FIRST || y === LAST;
+  const tk = document.createElement('div'); tk.className = 'tick' + (major ? ' major' : ''); tk.style.left = posPct(y) + '%';
+  track.appendChild(tk);
+  if (major && !(y === 2020)){          // 2020 und 2023 liegen eng beieinander
+    const l = document.createElement('div'); l.className = 'tlab'; l.textContent = y; l.style.left = posPct(y) + '%'; track.appendChild(l);
+  }
+  if (EVENTS[y]){
+    const m = document.createElement('div'); m.className = 'mk'; m.style.left = posPct(y) + '%'; m.title = EVENTS[y]; track.appendChild(m);
+  }
+}
+let dragging = false;
+function seek(e){
+  const r = rail.getBoundingClientRect();
+  t = FIRST + clamp((e.clientX - r.left) / r.width, 0, 1) * (LAST - FIRST);
+  particles.length = 0;
+  if (done){ done = false; hideCard(); setPlaying(true); }
+}
+track.addEventListener('pointerdown', e => { dragging = true; track.setPointerCapture(e.pointerId); seek(e); });
+track.addEventListener('pointermove', e => { if (dragging) seek(e); });
+track.addEventListener('pointerup', () => { dragging = false; });
+track.addEventListener('pointercancel', () => { dragging = false; });
+addEventListener('keydown', e => {
+  if (e.code === 'Space' && fin.classList.contains('on')){ e.preventDefault(); return; }
+  if (e.code === 'Space'){ e.preventDefault(); if (qs.classList.contains('on')) skipQ(); else playBtn.click(); }
+  else if (e.code === 'ArrowRight' || e.code === 'ArrowLeft'){
+    e.preventDefault();
+    t = clamp(Math.floor(t) + (e.code === 'ArrowRight' ? 1 : -1), FIRST, LAST); particles.length = 0;
+    if (done){ done = false; hideCard(); }
+  }
+});
+
+function state(t){
+  const y = clamp(Math.floor(t), FIRST, LAST), f = clamp(t - y, 0, 1), d = byYear[y];
+  const prevWp = y === FIRST ? BASE : byYear[y-1].wp;
+  const pop = phase === 0 ? BASE + cumN[y-1] + f * (d.wb - d.wd) : lerp(prevWp, d.wp, f);
+  return { y, f, d, pop };
+}
+
+// ---- Layout: ein großer Kreis in der Bildmitte
+const REF_POP = 84e6;
+let R_MAX = 190;
+function layout(s){
+  const free = H - HB - 112 / SC;                        // Platz zwischen Kopfzeile und Zeitstrahl
+  R_MAX = clamp(free / 2 - 34, 90, 200);
+  const cx = W / 2, cy = HB + free / 2;
+  return {c: {x: cx, y: cy, r: R_MAX * Math.sqrt(Math.max(s.pop, 1) / REF_POP)}, cx, cy};
+}
+
+// ---- Partikel: von unten in den Kreis hinein, nach oben aus dem Kreis heraus
+const particles = [], acc = {up:0, down:0}, MAXP = 9000;
+let pulse = 0;
+function spawn(inflow, col, L){
+  if (particles.length > MAXP) return;
+  const c = L.c, a = Math.random()*Math.PI*2, rr = Math.sqrt(Math.random());
+  const p = {inflow, col, age:0, inside:false, size: 1.6 + Math.random()*1.7, ox: Math.cos(a)*rr, oy: Math.sin(a)*rr, wob: Math.random()*6.28};
+  const hz = PHASES[phase].horizontal;               // Animation 1: von links nach rechts
+  if (inflow){
+    const off = (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+    if (hz){ p.sx = -14; p.sy = c.y + off * c.r * 0.55; }
+    else { p.sx = c.x + off*330; p.sy = H + 14; }
+    p.len = Math.hypot(c.x - p.sx, c.y - p.sy);
+  } else {
+    p.ex = (Math.random()*2 - 1) * 70;
+    p.len = hz ? W - c.x + 20 + Math.random()*40 : c.y + 20 + Math.random()*40;
+  }
+  p.life = Math.max(0.5, p.len / SPEED);
+  particles.push(p);
+}
+function emit(dt, key, rate, inflow, col, L){
+  acc[key] += rate * dt;
+  while (acc[key] >= 1){ acc[key] -= 1; spawn(inflow, col, L); }
+}
+function stepParticles(dt){
+  for (let i = particles.length - 1; i >= 0; i--){
+    const p = particles[i]; p.age += dt;
+    if (p.age >= p.life) particles.splice(i, 1);
+  }
+}
+let TEXTBOX = null;
+function drawParticles(L){
+  const c = L.c;
+  for (const p of particles){
+    const q = clamp(p.age / p.life, 0, 1);
+    let x, y, a;
+    if (p.inflow){
+      const tx = c.x + p.ox * c.r * 0.55, ty = c.y + p.oy * c.r * 0.55;
+      x = lerp(p.sx, tx, q) + Math.sin(q*8 + p.wob) * 5 * (1 - q);
+      y = lerp(p.sy, ty, q);
+      const d = Math.hypot(x - c.x, y - c.y);
+      if (d < c.r){
+        if (!p.inside){ p.inside = true; pulse = Math.min(1, pulse + 0.03); }
+        a = clamp((d - 0.1*c.r) / (0.7*c.r), 0, 1);
+      } else a = 1;
+      a *= (q < .06 ? q/.06 : 1) * lerp(1, 0.6, q);
+    } else {
+      const sx = c.x + p.ox * c.r * 0.8, sy = c.y + p.oy * c.r * 0.8;
+      if (PHASES[phase].horizontal){
+        x = lerp(sx, W + 20, q);
+        y = sy + p.ex * 0.5 * q + Math.sin(q*7 + p.wob) * 6 * q;
+      } else {
+        x = sx + p.ex * q + Math.sin(q*7 + p.wob) * 6 * q;
+        y = lerp(sy, -20, q);
+      }
+      const d = Math.hypot(x - c.x, y - c.y);
+      a = (d < c.r ? clamp(0.3 + 0.7 * d / c.r, 0, 1) : 1) * (q > .85 ? (1-q)/.15 : 1) * lerp(1, 0.4, q);
+    }
+    if (TEXTBOX){                                    // hinter der Zahl im Kreis verschwinden
+      const r = TEXTBOX, dx = Math.max(r.x0 - x, x - r.x1, 0), dy = Math.max(r.y0 - y, y - r.y1, 0);
+      a *= clamp(Math.hypot(dx, dy) / 14, 0, 1);
+    }
+    a *= clamp((H - 100 / SC - y) / 40, 0, 1);       // unten am Zeitstrahl ausblenden
+    ctx.globalAlpha = clamp(a, 0, 1) * 0.95;
+    ctx.fillStyle = p.col;
+    ctx.beginPath(); ctx.arc(x, y, p.size, 0, 6.2832); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ---- Zeichnen
+function hexA(h, a){ const n = parseInt(h.slice(1), 16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; }
+function disc(c, color, pulseV){
+  const r = c.r * (1 + 0.02*pulseV);
+  const g = ctx.createRadialGradient(c.x - r*0.25, c.y - r*0.3, r*0.1, c.x, c.y, r);
+  g.addColorStop(0, hexA(color, 0.32)); g.addColorStop(1, hexA(color, 0.10));
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c.x, c.y, r, 0, 6.2832); ctx.fill();
+  ctx.lineWidth = 2; ctx.strokeStyle = hexA(color, 0.9);
+  ctx.shadowColor = hexA(color, 0.55); ctx.shadowBlur = 18 + 14*pulseV;
+  ctx.stroke(); ctx.shadowBlur = 0;
+}
+const FONT = '-apple-system,BlinkMacSystemFont,Inter,"Segoe UI",system-ui,sans-serif';
+function text(str, x, y, size, color, weight, align, alpha){
+  ctx.globalAlpha = alpha == null ? 1 : alpha;
+  ctx.font = `${weight||500} ${size}px ${FONT}`;
+  ctx.fillStyle = color || '#e8edf6'; ctx.textAlign = align || 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(str, x, y); ctx.globalAlpha = 1;
+}
+function draw(s, L){
+  const P = PHASES[phase], c = L.c;
+  ctx.clearRect(0, 0, W, H);
+  disc(c, P.color, pulse);
+  drawParticles(L);
+
+  // Zahl im Kreis: Bevölkerung
+  const numSize = Math.max(22, c.r * 0.26);
+  text(fmt(s.pop), c.x, c.y - c.r*0.04, numSize, '#ffffff', 800);
+  text('Bevölkerungsstand', c.x, c.y - c.r*0.30, Math.max(11, c.r*0.09), '#aebbd1', 500);
+  text(P.label, c.x, c.y + c.r*0.26, Math.max(10.5, c.r*0.07), '#8d9bb3', 400);
+  ctx.font = `800 ${numSize}px ${FONT}`;
+  const w = ctx.measureText(fmt(s.pop)).width / 2;
+  TEXTBOX = {x0: c.x - w, x1: c.x + w, y0: c.y - c.r*0.36, y1: c.y + c.r*0.32};
+
+  // Jahreswerte: Animation 1 mittig im Abstand zwischen Kreis und Bildschirmrand, beide auf gleicher Höhe
+  const d = s.d, up = P.up, dn = P.down;
+  if (P.horizontal){
+    const ly = c.y - c.r*0.85 - 20, lx = (c.x - c.r) / 2, rx = (c.x + c.r + W) / 2;
+    text(up.name, lx, ly, 30, '#ffffff', 700);
+    text(fmt(d[up.key]), lx, ly + 40, 30, up.col, 800);
+    text(dn.name, rx, ly, 30, '#ffffff', 700);
+    text(fmt(d[dn.key]), rx, ly + 40, 30, dn.col, 800);
+  } else {
+    text('▲ ' + up.name + ' ' + s.y, c.x - c.r - 26, c.y + c.r*0.35, 13, '#8d9bb3', 500, 'right');
+    text(fmt(d[up.key]), c.x - c.r - 26, c.y + c.r*0.35 + 28, 26, up.col, 800, 'right');
+    text('▼ ' + dn.name + ' ' + s.y, c.x + c.r + 26, c.y - c.r*0.35 - 28, 13, '#8d9bb3', 500, 'left');
+    text(fmt(d[dn.key]), c.x + c.r + 26, c.y - c.r*0.35, 26, dn.col, 800, 'left');
+  }
+}
+
+// ---- Ereignis-Hinweise
+const evEl = document.getElementById('event');
+let lastEv = null;
+function showEvent(y){
+  const txt = '';                                  // keine Ereignis-Hinweise
+  if (txt === lastEv) return; lastEv = txt;
+  if (txt){ evEl.textContent = txt; evEl.style.opacity = 1; } else evEl.style.opacity = 0;
+}
+
+// ---- Ergebnis-Karte
+const row = (l, v, cls, big) => `<div class="row${big ? ' big' : ''}"><span>${l}</span><b class="${cls||''}">${v}</b></div>`;
+function hideCard(){ card.classList.remove('show'); }
+function showCard(){
+  const act = byYear[LAST].wp;
+  if (phase === 0){
+    return;
+  } else {
+    const net = cumZ[LAST] - cumF[LAST];
+    card.innerHTML = `<h2>Ergebnis Animation 2 · 1991–${LAST}</h2>
+      ${row('Zuzüge aus dem Ausland', sgn(cumZ[LAST]), 'pos')}
+      ${row('Fortzüge ins Ausland', sgn(-cumF[LAST]), 'neg')}
+      ${row('Saldo (Zuzüge − Fortzüge)', sgn(net), net >= 0 ? 'pos' : 'neg')}
+      ${row('Tatsächliche Bevölkerung Ende ' + LAST, fmt(act), '', true)}
+      <div class="note">Gezählt werden Wanderungsfälle, nicht Personen.</div>
+      <div class="btns"><button class="primary" id="goPrev">Von vorn beginnen</button><button id="again">Nochmal ansehen</button></div>`;
+    document.getElementById('goPrev').onclick = () => { hideCard(); intro(); };
+  }
+  document.getElementById('again').onclick = restart;
+  card.classList.add('show');
+}
+
+// ---- Schleife
+let last = performance.now(), lastYear = 0;
+function frame(now){
+  if (cv.width === 0 || Math.abs(cv.clientWidth * Math.min(devicePixelRatio || 1, 2) - cv.width) > 1) resize();
+  const dt = Math.min(0.25, (now - last) / 1000); last = now;
+  if (playing){
+    t += dt / SEC_PER_YEAR;
+    if (t >= END){ t = END; done = true; setPlaying(false); if (phase === 0) showBridge(); else showFinal(); }
+  }
+  const s = state(t), L = layout(s), P = PHASES[phase];
+  showEvent(s.y);
+  if (playing){
+    const k = 1 / SEC_PER_YEAR;
+    emit(dt, 'up',   s.d[P.up.key]   / DOT * k, true,  P.up.col,   L);
+    emit(dt, 'down', s.d[P.down.key] / DOT * k, false, P.down.col, L);
+    stepParticles(dt);
+  }
+  pulse *= 0.92;
+  const p = posPct(Math.min(t, LAST)) + '%';
+  headEl.style.left = p; fillEl.style.width = p;
+  if (s.y !== lastYear){ headLbl.textContent = s.y; track.setAttribute('aria-valuenow', s.y); lastYear = s.y; }
+  draw(s, L);
+  requestAnimationFrame(frame);
+}
+
+// ---- Fragen-Bildschirme (Text wird Buchstabe für Buchstabe aufgebaut)
+const Q2 = 'Wie hätte sich die Bevölkerung verändert ohne Ein- und Auswanderung?';
+const BQ = 'Könnte die Ein- und Auswanderung das Geburtendefizit ausgleichen?';
+const qs = document.getElementById('qs'), qtext = document.getElementById('qtext'), btext = document.getElementById('btext');
+const bnext = document.getElementById('bnext');
+let typing = null, holdT = null, holdFn = null;
+function typeInto(el, str, cb){
+  el.innerHTML = '<span></span><span class="caret"></span>';
+  const sp = el.firstChild;
+  typing = {str, sp, cb, el, i: 0, timer: null};
+  const ty = typing;
+  (function step(){
+    if (typing !== ty) return;
+    if (ty.i < str.length){ sp.textContent = str.slice(0, ++ty.i); ty.timer = setTimeout(step, str[ty.i-1] === ' ' ? 110 : 48); }
+    else { typing = null; el.querySelector('.caret')?.remove(); cb && cb(); }
+  })();
+}
+function hold(ms, fn){ clearTimeout(holdT); holdFn = fn; holdT = setTimeout(() => { holdFn = null; fn(); }, ms); }
+function cancelSeq(){ cuId++; clearTimeout(holdT); holdFn = null; if (typing){ clearTimeout(typing.timer); typing = null; } }
+function skipQ(){                                    // Klick / Leertaste: Text sofort fertig bzw. weiter
+  if (typing){ const ty = typing; clearTimeout(ty.timer); ty.sp.textContent = ty.str; ty.el.querySelector('.caret')?.remove(); typing = null; ty.cb && ty.cb(); }
+  else if (holdFn){ const f = holdFn; clearTimeout(holdT); holdFn = null; f(); }
+}
+qs.addEventListener('click', skipQ);
+bnext.addEventListener('click', e => { e.stopPropagation(); cancelSeq(); toAnim2(); });
+
+function highlight(el, str, keys){                   // alles grau, nur die Kernwörter bleiben weiß
+  let out = '', i = 0;
+  while (i < str.length){
+    const k = keys.find(k => str.startsWith(k, i));
+    if (k){ out += '<span class="w">' + k + '</span>'; i += k.length; }
+    else { let j = i; while (j < str.length && !keys.some(k => str.startsWith(k, j))) j++; out += '<span class="g">' + str.slice(i, j) + '</span>'; i = j; }
+  }
+  el.innerHTML = out;
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('hl')));
+}
+const highlightQ = () => highlight(qtext, Q2, ['Bevölkerung', 'ohne Ein- und Auswanderung']);
+function intro(){
+  qtext.classList.remove('hl'); btext.classList.remove('hl'); btext.removeAttribute('style'); document.getElementById('br').removeAttribute('style');
+  cancelSeq(); phase = 0; playing = false; done = false; t = FIRST; particles.length = 0; hideCard();
+  track.classList.add('noev'); setPlaying(false);
+  qs.className = 'on'; bnext.classList.remove('on'); qtext.style.opacity = 1;
+  typeInto(qtext, Q2, () => { highlightQ(); hold(3200, startAnim1); });
+}
+function startAnim1(){ cancelSeq(); qs.className = 'docked'; restart(); }   // Frage wandert nach oben links
+let cuId = 0;
+function countUp(el, to, ms, cb){
+  const id = ++cuId, t0 = performance.now();
+  (function step(now){
+    if (id !== cuId) return;
+    const p = clamp((now - t0) / ms, 0, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = sgn(to * e);
+    if (p < 1) requestAnimationFrame(step); else cb && cb();
+  })(t0);
+}
+function showBridge(){
+  const def = cumN[LAST];                              // gesamtes Defizit 1991–2023
+  const l = [...document.querySelectorAll('#bl .l1,#bl .l2,#bl .l3')];
+  l.forEach(el => el.classList.remove('in'));
+  document.getElementById('bdef').textContent = '0';
+  document.getElementById('bsub').textContent = fmt(cumB[LAST]) + ' Lebendgeborene − ' + fmt(cumD[LAST]) + ' Gestorbene (1991–' + LAST + ')';
+  btext.innerHTML = ''; btext.classList.remove('hl'); btext.removeAttribute('style'); document.getElementById('br').removeAttribute('style');
+  bnext.classList.remove('on');
+  qs.className = 'on bridge';
+  hold(1500, () => {                                   // Bildschirm ist eingeblendet
+    l[0].classList.add('in'); l[1].classList.add('in');
+    hold(700, () => countUp(document.getElementById('bdef'), def, 2600, () => {
+      l[2].classList.add('in');
+      hold(1500, () => typeInto(btext, BQ, () => { highlight(btext, BQ, ['Ein- und Auswanderung', 'Geburtendefizit']); hold(1800, () => { bnext.classList.add('on'); hold(8000, toAnim2); }); }));
+    }));
+  });
+}
+function toAnim2(){                                   // Frage wandert nach oben links, Animation 2 startet
+  cancelSeq();
+  const br = document.getElementById('br'), r = br.getBoundingClientRect();
+  br.style.cssText = `right:auto;bottom:auto;left:${r.left}px;top:${r.top}px;transition:none`;
+  void br.offsetWidth;
+  br.style.transition = 'left .9s cubic-bezier(.65,0,.25,1), top .9s cubic-bezier(.65,0,.25,1)';
+  br.style.left = '24px'; br.style.top = '20px';
+  btext.style.transition = 'font-size .9s cubic-bezier(.65,0,.25,1)'; btext.style.fontSize = '20px';
+  qs.className = 'bridge docked2';
+  setPhase(1);
+}
+// ---- Abschluss: Wanderungssaldo gleicht das Geburtendefizit vollständig aus
+const fin = document.getElementById('fin');
+const fbL = document.getElementById('fbL'), fbR = document.getElementById('fbR');
+const fsL = document.getElementById('fsL'), fsR = document.getElementById('fsR');
+const fvL = document.getElementById('fvL'), fvR = document.getElementById('fvR');
+const fnL = document.getElementById('fnL'), fnR = document.getElementById('fnR'), flR = document.getElementById('flR');
+const fcap = document.getElementById('fcap'), fbtn = document.getElementById('fbtn');
+const ease = x => x < .5 ? 2*x*x : 1 - Math.pow(-2*x + 2, 2) / 2;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const sgn0 = n => Math.round(n) === 0 ? '0' : sgn(n);
+let finId = 0;
+const F = {a: 0, b: 0, m: 0};                        // a: Defizit zählt hoch, b: Saldo zählt hoch, m: Ausgleich
+function finValues(){
+  const def = cumN[LAST], net = cumZ[LAST] - cumF[LAST];     // −4.921.515 und +11.357.681
+  return {def, net, rest: net + def};
+}
+function renderFinal(){
+  const {def, net} = finValues();
+  const W = innerWidth, H = innerHeight, cy = H * 0.6, sideTop = Math.max(H * 0.1, 76);
+  const rBig = clamp(Math.min(W * 0.17, cy - sideTop - 190, H * 0.26), 36, 400);
+  const R = v => rBig * Math.sqrt(Math.abs(v) / net);
+  const s1 = ease(clamp(F.m / 0.4, 0, 1)), s2 = ease(clamp((F.m - 0.4) / 0.35, 0, 1)), s3 = ease(clamp((F.m - 0.75) / 0.25, 0, 1));
+  const vL = def * F.a * (1 - s2);
+  const vR = net * F.b + def * s2;                  // def ist negativ
+  const xLeft = W * 0.25;
+  const xR = F.m < 0.75 ? lerp(W * 0.75, xLeft, s1) : lerp(xLeft, W * 0.5, s3);
+  const gxR = lerp(W * 0.75, W * 0.5, s3);
+  const put = (el, x, y, r) => { el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.width = el.style.height = 2 * r + 'px'; el.style.visibility = r < 1.5 ? 'hidden' : ''; };
+  put(fbL, xLeft, cy, R(vL)); put(fbR, xR, cy, R(vR));
+  fsL.style.left = xLeft + 'px'; fsL.style.top = sideTop + 'px';
+  fsR.style.left = gxR + 'px'; fsR.style.top = sideTop + 'px';
+  fvL.textContent = sgn0(vL); fvR.textContent = sgn(vR);
+  if (F.m > 0.75) fsL.style.setProperty('opacity', String(1 - s3), 'important'); else fsL.style.removeProperty('opacity');
+  flR.textContent = s2 >= 1 ? 'Überschuss durch Zuwanderung' : 'Wanderungssaldo';
+  fnR.textContent = s2 > 0 ? 'Wanderungssaldo − Geburtendefizit' : fmt(cumZ[LAST]) + ' Zuzüge − ' + fmt(cumF[LAST]) + ' Fortzüge';
+}
+function tween(ms, fn, id){
+  return new Promise(res => {
+    const t0 = performance.now();
+    (function step(now){
+      if (id !== finId) return res();
+      const p = clamp((now - t0) / ms, 0, 1); fn(p); renderFinal();
+      if (p < 1) requestAnimationFrame(step); else res();
+    })(t0);
+  });
+}
+async function showFinal(){
+  const id = ++finId, {def, net, rest} = finValues();
+  F.a = F.b = F.m = 0;
+  [fsL, fsR, fbL, fbR, fcap, fbtn].forEach(el => el.classList.remove('in'));
+  fsL.style.removeProperty('opacity');
+  fnL.textContent = fmt(cumB[LAST]) + ' Lebendgeborene − ' + fmt(cumD[LAST]) + ' Gestorbene';
+  fcap.innerHTML = 'Die Zuwanderung gleicht das Geburtendefizit seit 1991 <b>vollständig</b> aus – und liegt noch um <b>' + fmt(rest) + '</b> Menschen darüber.';
+  renderFinal();
+  fin.classList.add('on');
+  await sleep(1600); if (id !== finId) return;
+  fsL.classList.add('in'); fbL.classList.add('in');
+  await tween(2000, p => { F.a = ease(p); }, id); if (id !== finId) return;
+  await sleep(900); if (id !== finId) return;
+  fsR.classList.add('in'); fbR.classList.add('in');
+  await tween(2400, p => { F.b = ease(p); }, id); if (id !== finId) return;
+  await sleep(1800); if (id !== finId) return;
+  await tween(5200, p => { F.m = p; }, id); if (id !== finId) return;
+  await sleep(500); if (id !== finId) return;
+  fcap.classList.add('in');
+  await sleep(1200); if (id !== finId) return;
+  fbtn.classList.add('in');
+}
+function closeFinal(){ finId++; fin.classList.remove('on'); }
+document.getElementById('fAgain').onclick = () => showFinal();
+document.getElementById('fRestart').onclick = () => { closeFinal(); hideCard(); intro(); };
+addEventListener('resize', () => { if (fin.classList.contains('on')) renderFinal(); });
+
+intro();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
