@@ -122,7 +122,7 @@
     }
     tx('0', x0 - 12, zero, FS.s * 0.75, MUTE, 400, 'right');
     ctx.fillStyle = '#4a5366'; ctx.fillRect(x0 - 1, y0, 2, y1 - y0); ctx.fillRect(x0, zero - 1, x1 - x0, 2);
-    for (const q of [1991, 2000, 2010, 2020, 2023]) tx(String(q), X(q), y1 + 16, FS.s * 0.75, MUTE, 400, 'center');
+    for (const q of [FIRST, 2000, 2010, 2020, LAST]) tx(String(q), X(q), y1 + 16, FS.s * 0.75, MUTE, 400, 'center');
   
     const tt = clamp(t, FIRST, LAST), yi = Math.floor(tt), ff = tt - yi, sx = X(tt);
     ctx.fillStyle = 'rgba(255,255,255,.22)'; ctx.fillRect(sx - 0.5, y0, 1, y1 - y0);

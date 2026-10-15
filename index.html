@@ -19,6 +19,27 @@
   canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   button{font:inherit;font-size:var(--fs-s);cursor:pointer;color:var(--ink)}
 
+  /* Variantenwahl bleibt auf allen Folien erreichbar. */
+  #variation{position:fixed;top:18px;right:var(--pad);z-index:110;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:0;padding:7px 30px 7px 12px;cursor:pointer;color-scheme:dark}
+  #variation:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+  .variation-one #fin .fblob{display:none}
+  #finalParticles{pointer-events:none}
+  @keyframes lineReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .reveal-line{display:block;animation:lineReveal .55s ease both}
+  #finalBalance{display:none}
+  .variation-one #finalBalance{position:absolute;left:var(--pad);right:var(--pad);top:16%;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;opacity:0;transition:opacity .8s;text-align:center}
+  .variation-one #finalBalance.in{opacity:1}
+  #finalBalance > div:nth-child(1){order:1}
+  #finalBalance > div:nth-child(2){order:3}
+  #finalBalance > div:nth-child(3){order:2;visibility:hidden}
+  #finalBalance span{display:block;font-size:var(--fs-s);color:var(--mute);margin-bottom:8px}
+  #finalBalance strong{font-size:var(--fs-m);font-weight:400;font-variant-numeric:tabular-nums}
+  .variation-one #fcap{bottom:120px;font-size:var(--fs-s)}
+
+  #dashboardFade{position:fixed;inset:0;z-index:200;background:#000;opacity:0;pointer-events:none;transition:opacity .65s ease}
+  #dashboardFade.active{opacity:1;pointer-events:auto}
+
   /* Steuerung unten */
   .controls{position:absolute;left:0;right:0;bottom:0;padding:10px var(--pad) 14px;display:flex;gap:18px;align-items:flex-start;
     background:linear-gradient(transparent,var(--bg90) 55%)}
@@ -147,6 +168,10 @@
 </style>
 </head>
 <body>
+<select id="variation" aria-label="Variation auswählen">
+  <option value="original">Original · bis 2023</option>
+  <option value="1">Variation 1 · bis 2025</option>
+</select>
 <div id="stage">
   <canvas id="c"></canvas>
   <div id="event"></div>
@@ -157,10 +182,16 @@
     <div id="br"><div id="btext"></div><button id="bnext">Weiter →</button></div>
   </div>
   <div id="fin">
+    <canvas id="finalParticles" aria-hidden="true"></canvas>
     <div class="ftitle">Geburtendefizit gegen Wanderungssaldo · 1991–2023</div>
     <div class="fblob" id="fbL"></div><div class="fblob" id="fbR"></div>
     <div class="fside" id="fsL"><div class="fl1">Geburtendefizit</div><div class="fl2" id="fvL"></div><div class="fl3" id="fnL"></div></div>
     <div class="fside" id="fsR"><div class="fl1" id="flR">Wanderungssaldo</div><div class="fl2" id="fvR"></div><div class="fl3" id="fnR"></div></div>
+    <div id="finalBalance" aria-label="Bilanz des gesamten Zeitraums">
+      <div><span>Geburtendefizit</span><strong id="balanceDef"></strong></div>
+      <div><span>Wanderungssaldo</span><strong id="balanceNet"></strong></div>
+      <div><span>Verbleibender Überschuss</span><strong id="balanceRest"></strong></div>
+    </div>
     <div id="fcap"></div>
     <div id="fbtn"><button id="fNext">Weiter zum Dashboard</button><button id="fAgain">Nochmal ansehen</button><button id="fRestart">Von vorn beginnen</button></div>
   </div>
@@ -173,6 +204,7 @@
   </div>
 </div>
 
+<div id="dashboardFade" aria-hidden="true"></div>
 <div id="dtabs"></div>
 <div id="panel">
   <div class="sec"><h3>Punktgröße</h3>
@@ -201,18 +233,41 @@
 </div>
 
 <script>window.DASHBOARDS = []; window.registerDashboard = d => DASHBOARDS.push(d);</script>
+<script src="dashboards/explorer.js"></script>
 <script src="dashboards/josua.js"></script>
 <script src="dashboards/jeremy.js"></script>
 <script src="dashboards/philipp.js"></script>
 <script>
-const DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
+const ALL_DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045},{"y":2024,"zu":1694192,"fort":1264009,"wb":677117,"wd":1007758,"wp":83577140},{"y":2025,"zu":1479944,"fort":1244944,"wb":654241,"wd":1006588,"wp":83467117}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
 const BASE = 79753227;                            // Bevölkerung Deutschlands am 31.12.1990
-const FIRST = 1991, LAST = 2023, END = LAST + 0.999;
+const variation = new URLSearchParams(location.search).get('variation') === '1' ? '1' : 'original';
+const enhanced = variation === '1';
+document.body.classList.toggle('variation-one', enhanced);
+const FIRST = 1991, LAST = variation === '1' ? 2025 : 2023, END = LAST + 0.999;
+const DATA = ALL_DATA.filter(d => d.y <= LAST);
+const variationSelect = document.getElementById('variation');
+variationSelect.value = variation;
+variationSelect.addEventListener('change', () => {
+  const url = new URL(location.href);
+  if (variationSelect.value === '1') url.searchParams.set('variation', '1');
+  else url.searchParams.delete('variation');
+  location.assign(url.href);
+});
+document.title = 'Bevölkerung Deutschlands ' + FIRST + '–' + LAST;
+document.querySelector('#fin .ftitle').textContent = 'Geburtendefizit gegen Wanderungssaldo · ' + FIRST + '–' + LAST;
+document.getElementById('track').setAttribute('aria-valuemax', LAST);
 let SZMIN = 2, SZMAX = 10;                      // Punktradius (px): kleinster / größter Punkt, per E-Menü
 let DOT = 3000;                                  // Personen pro Punkt (per Regler im E-Menü änderbar)
 const SEC_PER_YEAR = 0.7;
 let ypsCur = 1.0;                                  // Animation 2: ruhiges Tempo, in Ereignisjahren deutlich langsamer
+function narrativeSpeed(){
+  const progress = clamp((t - FIRST) / (LAST - FIRST), 0, 1);
+  const ramp = clamp((progress - 1 / 3) / (2 / 3), 0, 1);
+  const smooth = ramp * ramp * (3 - 2 * ramp);
+  return lerp(scene === 1 ? .9 : 1, scene === 1 ? 2.4 : 2.2, smooth);
+}
 function yps(){
+  if (enhanced && scene === 1) return narrativeSpeed();
   if (scene === 3) return ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
   if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
     const k = clamp((t - FIRST) / 9, 0, 1);
@@ -327,7 +382,7 @@ for (let y = FIRST; y <= LAST; y++){
   const major = y % 5 === 0 || y === FIRST || y === LAST;
   const tk = document.createElement('div'); tk.className = 'tick' + (major ? ' major' : ''); tk.style.left = posPct(y) + '%';
   track.appendChild(tk);
-  if (major && y !== 2020){
+  if (major){
     const l = document.createElement('div'); l.className = 'tlab'; l.textContent = y; l.style.left = posPct(y) + '%'; track.appendChild(l);
   }
 }
@@ -411,6 +466,20 @@ const BAND = () => R_MAX * 0.6;                    // beide Strahlen gleich brei
 
 /* ---- Punkte ---- */
 const particles = [], acc = {up:0, down:0}, MAXP = 16000;
+let waitingForArrival = false, drainingParticles = false;
+function beginEntrance(){
+  if (!enhanced) return;
+  particles.length = 0; acc.up = acc.down = 0;
+  waitingForArrival = true;
+}
+function particlePosition(p){
+  const q = clamp(p.age / p.life, 0, 1);
+  const x = p.inflow ? lerp(-14, CX, q) : lerp(CX, W + 20, q);
+  const dist = Math.abs(x - CX) / Math.max(CX, 1);
+  const env = BAND() * (0.8 + 0.45 * dist + 0.12 * Math.sin(dist * 7 + 1.3));
+  const y = CY + p.u * env + Math.sin(q * p.wf + p.wob) * p.wa / SC * (0.3 + dist);
+  return {x, y};
+}
 function spawn(inflow, ck, age){
   if (particles.length > MAXP) return;
   const len = inflow ? CX + 14 : W - CX + 20;
@@ -434,9 +503,10 @@ function stepParticles(dt){
   }
 }
 function prefill(){                                // Strahlen sofort gefüllt darstellen (z. B. nach dem Springen im Zeitstrahl)
+  waitingForArrival = false; drainingParticles = false;
   particles.length = 0; acc.up = acc.down = 0;
   if (phase > 1 || isDash()) return;
-  const P = PHASES[phase], d = byYear[clamp(Math.floor(t), FIRST, LAST)], k = yps();
+  const P = PHASES[phase], d = byYear[clamp(Math.floor(t), FIRST, LAST)], k = enhanced ? 1 : yps();
   for (const [key, ck, inflow] of [[P.up.key, P.up.ck, true], [P.down.key, P.down.ck, false]]){
     const len = inflow ? CX + 14 : W - CX + 20, n = d[key] / DOT * k * (len / SPEED);
     for (let i = 0; i < n; i++) spawn(inflow, ck, true);
@@ -445,11 +515,7 @@ function prefill(){                                // Strahlen sofort gefüllt d
 function drawParticles(rNow){
   const rEx = rNow - 16 / SC, fade = 46 / SC, band = BAND();
   for (const p of particles){
-    const q = clamp(p.age / p.life, 0, 1);
-    const x = p.inflow ? lerp(-14, CX, q) : lerp(CX, W + 20, q);
-    const dist = Math.abs(x - CX) / Math.max(CX, 1);                  // 0 am Kreis, 1 am Rand (links und rechts gleich)
-    const env = band * (0.8 + 0.45 * dist + 0.12 * Math.sin(dist * 7 + 1.3));   // atmende, trichterförmige Breite
-    const y = CY + p.u * env + Math.sin(q * p.wf + p.wob) * p.wa / SC * (0.3 + dist);
+    const {x, y} = particlePosition(p);
     let a = clamp((Math.hypot(x - CX, y - CY) - rEx) / fade, 0, 1);
     a = a * a * (3 - 2 * a);                                           // weicher Übergang in den Kreis
     a *= clamp((H - 104 / SC - y) / 30, 0, 1);
@@ -497,11 +563,15 @@ function drawDash(s){
   const yr = clamp(Math.floor(t), FIRST, LAST), d = byYear[yr], f = (t - yr) > 0 ? clamp(t - yr, 0, 1) : 1;
   const api = {
     ctx, w, h, t, year: yr, frac: f, d, FIRST, LAST, BASE, DATA, byYear, cumN, cumB, cumD, cumZ, cumF,
-    COLORS, FS, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
+    EVENTS, COLORS, FS, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
     popNow: lerp(yr === FIRST ? BASE : byYear[yr-1].wp, d.wp, f),
     popWithoutMigration: BASE + cumN[yr-1] + f * (d.wb - d.wd),
     setClickArea: g => { dashGeo = g; },            // Bereich, in dem ein Klick das Jahr wählt: {x0, x1, y0, y1}
   };
+  if (enhanced){
+    window.populationExplorer.render({...api, selectYear(y){ t = clamp(y, FIRST, LAST); setPaused(true); }});
+    return;
+  }
   const dashDef = DASHBOARDS[dash];
   if (!dashDef){ return; }
   try { dashDef.draw(api); }
@@ -567,7 +637,7 @@ function drawBridge(){
     if (y % 5 === 0 || y === FIRST || y === LAST){
       const cx = x0 + (y - FIRST + 0.5) * slot;
       c.fillRect(cx - 1, bot + 6, 2, 6);
-      if (y !== 2020) c.fillText(String(y), cx, bot + 26);
+      if (enhanced || y !== 2020) c.fillText(String(y), cx, bot + 26);
     }
   }
   c.globalAlpha = 1;
@@ -577,9 +647,10 @@ function drawBridge(){
     const v = d.wb - d.wd, cx = x0 + (i + 0.5) * slot, yv = Yv(v * f);
     c.globalAlpha = hov >= 0 && i !== hov ? 0.4 : 1;
     c.fillStyle = v < 0 ? COLORS.death : COLORS.birth;
-    c.fillRect(cx - bw / 2, Math.min(zero, yv), bw, Math.max(Math.abs(yv - zero), 1));
+    if (!enhanced) c.fillRect(cx - bw / 2, Math.min(zero, yv), bw, Math.max(Math.abs(yv - zero), 1));
   });
   c.globalAlpha = 1;
+  if (enhanced) drawBridgeCloud(c, {x0, slot, bw, zero, Yv}, el);
   if (hov >= 0){                                              // Wert des Jahres
     const d = DATA[hov], v = d.wb - d.wd;
     c.textAlign = 'right';
@@ -606,19 +677,35 @@ function frameBody(now){
   runTimers();
   layout();
   const s = state(t);
-  if (scene === 3){ const target = EVENTS[clamp(Math.floor(t), FIRST, LAST)] ? 0.4 : 1.0; ypsCur += (target - ypsCur) * Math.min(1, dt * 4); }
-  if (isAnim() && !paused){
+  if (scene === 3){ const eventYear = !!EVENTS[clamp(Math.floor(t), FIRST, LAST)]; const target = enhanced ? (eventYear ? Math.max(.4, narrativeSpeed() * .4) : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
+  if (isAnim() && !paused && !waitingForArrival && !drainingParticles){
     t += dt * yps();
-    if (t >= END){ t = END; goScene(scene === 1 ? 2 : 4); }
+    if (t >= END){
+      t = END;
+      if (enhanced){ drainingParticles = true; acc.up = acc.down = 0; }
+      else goScene(scene === 1 ? 2 : 4);
+    }
   } else if (isDash() && !paused && !dragging){
     t += dt / 0.45;
     if (t >= LAST){ t = LAST; setPaused(true); }
   }
   if (isAnim()){                                   // Punkte laufen auch bei Pause weiter, mit den Werten des gewählten Jahres
-    const P = PHASES[phase], k = yps(), d = s.d;
-    emit(dt, 'up',   d[P.up.key]   / DOT * k, true,  P.up.ck);
-    emit(dt, 'down', d[P.down.key] / DOT * k, false, P.down.ck);
-    stepParticles(dt);
+    const P = PHASES[phase], k = enhanced ? 1 : yps(), d = state(t).d;
+    const particleDt = (waitingForArrival || drainingParticles) && paused ? 0 : dt;
+    if (!drainingParticles){
+      emit(particleDt, 'up', d[P.up.key] / DOT * k, true, P.up.ck);
+      if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT * k, false, P.down.ck);
+    }
+    stepParticles(particleDt);
+    if (drainingParticles && !paused && particles.length === 0) goScene(scene === 1 ? 2 : 4);
+    if (waitingForArrival && !paused){
+      const radius = R_MAX * Math.sqrt(Math.max(state(t).pop, 1) / REF_POP);
+      waitingForArrival = !particles.some(p => {
+        if (!p.inflow) return false;
+        const {x, y} = particlePosition(p);
+        return Math.hypot(x - CX, y - CY) <= radius;
+      });
+    }
   }
   const p = posPct(Math.min(t, LAST)) + '%';
   headEl.style.left = p; fillEl.style.width = p;
@@ -628,6 +715,7 @@ function frameBody(now){
   if (scene === 3){ const on = evEl.classList.contains('on'); for (const y in mks){ mks[y].classList.toggle('seen', +y <= yy); mks[y].classList.toggle('act', on && evYear === +y); } }
   draw(state(t));
   drawBridge();
+  if (enhanced && scene === 4) drawFinalClouds();
 }
 
 /* ---- Text-Szenen ---- */
@@ -637,6 +725,16 @@ const qs = $('qs'), qtext = $('qtext'), btext = $('btext'), bnext = $('bnext'), 
 let typing = null, introTyped = false, bridgeDone = false, finDone = false;
 
 function typeInto(el, str, cb){
+  if (enhanced){
+    el.replaceChildren();
+    str.split('\n').forEach((line, i) => {
+      const span = document.createElement('span'); span.className = 'reveal-line'; span.textContent = line;
+      span.style.animationDuration = (el === qtext ? 1.9 : .55) + 's';
+      span.style.animationDelay = (i * (el === qtext ? .7 : .18)) + 's'; el.appendChild(span);
+    });
+    later(el === qtext ? 3800 : 1600, () => { if (cb) cb(); });
+    return;
+  }
   el.innerHTML = '<span></span><span class="caret"></span>';
   const ty = typing = {str, sp: el.firstChild, el, cb, i: 0};
   (function step(){
@@ -672,7 +770,7 @@ addEventListener('resize', placeIntro);
 function sceneIntro(instant){
   qtext.classList.remove('hl'); introTyped = false;
   qs.className = 'on';
-  qtext.innerHTML = '<span></span><span class="caret"></span>';
+  qtext.innerHTML = enhanced ? '' : '<span></span><span class="caret"></span>';
   qtext.style.transition = 'none'; qtext.style.opacity = 0;
   const fontReady = Promise.race([document.fonts.load('300 40px "IBM Plex Sans"'), new Promise(r => setTimeout(r, 1200))]);
   const myScene = ++introRun;
@@ -681,16 +779,18 @@ function sceneIntro(instant){
     placeIntro(); void qtext.offsetWidth;
     qtext.style.transition = ''; qtext.style.opacity = 1;
     if (instant){ introFull(); return; }
-    later(1200, () => typeInto(qtext, Q2, () => { introTyped = true; later(1500, () => goScene(1)); }));
+    later(enhanced ? 250 : 1200, () => typeInto(qtext, Q2, () => { introTyped = true; later(enhanced ? 500 : 1500, () => goScene(1)); }));
   });
 }
 let introRun = 0;
 function introFull(){
   cancelSeq(); introTyped = true; qtext.classList.remove('hl');
-  qtext.innerHTML = '<span>' + Q2 + '</span><span class="caret"></span>';
+  qtext.textContent = Q2;
+  if (!enhanced) qtext.innerHTML = '<span>' + Q2 + '</span><span class="caret"></span>';
 }
 function sceneAnim1(fromIntro){
   setPhase(0);
+  beginEntrance();
   qs.className = 'docked';
   if (fromIntro){
     if (!qtext.firstChild || qtext.querySelector('.caret')) { /* Text steht bereits */ }
@@ -736,7 +836,9 @@ function showBridge(instant){
   });
 }
 function sceneAnim2(glide){
+  if (enhanced) ypsCur = 1;
   setPhase(1);
+  beginEntrance();
   if (glide){
     const r = br.getBoundingClientRect();
     br.style.cssText = `right:auto;bottom:auto;left:${r.left}px;top:${r.top}px;transition:none`;
@@ -750,6 +852,123 @@ function sceneAnim2(glide){
     btext.textContent = BQ; highlight(btext, BQ, KEYS2, true);
   }
   qs.className = 'bridge docked2';
+}
+
+/* Punktwolken: gleiche repräsentative Personenzahl pro Punkt auf beiden Seiten. */
+function cloudRandom(i, salt=0){
+  let seed = Math.imul((i + 1) ^ Math.imul(salt + 1, 374761393), 668265263);
+  seed = Math.imul(seed ^ (seed >>> 13), 1274126177);
+  return ((seed ^ (seed >>> 16)) >>> 0) / 4294967296;
+}
+function cloudPoint(i, n, radius){
+  const angle = cloudRandom(i, 1) * Math.PI * 2;
+  const r = radius * Math.sqrt(cloudRandom(i, 2));
+  const clock = vt / 1000;
+  const contour = 1 + .12 * Math.sin(angle * 3 + clock * .22) + .07 * Math.cos(angle * 5 - clock * .17);
+  return {
+    x: Math.cos(angle) * r * contour * 1.06 + Math.sin(clock * (.32 + cloudRandom(i, 3) * .35) + i) * radius * .095,
+    y: Math.sin(angle) * r * contour * .83 + Math.cos(clock * (.28 + cloudRandom(i, 4) * .3) + i * 2) * radius * .085
+  };
+}
+function cloudDot(c, x, y, i, color, alpha=1){
+  const size = 1.1 + Math.pow(cloudRandom(i, 5), 2.1) * 5.6;
+  c.globalAlpha = alpha * (.4 + cloudRandom(i, 6) * .55);
+  c.fillStyle = color; c.beginPath(); c.arc(x, y, size, 0, Math.PI * 2); c.fill();
+}
+function drawBridgeCloud(c, geometry, elapsed){
+  const {x0, slot, bw, zero, Yv} = geometry;
+  const seconds = vt / 1000;
+  DATA.forEach((d, yearIndex) => {
+    const value = d.wb - d.wd;
+    const bottom = Yv(value), height = Math.abs(bottom - zero);
+    // Dichte Überlappung bis an alle Kanten; keine flächige Hintergrundfüllung.
+    const columns = Math.max(2, Math.ceil(bw / 6.5));
+    const rows = Math.max(2, Math.ceil(height / 6.5));
+    const count = columns * rows;
+    for(let j=0;j<count;j++){
+      const i = yearIndex * 10000 + j;
+      const rx = clamp((j % columns + .5 + (cloudRandom(i, 11) - .5) * .35) / columns, 0, 1);
+      const ry = clamp((Math.floor(j / columns) + .5 + (cloudRandom(i, 12) - .5) * .35) / rows, 0, 1);
+      const targetX = x0 + (yearIndex + .5) * slot + (rx - .5) * bw;
+      const targetY = lerp(zero, bottom, ry);
+      const duration = (targetX + 20) / (SPEED * SC * (.85 + cloudRandom(i, 13) * .45)) * 1000;
+      const age = elapsed - 350 - cloudRandom(i, 14) * 1800;
+      if(age <= 0) continue;
+      const f = clamp(age / duration, 0, 1);
+      const stop = clamp((f - .8) / .2, 0, 1);
+      const travel = f <= .8 ? f * 1.1 : .88 + .12 * (2 * stop - stop * stop);
+      const driftX = Math.sin(seconds * .6 + i) * .4;
+      const driftY = Math.cos(seconds * .5 + i * 1.7) * .4;
+      const x = lerp(-20, targetX + driftX, travel);
+      const y = lerp(zero + cloudRandom(i, 15) * 60, targetY + driftY, travel) + Math.sin(f * 6 + i) * 5 * (1-f);
+      c.save();
+      // Angekommene Punkte bleiben innerhalb ihres Jahresbalkens.
+      if(f >= 1){c.beginPath();c.rect(x0+(yearIndex+.5)*slot-bw/2,Math.min(zero,bottom),bw,height);c.clip();}
+      c.globalAlpha = .94;
+      c.fillStyle = value<0 ? COLORS.death : COLORS.birth;
+      c.beginPath(); c.arc(x,y,7.5 + cloudRandom(i, 16) * 2.3,0,Math.PI*2); c.fill();
+      c.restore();
+    }
+  });
+  c.globalAlpha = 1;
+}
+function cloudReveal(value, index, count){
+  const linearTime = value < .5 ? Math.sqrt(value / 2) : 1 - Math.sqrt((1 - value) / 2);
+  const local = clamp((linearTime - .62 * index / count) / .38, 0, 1);
+  return local * local * (3 - 2 * local);
+}
+function cloudArrival(i, point, growth, radius){
+  const spread = .9 + .1 * growth;
+  const wander = Math.sin(growth * Math.PI) * radius * .055;
+  const phase = cloudRandom(i, 41) * Math.PI * 2;
+  return {
+    x: point.x * spread + Math.sin(phase + growth * 4) * wander,
+    y: point.y * spread + Math.cos(phase + growth * 3) * wander
+  };
+}
+function drawFinalClouds(){
+  const canvas = $('finalParticles'), c = canvas.getContext('2d');
+  const w = innerWidth, h = innerHeight;
+  if (canvas.width !== Math.round(w*DPR) || canvas.height !== Math.round(h*DPR)){canvas.width=Math.round(w*DPR);canvas.height=Math.round(h*DPR);}
+  c.setTransform(DPR,0,0,DPR,0,0);c.clearRect(0,0,w,h);
+  const {def,net} = finValues(), blueCount=1000, redCount=Math.round(Math.abs(def)/net*blueCount);
+  const cy=h*.54, radius=Math.max(36,Math.min(w*.21, cy-Math.max(h*.1,76)-115,h*.26));
+  const redRadius=radius*Math.sqrt(Math.abs(def)/net);
+  const approach=ease(clamp(F.m/.4,0,1)), collision=ease(clamp((F.m-.4)/.35,0,1)), settle=ease(clamp((F.m-.75)/.25,0,1));
+  // Die Wolkenzentren bleiben stehen; nur die einzelnen Punkte ziehen zur Mitte.
+  const left=w*.25, right=w*.75;
+  const survivorRadius=radius*Math.sqrt((blueCount-redCount)/blueCount);
+  for(let i=0;i<blueCount;i++){
+    const p=cloudPoint(i+9001,blueCount,radius);
+    // Neue Punkte erscheinen über den gesamten Zählvorgang verteilt.
+    const growth = cloudReveal(F.b, i, blueCount);
+    if(growth<=0)continue;
+    const arrival=cloudArrival(i+9001,p,growth,radius);
+    let x=right+arrival.x,y=cy+arrival.y,alpha=growth;
+    if(i<redCount){
+      const pair=cloudPoint(i+18001,redCount,Math.min(radius,redRadius)*.9);
+      const meet=ease(clamp((F.m - .08 - cloudRandom(i,21) * .22) / .62,0,1));
+      const swirl=Math.sin(meet*Math.PI)*(cloudRandom(i,22)-.5)*radius*.4;
+      x=lerp(x,w*.5+pair.x,meet);y=lerp(y,cy+pair.y,meet)+swirl;
+      alpha*=1-ease(clamp((meet-.65)/.35,0,1));
+    }else{
+      const end=cloudPoint(i+9001,blueCount-redCount,survivorRadius);
+      const drift=ease(clamp((F.m - .08 - cloudRandom(i,23)*.15)/.75,0,1));
+      x=lerp(x,w*.5+end.x,drift);y=lerp(y,cy+end.y,drift);
+    }
+    if(alpha>.005)cloudDot(c,x,y,i,COLORS.in,alpha);
+  }
+  for(let i=0;i<redCount;i++){
+    const p=cloudPoint(i,redCount,redRadius),pair=cloudPoint(i+18001,redCount,Math.min(radius,redRadius)*.9);
+    const growth = cloudReveal(F.a, i, redCount);
+    const meet=ease(clamp((F.m - .08 - cloudRandom(i,21) * .22) / .62,0,1));
+    const alpha=growth*(1-ease(clamp((meet-.65)/.35,0,1)));
+    if(alpha<=.005)continue;
+    const swirl=-Math.sin(meet*Math.PI)*(cloudRandom(i,22)-.5)*radius*.4;
+    const arrival=cloudArrival(i,p,growth,redRadius);
+    cloudDot(c,lerp(left+arrival.x,w*.5+pair.x,meet),lerp(cy+arrival.y,cy+pair.y,meet)+swirl,i,COLORS.death,alpha);
+  }
+  c.globalAlpha=1;
 }
 
 /* ---- Ergebnis: Wanderungssaldo gleicht das Geburtendefizit aus ---- */
@@ -778,10 +997,12 @@ function renderFinal(){
   fbR.style.background = 'radial-gradient(circle, ' + hexA(COLORS.in, .08) + ', ' + hexA(COLORS.in, .34) + ')'; fbR.style.border = '2px solid ' + COLORS.in;
   fvL.style.color = COLORS.death; fvR.style.color = COLORS.in;
   fcap.querySelectorAll('b').forEach(b => b.style.color = COLORS.in);
+  if (enhanced) fsR.style.removeProperty('opacity');
   fsL.style.left = xLeft + 'px'; fsL.style.top = sideTop + 'px';
   fsR.style.left = gxR + 'px'; fsR.style.top = sideTop + 'px';
   fvL.textContent = sgn0(vL); fvR.textContent = sgn(vR);
-  if (F.m > 0.75) fsL.style.setProperty('opacity', String(1 - s3), 'important'); else fsL.style.removeProperty('opacity');
+  const deficitFade = enhanced ? ease(clamp((F.m - .64) / .11, 0, 1)) : s3;
+  if (F.m > (enhanced ? .64 : .75)) fsL.style.setProperty('opacity', String(1 - deficitFade), 'important'); else fsL.style.removeProperty('opacity');
   flR.textContent = s2 >= 1 ? 'Überschuss durch Zuwanderung' : 'Wanderungssaldo';
   fnR.textContent = s2 > 0 ? 'Wanderungssaldo − Geburtendefizit' : fmt(cumZ[LAST]) + ' Zuzüge − ' + fmt(cumF[LAST]) + ' Fortzüge';
 }
@@ -796,7 +1017,12 @@ function tween(ms, fn, id){
   });
 }
 function finalText(){
-  const {rest} = finValues();
+  const {def, net, rest} = finValues();
+  if (enhanced){
+    $('balanceDef').textContent = sgn(def); $('balanceDef').style.color = COLORS.death;
+    $('balanceNet').textContent = sgn(net); $('balanceNet').style.color = COLORS.in;
+    $('balanceRest').textContent = sgn(rest); $('balanceRest').style.color = COLORS.in;
+  }
   fnL.textContent = fmt(cumB[LAST]) + ' Lebendgeborene − ' + fmt(cumD[LAST]) + ' Gestorbene';
   fcap.innerHTML = 'Die Zuwanderung gleicht das Geburtendefizit seit 1991 <b>vollständig</b> aus – und liegt noch um <b>' + fmt(rest) + '</b> Menschen darüber.';
 }
@@ -804,11 +1030,13 @@ function finishFinal(){
   finId++; cancelSeq();
   F.a = F.b = F.m = 1; finalText();
   [fsL, fsR, fbL, fbR, fcap, fbtn].forEach(el => el.classList.add('in'));
+  if (enhanced) $('finalBalance').classList.add('in');
   renderFinal(); finDone = true;
 }
 async function showFinal(instant){
   const id = ++finId; finDone = false;
   F.a = F.b = F.m = 0;
+  $('finalBalance').classList.remove('in');
   [fsL, fsR, fbL, fbR, fcap, fbtn].forEach(el => el.classList.remove('in'));
   fsL.style.removeProperty('opacity');
   finalText(); renderFinal();
@@ -816,27 +1044,53 @@ async function showFinal(instant){
   if (instant){ finishFinal(); return; }
   await sleep(1600); if (id !== finId) return;
   fsL.classList.add('in'); fbL.classList.add('in');
-  await tween(2000, p => { F.a = ease(p); }, id); if (id !== finId) return;
+  await tween(enhanced ? 3000 : 2000, p => { F.a = ease(p); }, id); if (id !== finId) return;
   await sleep(900); if (id !== finId) return;
   fsR.classList.add('in'); fbR.classList.add('in');
-  await tween(2400, p => { F.b = ease(p); }, id); if (id !== finId) return;
+  await tween(enhanced ? 3400 : 2400, p => { F.b = ease(p); }, id); if (id !== finId) return;
   await sleep(1800); if (id !== finId) return;
-  await tween(5200, p => { F.m = p; }, id); if (id !== finId) return;
+  await tween(enhanced ? 6500 : 5200, p => { F.m = p; }, id); if (id !== finId) return;
   await sleep(500); if (id !== finId) return;
   fcap.classList.add('in');
+  if (enhanced) $('finalBalance').classList.add('in');
   await sleep(1200); if (id !== finId) return;
   fbtn.classList.add('in'); finDone = true;
 }
 addEventListener('resize', () => { if (fin.classList.contains('on')) renderFinal(); });
 
 /* ---- Folien-Steuerung ---- */
+let dashboardTransition = false;
+function enterDashboard(){
+  if (dashboardTransition) return;
+  dashboardTransition = true;
+  setPaused(true);
+  const curtain = $('dashboardFade');
+  curtain.classList.add('active');
+  setTimeout(() => {
+    if (scene !== 4){ curtain.classList.remove('active'); dashboardTransition = false; return; }
+    // Vorherige Folie hinter dem schwarzen Vorhang vollständig entfernen.
+    const previousTransition = fin.style.transition;
+    fin.style.transition = 'none';
+    goScene(5, {throughBlack:true});
+    void fin.offsetWidth;
+    fin.style.transition = previousTransition;
+    setTimeout(() => {
+      curtain.classList.remove('active');
+      setTimeout(() => { dashboardTransition = false; }, 650);
+    }, 180);
+  }, 700);
+}
+
 function goScene(n, opt){
   opt = opt || {};
+  if (enhanced && n === 5 && scene === 4 && !opt.throughBlack){ enterDashboard(); return; }
   const prev = scene;
   if (n === 2 && prev === 2) return;
   if (n === 3 && prev === 2 && !bridgeDone) finishBridge();
   cancelSeq(); finId++;
+  drainingParticles = false;
   scene = n;
+  document.body.classList.toggle('exploring', enhanced && n === 5);
   track.classList.toggle('ev', n === 3); if (n !== 3) hideEvent();
   if (!panelOpen) setPaused(false);
   if (n !== 4){ fin.classList.remove('on'); }
@@ -930,7 +1184,7 @@ function updateMenus(){
   applyBg();
   [...scenesEl.children].forEach((b, i) => b.classList.toggle('on', i === scene));
   [...dtabs.children].forEach((b, i) => b.classList.toggle('on', i === dash));
-  dtabs.classList.toggle('open', panelOpen && isDash());
+  dtabs.classList.toggle('open', panelOpen && isDash() && !enhanced);
 }
 function togglePanel(){
   panelOpen = !panelOpen;
@@ -940,7 +1194,7 @@ function togglePanel(){
 }
 
 addEventListener('keydown', e => {
-  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.ctrlKey || e.metaKey || e.altKey || e.target.closest('select, button, input, [role=tab]')) return;
   const k = e.code;
   if (k === 'KeyE'){ e.preventDefault(); togglePanel(); }
   else if (k === 'KeyD'){ e.preventDefault(); next(); }
