@@ -117,6 +117,12 @@ window.populationExplorer = (() => {
   #explorer.variant-two .ex-dashboard-switch .ex-tabs{width:380px}
   #explorer.variant-two .ex-dashboard-switch .ex-tabs button{flex:1 1 0;white-space:nowrap;padding:10px 12px}
   @media(max-width:700px){#explorer.variant-two .ex-dashboard-switch .ex-tabs{width:min(380px,calc(100vw - 40px))}#explorer.variant-two .ex-dashboard-switch .ex-tabs button{font-size:12px;padding-inline:8px}}
+  .ex-dashboard-switch{margin:24px 0 10px}
+  #explorer.variant-two .ex-grid{margin-top:0;padding:22px;border:1px solid #30343b;border-radius:10px;background:rgba(255,255,255,.018)}
+  #explorer.variant-two .ex-grid .ex-plot{padding:0;border:0;border-radius:0;background:transparent}
+  #explorer.variant-two .ex-grid .ex-card{padding:0 0 0 22px;border:0;border-left:1px solid #30343b;border-radius:0;background:transparent}
+  @media(max-width:1000px){#explorer.variant-two .ex-grid{padding:18px}#explorer.variant-two .ex-grid .ex-card{padding-left:18px}}
+  @media(max-width:700px){#explorer.variant-two .ex-grid .ex-card{border-left:0;border-top:1px solid #30343b;padding:18px 0 0}.ex-dashboard-switch{margin-top:18px}}
   .ex-tabs{display:flex;gap:8px;margin:22px 0;flex-wrap:wrap}
   #explorer button{font-size:14px;background:transparent;border:1px solid #3a4252;border-radius:6px;padding:9px 14px;color:#a4adbd}
   #explorer button:hover{border-color:#a4adbd;color:white}#explorer button[aria-selected=true],#explorer button[aria-pressed=true]{background:#eef2f6;color:#121212;border-color:#eef2f6}
@@ -161,7 +167,7 @@ window.populationExplorer = (() => {
   const yearColumn=document.createElement('div');yearColumn.className='ex-year-column';
   const card=el.querySelector('.ex-card');card.before(yearColumn);yearColumn.append(card);
   const switchRow=document.createElement('div');switchRow.className='ex-dashboard-switch';
-  switchRow.append(tablist);el.querySelector('.ex-topline').append(switchRow);
+  switchRow.append(tablist);el.querySelector('.ex-grid').before(switchRow);
   const footer=document.createElement('div');footer.className='ex-chart-footer';
   $('ex-legend').before(footer);footer.append($('ex-legend'),$('ex-switch'));
   tablist.append(tablist.querySelector('[data-view="population"]'),tablist.querySelector('[data-view="balance"]'));
@@ -271,10 +277,10 @@ window.populationExplorer = (() => {
     const pad=(hi-lo)*.12||1;if(lo!==0)lo-=pad;hi+=pad;
     // Eine SVG-Einheit entspricht einem CSS-Pixel: Schrift bleibt unverzerrt.
     svg.setAttribute('viewBox', `0 0 ${chartWidth} ${chartHeight}`);
-    const right=chartWidth-20, bottom=chartHeight-38-eventSpace, top=35, plotWidth=right-leftMargin;
+    const right=chartWidth-20, bottom=chartHeight-76-eventSpace, top=35, plotWidth=right-leftMargin;
     const X=y=>leftMargin+(y-FIRST)/(LAST-FIRST)*plotWidth,Y=v=>bottom-(v-lo)/(hi-lo)*(bottom-top);
     hoverGeometry={rows,sets,X,Y,top,bottom};clearValueHover();
-    let out=`<text x="${leftMargin-11}" y="15" text-anchor="end" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):11}">${unit}</text>`;
+    let out=`<text x="8" y="15" text-anchor="start" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):11}">${unit}</text>`;
     if(view==='population'){
       const actual=sets[0],model=sets[1];
       const actualEdge=rows.map((r,i)=>`${i===0?'M':'L'}${X(r.y)} ${Y(actual[2](r))}`).join(' ');
@@ -295,7 +301,7 @@ window.populationExplorer = (() => {
         out+=`<line x1="${X(y)}" x2="${X(y)}" y1="${bottom+3}" y2="${bottom+(major?12:8)}" stroke="${major?'#a4adbd':'#667183'}" stroke-width="${major?1.5:1}"/>`;
       }
     }
-    if(variant!=='3')for(const y of [FIRST,1995,2000,2005,2010,2015,2020,LAST])out+=`<text x="${X(y)}" y="${bottom+28}" text-anchor="middle" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):12}">${y}</text>`;
+    if(variant!=='3')for(const y of [FIRST,1995,2000,2005,2010,2015,2020,LAST])out+=`<text x="${X(y)}" y="${bottom+54}" text-anchor="middle" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):12}">${y}</text>`;
     if(view==='balance'){
       out+=`<path d="M${leftMargin} ${Y(0)}H${right}" stroke="#7d879b"/>`;
       const slot=plotWidth/(LAST-FIRST+1),bw=slot*.72/sets.length;
