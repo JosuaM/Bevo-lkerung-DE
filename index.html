@@ -221,6 +221,11 @@
   .dashboard-three .controls{padding-left:calc(var(--pad) + 17px);padding-right:calc(var(--pad) + 14px)}
   #bnext,#fbtn button{border-radius:6px;border-width:1px;padding:10px 16px}
   #fNext::after{display:none}
+  .controls{z-index:70;display:none}
+  body[data-scene="1"] .controls,body[data-scene="3"] .controls{display:flex}
+  #fin .fl3{display:none}
+  #event .et{font-size:calc(var(--fs-s)*1.12);font-weight:500;line-height:1.3}
+  #event .es{color:#a4adbd;font-size:calc(var(--fs-s)*.9);line-height:1.4}
 </style>
 </head>
 <body>
@@ -259,6 +264,10 @@
 <div id="dashboardFade" aria-hidden="true"></div>
 <div id="dtabs"></div>
 <div id="panel">
+  <div class="sec"><h3>Zeitstrahltempo</h3><div class="dotlbl" id="speedlbl"></div>
+    <input type="range" id="speedrng" aria-label="Zeitstrahltempo" min="0.5" max="2.5" step="0.1">
+    <div class="hint">Ereignisse bleiben langsam lesbar.</div>
+  </div>
   <div class="sec"><h3>Punktgröße</h3>
     <div class="dotlbl" id="dotlbl"></div>
     <input type="range" id="dotrng" min="0" max="100" step="0.5">
@@ -279,16 +288,12 @@
     </div>
   </div>
   <div class="sec"><h3>Folien</h3><div id="scenes"></div></div>
-  <div class="hint">Die Farben gelten für alle Folien, der Hintergrund nur für die aktuelle. Einstellungen bleiben in diesem Browser gespeichert.<br>E Menü · Leertaste Pause · D weiter · A zurück · ← → Jahr</div>
-  <button id="resetset">Einstellungen zurücksetzen</button> <button id="copyset">Einstellungen kopieren</button>
-  <button id="savefile" title="Schreibt deine aktuellen Einstellungen fest in die index.html">Fest in index.html speichern</button>
+  <div class="hint">Die Farben gelten für alle Folien, der Hintergrund nur für die aktuelle. Änderungen werden automatisch in die freigegebene index.html gespeichert.<br>E Menü · Leertaste Pause · D weiter · A zurück · ← → Jahr</div>
+  <button id="resetset">Dateistand neu laden</button> <button id="copyset">Einstellungen kopieren</button>
+  <button id="savefile" title="Die Projektdatei einmal zum automatischen Speichern freigeben">index.html für Autospeichern freigeben</button><div class="hint" id="settings-status" role="status" style="margin-top:8px">Projektwerte aus der Datei geladen. Für automatisches Speichern Starten.command verwenden; alternativ index.html einmal freigeben.</div>
 </div>
 
-<script>window.DASHBOARDS = []; window.registerDashboard = d => DASHBOARDS.push(d);</script>
 <script src="dashboards/explorer.js"></script>
-<script src="dashboards/josua.js"></script>
-<script src="dashboards/jeremy.js"></script>
-<script src="dashboards/philipp.js"></script>
 <script>
 const ALL_DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045},{"y":2024,"zu":1694192,"fort":1264009,"wb":677117,"wd":1007758,"wp":83577140},{"y":2025,"zu":1479944,"fort":1244944,"wb":654241,"wd":1006588,"wp":83467117}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
 const BASE = 79753227;                            // Bevölkerung Deutschlands am 31.12.1990
@@ -301,16 +306,14 @@ document.getElementById('track').setAttribute('aria-valuemax', LAST);
 let SZMIN = 2, SZMAX = 10;                      // Punktradius (px): kleinster / größter Punkt, per E-Menü
 let DOT = 3000;                                  // Personen pro Punkt (per Regler im E-Menü änderbar)
 const SEC_PER_YEAR = 0.7;
+let timelineSpeed = 1;
 let ypsCur = 1.0;                                  // Animation 2: ruhiges Tempo, in Ereignisjahren deutlich langsamer
 function narrativeSpeed(){
-  const progress = clamp((t - FIRST) / (LAST - FIRST), 0, 1);
-  const ramp = clamp((progress - 1 / 3) / (2 / 3), 0, 1);
-  const smooth = ramp * ramp * (3 - 2 * ramp);
-  return lerp(scene === 1 ? .9 : 1, scene === 1 ? 2.4 : 2.2, smooth);
+  return 2 * timelineSpeed;
 }
 function yps(){
   if (enhanced && scene === 1) return narrativeSpeed();
-  if (scene === 3) return ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
+  if (scene === 3) return EVENTS[Math.floor(t)] ? Math.min(ypsCur, .16) : ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
   if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
     const k = clamp((t - FIRST) / 9, 0, 1);
     return lerp(0.45, 1 / SEC_PER_YEAR, k * k * (3 - 2 * k));
@@ -320,19 +323,102 @@ function yps(){
 const SPEED = 380;                                // Punkte-Geschwindigkeit (virtuelle px/s)
 const COLORS = {birth:'#4ade9a', death:'#ff7a7a', in:'#38e0ff', out:'#ffb454'};
 const BGS = ['#121212','#121212','#121212','#121212','#121212','#121212'];   // Hintergrund je Folie
-// Feste Standardwerte (per „Einstellungen kopieren“ im E-Menü erzeugen und hier einfügen). Gespeicherte Browser-Einstellungen überschreiben sie lokal.
-const DEFAULTS = {dot: 3000, szmin: 2, szmax: 10, colors: {}, bgs: []};
-let SAVED = {};
-try { SAVED = JSON.parse(localStorage.getItem('bev-einstellungen-v3') || '{}') || {}; } catch (e) {}
+// Gemeinsame Projektwerte. E-Änderungen werden nach Dateifreigabe automatisch hier gespeichert.
+const DEFAULTS = {dot:3000,szmin:2,szmax:10,speed:1,colors:{birth:"#4ade9a",death:"#ff7a7a",in:"#38e0ff",out:"#ffb454"},bgs:["#121212","#121212","#121212","#121212","#121212","#121212"]};
 if (DEFAULTS.colors) for (const k in COLORS) if (/^#[0-9a-f]{6}$/i.test(DEFAULTS.colors[k] || '')) COLORS[k] = DEFAULTS.colors[k];
 if (DEFAULTS.bgs) DEFAULTS.bgs.forEach((c, i) => { if (i < BGS.length && /^#[0-9a-f]{6}$/i.test(c)) BGS[i] = c; });
 if (DEFAULTS.dot > 0) DOT = DEFAULTS.dot; if (DEFAULTS.szmin > 0) SZMIN = DEFAULTS.szmin; if (DEFAULTS.szmax > 0) SZMAX = DEFAULTS.szmax;
-if (SAVED.colors) for (const k in COLORS) if (/^#[0-9a-f]{6}$/i.test(SAVED.colors[k] || '')) COLORS[k] = SAVED.colors[k];
-if (SAVED.bgs) SAVED.bgs.forEach((c, i) => { if (i < BGS.length && /^#[0-9a-f]{6}$/i.test(c)) BGS[i] = c; });
-if (SAVED.dot > 0) DOT = SAVED.dot;
-if (SAVED.szmin > 0) SZMIN = SAVED.szmin;
-if (SAVED.szmax > 0) SZMAX = SAVED.szmax;
-function saveSettings(){ try { localStorage.setItem('bev-einstellungen-v3', JSON.stringify({colors: COLORS, bgs: BGS, dot: DOT, szmin: SZMIN, szmax: SZMAX})); } catch (e) {} }
+if (DEFAULTS.speed > 0) timelineSpeed = Math.max(.5, Math.min(2.5, DEFAULTS.speed));
+function currentSettings(){return {dot:DOT,szmin:SZMIN,szmax:SZMAX,speed:timelineSpeed,colors:{...COLORS},bgs:[...BGS]};}
+let settingsFile=null,settingsConnecting=null,settingsWriting=false,settingsRevision=0,settingsSavedRevision=0,settingsTimer=null;
+function settingsStatus(message){document.getElementById('settings-status').textContent=message;}
+function settingsHandleStore(value){
+  return new Promise((resolve,reject)=>{
+    const request=indexedDB.open('bev-project-file',1);
+    request.onupgradeneeded=()=>request.result.createObjectStore('files');
+    request.onerror=()=>reject(request.error);
+    request.onsuccess=()=>{
+      const db=request.result,transaction=db.transaction('files',value?'readwrite':'readonly');
+      const action=value?transaction.objectStore('files').put(value,'index'):transaction.objectStore('files').get('index');
+      let result=null;action.onsuccess=()=>{result=action.result;};
+      transaction.oncomplete=()=>{db.close();resolve(result);};
+      transaction.onerror=()=>{db.close();reject(transaction.error);};
+    };
+  });
+}
+let settingsServerToken=null;
+const settingsServerReady=(async()=>{
+  if(location.protocol!=='http:'||location.hostname!=='127.0.0.1')return;
+  try{
+    const response=await fetch('/__project_settings__',{cache:'no-store'});
+    if(!response.ok)return;
+    const result=await response.json();
+    if(result.project==='bevoelkerung-de'&&result.token){settingsServerToken=result.token;settingsStatus('Automatisches Speichern in index.html aktiv.');document.getElementById('savefile').hidden=true;}
+  }catch{}
+})();
+const settingsFileReady=settingsHandleStore().then(handle=>{
+  if(handle)settingsFile=handle;
+}).catch(()=>{});
+function validSettingsSource(source){
+  return /const DEFAULTS = \{.*\};/.test(source)&&source.includes('id="stage"')&&source.includes('function currentSettings()');
+}
+async function flushSettings(){
+  if(settingsWriting||(!settingsFile&&!settingsServerToken)||settingsSavedRevision===settingsRevision)return;
+  settingsWriting=true;
+  try{
+    while(settingsSavedRevision<settingsRevision){
+      const revision=settingsRevision,snapshot=currentSettings();
+      if(settingsServerToken){
+        const response=await fetch('/__project_settings__',{method:'POST',headers:{'Content-Type':'application/json','X-Project-Token':settingsServerToken},body:JSON.stringify(snapshot)});
+        const result=await response.json();if(!response.ok||!result.saved)throw new Error(result.error||'Speichern fehlgeschlagen.');
+        settingsSavedRevision=revision;continue;
+      }
+      const source=await (await settingsFile.getFile()).text();
+      if(!validSettingsSource(source))throw new Error('Bitte die index.html dieses Projekts auswählen.');
+      const next=source.replace(/const DEFAULTS = \{.*\};/,()=> 'const DEFAULTS = '+JSON.stringify(snapshot)+';');
+      const writable=await settingsFile.createWritable();
+      try{await writable.write(next);await writable.close();}catch(error){try{await writable.abort();}catch{}throw error;}
+      settingsSavedRevision=revision;
+    }
+    settingsStatus('Automatisch in index.html gespeichert.');
+    document.getElementById('savefile').textContent='Andere index.html verbinden';
+  }catch(error){
+    settingsStatus('Nicht gespeichert: '+(error.message||'Dateizugriff fehlt. Datei erneut verbinden.'));
+  }finally{settingsWriting=false;}
+}
+async function connectSettingsFile(forcePicker=false){
+  if(settingsConnecting)return settingsConnecting;
+  settingsConnecting=(async()=>{
+    if(!window.showOpenFilePicker){settingsStatus('Für automatisches Speichern das Projekt über Starten.command öffnen.');return;}
+    try{
+      if(forcePicker||!settingsFile){
+        const [handle]=await window.showOpenFilePicker({multiple:false,types:[{description:'Projektdatei index.html',accept:{'text/html':['.html']}}]});
+        const source=await (await handle.getFile()).text();
+        if(handle.name!=='index.html'||!validSettingsSource(source))throw new Error('Bitte die index.html dieses Projekts auswählen.');
+        settingsFile=handle;
+      }
+      if(await settingsFile.queryPermission({mode:'readwrite'})!=='granted'){
+        if(await settingsFile.requestPermission({mode:'readwrite'})!=='granted')throw new Error('Schreibzugriff wurde nicht freigegeben.');
+      }
+      try{await settingsHandleStore(settingsFile);}catch{}
+      await flushSettings();
+    }catch(error){
+      settingsStatus(error.name==='AbortError'?'Noch nicht gespeichert. index.html einmal freigeben.':'Nicht gespeichert: '+error.message);
+    }
+  })();
+  try{await settingsConnecting;}finally{settingsConnecting=null;}
+}
+function saveSettings(){
+  settingsRevision++;
+  settingsStatus('Änderung wird in index.html gespeichert …');
+  if(settingsServerToken){flushSettings();return;}
+  if(location.protocol==='http:'&&location.hostname==='127.0.0.1'){
+    settingsServerReady.then(()=>{if(settingsServerToken)flushSettings();else connectSettingsFile();});
+  }else connectSettingsFile();
+}
+addEventListener('beforeunload',event=>{
+  if(settingsSavedRevision<settingsRevision){event.preventDefault();event.returnValue='';}
+});
 const mouse = {x: -1, y: -1};
 addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 const byYear = {}; DATA.forEach(d => byYear[d.y] = d);
@@ -453,7 +539,7 @@ function hideEvent(){ evEl.classList.remove('on', 'pin'); evHover=false; evPinne
 const EVENT_LABELS = {1992:'Jugoslawienkriege',1993:'Asylkompromiss',2011:'EU-Freizügigkeit',2012:'Eurokrise',2014:'Bulgarien & Rumänien',2015:'Flucht aus Syrien',2020:'Corona',2022:'Ukrainekrieg'};
 function showEvent(year, pin=false){
   const event=EVENTS[year];if(!event)return;
-  evYear=+year;evPinned=pin?+year:null;evHideAt=vt+4200;
+  evYear=+year;evPinned=pin?+year:null;evHideAt=vt+7200;
   evEl.innerHTML='<div class="et"><span class="ey">'+year+'</span>'+event.t+'</div><div class="es">'+event.s+'</div><div class="eline"></div>';
   evEl.classList.add('on');
 }
@@ -470,17 +556,18 @@ for (const y in EVENTS){
 evEl.addEventListener('pointerenter',()=>{evHover=true;});
 evEl.addEventListener('pointerleave',()=>{evHover=false;evHideAt=vt+1200;});
 function layoutEventLabels(){} // Ereignisse erscheinen wieder gesammelt unter dem Kreis.
-let dragging = false;
+let dragging = false, timelinePointer = null;
 function seek(e){
   const r = rail.getBoundingClientRect();
   t = Math.round(FIRST + clamp((e.clientX - r.left) / r.width, 0, 1) * (LAST - FIRST));
   prefill();
   setPaused(true);
 }
-track.addEventListener('pointerdown', e => { if (evPinned !== null){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1200; } dragging = true; track.setPointerCapture(e.pointerId); seek(e); });
+track.addEventListener('pointerdown', e => { if (evPinned !== null){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1200; } dragging = true; timelinePointer=e.pointerId;track.setPointerCapture(e.pointerId); seek(e); });
 track.addEventListener('pointermove', e => { if (dragging) seek(e); });
-track.addEventListener('pointerup', () => { dragging = false; });
-track.addEventListener('pointercancel', () => { dragging = false; });
+track.addEventListener('pointerup', () => { dragging = false;timelinePointer=null; });
+track.addEventListener('pointercancel', () => { dragging = false;timelinePointer=null; });
+track.addEventListener('lostpointercapture',()=>{dragging=false;timelinePointer=null;});
 
 function state(t){
   const y = clamp(Math.floor(t), FIRST, LAST), f = clamp(t - y, 0, 1), d = byYear[y];
@@ -589,36 +676,19 @@ function drawAnim(s){
   text(fmt(d[P.down.key]), rx, numY, FS.l, COLORS[P.down.ck], 300);
 }
 
-/* ---- Dashboards (E im Dashboard wechselt zwischen den drei Varianten) ---- */
-const DASH = DASHBOARDS.map(d => d.name);   // kommen aus dashboards/*.js
-let dash = 0;
+/* ---- Interaktives Dashboard ---- */
 let dashGeo = null;
 function drawDash(s){
   const w = cv.clientWidth, h = cv.clientHeight;
   const yr = clamp(Math.floor(t), FIRST, LAST), d = byYear[yr], f = (t - yr) > 0 ? clamp(t - yr, 0, 1) : 1;
   const api = {
     ctx, w, h, t, year: yr, frac: f, d, FIRST, LAST, BASE, DATA, byYear, cumN, cumB, cumD, cumZ, cumF,
-    setTimelineVisible(visible){
-      document.body.classList.toggle('dashboard-three', visible);
-      track.classList.toggle('ev', visible);
-    },
     EVENTS, COLORS, FS, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
     popNow: lerp(yr === FIRST ? BASE : byYear[yr-1].wp, d.wp, f),
     popWithoutMigration: BASE + cumN[yr-1] + f * (d.wb - d.wd),
     setClickArea: g => { dashGeo = g; },            // Bereich, in dem ein Klick das Jahr wählt: {x0, x1, y0, y1}
   };
-  if (enhanced){
-    window.populationExplorer.render({...api, selectYear(y){ t = clamp(y, FIRST, LAST); setPaused(true); }});
-    return;
-  }
-  const dashDef = DASHBOARDS[dash];
-  if (!dashDef){ return; }
-  try { dashDef.draw(api); }
-  catch (e){                                        // Fehler im Dashboard eines Kollegen sollen die Seite nicht anhalten
-    console.error('Dashboard ' + dashDef.id, e);
-    ctx.font = `400 ${FS.s}px ${FONT}`; ctx.fillStyle = '#ff7a7a'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
-    ctx.fillText('Fehler in dashboards/' + dashDef.id + '.js: ' + e.message, 40, 40);
-  }
+  window.populationExplorer.render({...api, selectYear(y){ t = clamp(y, FIRST, LAST); setPaused(true); }});
 }
 
 function draw(s){
@@ -715,7 +785,7 @@ function frameBody(now){
   runTimers();
   layout();
   const s = state(t);
-  if (scene === 3){ const eventYear = !!EVENTS[clamp(Math.floor(t), FIRST, LAST)]; const target = enhanced ? (eventYear ? Math.max(.4, narrativeSpeed() * .4) : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
+  if (scene === 3){ const eventYear = !!EVENTS[clamp(Math.floor(t), FIRST, LAST)]; const target = enhanced ? (eventYear ? .16 : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
   if (isAnim() && !paused && !waitingForArrival && !drainingParticles){
     t += dt * yps();
     if (t >= END){
@@ -754,7 +824,7 @@ function frameBody(now){
     for(const y in mks)mks[y].classList.toggle('seen',+y<=yy);
     const radius=R_MAX*Math.sqrt(Math.max(state(t).pop,1)/REF_POP);
     const dashboardTimeline=isDash();
-    evEl.style.top=dashboardTimeline?'auto':((CY+radius)*SC+12)+'px';
+    evEl.style.top=dashboardTimeline?'auto':((CY+radius)*SC+24)+'px';
     evEl.style.bottom=dashboardTimeline?'114px':'auto';
     for(const y in mks)mks[y].classList.toggle('highlight',evEl.classList.contains('on')&&+y===evYear);
   }
@@ -881,7 +951,7 @@ function showBridge(instant){
   });
 }
 function sceneAnim2(glide){
-  if (enhanced) ypsCur = 1;
+  if (enhanced) ypsCur = narrativeSpeed();
   setPhase(1);
   beginEntrance();
   if (glide){
@@ -1067,14 +1137,16 @@ async function showFinal(instant){
 addEventListener('resize', () => { if (fin.classList.contains('on')) renderFinal(); });
 
 /* ---- Folien-Steuerung ---- */
-let dashboardTransition = false;
+let dashboardTransition = false, dashboardTransitionId = 0;
 function enterDashboard(){
   if (dashboardTransition) return;
   dashboardTransition = true;
+  const transitionId=++dashboardTransitionId;
   setPaused(true);
   const curtain = $('dashboardFade');
   curtain.classList.add('active');
   setTimeout(() => {
+    if(transitionId!==dashboardTransitionId)return;
     if (scene !== 4){ curtain.classList.remove('active'); dashboardTransition = false; return; }
     // Vorherige Folie hinter dem schwarzen Vorhang vollständig entfernen.
     const previousTransition = fin.style.transition;
@@ -1083,6 +1155,7 @@ function enterDashboard(){
     void fin.offsetWidth;
     fin.style.transition = previousTransition;
     setTimeout(() => {
+      if(transitionId!==dashboardTransitionId)return;
       curtain.classList.remove('active');
       setTimeout(() => { dashboardTransition = false; }, 650);
     }, 180);
@@ -1092,16 +1165,21 @@ function enterDashboard(){
 function goScene(n, opt){
   opt = opt || {};
   if (enhanced && n === 5 && scene === 4 && !opt.throughBlack){ enterDashboard(); return; }
+  if(!opt.throughBlack){dashboardTransitionId++;dashboardTransition=false;$('dashboardFade').classList.remove('active');}
   const prev = scene;
+  dragging=false;
+  if(timelinePointer!==null&&track.hasPointerCapture(timelinePointer))track.releasePointerCapture(timelinePointer);
+  timelinePointer=null;waitingForArrival=false;lastYear=0;
+  panelOpen=false;panel.classList.remove('open');
   if (n === 2 && prev === 2) return;
   if (n === 3 && prev === 2 && !bridgeDone) finishBridge();
   cancelSeq(); finId++;
   drainingParticles = false;
   if(n!==5)document.body.classList.remove('dashboard-three');
-  scene = n;
+  scene = n;document.body.dataset.scene=String(n);
   document.body.classList.toggle('exploring', enhanced && n === 5);
   track.classList.toggle('ev', n === 3); if (n !== 3) hideEvent();
-  if (!panelOpen) setPaused(false);
+  setPaused(false);
   if (n !== 4){ fin.classList.remove('on'); }
   if (n !== 5) { dtabs.classList.remove('open'); }
   switch (n){
@@ -1123,13 +1201,16 @@ function next(){
   else if (scene === 3) goScene(4);
   else if (scene === 4){ if (!finDone) finishFinal(); else goScene(5); }
 }
-function prevScene(){ if (scene > 0) goScene(scene - 1, {instant: true}); }
+function prevScene(){ if (scene > 0) goScene(scene - 1); }
 qs.addEventListener('click', () => { if (scene !== 2) next(); });
 bnext.addEventListener('click', e => { e.stopPropagation(); goScene(3); });
 $('fNext').onclick = () => goScene(5);
 
 /* ---- E-Menü ---- */
 const panel = $('panel'), dtabs = $('dtabs');
+const speedrng=$('speedrng');speedrng.value=timelineSpeed;
+function updateTimelineSpeed(){timelineSpeed=+speedrng.value;$('speedlbl').textContent=timelineSpeed.toLocaleString('de-DE',{minimumFractionDigits:1})+' × Standardtempo';}
+speedrng.addEventListener('input',()=>{updateTimelineSpeed();saveSettings();});updateTimelineSpeed();
 const dotrng = $('dotrng'), dotlbl = $('dotlbl');
 function dotFromSlider(v){ return parseFloat((1000 * Math.pow(1000, v / 100)).toPrecision(2)); }
 function updateDot(){ DOT = dotFromSlider(+dotrng.value); dotlbl.textContent = '1 Punkt = ' + fmt(DOT) + ' Personen'; if (isAnim()) prefill(); }
@@ -1158,41 +1239,23 @@ function applyBg(){
 }
 bgIn.addEventListener('input', () => { BGS[scene] = bgIn.value; applyBg(); saveSettings(); });
 $('copyset').onclick = () => {
-  const txt = JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS});
+  const txt = JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS, speed: timelineSpeed});
   const done = () => { $('copyset').textContent = 'Kopiert ✓'; setTimeout(() => $('copyset').textContent = 'Einstellungen kopieren', 1800); };
   if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => prompt('Einstellungen kopieren:', txt)); else prompt('Einstellungen kopieren:', txt);
 };
-$('savefile').onclick = async () => {              // schreibt die aktuellen Werte als feste Standardwerte in die index.html
-  const btn = $('savefile'), label = btn.textContent;
-  const say = m => { btn.textContent = m; setTimeout(() => btn.textContent = label, 2600); };
-  if (!window.showOpenFilePicker){ say('Nur in Chrome/Edge'); return; }
-  try {
-    const [fh] = await showOpenFilePicker({multiple: false, types: [{description: 'index.html', accept: {'text/html': ['.html']}}]});
-    const src = await (await fh.getFile()).text();
-    const line = 'const DEFAULTS = ' + JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS}) + ';';
-    if (!/const DEFAULTS = \{.*\};/.test(src)){ say('Falsche Datei?'); return; }
-    const out = src.replace(/const DEFAULTS = \{.*\};/, () => line);
-    const w = await fh.createWritable(); await w.write(out); await w.close();
-    say('Gespeichert ✓ – jetzt pushen');
-  } catch (e) { say('Abgebrochen'); }
-};
-$('resetset').onclick = () => { try { localStorage.removeItem('bev-einstellungen-v3'); } catch (e) {} location.reload(); };
+$('savefile').onclick=()=>{settingsRevision++;connectSettingsFile(true);};
+$('resetset').onclick=()=>location.reload();
 const stepper=$('stepper');
 SCENES.forEach((name,i)=>{
   const button=document.createElement('button');
   button.innerHTML='<span class="step-number">'+(i+1)+'</span><span>'+name+'</span>';
-  button.onclick=()=>goScene(i,{instant:true});stepper.appendChild(button);
+  button.onclick=()=>goScene(i);stepper.appendChild(button);
 });
 const scenesEl = $('scenes');
 SCENES.forEach((name, i) => {
   const b = document.createElement('button'); b.textContent = (i + 1) + ' · ' + name;
   b.onclick = () => { if (panelOpen) togglePanel(); goScene(i); };
   scenesEl.appendChild(b);
-});
-DASH.forEach((name, i) => {
-  const b = document.createElement('button'); b.textContent = 'Dashboard von ' + name;
-  b.onclick = () => { dash = i; if (!isDash()) goScene(5); updateMenus(); };
-  dtabs.appendChild(b);
 });
 function updateMenus(){
   applyBg();
@@ -1202,8 +1265,7 @@ function updateMenus(){
     if(i===scene)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
   });
   [...scenesEl.children].forEach((b, i) => b.classList.toggle('on', i === scene));
-  [...dtabs.children].forEach((b, i) => b.classList.toggle('on', i === dash));
-  dtabs.classList.toggle('open', panelOpen && isDash() && !enhanced);
+  dtabs.classList.remove('open');
 }
 function togglePanel(){
   panelOpen = !panelOpen;

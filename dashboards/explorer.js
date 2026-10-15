@@ -10,19 +10,11 @@ window.populationExplorer = (() => {
   .ex-insight summary::marker{color:var(--c-in)}
   .ex-insight summary small{color:#a4adbd;font-size:12px;margin-left:12px}
   .ex-insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding:5px 18px 16px}
-  .ex-insight h3{font-size:14px;font-weight:400;color:var(--c-in);margin:0 0 7px}
+  .ex-insight h3{font-size:14px;font-weight:400;color:var(--ink);margin:0 0 7px}
   #explorer .ex-insight p{font-size:13px}
   #explorer .ex-insight-footer{font-size:12px;padding:0 18px 15px;color:#a4adbd}
   .ex-insight a{color:#c6d4e4;text-underline-offset:3px}
   @media(max-width:700px){.ex-insight-grid{grid-template-columns:1fr;gap:14px}.ex-insight summary small{display:block;margin:5px 0 0}}
-  .ex-ratio{margin-top:16px;border:1px solid #30343b;border-radius:8px}
-  .ex-ratio summary{padding:13px 16px;cursor:pointer;font-size:14px;color:#eef2f6}
-  .ex-ratio-body{padding:2px 16px 16px}.ex-ratio-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-  .ex-ratio-label{font-size:13px;color:#a4adbd;margin-bottom:10px}.ex-ratio-dots{display:flex;flex-wrap:wrap;gap:5px;max-width:340px;min-height:65px;align-content:flex-start}
-  .ex-ratio-dots i{width:7px;height:7px;border-radius:50%;background:var(--dot);animation:ratioAppear .7s ease both}
-  @keyframes ratioAppear{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
-  #explorer .ex-ratio-caption{font-size:12px;margin-top:13px;color:#a4adbd}
-  @media(prefers-reduced-motion:reduce){.ex-ratio-dots i{animation:none}}
   #explorer [hidden]{display:none!important}
   .ex-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
   #ex-variant{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:8px 12px;color-scheme:dark}
@@ -81,6 +73,50 @@ window.populationExplorer = (() => {
   .ex-tooltip-detail>div{overflow:hidden}
   #explorer .ex-tooltip-detail p{padding-top:9px;font-size:calc(var(--fs-s)*.8);line-height:1.5;color:#c5cddb}
   @media(max-width:1000px){#explorer.variant-two .ex-tools h2{max-width:100%}#explorer.variant-two .ex-tools .ex-tabs{margin-left:auto}}
+  .ex-year-column{display:flex;flex-direction:column;gap:18px;min-width:0}
+  #explorer.variant-two .ex-year-column .ex-tabs{display:flex;flex-wrap:nowrap;padding:0;gap:0;margin:0;border:1px solid #3a4252;border-radius:8px;overflow:hidden;background:#ffffff05}
+  #explorer.variant-two .ex-year-column .ex-tabs button{flex:1;min-width:0;border:0;border-radius:0;padding:10px 7px;font-size:13px;white-space:normal}
+  #explorer.variant-two .ex-year-column .ex-tabs button[aria-selected=true]{background:#eef2f6}
+  .ex-year-column .ex-card{flex:1}
+  #explorer.variant-two .ex-grid{margin-top:36px}
+  #explorer.variant-two .ex-tools h2{display:none}
+  #explorer.variant-two .ex-tools{min-height:0}
+  #explorer.variant-two #ex-switch:empty{display:none}
+  #explorer.variant-two #ex-chart{height:clamp(340px,49vh,560px);margin-top:18px}
+  #ex-event-tooltip{width:max-content;min-width:280px;max-width:none!important;transition:width .4s,box-shadow .4s}
+  #ex-event-tooltip.expanded{width:max-content}
+  .ex-tooltip-heading{white-space:nowrap}
+  #explorer .ex-tooltip-detail p{color:#a4adbd}
+  .ex-tooltip-detail{grid-template-rows:1fr;opacity:1}
+  .ex-dashboard-switch{display:flex;justify-content:flex-end;margin:26px 0 18px}
+  #explorer.variant-two .ex-dashboard-switch .ex-tabs{display:flex;width:270px;gap:0;margin:0;padding:0;border:1px solid #3a4252;border-radius:8px;overflow:hidden;background:#ffffff05}
+  #explorer.variant-two .ex-dashboard-switch .ex-tabs button{flex:1;border:0;border-radius:0;padding:10px 7px;font-size:13px;white-space:normal}
+  #explorer.variant-two .ex-grid{margin-top:0}
+  #explorer.variant-two .ex-tools{display:none}
+  .ex-chart-footer{display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:44px;margin-top:12px}
+  #explorer.variant-two .ex-chart-footer .ex-legend{margin:0;flex:1}
+  #explorer.variant-two .ex-chart-footer #ex-switch{display:flex;width:auto;flex-shrink:0;gap:0;padding:0;border:1px solid #3a4252;border-radius:7px;overflow:hidden;background:#ffffff05}
+  #explorer.variant-two .ex-chart-footer #ex-switch:empty{display:none}
+  #explorer .ex-chart-footer #ex-switch button{border:0;border-radius:0;margin:0;padding:8px 12px;font-size:13px}
+  #ex-chart,#ex-chart:focus,#ex-chart:focus-visible{outline:none!important;box-shadow:none}
+  @media(max-width:1000px){#explorer.variant-two .ex-dashboard-switch .ex-tabs{width:220px}}
+  @media(max-width:700px){.ex-chart-footer{flex-wrap:wrap}.ex-dashboard-switch{margin-top:18px}}
+  .ex-topline{align-items:center;gap:24px}.ex-topline h1{margin:0!important}
+  .ex-dashboard-switch{margin:0;flex-shrink:0}
+  #explorer.variant-two .ex-grid{margin-top:36px}
+  .ex-topline+p{margin-top:10px!important}
+  .ex-value-tooltip{position:absolute;z-index:7;pointer-events:none;padding:10px 13px;border:1px solid #495563;border-radius:10px;background:#20252c;box-shadow:0 6px 24px #0004;min-width:190px;animation:valueCardIn .22s ease both}
+  .ex-value-tooltip span{display:block;font-size:12px;color:#a4adbd;margin-bottom:4px}
+  .ex-value-tooltip strong{display:block;font-weight:500;font-size:var(--fs-s);color:#eef2f6;font-variant-numeric:tabular-nums}
+  @keyframes valueCardIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+  .value-stem{stroke-dasharray:50;stroke-dashoffset:50;animation:valueStemIn .25s ease forwards}
+  @keyframes valueStemIn{to{stroke-dashoffset:0}}
+  .chart-event .event-star{fill:#91a5b1;font-size:13px;transition:fill .2s}
+  .chart-event:hover .event-star,.chart-event:focus .event-star{fill:var(--c-in)}
+  @media(max-width:800px){.ex-topline{flex-wrap:wrap}.ex-dashboard-switch{margin-left:auto}}
+  #explorer.variant-two .ex-dashboard-switch .ex-tabs{width:380px}
+  #explorer.variant-two .ex-dashboard-switch .ex-tabs button{flex:1 1 0;white-space:nowrap;padding:10px 12px}
+  @media(max-width:700px){#explorer.variant-two .ex-dashboard-switch .ex-tabs{width:min(380px,calc(100vw - 40px))}#explorer.variant-two .ex-dashboard-switch .ex-tabs button{font-size:12px;padding-inline:8px}}
   .ex-tabs{display:flex;gap:8px;margin:22px 0;flex-wrap:wrap}
   #explorer button{font-size:14px;background:transparent;border:1px solid #3a4252;border-radius:6px;padding:9px 14px;color:#a4adbd}
   #explorer button:hover{border-color:#a4adbd;color:white}#explorer button[aria-selected=true],#explorer button[aria-pressed=true]{background:#eef2f6;color:#121212;border-color:#eef2f6}
@@ -99,7 +135,7 @@ window.populationExplorer = (() => {
   `;
   document.head.appendChild(style);
   const el = document.createElement('section');el.id='explorer';el.setAttribute('aria-label','Bevölkerung erkunden');
-  el.innerHTML=`<div class="ex-topline"><h1>Bevölkerung verstehen</h1><select id="ex-variant" aria-label="Dashboard-Variation"><option value="1">Dashboard 1</option><option value="2">Dashboard 2</option><option value="3">Dashboard 3</option></select></div><p>Zwei Perspektiven. Wähle ein Jahr im Diagramm.</p>
+  el.innerHTML=`<div class="ex-topline"><h1>Bevölkerung verstehen</h1></div><p>Zwei Perspektiven. Wähle ein Jahr im Diagramm.</p>
   <div class="ex-tabs" role="tablist" aria-label="Perspektive">
   <button role="tab" data-view="balance" aria-selected="true">Bevölkerungsbilanz</button><button role="tab" data-view="population" aria-selected="false">Mit & ohne Wanderung</button></div>
   <details class="ex-insight"><summary>Warum Zuwanderung zählt <small>Bevölkerung · Arbeitskräfte · Sozialversicherung</small></summary>
@@ -110,25 +146,56 @@ window.populationExplorer = (() => {
   </div><p class="ex-insight-footer">Entscheidend sind Alter, Beschäftigung und Einkommen. Zuwanderung kann die Alterung abmildern, löst sie aber nicht allein. Einordnung: <a href="https://iab.de/publikationen/publikation/?id=14799426" target="_blank" rel="noopener noreferrer">IAB · Arbeitsmarkt</a> · <a href="https://fdz.iab.de/publikation/?id=10134835" target="_blank" rel="noopener noreferrer">IAB · Rentenversicherung</a></p></details>
   <div class="ex-grid"><div class="ex-plot" role="tabpanel" id="ex-panel"><div class="ex-tools"><h2 id="ex-heading"></h2><div class="ex-switch" id="ex-switch"></div></div><svg id="ex-chart" viewBox="0 0 850 350" preserveAspectRatio="xMidYMid meet" role="img" tabindex="0" aria-label="Jahresdiagramm. Mit den Pfeiltasten das Jahr wählen."></svg><div id="ex-event-tooltip" role="tooltip" hidden></div><div class="ex-legend" id="ex-legend"></div><div id="ex-chart-event" hidden></div></div>
   <aside class="ex-card" aria-label="Jahreswerte und Ereignisse"><div id="ex-side-values"><div class="ex-yearbar"><span>Ausgewähltes Jahr</span></div><div id="ex-year"></div><div id="ex-metrics"></div></div></aside></div>
-  <details class="ex-ratio"><summary id="ex-ratio-summary"></summary><div class="ex-ratio-body"><div class="ex-ratio-grid"><div><div class="ex-ratio-label">100 Abgänge · Sterbefälle + Fortzüge</div><div class="ex-ratio-dots" id="ex-out-dots" aria-hidden="true"></div></div><div><div class="ex-ratio-label" id="ex-in-label"></div><div class="ex-ratio-dots" id="ex-in-dots" aria-hidden="true"></div></div></div><p class="ex-ratio-caption" id="ex-ratio-caption"></p></div></details>
-  <div class="ex-stories"><span>Jahre entdecken</span><div id="ex-events" style="display:contents"></div></div><p id="ex-context"></p>`;
+
+`;
   document.body.appendChild(el);
   el.querySelector('.ex-grid').insertAdjacentElement('afterend',el.querySelector('.ex-insight'));
-  const floatingInfo=document.createElement('div');floatingInfo.id='ex-floating-info';el.appendChild(floatingInfo);
-  let view='balance',detail=false,api=null,lastKey='',story=null,variant='1';
+  let view='population',detail=false,api=null,lastKey='',story=null;
+  const variant='2';
   const $=id=>document.getElementById(id);
-  $('ex-variant').onchange=e=>{
-    variant=e.target.value;view=variant!=='1'?'population':'balance';story=null;
-    const tablist=el.querySelector('.ex-tabs');
-    const order=variant!=='1'?['population','balance']:['balance','population'];
-    order.forEach(id=>tablist.appendChild(tablist.querySelector('[data-view="'+id+'"]')));
-    lastKey='';if(api)render(api);
-  };
   const choose=y=>{story=null;api.selectYear(y);lastKey='';};
   const tabs=[...el.querySelectorAll('[role=tab]')];
   tabs.forEach((b,i)=>{b.setAttribute('aria-controls','ex-panel');b.onclick=()=>{view=b.dataset.view;lastKey='';render(api);};b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();e.stopPropagation();const visibleTabs=[...el.querySelectorAll('[role=tab]')],index=visibleTabs.indexOf(b);const j=e.key==='Home'?0:e.key==='End'?visibleTabs.length-1:(index+(e.key==='ArrowRight'?1:visibleTabs.length-1))%visibleTabs.length;visibleTabs[j].focus();visibleTabs[j].click();};});
 
+  const tablist=el.querySelector('.ex-tabs');
+  const yearColumn=document.createElement('div');yearColumn.className='ex-year-column';
+  const card=el.querySelector('.ex-card');card.before(yearColumn);yearColumn.append(card);
+  const switchRow=document.createElement('div');switchRow.className='ex-dashboard-switch';
+  switchRow.append(tablist);el.querySelector('.ex-topline').append(switchRow);
+  const footer=document.createElement('div');footer.className='ex-chart-footer';
+  $('ex-legend').before(footer);footer.append($('ex-legend'),$('ex-switch'));
+  tablist.append(tablist.querySelector('[data-view="population"]'),tablist.querySelector('[data-view="balance"]'));
   const svg=$('ex-chart');
+  const valueTooltip=document.createElement('div');valueTooltip.className='ex-value-tooltip';valueTooltip.hidden=true;svg.parentElement.append(valueTooltip);
+  let hoverGeometry=null,valueHoverKey='';
+  function clearValueHover(){valueTooltip.hidden=true;valueHoverKey='';const overlay=svg.querySelector('#ex-value-marker');if(overlay)overlay.replaceChildren();}
+  function showValueHover(e){
+    if(!hoverGeometry||view!=='population'){clearValueHover();return false;}
+    const {rows,sets,X,Y,top,bottom}=hoverGeometry;
+    const point=svg.createSVGPoint();point.x=e.clientX;point.y=e.clientY;
+    const local=point.matrixTransform(svg.getScreenCTM().inverse());
+    if(local.x<X(api.FIRST)-8||local.x>X(api.LAST)+8||local.y<top-14||local.y>bottom+10){clearValueHover();return false;}
+    const position=api.clamp((local.x-X(api.FIRST))/(X(api.LAST)-X(api.FIRST))*(rows.length-1),0,rows.length-1);
+    const before=Math.floor(position),after=Math.min(rows.length-1,before+1),fraction=position-before;
+    let nearest=null;
+    sets.forEach((series,index)=>{
+      const interpolated=Y(series[2](rows[before]))*(1-fraction)+Y(series[2](rows[after]))*fraction;
+      const distance=Math.abs(local.y-interpolated);
+      if(distance<14&&(!nearest||distance<nearest.distance))nearest={series,index,distance};
+    });
+    if(!nearest){clearValueHover();return false;}
+    const row=rows[Math.round(position)],series=nearest.series,x=X(row.y),y=Y(series[2](row)),key=row.y+':'+nearest.index;
+    if(key!==valueHoverKey){
+      valueHoverKey=key;
+      svg.querySelector('#ex-value-marker').innerHTML=`<line class="value-stem" x1="${x}" x2="${x}" y1="${y}" y2="${Math.max(8,y-42)}" stroke="${series[1]}" stroke-width="2"/><circle cx="${x}" cy="${y}" r="5" fill="${series[1]}" stroke="#121212" stroke-width="2"/>`;
+      valueTooltip.innerHTML='<span>'+row.y+' · '+series[0]+'</span><strong>'+api.fmt(series[2](row))+'</strong>';
+    }
+    valueTooltip.hidden=false;
+    const panel=svg.parentElement.getBoundingClientRect(),chart=svg.getBoundingClientRect();
+    valueTooltip.style.left=Math.max(10,Math.min(panel.width-valueTooltip.offsetWidth-10,chart.left-panel.left+x-valueTooltip.offsetWidth/2))+'px';
+    valueTooltip.style.top=Math.max(8,chart.top-panel.top+y-42-valueTooltip.offsetHeight-8)+'px';
+    return true;
+  }
   const tooltip=$('ex-event-tooltip');
   tooltip.innerHTML='<div class="ex-tooltip-heading"></div><div class="ex-tooltip-detail"><div><p></p></div></div>';
   function showEventTooltip(target,expanded=false){
@@ -139,13 +206,15 @@ window.populationExplorer = (() => {
     tooltip.querySelector('p').textContent=event.s;
     tooltip.hidden=false;
     const panel=svg.parentElement.getBoundingClientRect(),line=marker.querySelector('line').getBoundingClientRect(),chart=svg.getBoundingClientRect();
-    const expandedWidth=Math.min(390,panel.width-24);
+    tooltip.classList.add('expanded');
+    const expandedWidth=Math.min(Math.max(340,tooltip.querySelector('.ex-tooltip-heading').scrollWidth+32),panel.width-24);
+    tooltip.style.width=expandedWidth+'px';
     tooltip.style.left=Math.max(12,Math.min(panel.width-expandedWidth-12,line.left-panel.left+12))+'px';
     tooltip.style.top=(chart.top-panel.top+chart.height*.25)+'px';
-    requestAnimationFrame(()=>tooltip.classList.toggle('expanded',expanded));
+    tooltip.classList.toggle('pinned',expanded);
   }
-  svg.addEventListener('pointermove',e=>{if(!story)showEventTooltip(e.target);});
-  svg.addEventListener('pointerleave',()=>{if(!story)tooltip.hidden=true;});
+  svg.addEventListener('pointermove',e=>{if(showValueHover(e)){tooltip.hidden=true;return;}const marker=e.target.closest('[data-eventyear]');if(marker)showEventTooltip(marker,story===+marker.dataset.eventyear);else if(!story)tooltip.hidden=true;});
+  svg.addEventListener('pointerleave',()=>{clearValueHover();if(!story)tooltip.hidden=true;});
   svg.addEventListener('focusin',e=>{if(!story)showEventTooltip(e.target);});
   svg.addEventListener('focusout',()=>{if(!story)tooltip.hidden=true;});
 
@@ -158,30 +227,14 @@ window.populationExplorer = (() => {
   }
   svg.addEventListener('pointerdown',e=>{
     const marker=e.target.closest('[data-eventyear]');
-    if(marker){story=+marker.dataset.eventyear;api.selectYear(story);lastKey='';return;}
+    if(marker){e.preventDefault();return;}
     choose(eventYear(e));
   });
-  svg.addEventListener('keydown',e=>{const marker=e.target.closest('[data-eventyear]');if(marker&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();story=+marker.dataset.eventyear;api.selectYear(story);lastKey='';return;}if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();e.stopPropagation();choose(api.year+(e.key==='ArrowRight'?1:-1));}});
+  svg.addEventListener('keydown',e=>{const marker=e.target.closest('[data-eventyear]');if(marker&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();return;}if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();e.stopPropagation();choose(api.year+(e.key==='ArrowRight'?1:-1));}});
   const compact=n=>Math.abs(n)>=1e6?(n/1e6).toLocaleString('de-DE',{maximumFractionDigits:1})+' Mio.':Math.round(n/1000).toLocaleString('de-DE')+' Tsd.';
   function render(a){
     api=a;
-    if (!$('ex-events').children.length){
-      Object.entries(a.EVENTS).forEach(([year,event])=>{
-        const button=document.createElement('button');button.dataset.story=year;button.textContent=year+' · '+event.t;
-        button.onclick=()=>{story=+year;api.selectYear(story);lastKey='';};$('ex-events').appendChild(button);
-      });
-    }
-    a.setTimelineVisible(variant==='3');
-    el.classList.toggle('variant-two',variant==='2');
-    const tablist=el.querySelector('.ex-tabs'),tools=el.querySelector('.ex-tools');
-    if(variant==='2'&&tablist.parentElement!==tools)tools.insertBefore(tablist,$('ex-switch'));
-    else if(variant!=='2'&&tablist.parentElement===tools)el.querySelector('.ex-topline').nextElementSibling.insertAdjacentElement('afterend',tablist);
-    const insight=el.querySelector('.ex-insight'),ratio=el.querySelector('.ex-ratio');
-    if(variant==='3'){
-      if(insight.parentElement!==floatingInfo){floatingInfo.append(insight,ratio);}
-    }else if(insight.parentElement===floatingInfo){
-      el.querySelector('.ex-grid').insertAdjacentElement('afterend',insight);insight.insertAdjacentElement('afterend',ratio);
-    }
+    el.classList.add('variant-two');
     const chartWidth=Math.max(280,Math.round(svg.clientWidth));
     const shortNames={1992:'Jugoslawienkriege',1993:'Asylkompromiss',2011:'EU-Freizügigkeit',2012:'Eurokrise',2014:'Bulgarien & Rumänien',2015:'Flucht aus Syrien',2020:'Corona',2022:'Ukrainekrieg'};
     const leftMargin=variant==='2'?90:65;
@@ -191,25 +244,13 @@ window.populationExplorer = (() => {
     const chartHeight=Math.max(220,Math.round(svg.clientHeight));
     const key=[variant,chartWidth,chartHeight,view,detail,a.year,...Object.values(a.COLORS),story].join('|');if(key===lastKey)return;lastKey=key;
     const {DATA,FIRST,LAST,year,d,COLORS:c,fmt,sgn,BASE,cumN}=a;
-    el.querySelector('.ex-stories').hidden=variant!=='1';$('ex-context').hidden=variant!=='1';
     const eventInfo=$('ex-chart-event'),selectedEvent=variant==='2'&&story?a.EVENTS[story]:null;
     eventInfo.hidden=true;
     if(selectedEvent)eventInfo.innerHTML='<strong>'+story+' · '+selectedEvent.t+'</strong><p>'+selectedEvent.s+'</p>';
     tabs.forEach(b=>{const selected=b.dataset.view===view;b.setAttribute('aria-selected',selected);b.tabIndex=selected?0:-1;});
-    const outgoing=d.wd+d.fort, incoming=d.wb+d.zu;
-    const incomingPer100=Math.round(incoming/outgoing*100);
-    $('ex-ratio-summary').textContent=year+' · Auf 100 Abgänge kommen '+incomingPer100+' Zugänge';
-    $('ex-in-label').textContent=incomingPer100+' Zugänge · Geburten + Zuzüge';
-    const dots=(count,firstShare,firstColor,secondColor)=>Array.from({length:count},(_,i)=>`<i style="--dot:${i<Math.round(count*firstShare)?firstColor:secondColor};animation-delay:${(i*37%350)/1000}s"></i>`).join('');
-    $('ex-out-dots').innerHTML=dots(100,d.wd/outgoing,c.death,c.out);
-    $('ex-in-dots').innerHTML=dots(incomingPer100,d.wb/incoming,c.birth,c.in);
-    const leap=year%4===0&&(year%100!==0||year%400===0);
-    const seconds=(leap?366:365)*86400;
-    const interval=Math.round(seconds/d.zu);
-    $('ex-ratio-caption').textContent='Im Jahresdurchschnitt ein Zuzug alle '+interval+' Sekunden. Zuzüge umfassen Menschen mit deutscher und ausländischer Staatsangehörigkeit. Gezählt werden Ereignisse, nicht unterschiedliche Personen. Farben wie im Diagramm; Verhältnis gerundet.';
     $('ex-year').textContent=year;
     const metric=(label,value,color)=>`<div class="ex-metric"><span>${label}</span><strong${color?` style="color:${color}"`:''}>${value}</strong></div>`;
-    const total=(label,value)=>`<div class="ex-total">${label}<strong>${value}</strong></div>`;
+    const total=(label,value,color)=>`<div class="ex-total">${label}<strong${color?` style="color:${color}"`:""}>${value}</strong></div>`;
     let sets=[],rows=DATA,heading='',note='Quelle: Destatis · Jahreswerte 1991–2025.',metrics='',unit='Menschen';
     if(view==='balance'){
       heading=detail?'Vier Größen hinter der Bilanz':'Was verändert die Bevölkerung?';
@@ -218,10 +259,10 @@ window.populationExplorer = (() => {
       note+=' '+(detail?'Abgänge stehen unterhalb der Nulllinie. ':'')+'Die Saldenbilanz kann durch statistische Korrekturen von der Bestandsänderung abweichen.';
     }else if(view==='population'){
       heading='Wie entwickelt sich die Bevölkerung?';sets=[['Tatsächliche Bevölkerung','#eef2f6',r=>r.wp],['Modell ohne Wanderung',c.death,r=>BASE+cumN[r.y]]];
-      metrics=metric('Tatsächlich',fmt(d.wp))+metric('Modell ohne Wanderung',fmt(BASE+cumN[year]),c.death)+total('Abstand zum Modell',sgn(d.wp-(BASE+cumN[year])));
+      metrics=metric('Tatsächlich',fmt(d.wp))+metric('Modell ohne Wanderung',fmt(BASE+cumN[year]),c.death)+total('Abstand zum Modell',sgn(d.wp-(BASE+cumN[year])),c.birth);
       note+=' Bevölkerung am 31.12. · Modell: Bevölkerung Ende 1990 + beobachtete Geburten − Sterbefälle; keine Prognose.';
     }
-    $('ex-heading').textContent=heading;$('ex-metrics').innerHTML=metrics;
+    el.querySelector('h1').textContent=heading;$('ex-metrics').innerHTML=metrics;
     $('ex-switch').innerHTML=view==='population'?'':['Bilanz','Einzelwerte'].map((label,i)=>`<button aria-pressed="${i===Number(detail)}" data-option="${i}">${label}</button>`).join('');
     $('ex-switch').querySelectorAll('button').forEach(b=>b.onclick=()=>{detail=!!+b.dataset.option;lastKey='';render(api);});
     $('ex-legend').innerHTML=sets.map(([label,color])=>`<span style="--key:${color}">${label}</span>`).join('');
@@ -232,7 +273,21 @@ window.populationExplorer = (() => {
     svg.setAttribute('viewBox', `0 0 ${chartWidth} ${chartHeight}`);
     const right=chartWidth-20, bottom=chartHeight-38-eventSpace, top=35, plotWidth=right-leftMargin;
     const X=y=>leftMargin+(y-FIRST)/(LAST-FIRST)*plotWidth,Y=v=>bottom-(v-lo)/(hi-lo)*(bottom-top);
-    let out=`<text x="${leftMargin}" y="15" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):11}">${unit}</text>`;
+    hoverGeometry={rows,sets,X,Y,top,bottom};clearValueHover();
+    let out=`<text x="${leftMargin-11}" y="15" text-anchor="end" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):11}">${unit}</text>`;
+    if(view==='population'){
+      const actual=sets[0],model=sets[1];
+      const actualEdge=rows.map((r,i)=>`${i===0?'M':'L'}${X(r.y)} ${Y(actual[2](r))}`).join(' ');
+      const modelEdge=rows.map((r,i)=>`${i===0?'M':'L'}${X(r.y)} ${Y(model[2](r))}`).join(' ');
+      const returnEdge=[...rows].reverse().map(r=>`L${X(r.y)} ${Y(model[2](r))}`).join(' ');
+      const redTop=Math.min(...rows.map(r=>Y(model[2](r))));
+      const whiteTop=Math.min(...rows.map(r=>Y(actual[2](r))));
+      const whiteBottom=Math.max(...rows.map(r=>Y(model[2](r))));
+      out+=`<defs>
+        <linearGradient id="population-red-fill" gradientUnits="userSpaceOnUse" x1="0" y1="${redTop}" x2="0" y2="${bottom}"><stop offset="0" stop-color="${c.death}" stop-opacity=".32"/><stop offset=".65" stop-color="${c.death}" stop-opacity=".13"/><stop offset="1" stop-color="${c.death}" stop-opacity=".025"/></linearGradient>
+        <linearGradient id="population-white-fill" gradientUnits="userSpaceOnUse" x1="0" y1="${whiteTop}" x2="0" y2="${whiteBottom}"><stop offset="0" stop-color="#eef2f6" stop-opacity=".23"/><stop offset=".6" stop-color="#eef2f6" stop-opacity=".10"/><stop offset="1" stop-color="#eef2f6" stop-opacity=".035"/></linearGradient>
+      </defs><g pointer-events="none"><path d="${modelEdge} L${right} ${bottom} L${leftMargin} ${bottom} Z" fill="url(#population-red-fill)"/><path d="${actualEdge} ${returnEdge} Z" fill="url(#population-white-fill)"/></g>`;
+    }
     for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);out+=`<path d="M${leftMargin} ${y}H${right}" stroke="#30343b"/><text x="${leftMargin-11}" y="${y+4}" text-anchor="end" fill="#a4adbd" font-size="${variant==='2'?Math.round(a.FS.s*.85):11}">${unit.startsWith('Index')?Math.round(v):compact(v)}</text>`;}
     if(variant==='2'){
       for(let y=FIRST;y<=LAST;y++){
@@ -251,16 +306,15 @@ window.populationExplorer = (() => {
     out+=`<path d="M${X(year)} ${top}V${bottom}" stroke="#eef2f6" stroke-dasharray="3 5" opacity=".5"/>`;
     if(view!=='balance')sets.forEach(s=>out+=`<circle cx="${X(year)}" cy="${Y(s[2](d))}" r="5" fill="${s[1]}" stroke="#121212" stroke-width="2"/>`);
     // Transparent year targets provide per-year values on hover without changing the selected year.
-    rows.forEach(r=>{out+=`<rect x="${X(r.y)-10}" y="${top}" width="20" height="${bottom-top}" fill="transparent"><title>${r.y}\n${sets.map(s=>s[0]+': '+(unit.startsWith('Index')?s[2](r).toLocaleString('de-DE',{maximumFractionDigits:1}):fmt(s[2](r)))).join('\n')}</title></rect>`;});
+    if(view==='balance')rows.forEach(r=>{out+=`<rect x="${X(r.y)-10}" y="${top}" width="20" height="${bottom-top}" fill="transparent"><title>${r.y}\n${sets.map(s=>s[0]+': '+(unit.startsWith('Index')?s[2](r).toLocaleString('de-DE',{maximumFractionDigits:1}):fmt(s[2](r)))).join('\n')}</title></rect>`;});
     if(variant==='2')for(const marker of markers){
-      out+=`<g class="chart-event ${story===marker.year?'selected':''}" data-eventyear="${marker.year}" role="button" tabindex="0" aria-label="${marker.year} · ${marker.label}"><rect x="${marker.x-Math.min(9,plotWidth/(LAST-FIRST)*.4)}" y="${top}" width="${Math.min(18,plotWidth/(LAST-FIRST)*.8)}" height="${bottom-top}" fill="transparent"/><line x1="${marker.x}" x2="${marker.x}" y1="${top}" y2="${bottom}"/></g>`;
+      out+=`<g class="chart-event ${story===marker.year?'selected':''}" data-eventyear="${marker.year}" role="img" tabindex="0" aria-label="${marker.year} · ${marker.label}"><rect x="${marker.x-Math.min(9,plotWidth/(LAST-FIRST)*.4)}" y="${top-18}" width="${Math.min(18,plotWidth/(LAST-FIRST)*.8)}" height="${bottom-top+18}" fill="transparent"/><text class="event-star" x="${marker.x}" y="${top-10}" text-anchor="middle">★</text><line x1="${marker.x}" x2="${marker.x}" y1="${top}" y2="${bottom}"/></g>`;
     }
+    out+='<g id="ex-value-marker" pointer-events="none" aria-hidden="true"></g>';
     svg.innerHTML=out;
     const pinned=variant==='2'&&story?svg.querySelector('[data-eventyear="'+story+'"]'):null;
     if(pinned)showEventTooltip(pinned,true);else{tooltip.hidden=true;tooltip.classList.remove('expanded');}
-    const event=a.EVENTS[year];
-    $('ex-context').textContent=event ? year+' · '+event.t+': '+event.s : year===2025 ? '2025: Der Wanderungssaldo gleicht das Geburtendefizit in diesem Jahr nicht vollständig aus.' : 'Klicke auf ein Jahr, um seine Werte zu vergleichen.';
-    el.querySelectorAll('[data-story]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.story===year));
+
   }
   return {render};
 })();
