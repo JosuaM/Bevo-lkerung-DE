@@ -19,10 +19,6 @@
   canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   button{font:inherit;font-size:var(--fs-s);cursor:pointer;color:var(--ink)}
 
-  /* Variantenwahl bleibt auf allen Folien erreichbar. */
-  #variation{position:fixed;top:18px;right:var(--pad);z-index:110;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:0;padding:7px 30px 7px 12px;cursor:pointer;color-scheme:dark}
-  #variation:focus-visible{outline:2px solid #fff;outline-offset:3px}
-
   .variation-one #fin .fblob{display:none}
   #finalParticles{pointer-events:none}
   @keyframes lineReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -40,6 +36,21 @@
   #dashboardFade{position:fixed;inset:0;z-index:200;background:#000;opacity:0;pointer-events:none;transition:opacity .65s ease}
   #dashboardFade.active{opacity:1;pointer-events:auto}
 
+  .event-label{position:absolute;transform:translateX(-50%);font-size:11px;white-space:nowrap;line-height:1.3;color:#a4adbd;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .6s}
+  #track.ev .event-label.reached{visibility:visible;opacity:1}
+  #stepper{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:120;display:flex;gap:4px;padding:12px 10px 14px;opacity:0;transition:opacity .3s;background:linear-gradient(var(--bg) 75%,transparent);border-radius:0 0 10px 10px}
+  #stepper:hover,#stepper:focus-within,#stepper.persistent{opacity:1}
+  #stepper button{display:flex;align-items:center;gap:6px;white-space:nowrap;padding:6px 9px;border:1px solid transparent;border-radius:5px;background:transparent;font-size:12px;color:var(--mute);transition:background .2s,color .2s}
+  #stepper button:hover{color:white;background:#ffffff12}#stepper button.current{color:white;border-color:#ffffff45;background:#ffffff0d}
+  .step-number{display:grid;place-items:center;width:19px;height:19px;border:1px solid #ffffff30;border-radius:50%;font-size:10px}
+  #stepper button.current .step-number{background:white;color:#121212;border-color:white}
+  #fNext{transition:background .25s,color .25s,transform .25s,box-shadow .25s}
+  #fNext::after{content:' →';display:inline-block;transition:transform .25s}
+  #fNext:hover,#fNext:focus-visible{background:#fff;color:#121212;transform:translateY(-3px);box-shadow:0 8px 24px #ffffff15}
+  #fNext:hover::after{transform:translateX(5px)}#fNext:active{transform:translateY(0)}
+  #fin .ftitle{top:64px;font-size:14px}
+  @media(max-width:720px){#stepper{width:100%;justify-content:center;gap:0;padding-inline:2px}#stepper button{font-size:10px;padding:6px 4px;gap:3px}.step-number{width:16px;height:16px}.event-label{font-size:10px}}
+
   /* Steuerung unten */
   .controls{position:absolute;left:0;right:0;bottom:0;padding:10px var(--pad) 14px;display:flex;gap:18px;align-items:flex-start;
     background:linear-gradient(transparent,var(--bg90) 55%)}
@@ -54,7 +65,7 @@
   .tick.major{height:11px;background:#7d879b}
   .tlab{position:absolute;top:57px;transform:translateX(-50%);font-size:var(--fs-s);font-size:calc(var(--fs-s)*.7);color:var(--mute);font-variant-numeric:tabular-nums}
   #head{position:absolute;top:0;left:0;width:0;height:100%;pointer-events:none}
-  #head .lbl{position:absolute;left:0;top:-18px;transform:translateX(-50%);font-size:var(--fs-m);line-height:1;font-weight:400;color:#fff;font-variant-numeric:tabular-nums}
+  #head .lbl{position:absolute;left:0;top:-18px;transform:translateX(-50%);font-size:var(--fs-m);line-height:1;font-weight:500;color:#fff;font-variant-numeric:tabular-nums}
   #head .stem{position:absolute;left:-2px;top:14px;width:4px;height:38px;background:#fff}
 
   /* Ereignisse am Zeitstrahl (Animation 2) */
@@ -86,7 +97,7 @@
   @keyframes blink{50%{opacity:0}}
   #bl,#br{position:absolute;display:none}
   #bl{left:14vw;top:12vh}
-  #br{right:8vw;bottom:36vh;width:max-content}
+  #br{right:8vw;bottom:42vh;width:max-content}
   #bc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
   #qs.bridge.on #bc{display:block}
   #bl{transition:opacity .8s}
@@ -165,13 +176,55 @@
   #panel .hint{font-size:10.5px;line-height:1.35}
   #panel button{font-size:11px !important;padding:3px 8px !important;margin-top:6px !important}
   #dtabs button{font-size:12px;padding:5px 12px}
+  /* Liniennavigation und interaktiver Zeitstrahl */
+  #stepper{width:min(820px,calc(100% - 64px));gap:20px;padding:14px 0 20px;border-radius:0}
+  #stepper button{position:relative;flex:1;display:block;padding:13px 0 4px;border:0;border-radius:0;text-align:left;font-size:14px;background:transparent!important;color:var(--mute)}
+  #stepper button::before{content:'';position:absolute;left:0;right:0;top:0;height:var(--lw);background:#3a4252;transition:background .25s,box-shadow .25s}
+  #stepper button:hover,#stepper button.current{color:#fff;border:0;background:transparent}
+  #stepper button:hover::before{background:#a4adbd}#stepper button.current::before{background:#fff;box-shadow:0 0 9px #ffffff20}
+  #stepper .step-number{display:none}
+  #head{z-index:30}#fill{z-index:1}
+  #track .mk{z-index:3;width:calc(var(--lw) + 1px);margin-left:calc((var(--lw) + 1px)/-2);border:0;border-radius:0;padding:0;transform:none;box-shadow:none;opacity:0;pointer-events:none;transition:opacity .4s,background .25s,box-shadow .25s}
+  #track.ev .mk.seen{opacity:.55;pointer-events:auto;transform:none}
+  #track .mk:hover,#track .mk.highlight,#track .mk:focus-visible{opacity:1;background:#fff;box-shadow:0 0 9px var(--ev);transform:none}
+  #track .event-label{z-index:4;border:0;border-radius:0;padding:0 4px;background:var(--bg);font:inherit;font-size:var(--fs-s);font-weight:400;line-height:1.25;pointer-events:none;transition:opacity .4s,color .2s;text-align:center}
+  #track.ev .event-label.reached{pointer-events:auto}
+  #track .event-label:hover,#track .event-label.highlight,#track .event-label:focus-visible{color:#fff;text-shadow:0 0 12px #ffffff35}
+  #bnext{pointer-events:none}#bnext.on{pointer-events:auto}
+  .exploring .controls{display:none}
+  @media(max-width:720px){#stepper{width:calc(100% - 28px);gap:10px}#stepper button{font-size:11px}}
+  #track .mk{top:16px!important;height:16px!important}
+  #event{bottom:auto;width:min(720px,calc(100% - 64px));max-width:none;padding:0 10px;background:transparent;font-size:calc(var(--fs-s)*.95);line-height:1.3}
+  #event .es{font-size:calc(var(--fs-s)*.8);line-height:1.35;margin-top:4px}
+  #event .eline{margin:7px auto 0;width:56px;max-width:100%}
+  #stepper{gap:0;padding-top:14px}
+  #stepper::before{content:'';position:absolute;top:14px;left:0;right:0;height:var(--lw);background:#515968}
+  #stepper button{padding:22px 4px 4px;text-align:center;font-size:13px;transition:color .25s}
+  #stepper button::before{left:50%;right:auto;top:0;width:var(--lw);height:12px;transform:translateX(-50%);background:#515968;transition:height .25s,background .25s}
+  #stepper button>span:last-child{display:inline-block;transform:scale(.9);transition:transform .25s}
+  #stepper button.current>span:last-child{transform:scale(1);font-weight:500}
+  #stepper button.current::before{height:17px;background:white}
+  #track .mk:hover,#track .mk:focus-visible{width:6px;margin-left:-3px;top:9px!important;height:23px!important;background:#fff;opacity:1;box-shadow:0 0 15px var(--ev)}
+  @media(max-width:720px){#stepper{gap:0}#stepper button{font-size:11px}}
+  #stepper::before{display:none}
+  #stepper button::before{width:7px;height:7px;top:3px;border-radius:50%;background:#606a79;box-shadow:none}
+  #stepper button.current::before{width:10px;height:10px;top:1.5px;background:white;box-shadow:0 0 10px #ffffff30}
+  #stepper button:hover::before{background:white}
+  #stepper button:not(:last-child)::after{content:'';position:absolute;top:6px;left:calc(50% + 12px);width:calc(100% - 24px);height:var(--lw);background:#515968;pointer-events:none}
+  #stepper{width:min(620px,calc(100% - 40px));background:transparent}
+  #stepper button{font-size:12px}
+  #qs.docked #qtext{top:76px}
+  #qs.docked2 #br{top:76px!important}
+  @media(max-width:720px){#stepper{width:calc(100% - 28px)}#stepper button{font-size:10px}}
+  .exploring.dashboard-three .controls{display:flex}
+  .dashboard-three #event{z-index:45;background:var(--bg90);padding:7px 12px}
+  .dashboard-three .controls{padding-left:calc(var(--pad) + 17px);padding-right:calc(var(--pad) + 14px)}
+  #bnext,#fbtn button{border-radius:6px;border-width:1px;padding:10px 16px}
+  #fNext::after{display:none}
 </style>
 </head>
 <body>
-<select id="variation" aria-label="Variation auswählen">
-  <option value="original">Original · bis 2023</option>
-  <option value="1">Variation 1 · bis 2025</option>
-</select>
+<nav id="stepper" aria-label="Foliennavigation"></nav>
 <div id="stage">
   <canvas id="c"></canvas>
   <div id="event"></div>
@@ -183,7 +236,6 @@
   </div>
   <div id="fin">
     <canvas id="finalParticles" aria-hidden="true"></canvas>
-    <div class="ftitle">Geburtendefizit gegen Wanderungssaldo · 1991–2023</div>
     <div class="fblob" id="fbL"></div><div class="fblob" id="fbR"></div>
     <div class="fside" id="fsL"><div class="fl1">Geburtendefizit</div><div class="fl2" id="fvL"></div><div class="fl3" id="fnL"></div></div>
     <div class="fside" id="fsR"><div class="fl1" id="flR">Wanderungssaldo</div><div class="fl2" id="fvR"></div><div class="fl3" id="fnR"></div></div>
@@ -193,7 +245,7 @@
       <div><span>Verbleibender Überschuss</span><strong id="balanceRest"></strong></div>
     </div>
     <div id="fcap"></div>
-    <div id="fbtn"><button id="fNext">Weiter zum Dashboard</button><button id="fAgain">Nochmal ansehen</button><button id="fRestart">Von vorn beginnen</button></div>
+    <div id="fbtn"><button id="fNext">Weiter zum Dashboard</button></div>
   </div>
   <div class="controls">
     <button id="play" aria-label="Pause"></button>
@@ -240,21 +292,11 @@
 <script>
 const ALL_DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045},{"y":2024,"zu":1694192,"fort":1264009,"wb":677117,"wd":1007758,"wp":83577140},{"y":2025,"zu":1479944,"fort":1244944,"wb":654241,"wd":1006588,"wp":83467117}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
 const BASE = 79753227;                            // Bevölkerung Deutschlands am 31.12.1990
-const variation = new URLSearchParams(location.search).get('variation') === '1' ? '1' : 'original';
-const enhanced = variation === '1';
-document.body.classList.toggle('variation-one', enhanced);
-const FIRST = 1991, LAST = variation === '1' ? 2025 : 2023, END = LAST + 0.999;
-const DATA = ALL_DATA.filter(d => d.y <= LAST);
-const variationSelect = document.getElementById('variation');
-variationSelect.value = variation;
-variationSelect.addEventListener('change', () => {
-  const url = new URL(location.href);
-  if (variationSelect.value === '1') url.searchParams.set('variation', '1');
-  else url.searchParams.delete('variation');
-  location.assign(url.href);
-});
+const enhanced = true;
+document.body.classList.add('variation-one');
+const FIRST = 1991, LAST = 2025, END = LAST + 0.999;
+const DATA = ALL_DATA;
 document.title = 'Bevölkerung Deutschlands ' + FIRST + '–' + LAST;
-document.querySelector('#fin .ftitle').textContent = 'Geburtendefizit gegen Wanderungssaldo · ' + FIRST + '–' + LAST;
 document.getElementById('track').setAttribute('aria-valuemax', LAST);
 let SZMIN = 2, SZMAX = 10;                      // Punktradius (px): kleinster / größter Punkt, per E-Menü
 let DOT = 3000;                                  // Personen pro Punkt (per Regler im E-Menü änderbar)
@@ -407,40 +449,33 @@ const EVENTS = {
 const evEl = $('event');
 let evHideAt = 0, evHover = false, evPinned = null, evYear = null;
 const mks = {};
-function showEvent(y, pin){
-  if (evYear === y && evEl.classList.contains('on')){        // schon sichtbar: nur Details ein-/ausklappen
-    evEl.classList.toggle('pin', !!pin); evHideAt = vt + 4000; return;
-  }
-  const e = EVENTS[y];
-  evEl.innerHTML = '<div class="et"><span class="ey">' + y + '</span>' + e.t + '</div><div class="es">' + e.s + '</div><div class="ed">' + e.d + '</div><div class="eline"></div>';
-  evEl.classList.toggle('pin', !!pin); evEl.classList.add('on');
-  evHideAt = vt + 4000; evYear = y;                    // höchstens 4 Sekunden
+function hideEvent(){ evEl.classList.remove('on', 'pin'); evHover=false; evPinned=null; evYear=null; }
+const EVENT_LABELS = {1992:'Jugoslawienkriege',1993:'Asylkompromiss',2011:'EU-Freizügigkeit',2012:'Eurokrise',2014:'Bulgarien & Rumänien',2015:'Flucht aus Syrien',2020:'Corona',2022:'Ukrainekrieg'};
+function showEvent(year, pin=false){
+  const event=EVENTS[year];if(!event)return;
+  evYear=+year;evPinned=pin?+year:null;evHideAt=vt+4200;
+  evEl.innerHTML='<div class="et"><span class="ey">'+year+'</span>'+event.t+'</div><div class="es">'+event.s+'</div><div class="eline"></div>';
+  evEl.classList.add('on');
 }
-function hideEvent(){ evEl.classList.remove('on', 'pin'); evHover = false; evPinned = null; evYear = null; }
+function selectEvent(year){t=+year;prefill();setPaused(true);showEvent(year,true);}
 for (const y in EVENTS){
-  const m = document.createElement('div'); m.className = 'mk'; m.style.left = posPct(+y) + '%';
-  m.addEventListener('pointerdown', e => e.stopPropagation());
-  m.addEventListener('pointerenter', () => { if (evPinned === null){ showEvent(+y); evHover = true; } });
-  m.addEventListener('pointerleave', () => { evHover = false; evHideAt = vt + 1200; });
-  m.addEventListener('click', e => {
-    e.stopPropagation();
-    if (evPinned === +y){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1200; }
-    else { evPinned = +y; showEvent(+y, true); }
-  });
-  track.appendChild(m); mks[y] = m;
+  const m=document.createElement('button');m.className='mk';m.style.left=posPct(+y)+'%';
+  m.setAttribute('aria-label',y+' · '+EVENTS[y].t);m.dataset.year=y;
+  m.addEventListener('pointerdown',e=>e.stopPropagation());
+  m.addEventListener('click',e=>{e.stopPropagation();selectEvent(y);});
+  m.addEventListener('pointerenter',()=>{evHover=true;if(evPinned===null)showEvent(y);});
+  m.addEventListener('pointerleave',()=>{evHover=false;evHideAt=vt+1200;});
+  track.appendChild(m);mks[y]=m;
 }
-evEl.addEventListener('pointerenter', () => { evHover = true; });
-evEl.addEventListener('pointerleave', () => { evHover = false; if (evPinned === null) evHideAt = vt + 1500; });
-evEl.addEventListener('click', () => {
-  if (evYear === null) return;
-  if (evPinned === evYear){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1500; }
-  else { evPinned = evYear; evEl.classList.add('pin'); }
-});
+evEl.addEventListener('pointerenter',()=>{evHover=true;});
+evEl.addEventListener('pointerleave',()=>{evHover=false;evHideAt=vt+1200;});
+function layoutEventLabels(){} // Ereignisse erscheinen wieder gesammelt unter dem Kreis.
 let dragging = false;
 function seek(e){
   const r = rail.getBoundingClientRect();
-  t = FIRST + clamp((e.clientX - r.left) / r.width, 0, 1) * (LAST - FIRST);
+  t = Math.round(FIRST + clamp((e.clientX - r.left) / r.width, 0, 1) * (LAST - FIRST));
   prefill();
+  setPaused(true);
 }
 track.addEventListener('pointerdown', e => { if (evPinned !== null){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1200; } dragging = true; track.setPointerCapture(e.pointerId); seek(e); });
 track.addEventListener('pointermove', e => { if (dragging) seek(e); });
@@ -542,7 +577,7 @@ function drawAnim(s){
 
   // Kreis-Beschriftung (fest, nur der Kreis wächst/schrumpft)
   text('Bevölkerungsstand', CX, CY - (FS.l * 0.78 + FS.m * 0.75) * u, FS.m * 1.1, '#a4adbd', 400);
-  text(fmt(s.pop), CX, CY, FS.l, '#fff', 300);
+  text(fmt(s.pop), CX, CY, FS.l, '#fff', 500);
   text(P.label, CX, CY + (FS.l * 0.78 + FS.s * 1.0) * u, FS.s * 1.1, '#7d879b', 400);
 
   // Jahreswerte links / rechts, gleiche Höhe, mittig zwischen Kreis und Rand
@@ -563,6 +598,10 @@ function drawDash(s){
   const yr = clamp(Math.floor(t), FIRST, LAST), d = byYear[yr], f = (t - yr) > 0 ? clamp(t - yr, 0, 1) : 1;
   const api = {
     ctx, w, h, t, year: yr, frac: f, d, FIRST, LAST, BASE, DATA, byYear, cumN, cumB, cumD, cumZ, cumF,
+    setTimelineVisible(visible){
+      document.body.classList.toggle('dashboard-three', visible);
+      track.classList.toggle('ev', visible);
+    },
     EVENTS, COLORS, FS, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
     popNow: lerp(yr === FIRST ? BASE : byYear[yr-1].wp, d.wp, f),
     popWithoutMigration: BASE + cumN[yr-1] + f * (d.wb - d.wd),
@@ -647,10 +686,9 @@ function drawBridge(){
     const v = d.wb - d.wd, cx = x0 + (i + 0.5) * slot, yv = Yv(v * f);
     c.globalAlpha = hov >= 0 && i !== hov ? 0.4 : 1;
     c.fillStyle = v < 0 ? COLORS.death : COLORS.birth;
-    if (!enhanced) c.fillRect(cx - bw / 2, Math.min(zero, yv), bw, Math.max(Math.abs(yv - zero), 1));
+    c.fillRect(cx - bw / 2, Math.min(zero, yv), bw, Math.max(Math.abs(yv - zero), 1));
   });
   c.globalAlpha = 1;
-  if (enhanced) drawBridgeCloud(c, {x0, slot, bw, zero, Yv}, el);
   if (hov >= 0){                                              // Wert des Jahres
     const d = DATA[hov], v = d.wb - d.wd;
     c.textAlign = 'right';
@@ -691,7 +729,7 @@ function frameBody(now){
   }
   if (isAnim()){                                   // Punkte laufen auch bei Pause weiter, mit den Werten des gewählten Jahres
     const P = PHASES[phase], k = enhanced ? 1 : yps(), d = state(t).d;
-    const particleDt = (waitingForArrival || drainingParticles) && paused ? 0 : dt;
+    const particleDt = paused ? 0 : dt;
     if (!drainingParticles){
       emit(particleDt, 'up', d[P.up.key] / DOT * k, true, P.up.ck);
       if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT * k, false, P.down.ck);
@@ -710,9 +748,16 @@ function frameBody(now){
   const p = posPct(Math.min(t, LAST)) + '%';
   headEl.style.left = p; fillEl.style.width = p;
   const yy = clamp(Math.floor(t), FIRST, LAST);
-  if (yy !== lastYear){ if (scene === 3 && EVENTS[yy] && evPinned === null && (!paused || dragging)) showEvent(yy); headLbl.textContent = yy; track.setAttribute('aria-valuenow', yy); lastYear = yy; }
+  if (yy !== lastYear){ if((scene===3||document.body.classList.contains('dashboard-three'))&&EVENTS[yy]&&!paused&&evPinned===null)showEvent(yy); headLbl.textContent = yy; track.setAttribute('aria-valuenow', yy); lastYear = yy; }
   if (evEl.classList.contains('on') && !evHover && evPinned === null && vt > evHideAt) hideEvent();
-  if (scene === 3){ const on = evEl.classList.contains('on'); for (const y in mks){ mks[y].classList.toggle('seen', +y <= yy); mks[y].classList.toggle('act', on && evYear === +y); } }
+  if (scene === 3 || (isDash() && document.body.classList.contains('dashboard-three'))){
+    for(const y in mks)mks[y].classList.toggle('seen',+y<=yy);
+    const radius=R_MAX*Math.sqrt(Math.max(state(t).pop,1)/REF_POP);
+    const dashboardTimeline=isDash();
+    evEl.style.top=dashboardTimeline?'auto':((CY+radius)*SC+12)+'px';
+    evEl.style.bottom=dashboardTimeline?'114px':'auto';
+    for(const y in mks)mks[y].classList.toggle('highlight',evEl.classList.contains('on')&&+y===evYear);
+  }
   draw(state(t));
   drawBridge();
   if (enhanced && scene === 4) drawFinalClouds();
@@ -830,7 +875,7 @@ function showBridge(instant){
     later(700, () => countUp($('bdef'), cumN[LAST], 2600, () => {
       later(1500, () => typeInto(btext, BQ, () => {
         highlight(btext, BQ, KEYS2);
-        later(1800, () => { bnext.classList.add('on'); bridgeDone = true; later(8000, () => goScene(3)); });
+        later(1800, () => { bnext.classList.add('on'); bridgeDone = true; });
       }));
     }));
   });
@@ -874,43 +919,6 @@ function cloudDot(c, x, y, i, color, alpha=1){
   const size = 1.1 + Math.pow(cloudRandom(i, 5), 2.1) * 5.6;
   c.globalAlpha = alpha * (.4 + cloudRandom(i, 6) * .55);
   c.fillStyle = color; c.beginPath(); c.arc(x, y, size, 0, Math.PI * 2); c.fill();
-}
-function drawBridgeCloud(c, geometry, elapsed){
-  const {x0, slot, bw, zero, Yv} = geometry;
-  const seconds = vt / 1000;
-  DATA.forEach((d, yearIndex) => {
-    const value = d.wb - d.wd;
-    const bottom = Yv(value), height = Math.abs(bottom - zero);
-    // Dichte Überlappung bis an alle Kanten; keine flächige Hintergrundfüllung.
-    const columns = Math.max(2, Math.ceil(bw / 6.5));
-    const rows = Math.max(2, Math.ceil(height / 6.5));
-    const count = columns * rows;
-    for(let j=0;j<count;j++){
-      const i = yearIndex * 10000 + j;
-      const rx = clamp((j % columns + .5 + (cloudRandom(i, 11) - .5) * .35) / columns, 0, 1);
-      const ry = clamp((Math.floor(j / columns) + .5 + (cloudRandom(i, 12) - .5) * .35) / rows, 0, 1);
-      const targetX = x0 + (yearIndex + .5) * slot + (rx - .5) * bw;
-      const targetY = lerp(zero, bottom, ry);
-      const duration = (targetX + 20) / (SPEED * SC * (.85 + cloudRandom(i, 13) * .45)) * 1000;
-      const age = elapsed - 350 - cloudRandom(i, 14) * 1800;
-      if(age <= 0) continue;
-      const f = clamp(age / duration, 0, 1);
-      const stop = clamp((f - .8) / .2, 0, 1);
-      const travel = f <= .8 ? f * 1.1 : .88 + .12 * (2 * stop - stop * stop);
-      const driftX = Math.sin(seconds * .6 + i) * .4;
-      const driftY = Math.cos(seconds * .5 + i * 1.7) * .4;
-      const x = lerp(-20, targetX + driftX, travel);
-      const y = lerp(zero + cloudRandom(i, 15) * 60, targetY + driftY, travel) + Math.sin(f * 6 + i) * 5 * (1-f);
-      c.save();
-      // Angekommene Punkte bleiben innerhalb ihres Jahresbalkens.
-      if(f >= 1){c.beginPath();c.rect(x0+(yearIndex+.5)*slot-bw/2,Math.min(zero,bottom),bw,height);c.clip();}
-      c.globalAlpha = .94;
-      c.fillStyle = value<0 ? COLORS.death : COLORS.birth;
-      c.beginPath(); c.arc(x,y,7.5 + cloudRandom(i, 16) * 2.3,0,Math.PI*2); c.fill();
-      c.restore();
-    }
-  });
-  c.globalAlpha = 1;
 }
 function cloudReveal(value, index, count){
   const linearTime = value < .5 ? Math.sqrt(value / 2) : 1 - Math.sqrt((1 - value) / 2);
@@ -1089,6 +1097,7 @@ function goScene(n, opt){
   if (n === 3 && prev === 2 && !bridgeDone) finishBridge();
   cancelSeq(); finId++;
   drainingParticles = false;
+  if(n!==5)document.body.classList.remove('dashboard-three');
   scene = n;
   document.body.classList.toggle('exploring', enhanced && n === 5);
   track.classList.toggle('ev', n === 3); if (n !== 3) hideEvent();
@@ -1105,20 +1114,19 @@ function goScene(n, opt){
   }
   if (n !== 4 && n !== 5 && n !== 3) { /* qs wird von den Szenen gesetzt */ }
   updateMenus();
+  if(n===3)layoutEventLabels();
 }
 function next(){
   if (scene === 0){ if (!introTyped) introFull(); else goScene(1); }
   else if (scene === 1) goScene(2);
-  else if (scene === 2){ if (!bridgeDone) finishBridge(); else goScene(3); }
+  else if (scene === 2){ if (!bridgeDone) finishBridge(); }
   else if (scene === 3) goScene(4);
   else if (scene === 4){ if (!finDone) finishFinal(); else goScene(5); }
 }
 function prevScene(){ if (scene > 0) goScene(scene - 1, {instant: true}); }
-qs.addEventListener('click', next);
+qs.addEventListener('click', () => { if (scene !== 2) next(); });
 bnext.addEventListener('click', e => { e.stopPropagation(); goScene(3); });
 $('fNext').onclick = () => goScene(5);
-$('fAgain').onclick = () => goScene(4);
-$('fRestart').onclick = () => goScene(0);
 
 /* ---- E-Menü ---- */
 const panel = $('panel'), dtabs = $('dtabs');
@@ -1169,6 +1177,12 @@ $('savefile').onclick = async () => {              // schreibt die aktuellen Wer
   } catch (e) { say('Abgebrochen'); }
 };
 $('resetset').onclick = () => { try { localStorage.removeItem('bev-einstellungen-v3'); } catch (e) {} location.reload(); };
+const stepper=$('stepper');
+SCENES.forEach((name,i)=>{
+  const button=document.createElement('button');
+  button.innerHTML='<span class="step-number">'+(i+1)+'</span><span>'+name+'</span>';
+  button.onclick=()=>goScene(i,{instant:true});stepper.appendChild(button);
+});
 const scenesEl = $('scenes');
 SCENES.forEach((name, i) => {
   const b = document.createElement('button'); b.textContent = (i + 1) + ' · ' + name;
@@ -1182,6 +1196,11 @@ DASH.forEach((name, i) => {
 });
 function updateMenus(){
   applyBg();
+  stepper.classList.toggle('persistent',scene>=4);
+  [...stepper.children].forEach((button,i)=>{
+    button.classList.toggle('current',i===scene);
+    if(i===scene)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
+  });
   [...scenesEl.children].forEach((b, i) => b.classList.toggle('on', i === scene));
   [...dtabs.children].forEach((b, i) => b.classList.toggle('on', i === dash));
   dtabs.classList.toggle('open', panelOpen && isDash() && !enhanced);
@@ -1202,7 +1221,7 @@ addEventListener('keydown', e => {
   else if (k === 'Space'){ e.preventDefault(); if (isDash() && t >= LAST) { t = FIRST; setPaused(false); } else setPaused(!paused); }
   else if ((k === 'ArrowRight' || k === 'ArrowLeft') && (isAnim() || isDash())){
     e.preventDefault();
-    t = clamp(Math.floor(t) + (k === 'ArrowRight' ? 1 : -1), FIRST, LAST); prefill();
+    t = clamp(Math.floor(t) + (k === 'ArrowRight' ? 1 : -1), FIRST, LAST); prefill(); setPaused(true);
   }
 });
 cv.addEventListener('pointerdown', e => {
