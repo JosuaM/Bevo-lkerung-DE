@@ -724,7 +724,7 @@ function drawDash(s){
   const yr = clamp(Math.floor(t), FIRST, LAST), d = byYear[yr], f = (t - yr) > 0 ? clamp(t - yr, 0, 1) : 1;
   const api = {
     ctx, w, h, t, year: yr, frac: f, d, FIRST, LAST, BASE, DATA, byYear, cumN, cumB, cumD, cumZ, cumF,
-    EVENTS, COLORS, FS, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
+    EVENTS, COLORS, FS: {l:51, m:29.6, s:20.4}, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
     popNow: lerp(yr === FIRST ? BASE : byYear[yr-1].wp, d.wp, f),
     popWithoutMigration: BASE + cumN[yr-1] + f * (d.wb - d.wd),
     setClickArea: g => { dashGeo = g; },            // Bereich, in dem ein Klick das Jahr wählt: {x0, x1, y0, y1}

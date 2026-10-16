@@ -17,7 +17,7 @@ window.populationExplorer = (() => {
   @media(max-width:700px){.ex-insight-grid{grid-template-columns:1fr;gap:14px}.ex-insight summary small{display:block;margin:5px 0 0}}
   #explorer [hidden]{display:none!important}
   #explorer{scrollbar-width:none}#explorer::-webkit-scrollbar{display:none}
-  #explorer.ex-scaled{inset:auto;left:var(--pad);top:108px;width:calc((100vw - 2 * var(--pad)) / var(--ex-z));height:calc((100vh - 132px) / var(--ex-z));transform:scale(var(--ex-z));transform-origin:0 0}
+  #explorer.ex-scaled{--fs-l:51px;--fs-m:29.6px;--fs-s:20.4px;inset:auto;left:var(--pad);top:108px;width:calc((100vw - 2 * var(--pad)) / var(--ex-z));height:calc((100vh - 132px) / var(--ex-z));transform:scale(var(--ex-z));transform-origin:0 0}
   .dashboard-three #explorer.ex-scaled{height:calc((100vh - 220px) / var(--ex-z))}
   #explorer .ex-topline{position:sticky;top:0;z-index:20;margin:0;padding:14px 0 12px;background:var(--bg)}
   .ex-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -181,9 +181,9 @@ window.populationExplorer = (() => {
 
 `;
   document.body.appendChild(el);
-  // Auf großen Bildschirmen wird das ganze Dashboard proportional vergrößert (Referenz: MacBook-Fenster).
+  // Das ganze Dashboard wird proportional zur Fenstergröße skaliert (Referenz 1512×860), damit es überall gleich aussieht.
   let zoom=1;
-  const applyZoom=()=>{zoom=Math.max(1,Math.min(2.2,Math.min(innerWidth/1512,innerHeight/860)));el.style.setProperty('--ex-z',zoom);el.classList.toggle('ex-scaled',zoom>1.001);};
+  const applyZoom=()=>{zoom=Math.max(.4,Math.min(3,Math.min(innerWidth/1512,innerHeight/860)));el.style.setProperty('--ex-z',zoom);el.classList.add('ex-scaled');};
   applyZoom();addEventListener('resize',applyZoom);
   const localRect=node=>{const r=node.getBoundingClientRect();return {left:r.left/zoom,top:r.top/zoom,width:r.width/zoom,height:r.height/zoom};};
   el.querySelector('.ex-grid').insertAdjacentElement('afterend',el.querySelector('.ex-insight'));
