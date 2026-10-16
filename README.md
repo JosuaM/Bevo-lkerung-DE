@@ -15,3 +15,7 @@ Uni-Projekt: Konnte die Ein- und Auswanderung Deutschlands Geburtendefizit ausgl
 ## Starten
 
 Im Ordner `Bevoelkerung-DE` auf dem Mac `Starten.command` doppelklicken oder im Terminal `python3 serve.py` ausführen. Details und Bedienung stehen in [`Bevoelkerung-DE/README.md`](Bevoelkerung-DE/README.md).
+
+## Veröffentlichen mit GitHub Pages
+
+Bei jedem Push auf `main` veröffentlicht der Workflow `.github/workflows/pages.yml` nur die Webseite (`index.html`, `css`, `js`, `dashboards` aus `Bevoelkerung-DE`). Alte Versionen, Rohdaten und Hilfsdateien bleiben unveröffentlicht. Einmalig in den Repository-Einstellungen unter **Settings → Pages → Source** den Eintrag **GitHub Actions** wählen. Die Seite liegt danach unter `https://josuam.github.io/Bevo-lkerung-DE/`.
