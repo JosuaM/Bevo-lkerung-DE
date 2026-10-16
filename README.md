@@ -11,7 +11,7 @@ Python 3 wird benötigt; zusätzliche Python-Pakete sind nicht erforderlich.
 
 Die lokale Vorschau öffnet sich im Browser. Das Terminal während der Nutzung geöffnet lassen; mit Strg+C beenden.
 
-Alle Änderungen im **E-Menü** werden automatisch in die `index.html` geschrieben: Farben, Hintergrund je Folie, Punktgrößen, Personen pro Punkt und Zeitstrahltempo. Es gibt keine gerätespezifischen Einstellungs-Overrides mehr. Der Speicherstatus steht im E-Menü.
+Alle Änderungen im **E-Menü** werden automatisch in die `index.html` geschrieben: Farben, Hintergrund je Folie, Punktgrößen, Personen pro Punkt, Zeitstrahltempo und der Klang der Balken. Es gibt keine gerätespezifischen Einstellungs-Overrides mehr. Der Speicherstatus steht im E-Menü.
 
 Damit andere Geräte die neuen Werte erhalten: die geänderte `index.html` **committen und pushen**, auf dem anderen Gerät **pullen** und die Vorschau neu laden. Das Programm führt selbst keine Git-Aktionen aus.
 
@@ -19,9 +19,16 @@ Beim direkten Öffnen der HTML-Datei ist automatisches Speichern alternativ in C
 
 ## Bedienung
 
-Obere Navigation: Folie neu starten. **E:** Einstellungen. **Leertaste:** Play/Pause. **A / D:** zurück / weiter. **← / →:** Jahr auswählen und pausieren. Die Differenzfolie wartet auf „Weiter“.
+Obere Navigation: Folie neu starten. **E:** Einstellungen (inkl. „Folie neu starten“; auf der Differenzfolie zusätzlich die Auswahl des Balken-Klangs). **Leertaste:** Play/Pause. **A / D:** zurück / weiter. **← / →:** Jahr auswählen und pausieren. Die Differenzfolie wartet auf „Weiter“.
 
-Rohdaten und Quellen: `Data/`. Dashboard: `dashboards/explorer.js`.
+Rohdaten und Quellen: `Data/`. Dashboard: `dashboards/`.
+
+## Aufbau
+
+- `index.html` – Markup und `DEFAULTS` (Projektwerte)
+- `css/main.css`, `dashboards/explorer.css` – Gestaltung
+- `js/` – Daten, Zustand, Animation, Folien, Einstellungen, Start
+- `dashboards/explorer.js`, `dashboards/particle-cloud.js` – Dashboard
 
 ## Website-Version
 

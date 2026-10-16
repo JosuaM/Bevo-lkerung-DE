@@ -1,0 +1,61 @@
+/* Jahreswerte 1991–2025 (Quelle: Destatis, Rohdaten in Data/).
+   y Jahr · zu Zuzüge · fort Fortzüge · wb Lebendgeborene · wd Gestorbene · wp Bevölkerung am 31.12. */
+const DATA = [
+  {y:1991, zu:1198978, fort:596455, wb:830019, wd:911245, wp:80274564},
+  {y:1992, zu:1502198, fort:720127, wb:809114, wd:885443, wp:80974632},
+  {y:1993, zu:1277408, fort:815312, wb:798447, wd:897270, wp:81338093},
+  {y:1994, zu:1082553, fort:767555, wb:769603, wd:884661, wp:81538603},
+  {y:1995, zu:1096048, fort:698113, wb:765221, wd:884588, wp:81817499},
+  {y:1996, zu:959691, fort:677494, wb:796013, wd:882843, wp:82012162},
+  {y:1997, zu:840633, fort:746969, wb:812173, wd:860389, wp:82057379},
+  {y:1998, zu:802456, fort:755358, wb:785034, wd:852382, wp:82037011},
+  {y:1999, zu:874023, fort:672048, wb:770744, wd:846330, wp:82163475},
+  {y:2000, zu:841158, fort:674038, wb:766999, wd:838797, wp:82259540},
+  {y:2001, zu:879217, fort:606494, wb:734475, wd:828541, wp:82440309},
+  {y:2002, zu:842543, fort:623255, wb:719250, wd:841686, wp:82536680},
+  {y:2003, zu:768975, fort:626330, wb:706721, wd:853946, wp:82531671},
+  {y:2004, zu:780175, fort:697633, wb:705622, wd:818271, wp:82500849},
+  {y:2005, zu:707352, fort:628399, wb:685795, wd:830227, wp:82437995},
+  {y:2006, zu:661855, fort:639064, wb:672724, wd:821627, wp:82314906},
+  {y:2007, zu:680766, fort:636854, wb:684862, wd:827155, wp:82217837},
+  {y:2008, zu:682146, fort:737889, wb:682514, wd:844439, wp:82002356},
+  {y:2009, zu:721014, fort:733796, wb:665126, wd:854544, wp:81802257},
+  {y:2010, zu:798282, fort:670605, wb:677947, wd:858768, wp:81751602},
+  {y:2011, zu:958299, fort:678969, wb:662685, wd:852328, wp:80327900},
+  {y:2012, zu:1080936, fort:711991, wb:673544, wd:869582, wp:80523746},
+  {y:2013, zu:1226493, fort:797886, wb:682069, wd:893825, wp:80767463},
+  {y:2014, zu:1464724, fort:914241, wb:714927, wd:868356, wp:81197537},
+  {y:2015, zu:2136954, fort:997552, wb:737575, wd:925200, wp:82175684},
+  {y:2016, zu:1865122, fort:1365178, wb:792141, wd:910902, wp:82521653},
+  {y:2017, zu:1550721, fort:1134641, wb:784901, wd:932272, wp:82792351},
+  {y:2018, zu:1585112, fort:1185432, wb:787523, wd:954874, wp:83019213},
+  {y:2019, zu:1558612, fort:1231552, wb:778090, wd:939520, wp:83166711},
+  {y:2020, zu:1186702, fort:966451, wb:773144, wd:985572, wp:83155031},
+  {y:2021, zu:1323466, fort:994303, wb:795492, wd:1023687, wp:83237124},
+  {y:2022, zu:2665772, fort:1203683, wb:738819, wd:1066341, wp:83118501},
+  {y:2023, zu:1932509, fort:1269545, wb:692989, wd:1028206, wp:83456045},
+  {y:2024, zu:1694192, fort:1264009, wb:677117, wd:1007758, wp:83577140},
+  {y:2025, zu:1479944, fort:1244944, wb:654241, wd:1006588, wp:83467117}
+];
+
+const BASE = 79753227;      // Bevölkerung Deutschlands am 31.12.1990
+
+/* Ereignisse, die in Animation 2 und im Dashboard erscheinen (t Titel · s Kurztext · d Hintergrund). */
+const EVENTS = {
+  1992: {t: 'Jugoslawienkriege', s: 'Über 400.000 Menschen stellen einen Asylantrag – ein Höchststand.',
+         d: 'Bürgerkriege im früheren Jugoslawien und die Öffnung Osteuropas lassen die Zuzüge auf 1,5 Millionen steigen.'},
+  1993: {t: 'Asylkompromiss', s: 'Das Asylrecht wird eingeschränkt, die Zuzüge sinken.',
+         d: 'Wer aus einem sicheren Drittstaat einreist, kann an der Grenze zurückgewiesen werden. Die Asylanträge fallen in den Folgejahren stark.'},
+  2011: {t: 'Arbeitnehmerfreizügigkeit', s: 'Menschen aus Osteuropa dürfen ohne Erlaubnis in Deutschland arbeiten.',
+         d: 'Seit Mai 2011 gilt die volle Freizügigkeit für die 2004 beigetretenen EU-Staaten. Zugleich korrigiert der Zensus die Bevölkerungszahl um rund 1,4 Millionen nach unten.'},
+  2012: {t: 'Eurokrise', s: 'Wegen der Wirtschaftskrise suchen Menschen aus Südeuropa Arbeit in Deutschland.',
+         d: 'In Spanien, Italien und Griechenland ist die Arbeitslosigkeit hoch – die Zuzüge steigen von 2010 bis 2013 jedes Jahr.'},
+  2014: {t: 'Freizügigkeit für Bulgarien und Rumänien', s: 'Bulgaren und Rumänen dürfen frei in Deutschland arbeiten.',
+         d: 'Seit Januar 2014 entfallen die letzten Beschränkungen, der Zuzug aus beiden Ländern nimmt deutlich zu.'},
+  2015: {t: 'Fluchtbewegung aus Syrien', s: 'Fast 900.000 Schutzsuchende erreichen Deutschland.',
+         d: 'Der Krieg in Syrien sowie Konflikte in Afghanistan und im Irak lassen die Zuzüge 2015 auf 2,1 Millionen steigen.'},
+  2020: {t: 'Corona-Pandemie', s: 'Grenzen sind geschlossen, die Zuzüge brechen ein.',
+         d: 'Die Zuzüge sinken von 1,56 Millionen (2019) auf 1,19 Millionen.'},
+  2022: {t: 'Krieg in der Ukraine', s: 'Rund eine Million Menschen fliehen aus der Ukraine nach Deutschland.',
+         d: 'Mit 2,67 Millionen Zuzügen ist 2022 der höchste Wert seit 1991.'},
+};

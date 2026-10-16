@@ -1,0 +1,95 @@
+/* Dashboard „Bevölkerung verstehen“. Das ganze Dashboard wird per JS (--ex-z) proportional zum Fenster skaliert;
+   alle Maße gelten für die Referenzgröße 1512 × 860 und die festen Schriftstufen unten. */
+
+#explorer{
+  --fs-l:51.408px; --fs-m:29.817px; --fs-s:20.563px;
+  display:none;position:fixed;left:0;top:0;z-index:30;overflow:auto;scrollbar-width:none;color:var(--ink);
+  width:calc(100vw / var(--ex-z,1));height:calc(100vh / var(--ex-z,1));
+  padding:calc(108px / var(--ex-z,1)) calc(var(--pad) / var(--ex-z,1)) calc(24px / var(--ex-z,1));
+  transform:scale(var(--ex-z,1));transform-origin:0 0;
+}
+#explorer::-webkit-scrollbar{display:none}
+.exploring #explorer{display:block}
+.exploring #c{visibility:hidden}
+#explorer [hidden]{display:none!important}
+#explorer h1{margin:0;font-size:calc(var(--fs-m)*.85);font-weight:400;line-height:1.3}
+#explorer p{margin:0;color:#a4adbd;font-size:14px;line-height:1.5}
+#explorer button{padding:9px 14px;border:1px solid #3a4252;border-radius:6px;background:transparent;font-size:14px;color:#a4adbd}
+#explorer button:hover{border-color:#a4adbd;color:#fff}
+#explorer button[aria-selected=true],#explorer button[aria-pressed=true]{border-color:#eef2f6;background:#eef2f6;color:#121212}
+#explorer button:focus-visible,#ex-chart:focus-visible{outline:2px solid var(--c-in);outline-offset:3px}
+
+/* ---- Kopfzeile ---- */
+.ex-topline{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:14px}
+.ex-tabs{display:flex;flex-shrink:0;width:380px;overflow:hidden;border:1px solid #ffffff40;border-radius:8px;background:#ffffff05}
+#explorer .ex-tabs button{flex:1 1 0;padding:10px 12px;border:0;border-radius:0;font-size:13px;white-space:nowrap}
+
+/* ---- Diagramm und Jahreswerte ---- */
+.ex-grid{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:24px;margin-top:24px;padding:22px;
+  border:1px solid #ffffff40;border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 65%)}
+.ex-plot{position:relative}
+#ex-chart{display:block;width:100%;height:clamp(340px,calc(49vh / var(--ex-z,1)),560px);margin-top:18px;touch-action:pan-y;cursor:pointer}
+#ex-chart,#ex-chart:focus,#ex-chart:focus-visible{outline:none!important;box-shadow:none}
+.ex-chart-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:44px;margin-top:12px}
+.ex-legend{display:flex;flex:1;flex-wrap:wrap;gap:18px;font-size:calc(var(--fs-s)*.8);color:#a4adbd}
+.ex-legend span::before{content:'';display:inline-block;width:14px;height:3px;margin-right:7px;background:var(--key);vertical-align:middle}
+.ex-legend .ex-key-line::before{display:none}
+.ex-key-line svg{width:24px;height:12px;margin-right:7px;vertical-align:middle;overflow:visible}
+#ex-switch{display:flex;flex-shrink:0;overflow:hidden;border:1px solid #ffffff40;border-radius:7px;background:#ffffff05}
+#ex-switch:empty{display:none}
+#explorer #ex-switch button{margin:0;padding:8px 12px;border:0;border-radius:0;font-size:13px}
+
+.ex-year-column{display:flex;flex-direction:column;gap:18px;min-width:0}
+.ex-card{flex:1;padding:0 0 0 22px;border-left:1px solid #ffffff40}
+.ex-yearbar{display:flex;align-items:center;justify-content:space-between;font-size:calc(var(--fs-s)*.8);color:#a4adbd}
+#ex-year{margin:6px 0 20px;font-size:var(--fs-l);font-weight:300}
+.ex-metric{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #30343b;font-size:calc(var(--fs-s)*.85);color:#a4adbd}
+.ex-metric strong{font-weight:400;color:var(--ink);white-space:nowrap}
+.ex-total{padding-top:18px;font-size:calc(var(--fs-s)*.85);color:#a4adbd}
+.ex-total strong{display:block;margin:5px 0 12px;font-size:25px;font-weight:300;color:var(--ink)}
+.ex-individual #ex-side-values{display:flex;flex-direction:column;height:100%}
+.ex-individual #ex-side-values>div:not(.ex-particle-slot){flex-shrink:0}
+.ex-individual .ex-particle-slot{display:flex;flex:1;align-items:center;min-height:0;padding-top:12px}
+#ex-surplus-particles{position:relative;inset:auto;display:block;width:100%;height:clamp(120px,calc(19vh / var(--ex-z,1)),190px);margin-top:4px;cursor:pointer}
+.ex-individual #ex-surplus-particles{flex-shrink:0}
+#ex-surplus-particles:focus-visible{outline:2px solid #eef2f6;outline-offset:4px}
+
+/* ---- Ereignisse im Diagramm ---- */
+.chart-event{cursor:pointer;outline:none}
+.chart-event line{stroke:#6e8997;stroke-width:1.5;stroke-opacity:.45;transition:stroke .2s,stroke-width .2s,stroke-opacity .2s}
+.chart-event .event-star{fill:#91a5b1;stroke:none;font-size:13px;transition:fill .2s}
+.chart-event.hovered line,.chart-event:focus-visible line,.chart-event.selected line{stroke:var(--c-in);stroke-width:2.5;stroke-opacity:1}
+.chart-event.hovered .event-star,.chart-event:focus-visible .event-star,.chart-event.selected .event-star{fill:var(--c-in)}
+.chart-event.selected{filter:drop-shadow(0 0 5px #38e0ff66)}
+#ex-chart.value-hover .chart-event.selected{filter:none}
+#ex-chart.value-hover .chart-event.selected line{stroke:#6e8997;stroke-width:1.5;stroke-opacity:.45}
+#ex-chart.value-hover .chart-event.selected .event-star{fill:#91a5b1}
+.ex-bar{transition:opacity .03s}
+.ex-bar.bar-hover:not(.bar-selected){opacity:.9}
+.ex-bar.bar-selected{stroke:#fff;stroke-width:1.5;paint-order:stroke fill}
+
+/* ---- Karten beim Überfahren ---- */
+#ex-event-tooltip{position:absolute;z-index:5;box-sizing:border-box;width:max-content;min-width:280px;padding:12px 15px;
+  border:1px solid #495563;border-radius:10px;background:#20252c;box-shadow:0 10px 32px #0006;
+  font-size:12px;color:#eef2f6;pointer-events:none;transition:width .4s,box-shadow .4s}
+.ex-tooltip-heading{font-size:calc(var(--fs-s)*.85);font-weight:400;line-height:1.4;color:#eef2f6;white-space:nowrap}
+.ex-tooltip-detail{display:grid;grid-template-rows:1fr}
+.ex-tooltip-detail>div{overflow:hidden}
+#explorer .ex-tooltip-detail p{padding-top:9px;font-size:calc(var(--fs-s)*.8);line-height:1.5;color:#a4adbd}
+.ex-value-tooltip{position:absolute;z-index:7;min-width:190px;padding:10px 13px;border:1px solid #495563;border-radius:10px;
+  background:#20252c;box-shadow:0 6px 24px #0004;pointer-events:none;animation:valueCardIn .22s ease both}
+.ex-value-tooltip span{display:block;margin-bottom:4px;font-size:12px;color:#a4adbd}
+.ex-value-tooltip strong{display:block;font-size:var(--fs-s);font-weight:500;color:#eef2f6;font-variant-numeric:tabular-nums}
+@keyframes valueCardIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.value-stem{stroke-dasharray:50;stroke-dashoffset:50;animation:valueStemIn .25s ease forwards}
+@keyframes valueStemIn{to{stroke-dashoffset:0}}
+
+/* ---- Warum Zuwanderung zählt ---- */
+.ex-insight{margin:18px 0 0;border:1px solid #ffffff40;border-radius:8px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 65%)}
+.ex-insight summary{padding:13px 16px;font-size:14px;color:#eef2f6;cursor:pointer}
+.ex-insight summary::marker{color:#a4adbd}
+.ex-insight summary small{margin-left:12px;font-size:12px;color:#a4adbd}
+.ex-insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding:5px 18px 16px}
+.ex-insight h3{margin:0 0 7px;font-size:14px;font-weight:400;color:var(--ink)}
+#explorer .ex-insight p{font-size:13px}
+#explorer .ex-insight-footer{padding:0 18px 15px;font-size:12px}
