@@ -2,7 +2,7 @@
 window.populationExplorer = (() => {
   const style = document.createElement('style');
   style.textContent = `
-  #explorer{display:none;position:fixed;inset:108px var(--pad) 24px;z-index:30;overflow:auto;color:var(--ink)}
+  #explorer{display:none;position:fixed;left:0;top:0;z-index:30;overflow:auto;color:var(--ink);width:calc(100vw / var(--ex-z,1));height:calc(100vh / var(--ex-z,1));padding:calc(108px / var(--ex-z,1)) calc(var(--pad) / var(--ex-z,1)) calc(24px / var(--ex-z,1));transform:scale(var(--ex-z,1));transform-origin:0 0}
   .exploring #explorer{display:block}.exploring #c{visibility:hidden}
   #explorer h1{font-size:var(--fs-m);font-weight:400;margin:0 0 8px}#explorer p{color:#a4adbd;font-size:14px;line-height:1.5;margin:0}
   .ex-insight{border:1px solid #ffffff40;border-radius:8px;margin:0 0 18px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 65%)}
@@ -17,9 +17,7 @@ window.populationExplorer = (() => {
   @media(max-width:700px){.ex-insight-grid{grid-template-columns:1fr;gap:14px}.ex-insight summary small{display:block;margin:5px 0 0}}
   #explorer [hidden]{display:none!important}
   #explorer{scrollbar-width:none}#explorer::-webkit-scrollbar{display:none}
-  #explorer.ex-scaled{--fs-l:51px;--fs-m:29.6px;--fs-s:20.4px;inset:auto;left:var(--pad);top:108px;width:calc((100vw - 2 * var(--pad)) / var(--ex-z));height:calc((100vh - 132px) / var(--ex-z));transform:scale(var(--ex-z));transform-origin:0 0}
-  .dashboard-three #explorer.ex-scaled{height:calc((100vh - 220px) / var(--ex-z))}
-  #explorer .ex-topline{position:sticky;top:0;z-index:20;margin:0;padding:14px 0 12px;background:var(--bg)}
+  #explorer{--fs-l:51.408px;--fs-m:29.817px;--fs-s:20.563px}
   .ex-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
   #ex-variant{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:8px 12px;color-scheme:dark}
   .ex-side-switch{display:flex;gap:4px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid #30343b}
@@ -183,7 +181,7 @@ window.populationExplorer = (() => {
   document.body.appendChild(el);
   // Das ganze Dashboard wird proportional zur Fenstergröße skaliert (Referenz 1512×860), damit es überall gleich aussieht.
   let zoom=1;
-  const applyZoom=()=>{zoom=Math.max(.4,Math.min(3,Math.min(innerWidth/1512,innerHeight/860)));el.style.setProperty('--ex-z',zoom);el.classList.add('ex-scaled');};
+  const applyZoom=()=>{zoom=Math.max(.4,Math.min(3,Math.min(innerWidth/1512,innerHeight/860)));el.style.setProperty('--ex-z',zoom);};
   applyZoom();addEventListener('resize',applyZoom);
   const localRect=node=>{const r=node.getBoundingClientRect();return {left:r.left/zoom,top:r.top/zoom,width:r.width/zoom,height:r.height/zoom};};
   el.querySelector('.ex-grid').insertAdjacentElement('afterend',el.querySelector('.ex-insight'));

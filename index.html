@@ -175,6 +175,8 @@
   #panel input[type=color]{width:24px;height:20px}
   #scenes button{font-size:12px;padding:3px 0 3px 14px}
   #panel .hint{font-size:10.5px;line-height:1.35}
+  #panel select{width:100%;font:inherit;font-size:12px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:5px 8px;color-scheme:dark}
+  #panel [hidden]{display:none}
   #panel button{font-size:11px !important;padding:3px 8px !important;margin-top:6px !important}
   #dtabs button{font-size:12px;padding:5px 12px}
   /* Liniennavigation und interaktiver Zeitstrahl */
@@ -288,6 +290,10 @@
 <div id="dashboardFade" aria-hidden="true"></div>
 <div id="dtabs"></div>
 <div id="panel">
+  <div class="sec"><button id="restartScene">Folie neu starten</button></div>
+  <div class="sec" id="soundSec" hidden><h3>Klang der Balken</h3>
+    <select id="soundSel" aria-label="Klang der Balken"></select>
+  </div>
   <div class="sec"><h3>Zeitstrahltempo</h3><div class="dotlbl" id="speedlbl"></div>
     <input type="range" id="speedrng" aria-label="Zeitstrahltempo" min="0.5" max="2.5" step="0.1">
     <div class="hint">Ereignisse bleiben langsam lesbar.</div>
@@ -355,12 +361,12 @@ const SPEED = 380;                                // Punkte-Geschwindigkeit (vir
 const COLORS = {birth:'#4ade9a', death:'#ff7a7a', in:'#38e0ff', out:'#ffb454'};
 const BGS = ['#121212','#121212','#121212','#121212','#121212','#121212'];   // Hintergrund je Folie
 // Gemeinsame Projektwerte. E-Änderungen werden nach Dateifreigabe automatisch hier gespeichert.
-const DEFAULTS = {dot:3000,szmin:2,szmax:10,speed:1,colors:{birth:"#4ade9a",death:"#ff7a7a",in:"#38e0ff",out:"#ffb454"},bgs:["#121212","#121212","#121212","#121212","#121212","#121212"]};
+const DEFAULTS = {dot:3000,szmin:2,szmax:10,speed:1,sound:"click",colors:{birth:"#4ade9a",death:"#ff7a7a",in:"#38e0ff",out:"#ffb454"},bgs:["#121212","#121212","#121212","#121212","#121212","#121212"]};
 if (DEFAULTS.colors) for (const k in COLORS) if (/^#[0-9a-f]{6}$/i.test(DEFAULTS.colors[k] || '')) COLORS[k] = DEFAULTS.colors[k];
 if (DEFAULTS.bgs) DEFAULTS.bgs.forEach((c, i) => { if (i < BGS.length && /^#[0-9a-f]{6}$/i.test(c)) BGS[i] = c; });
 if (DEFAULTS.dot > 0) DOT = DEFAULTS.dot; if (DEFAULTS.szmin > 0) SZMIN = DEFAULTS.szmin; if (DEFAULTS.szmax > 0) SZMAX = DEFAULTS.szmax;
 if (DEFAULTS.speed > 0) timelineSpeed = Math.max(.5, Math.min(2.5, DEFAULTS.speed));
-function currentSettings(){return {dot:DOT,szmin:SZMIN,szmax:SZMAX,speed:timelineSpeed,colors:{...COLORS},bgs:[...BGS]};}
+function currentSettings(){return {dot:DOT,szmin:SZMIN,szmax:SZMAX,speed:timelineSpeed,sound:soundName,colors:{...COLORS},bgs:[...BGS]};}
 let settingsFile=null,settingsConnecting=null,settingsWriting=false,settingsRevision=0,settingsSavedRevision=0,settingsTimer=null;
 function settingsStatus(message){document.getElementById('settings-status').textContent=message;}
 function settingsHandleStore(value){
@@ -728,7 +734,7 @@ function drawDash(s){
   const yr = clamp(Math.floor(t), FIRST, LAST), d = byYear[yr], f = (t - yr) > 0 ? clamp(t - yr, 0, 1) : 1;
   const api = {
     ctx, w, h, t, year: yr, frac: f, d, FIRST, LAST, BASE, DATA, byYear, cumN, cumB, cumD, cumZ, cumF,
-    EVENTS, COLORS, FS: {l:51, m:29.6, s:20.4}, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
+    EVENTS, COLORS, FS: {l:51.408, m:29.817, s:20.563}, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
     popNow: lerp(yr === FIRST ? BASE : byYear[yr-1].wp, d.wp, f),
     popWithoutMigration: BASE + cumN[yr-1] + f * (d.wb - d.wd),
     setClickArea: g => { dashGeo = g; },            // Bereich, in dem ein Klick das Jahr wählt: {x0, x1, y0, y1}
@@ -750,15 +756,30 @@ function niceStep(raw){
   const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
   return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
 }
+const SOUNDS = {
+  click: {label: 'Klick (weich)',   wave: 'triangle', from: 1500, to: 420,  length: .05, volume: .11},
+  tick:  {label: 'Tick (hell)',     wave: 'square',   from: 2600, to: 2000, length: .02, volume: .04},
+  pop:   {label: 'Pop',             wave: 'sine',     from: 520,  to: 160,  length: .09, volume: .2},
+  wood:  {label: 'Holzklopfen',     wave: 'sine',     from: 900,  to: 600,  length: .06, volume: .22},
+  off:   {label: 'Aus'},
+};
+let soundName = DEFAULTS.sound in SOUNDS ? DEFAULTS.sound : 'click';
 let audioCtx = null, bridgeBars = 0;
-function clickSound(){                                       // kurzer, leiser Klick (synthetisch, ohne Audiodatei)
+function playSound(){                                        // kurzer synthetischer Klang, keine Audiodatei nötig
+  const sound = SOUNDS[soundName];
+  if (!sound.wave) return;
   try{
     audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') audioCtx.resume();
-    const t0 = audioCtx.currentTime, o = audioCtx.createOscillator(), g = audioCtx.createGain();
-    o.type = 'triangle'; o.frequency.setValueAtTime(1500 + Math.random() * 120, t0); o.frequency.exponentialRampToValueAtTime(420, t0 + .035);
-    g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(.11, t0 + .003); g.gain.exponentialRampToValueAtTime(.0001, t0 + .05);
-    o.connect(g).connect(audioCtx.destination); o.start(t0); o.stop(t0 + .06);
+    const now = audioCtx.currentTime, osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+    osc.type = sound.wave;
+    osc.frequency.setValueAtTime(sound.from * (1 + Math.random() * .08), now);
+    osc.frequency.exponentialRampToValueAtTime(sound.to, now + sound.length * .7);
+    gain.gain.setValueAtTime(.0001, now);
+    gain.gain.exponentialRampToValueAtTime(sound.volume, now + .003);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + sound.length);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(now); osc.stop(now + sound.length + .01);
   }catch{}
 }
 function drawBridge(){
@@ -780,7 +801,7 @@ function drawBridge(){
   const prog = clamp((el - 700) / 2800, 0, 1) * (LAST - FIRST + 1);   // ... dann die Balken nach und nach
   const x0 = 130, x1 = w - 60, top = h * 0.74, bot = h - 62, n = LAST - FIRST + 1;
   const bars = Math.min(n, Math.ceil(prog));
-  if (bridgeFull || paused) bridgeBars = bars; else if (bars > bridgeBars){ bridgeBars = bars; clickSound(); }
+  if (bridgeFull || paused) bridgeBars = bars; else if (bars > bridgeBars){ bridgeBars = bars; playSound(); }
   let lo = 0, hi = 0;
   DATA.forEach(d => { const v = d.wb - d.wd; lo = Math.min(lo, v); hi = Math.max(hi, v); });
   hi = Math.max(hi, -lo * 0.12);
@@ -1249,7 +1270,6 @@ function goScene(n, opt){
   if(timelinePointer!==null&&track.hasPointerCapture(timelinePointer))track.releasePointerCapture(timelinePointer);
   timelinePointer=null;waitingForArrival=false;lastYear=0;
   panelOpen=false;panel.classList.remove('open');
-  if (n === 2 && prev === 2) return;
   if (n === 3 && prev === 2 && !bridgeDone) finishBridge();
   cancelSeq(); finId++;
   drainingParticles = false;
@@ -1325,12 +1345,17 @@ function applyBg(){
 }
 bgIn.addEventListener('input', () => { BGS[scene] = bgIn.value; applyBg(); saveSettings(); });
 $('copyset').onclick = () => {
-  const txt = JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS, speed: timelineSpeed});
+  const txt = JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS, speed: timelineSpeed, sound: soundName});
   const done = () => { $('copyset').textContent = 'Kopiert ✓'; setTimeout(() => $('copyset').textContent = 'Einstellungen kopieren', 1800); };
   if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => prompt('Einstellungen kopieren:', txt)); else prompt('Einstellungen kopieren:', txt);
 };
 $('savefile').onclick=()=>{settingsRevision++;connectSettingsFile(true);};
 $('resetset').onclick=()=>location.reload();
+const soundSel = $('soundSel');
+for (const key in SOUNDS) soundSel.add(new Option(SOUNDS[key].label, key));
+soundSel.value = soundName;
+soundSel.addEventListener('change', () => { soundName = soundSel.value; playSound(); saveSettings(); soundSel.blur(); });
+$('restartScene').onclick = () => { togglePanel(); goScene(scene); };
 const stepper=$('stepper');
 SCENES.forEach((name,i)=>{
   const button=document.createElement('button');
@@ -1351,6 +1376,7 @@ function updateMenus(){
     if(i===scene)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
   });
   [...scenesEl.children].forEach((b, i) => b.classList.toggle('on', i === scene));
+  $('soundSec').hidden = scene !== 2;
   dtabs.classList.remove('open');
 }
 function togglePanel(){
