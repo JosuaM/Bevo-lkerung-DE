@@ -87,6 +87,7 @@ function setPhase(i){ phase = i; restart(); }
 const FINAL_HOLD = 2000;               // ms Pause auf dem Endstand, bevor die nächste Folie ausgeblendet wird
 const FINAL_LEAD = 1.3;                // Sekunden vor dem Ende, in denen keine Punkte mehr nachkommen
 let outroSpeed = 1;                    // Beschleunigung der Punkte im Ausklang
+let startHold = 0;                     // Animationszeit (vt), vor der noch nichts startet: Folie ist noch nicht sichtbar
 let endScheduled = false;              // Wechsel zur nächsten Folie ist bereits angesetzt
 const animationEnd = () => animVariant === 2 ? LAST : END;
 const secondsLeft = () => (animationEnd() - t) / yps();
@@ -101,6 +102,7 @@ function visibleTimeLeft(){            // Sekunden, bis der letzte Punkt am Krei
 
 /* Ein Bild lang weiterlaufen: Zeit, Tempo und Punkte (auch bei Pause laufen die Punkte mit den Werten des gewählten Jahres weiter). */
 function advanceAnimation(dt){
+  if (vt < startHold) return;
   if (scene === 3) ypsCur += ((nearEvent() ? EVENT_SPEED : narrativeSpeed()) - ypsCur) * Math.min(1, dt * 3);
   const animationDt = paused ? 0 : dt * yps();
   if (!paused && !waitingForArrival && !drainingParticles){

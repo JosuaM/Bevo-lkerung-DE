@@ -25,7 +25,7 @@ def validated_settings(value):
         number = value[key]
         if isinstance(number, bool) or not isinstance(number, (int, float)) or not lo <= number <= hi:
             raise ValueError('Ungültiger Wert: ' + key)
-    if value.get('sound', 'click') not in {'click', 'tick', 'pop', 'wood', 'off'}:
+    if not re.fullmatch(r'[A-Za-z]{1,20}', str(value.get('sound', 'tick'))):
         raise ValueError('Ungültiger Klang.')
     if value['szmin'] > value['szmax']:
         raise ValueError('Punktgrößen stimmen nicht überein.')

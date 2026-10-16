@@ -66,6 +66,7 @@ function introFull(){
 
 /* ---- Folie 1: Animation ohne Wanderung ---- */
 function sceneAnim1(fromIntro){
+  startHold = 0;
   setPhase(0);
   beginEntrance();
   qs.className = 'docked';
@@ -110,6 +111,7 @@ function showBridge(instant){
   btext.removeAttribute('style');
   br.removeAttribute('style');
   bnext.classList.remove('on');
+  bnext.style.transitionDuration = '';
   bridgeDone = false;
   qs.className = 'on bridge';
   if (instant){ finishBridge(); return; }
@@ -234,29 +236,38 @@ function drawBridge(){
 /* ---- Folie 3: Animation mit Wanderung ---- */
 let bridgeHeadingAnimation = null;
 function sceneAnim2(glide){
-  const previousBox = glide ? btext.getBoundingClientRect() : null;
+  startHold = 0;
   ypsCur = narrativeSpeed();
   setPhase(1);
   beginEntrance();
-  // Nach der Differenzfolie gleitet zuerst die Frage nach oben, danach blenden Kreis, Zahlen und Zeitleiste weich ein.
-  const fading = [cv, document.querySelector('.controls')];
+  const controls = document.querySelector('.controls'), fading = [cv, controls];
   fading.forEach(el => { el.style.transition = 'none'; el.style.opacity = glide ? 0 : ''; });
-  if (glide) later(1000, () => fading.forEach(el => { el.style.transition = 'opacity 1s ease'; el.style.opacity = 1; }));
+  if (!glide){ dockQuestion(null); return; }
+  // Nach der Differenzfolie: erst blendet „Weiter“ aus, dann gleitet die Frage nach oben, danach blenden Kreis, Zahlen und
+  // Zeitleiste weich ein. Die Animation startet erst, wenn sie sichtbar wird.
+  startHold = vt + 250 + 1000;
+  bnext.style.transitionDuration = '.25s';
+  bnext.classList.remove('on');
+  later(250, () => {
+    dockQuestion(btext.getBoundingClientRect());
+    later(1000, () => fading.forEach(el => { el.style.transition = 'opacity 1s ease'; el.style.opacity = 1; }));
+  });
+}
+function dockQuestion(previousBox){                // Frage von der Differenzfolie nach oben setzen, weich per Gleitbewegung
   br.removeAttribute('style');
   btext.style.cssText = 'font-size:var(--fs-m);transform-origin:0 0';
   btext.classList.remove('hl');
   btext.textContent = BQ;
-  if (glide) later(1100, () => highlight(btext, BQ, KEYS2));
+  if (previousBox) later(1100, () => highlight(btext, BQ, KEYS2));
   else highlight(btext, BQ, KEYS2, true);
   qs.className = 'bridge docked2';
-  if (previousBox){
-    const target = btext.getBoundingClientRect();
-    const scale = previousBox.width / Math.max(target.width, 1);
-    bridgeHeadingAnimation = btext.animate([
-      {transform: `translate(${previousBox.left - target.left}px,${previousBox.top - target.top}px) scale(${scale})`},
-      {transform: 'translate(0,0) scale(1)'},
-    ], {duration: 1000, easing: 'cubic-bezier(.65,0,.25,1)'});
-  }
+  if (!previousBox) return;
+  const target = btext.getBoundingClientRect();
+  const scale = previousBox.width / Math.max(target.width, 1);
+  bridgeHeadingAnimation = btext.animate([
+    {transform: `translate(${previousBox.left - target.left}px,${previousBox.top - target.top}px) scale(${scale})`},
+    {transform: 'translate(0,0) scale(1)'},
+  ], {duration: 1000, easing: 'cubic-bezier(.65,0,.25,1)'});
 }
 
 /* ---- Folie 4: Ergebnis ---- */
