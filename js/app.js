@@ -11,7 +11,9 @@ function drawDash(){
   dashboardApi.d = byYear[dashboardApi.year];
   window.populationExplorer.render(dashboardApi);
 }
+let freezeCanvasUntil = 0;                         // beim Ausblenden von Animation 2 bleibt das letzte Bild stehen
 function draw(){
+  if (performance.now() < freezeCanvasUntil) return;
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
   if (isDash()) drawDash();
@@ -98,9 +100,14 @@ function goScene(n, opt = {}){
   cancelSeq();
   finId++;
   drainingParticles = false;
-  if (n !== 3){                                    // Einblendung von Animation 2 zurücksetzen
-    const controls = document.querySelector('.controls');
-    [cv, controls].forEach(el => { el.style.transition = ''; el.style.opacity = ''; });
+  const leavingAnimation = n === 4 && previous === 3 && !opt.instant;      // Animation 2 → Ergebnis: erst ausblenden, dann das Ergebnis einblenden
+  if (n !== 3){
+    const faded = [cv, document.querySelector('.controls')];
+    faded.forEach(el => { el.style.transition = leavingAnimation ? 'opacity .6s' : ''; el.style.opacity = leavingAnimation ? 0 : ''; });
+    if (leavingAnimation){
+      freezeCanvasUntil = performance.now() + 700;
+      later(700, () => faded.forEach(el => { el.style.transition = ''; el.style.opacity = ''; }));
+    }else freezeCanvasUntil = 0;
   }
   scene = n;
   document.body.dataset.scene = String(n);
@@ -115,10 +122,10 @@ function goScene(n, opt = {}){
     case 2: showBridge(!!opt.instant); break;
     case 3: sceneAnim2(previous === 2); break;
     case 4: {
-      qs.className = 'bridge docked2';
+      qs.className = 'bridge docked2' + (leavingAnimation ? ' leaving' : '');
       const showEndState = !!opt.instant || (previous === 5 && resultVisited);
       resultVisited = true;
-      showFinal(showEndState);
+      showFinal(showEndState, leavingAnimation ? 600 : 0);
       break;
     }
     case 5:

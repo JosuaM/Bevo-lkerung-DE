@@ -41,6 +41,7 @@ body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
 #qs.on{opacity:1;pointer-events:auto}
 #qs.docked,#qs.docked2{opacity:1;background:transparent;pointer-events:none}
 #qs.bridge{transition-duration:.9s,.9s}
+#qs.leaving{opacity:0;transition:opacity .6s}
 #qtext,#btext{font-weight:300;line-height:1.25;color:#fff;white-space:pre;font-size:var(--fs-l)}
 #qtext{position:absolute;left:24px;top:50%;width:calc(100% - 48px);height:2.5em;text-align:center;transform:translateY(-50%);
   transition:opacity .45s,left 1s cubic-bezier(.65,0,.25,1),top 1s cubic-bezier(.65,0,.25,1),transform 1s cubic-bezier(.65,0,.25,1),font-size 1s cubic-bezier(.65,0,.25,1)}

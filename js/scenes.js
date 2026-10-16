@@ -406,14 +406,18 @@ function finishFinal(){
   finDone = true;
   persistSlideState();
 }
-async function showFinal(instant){
+async function showFinal(instant, delay = 0){
   const id = ++finId;
   finDone = false;
   F.a = F.b = F.m = 0;
-  [fsL, fsR, fcap, fbtn, finalBalance].forEach(el => el.classList.remove('in'));
+  const parts = [fsL, fsR, fcap, fbtn, finalBalance];
+  parts.forEach(el => { el.style.transition = 'none'; el.classList.remove('in'); });   // Reste eines früheren Durchlaufs sofort ausblenden
   fsL.style.removeProperty('opacity');
+  void fin.offsetWidth;
+  parts.forEach(el => el.style.transition = '');
   finalText();
   renderFinal();
+  if (delay){ await sleep(delay); if (id !== finId) return; }
   fin.classList.add('on');
   if (instant){ finishFinal(); return; }
   await sleep(1600); if (id !== finId) return;
