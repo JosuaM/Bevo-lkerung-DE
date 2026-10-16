@@ -338,9 +338,13 @@ let ypsCur = 1.0;                                  // Animation 2: ruhiges Tempo
 function narrativeSpeed(){
   return 2 * timelineSpeed;
 }
+function nearEvent(){                                  // Variante 2: schon im Jahr vor einem Ereignis ruhiger werden
+  const y = Math.floor(t);
+  return !!EVENTS[y] || (animVariant === 2 && !!EVENTS[y + 1] && t - y > .5);
+}
 function yps(){
   if (enhanced && scene === 1) return narrativeSpeed();
-  if (scene === 3) return EVENTS[Math.floor(t)] ? Math.min(ypsCur, .36) : ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
+  if (scene === 3) return nearEvent() ? Math.min(ypsCur, .36) : ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
   if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
     const k = clamp((t - FIRST) / 9, 0, 1);
     return lerp(0.45, 1 / SEC_PER_YEAR, k * k * (3 - 2 * k));
@@ -746,6 +750,17 @@ function niceStep(raw){
   const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
   return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
 }
+let audioCtx = null, bridgeBars = 0;
+function clickSound(){                                       // kurzer, leiser Klick (synthetisch, ohne Audiodatei)
+  try{
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const t0 = audioCtx.currentTime, o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'triangle'; o.frequency.setValueAtTime(1500 + Math.random() * 120, t0); o.frequency.exponentialRampToValueAtTime(420, t0 + .035);
+    g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(.11, t0 + .003); g.gain.exponentialRampToValueAtTime(.0001, t0 + .05);
+    o.connect(g).connect(audioCtx.destination); o.start(t0); o.stop(t0 + .06);
+  }catch{}
+}
 function drawBridge(){
   if (scene !== 2){
     if (!bcClear){
@@ -764,6 +779,8 @@ function drawBridge(){
   if (axisA <= 0) return;
   const prog = clamp((el - 700) / 2800, 0, 1) * (LAST - FIRST + 1);   // ... dann die Balken nach und nach
   const x0 = 130, x1 = w - 60, top = h * 0.74, bot = h - 62, n = LAST - FIRST + 1;
+  const bars = Math.min(n, Math.ceil(prog));
+  if (bridgeFull || paused) bridgeBars = bars; else if (bars > bridgeBars){ bridgeBars = bars; clickSound(); }
   let lo = 0, hi = 0;
   DATA.forEach(d => { const v = d.wb - d.wd; lo = Math.min(lo, v); hi = Math.max(hi, v); });
   hi = Math.max(hi, -lo * 0.12);
@@ -830,7 +847,7 @@ function frameBody(now){
   if (!paused) vt += dt * 1000;
   runTimers();
   layout();
-  if (scene === 3){ const eventYear = !!EVENTS[clamp(Math.floor(t), FIRST, LAST)]; const target = enhanced ? (eventYear ? .36 : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
+  if (scene === 3){ const eventYear = nearEvent(); const target = enhanced ? (eventYear ? .36 : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
   // Eine gemeinsame Simulationszeit für Jahreszahl, Bevölkerungsstand und Partikel.
   const animationDt = paused ? 0 : dt * yps();
   if (isAnim() && !paused && !waitingForArrival && !drainingParticles){
@@ -979,7 +996,7 @@ function finishBridge(){
 }
 let bridgeT0 = 0, bridgeFull = false;
 function showBridge(instant){
-  bridgeT0 = vt; bridgeFull = false;
+  bridgeT0 = vt; bridgeFull = false; bridgeBars = 0;
   const l = bridgeEls();
   l.forEach(el => el.classList.remove('in'));
   $('bdef').textContent = '0';
