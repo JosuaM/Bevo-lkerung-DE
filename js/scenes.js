@@ -83,14 +83,6 @@ const bc = $('bc'), bctx = bc.getContext('2d');
 let bridgeT0 = 0, bridgeFull = false, bridgeBars = 0;
 let bcClear = true, bcLeave = 0;                   // Balkenfläche nach dem Verlassen erst ausblenden, dann löschen
 
-function countUp(el, to, ms, done){
-  const start = vt;
-  ticks.push(() => {
-    const p = clamp((vt - start) / ms, 0, 1), eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = sgn(to * eased);
-    if (p >= 1){ if (done) done(); return true; }
-  });
-}
 const bridgeLines = () => [...document.querySelectorAll('#bl .l1,#bl .l2')];
 function finishBridge(){
   cancelSeq();
@@ -117,12 +109,10 @@ function showBridge(instant){
   if (instant){ finishBridge(); return; }
   later(500, () => {
     lines.forEach(el => el.classList.add('in'));
-    later(700, () => countUp($('bdef'), cumN[LAST], 2600, () => {
-      later(1500, () => {
-        typeInto(btext, BQ);
-        later(2600, () => { bnext.classList.add('on'); bridgeDone = true; });
-      });
-    }));
+    later(4800, () => {                              // der Zähler oben läuft in drawBridge mit den Balken
+      typeInto(btext, BQ);
+      later(2600, () => { bnext.classList.add('on'); bridgeDone = true; });
+    });
   });
 }
 function niceStep(raw){
@@ -203,16 +193,20 @@ function drawBridge(){
     c.fillRect(x - 1, bottom + 6, 2, 6);
     c.fillText(String(year), x, bottom + 26);
   }
-  // Balken
+  // Balken; das Geburtendefizit oben links zählt mit ihnen hoch (0 am Anfang, Endwert wenn der letzte Balken steht)
   c.globalAlpha = 1;
+  let running = 0;
   DATA.forEach((d, i) => {
     const grow = ease(clamp(progress - i, 0, 1));
     if (grow <= 0) return;
     const v = d.wb - d.wd, x = x0 + (i + .5) * slot, y = yOf(v * grow);
+    running += v * grow;
     c.globalAlpha = hovered >= 0 && i !== hovered ? .4 : 1;
     c.fillStyle = v < 0 ? COLORS.death : COLORS.birth;
     c.fillRect(x - barWidth / 2, Math.min(zero, y), barWidth, Math.max(Math.abs(y - zero), 1));
   });
+  const deficit = Math.round(running) === 0 ? '0' : sgn(running);
+  if ($('bdef').textContent !== deficit) $('bdef').textContent = deficit;
   c.fillStyle = '#fff';
   c.globalAlpha = axisAlpha;
   c.fillRect(x0, zero - 1, (x1 - x0) * axisAlpha, 2);
