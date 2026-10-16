@@ -1,16 +1,24 @@
 /* Animation 1 und 2: Zeitablauf, Punktströme und Kreis mit Bevölkerungsstand. */
 
 /* ---- Tempo (Jahre pro Sekunde) ---- */
-const EVENT_SPEED = .36;               // Tempo in Ereignisjahren
+const EVENT_SPEED = .36;               // Höchsttempo in Ereignisjahren
+const MAX_COUNT_RATE = 200000;         // Zahlen sollen in Ereignisjahren nicht schneller als etwa so viele Menschen pro Sekunde zählen
+const MIN_EVENT_SPEED = .2;
 let ypsCur = 1;                        // Animation 2: gleitendes Tempo, in Ereignisjahren deutlich langsamer
 const narrativeSpeed = () => 2 * timelineSpeed;
 function nearEvent(){                  // Variante 2: schon in der zweiten Hälfte des Vorjahrs ruhiger werden
   const year = Math.floor(t);
   return !!EVENTS[year] || (animVariant === 2 && !!EVENTS[year + 1] && t - year > .5);
 }
+function eventSpeed(){                 // große Sprünge (z. B. 2015) laufen langsamer, damit auch die Zahlen ruhig zählen
+  if (animVariant !== 2) return EVENT_SPEED;
+  const year = clamp(Math.floor(t), FIRST, LAST), now = byYear[year], next = byYear[Math.min(year + 1, LAST)];
+  const change = Math.max(...['zu', 'fort', 'wb', 'wd', 'wp'].map(key => Math.abs(next[key] - now[key])));
+  return clamp(MAX_COUNT_RATE / Math.max(change, 1), MIN_EVENT_SPEED, EVENT_SPEED);
+}
 function yps(){
   if (scene !== 3) return narrativeSpeed();
-  return nearEvent() ? Math.min(ypsCur, EVENT_SPEED) : ypsCur;
+  return nearEvent() ? Math.min(ypsCur, eventSpeed()) : ypsCur;
 }
 
 /* ---- Layout: statisch, nur der Kreisradius ändert sich ---- */
@@ -89,7 +97,7 @@ const FINAL_HOLD = 2000;               // ms Pause auf dem Endstand, bevor die n
 let startHold = 0;                     // Animationszeit (vt), vor der noch nichts startet: Folie ist noch nicht sichtbar
 let endScheduled = false;              // Wechsel zur nächsten Folie ist bereits angesetzt
 const animationEnd = () => animVariant === 2 ? LAST : END;
-const secondsLeft = () => (animationEnd() - t) / yps();
+const secondsLeft = () => (animationEnd() - t) / narrativeSpeed();    // in Partikelzeit: ein Partikel altert so, wie die Zeit mit Normaltempo läuft
 function visibleTimeLeft(){            // Sekunden, bis der letzte Punkt am Kreisrand bzw. rechten Bildrand verschwunden ist
   const radius = R_MAX * Math.sqrt(Math.max(state(t).pop, 1) / REF_POP);
   const entryEnd = (CX - radius + 14) / (CX + 14);
@@ -101,7 +109,7 @@ function visibleTimeLeft(){            // Sekunden, bis der letzte Punkt am Krei
 /* Ein Bild lang weiterlaufen: Zeit, Tempo und Punkte (auch bei Pause laufen die Punkte mit den Werten des gewählten Jahres weiter). */
 function advanceAnimation(dt){
   if (vt < startHold) return;
-  if (scene === 3) ypsCur += ((nearEvent() ? EVENT_SPEED : narrativeSpeed()) - ypsCur) * Math.min(1, dt * 3);
+  if (scene === 3) ypsCur += ((nearEvent() ? eventSpeed() : narrativeSpeed()) - ypsCur) * Math.min(1, dt * 3);
   const animationDt = paused ? 0 : dt * yps();
   if (!paused && !waitingForArrival && !drainingParticles){
     t += animationDt;
