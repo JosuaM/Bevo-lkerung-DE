@@ -1,5 +1,5 @@
 /* Jahreswerte 1991–2025 (Quelle: Destatis, Rohdaten in Data/).
-   y Jahr · zu Zuzüge · fort Fortzüge · wb Lebendgeborene · wd Gestorbene · wp Bevölkerung am 31.12. */
+   y Jahr · zu Einwanderung · fort Auswanderung · wb Lebendgeborene · wd Gestorbene · wp Bevölkerung am 31.12. */
 const DATA = [
   {y:1991, zu:1198978, fort:596455, wb:830019, wd:911245, wp:80274564},
   {y:1992, zu:1502198, fort:720127, wb:809114, wd:885443, wp:80974632},
@@ -42,20 +42,28 @@ const BASE = 79753227;      // Bevölkerung Deutschlands am 31.12.1990
 
 /* Ereignisse, die in Animation 2 und im Dashboard erscheinen (t Titel · s Kurztext · d Hintergrund). */
 const EVENTS = {
-  1992: {t: 'Jugoslawienkriege', s: 'Über 400.000 Menschen stellen einen Asylantrag – ein Höchststand.',
-         d: 'Bürgerkriege im früheren Jugoslawien und die Öffnung Osteuropas lassen die Zuzüge auf 1,5 Millionen steigen.'},
-  1993: {t: 'Asylkompromiss', s: 'Das Asylrecht wird eingeschränkt, die Zuzüge sinken.',
-         d: 'Wer aus einem sicheren Drittstaat einreist, kann an der Grenze zurückgewiesen werden. Die Asylanträge fallen in den Folgejahren stark.'},
-  2011: {t: 'Arbeitnehmerfreizügigkeit', s: 'Menschen aus Osteuropa dürfen ohne Erlaubnis in Deutschland arbeiten.',
-         d: 'Seit Mai 2011 gilt die volle Freizügigkeit für die 2004 beigetretenen EU-Staaten. Zugleich korrigiert der Zensus die Bevölkerungszahl um rund 1,4 Millionen nach unten.'},
-  2012: {t: 'Eurokrise', s: 'Wegen der Wirtschaftskrise suchen Menschen aus Südeuropa Arbeit in Deutschland.',
-         d: 'In Spanien, Italien und Griechenland ist die Arbeitslosigkeit hoch – die Zuzüge steigen von 2010 bis 2013 jedes Jahr.'},
-  2014: {t: 'Freizügigkeit für Bulgarien und Rumänien', s: 'Bulgaren und Rumänen dürfen frei in Deutschland arbeiten.',
-         d: 'Seit Januar 2014 entfallen die letzten Beschränkungen, der Zuzug aus beiden Ländern nimmt deutlich zu.'},
-  2015: {t: 'Fluchtbewegung aus Syrien', s: 'Fast 900.000 Schutzsuchende erreichen Deutschland.',
-         d: 'Der Krieg in Syrien sowie Konflikte in Afghanistan und im Irak lassen die Zuzüge 2015 auf 2,1 Millionen steigen.'},
-  2020: {t: 'Corona-Pandemie', s: 'Grenzen sind geschlossen, die Zuzüge brechen ein.',
-         d: 'Die Zuzüge sinken von 1,56 Millionen (2019) auf 1,19 Millionen.'},
-  2022: {t: 'Krieg in der Ukraine', s: 'Rund eine Million Menschen fliehen aus der Ukraine nach Deutschland.',
-         d: 'Mit 2,67 Millionen Zuzügen ist 2022 der höchste Wert seit 1991.'},
+  1992: {t: 'Jugoslawienkriege',
+         s: 'Über 400.000 Menschen stellen einen Asylantrag, so viele wie nie zuvor.',
+         d: 'Die Kriege im früheren Jugoslawien und die Öffnung Osteuropas lassen die Einwanderung auf 1,5 Millionen Menschen steigen.'},
+  1993: {t: 'Asylkompromiss',
+         s: 'Das Asylrecht wird eingeschränkt, die Einwanderung sinkt.',
+         d: 'Wer aus einem sicheren Drittstaat einreist, kann seitdem an der Grenze zurückgewiesen werden. Die Zahl der Asylanträge geht in den Folgejahren deutlich zurück.'},
+  2011: {t: 'Arbeitnehmerfreizügigkeit',
+         s: 'Menschen aus Osteuropa dürfen ohne Arbeitserlaubnis in Deutschland arbeiten, die Einwanderung steigt.',
+         d: 'Seit Mai 2011 gilt die volle Arbeitnehmerfreizügigkeit für die 2004 beigetretenen EU-Staaten. Im selben Jahr korrigiert der Zensus die Bevölkerungszahl um rund 1,4 Millionen Menschen nach unten.'},
+  2012: {t: 'Eurokrise',
+         s: 'Aufgrund der Wirtschaftskrise suchen Menschen aus Südeuropa Arbeit in Deutschland.',
+         d: 'In Spanien, Italien und Griechenland ist die Arbeitslosigkeit hoch. Die Einwanderung steigt von 2010 bis 2013 jedes Jahr.'},
+  2014: {t: 'Freizügigkeit für Bulgarien und Rumänien',
+         s: 'Menschen aus Bulgarien und Rumänien dürfen uneingeschränkt in Deutschland arbeiten.',
+         d: 'Seit Januar 2014 entfallen die letzten Beschränkungen. Die Einwanderung aus beiden Ländern nimmt deutlich zu.'},
+  2015: {t: 'Fluchtbewegung aus Syrien',
+         s: 'Fast 900.000 Schutzsuchende erreichen Deutschland.',
+         d: 'Der Krieg in Syrien sowie Konflikte in Afghanistan und im Irak lassen die Einwanderung 2015 auf rund 2,1 Millionen Menschen steigen.'},
+  2020: {t: 'Corona-Pandemie',
+         s: 'Die Grenzen werden geschlossen, die Einwanderung bricht ein.',
+         d: 'Die Einwanderung sinkt von 1,56 Millionen Menschen (2019) auf 1,19 Millionen.'},
+  2022: {t: 'Krieg in der Ukraine',
+         s: 'Rund eine Million Menschen fliehen aus der Ukraine nach Deutschland.',
+         d: 'Mit 2,67 Millionen Menschen erreicht die Einwanderung 2022 den höchsten Wert seit 1991.'},
 };
