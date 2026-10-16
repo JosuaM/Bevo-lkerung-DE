@@ -41,10 +41,11 @@ function particlePosition(p){
   const y = CY + p.u * envelope + Math.sin(q * p.wf + p.wob) * p.wa / SC * (.3 + dist);
   return {x, y};
 }
-function spawn(inflow, ck, randomAge){
+function spawn(inflow, ck, randomAge, maxLife = Infinity){
   if (particles.length > MAX_PARTICLES) return;
   const length = inflow ? CX + 14 : W - CX + 20;
   const speed = .65 + Math.random() * .7;                                   // jedes Teilchen hat sein eigenes Tempo
+  if (length / (SPEED * speed) > maxLife) return;                           // Ausklang: nur Punkte, die noch vor dem Ende verschwinden
   const center = (Math.random() + Math.random() + Math.random()) / 1.5 - 1; // eher mittig, aber breit gestreut
   const p = {
     inflow, ck,
@@ -57,9 +58,9 @@ function spawn(inflow, ck, randomAge){
   if (randomAge) p.age = Math.random() * p.life;
   particles.push(p);
 }
-function emit(dt, key, rate, inflow, ck){
+function emit(dt, key, rate, inflow, ck, maxLife){
   acc[key] += rate * dt;
-  while (acc[key] >= 1){ acc[key] -= 1; spawn(inflow, ck); }
+  while (acc[key] >= 1){ acc[key] -= 1; spawn(inflow, ck, false, maxLife); }
 }
 function stepParticles(dt){
   for (let i = particles.length - 1; i >= 0; i--){
@@ -69,7 +70,6 @@ function stepParticles(dt){
 }
 function prefill(){                    // Strahlen sofort gefüllt darstellen (z. B. nach dem Springen im Zeitstrahl)
   waitingForArrival = drainingParticles = endScheduled = false;
-  outroSpeed = 1;
   particles.length = 0;
   acc.up = acc.down = 0;
   if (phase > 1 || isDash()) return;
@@ -82,16 +82,14 @@ function prefill(){                    // Strahlen sofort gefüllt darstellen (z
 function restart(){ t = FIRST; prefill(); }
 function setPhase(i){ phase = i; restart(); }
 
-/* Variante 2, Ausklang: Der Zeitstrahl läuft unverändert bis 2025. Kurz davor kommen keine Punkte mehr nach und die vorhandenen
-   werden schneller, sodass beim Erreichen von 2025 alle verschwunden sind. In diesem Moment stehen auch alle Zahlen auf dem Endwert. */
+/* Variante 2, Ausklang: Zeitstrahl und Punkte behalten ihr Tempo. Gegen Ende kommen nur noch Punkte nach, die vor 2025 wieder
+   verschwinden; dadurch werden es zum Schluss weniger, und beim Erreichen von 2025 ist keiner mehr zu sehen. In diesem Moment
+   stehen auch alle Zahlen auf dem Endwert. */
 const FINAL_HOLD = 2000;               // ms Pause auf dem Endstand, bevor die nächste Folie ausgeblendet wird
-const FINAL_LEAD = 1.3;                // Sekunden vor dem Ende, in denen keine Punkte mehr nachkommen
-let outroSpeed = 1;                    // Beschleunigung der Punkte im Ausklang
 let startHold = 0;                     // Animationszeit (vt), vor der noch nichts startet: Folie ist noch nicht sichtbar
 let endScheduled = false;              // Wechsel zur nächsten Folie ist bereits angesetzt
 const animationEnd = () => animVariant === 2 ? LAST : END;
 const secondsLeft = () => (animationEnd() - t) / yps();
-const inOutro = () => animVariant === 2 && secondsLeft() < FINAL_LEAD;
 function visibleTimeLeft(){            // Sekunden, bis der letzte Punkt am Kreisrand bzw. rechten Bildrand verschwunden ist
   const radius = R_MAX * Math.sqrt(Math.max(state(t).pop, 1) / REF_POP);
   const entryEnd = (CX - radius + 14) / (CX + 14);
@@ -114,15 +112,11 @@ function advanceAnimation(dt){
     }
   }
   const P = PHASES[phase], d = state(t).d;
-  let particleDt = scene === 3 ? animationDt / narrativeSpeed() : (paused ? 0 : dt);
-  if (inOutro()){
-    const target = clamp(visibleTimeLeft() / Math.max(secondsLeft(), .05), 1, 8);
-    outroSpeed += (target - outroSpeed) * Math.min(1, dt * 8);
-    particleDt = paused ? 0 : dt * outroSpeed;
-  }else outroSpeed = 1;
-  if (!drainingParticles && !inOutro()){
-    emit(particleDt, 'up', d[P.up.key] / DOT, true, P.up.ck);
-    if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT, false, P.down.ck);
+  const particleDt = scene === 3 ? animationDt / narrativeSpeed() : (paused ? 0 : dt);
+  if (!drainingParticles){
+    const maxLife = animVariant === 2 ? Math.max(secondsLeft(), 0) : Infinity;
+    emit(particleDt, 'up', d[P.up.key] / DOT, true, P.up.ck, maxLife);
+    if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT, false, P.down.ck, maxLife);
   }
   stepParticles(particleDt);
   const drained = animVariant === 2 ? visibleTimeLeft() <= 0 : particles.length === 0;
