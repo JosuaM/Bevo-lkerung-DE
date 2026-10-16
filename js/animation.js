@@ -25,7 +25,6 @@ const BAND = () => R_MAX * .6;         // beide Strahlen gleich breit
 
 /* ---- Punkte ---- */
 const particles = [], acc = {up: 0, down: 0}, MAX_PARTICLES = 16000;
-let approach = false;                  // Variante 2: die letzte Etappe (ab 2024) ist von selbst eingelaufen, nicht per Auswahl angesprungen
 let waitingForArrival = false;         // Einlauf: Auswanderung startet erst, wenn die ersten Punkte den Kreis erreichen
 let drainingParticles = false;         // Ende: Strahlen laufen leer, bevor die nächste Folie kommt
 
@@ -69,7 +68,8 @@ function stepParticles(dt){
   }
 }
 function prefill(){                    // Strahlen sofort gefüllt darstellen (z. B. nach dem Springen im Zeitstrahl)
-  waitingForArrival = drainingParticles = approach = false;
+  waitingForArrival = drainingParticles = false;
+  outroSpeed = 1;
   particles.length = 0;
   acc.up = acc.down = 0;
   if (phase > 1 || isDash()) return;
@@ -82,9 +82,13 @@ function prefill(){                    // Strahlen sofort gefüllt darstellen (z
 function restart(){ t = FIRST; prefill(); }
 function setPhase(i){ phase = i; restart(); }
 
-/* Variante 2, Ausklang: Ab 2025 kommen keine Punkte mehr nach. Die Zeit läuft so weiter, dass Bevölkerungsstand, Zahlen und
-   Zeitstrahl genau dann ihren Endwert erreichen, wenn der letzte sichtbare Punkt verschwindet. */
-const finalStretch = () => animVariant === 2 && t >= LAST;
+/* Variante 2, Ausklang: Der Zeitstrahl läuft unverändert bis 2025. Kurz davor kommen keine Punkte mehr nach und die vorhandenen
+   werden schneller, sodass beim Erreichen von 2025 alle verschwunden sind. In diesem Moment stehen auch alle Zahlen auf dem Endwert. */
+const FINAL_LEAD = 1.3;                // Sekunden vor dem Ende, in denen keine Punkte mehr nachkommen
+let outroSpeed = 1;                    // Beschleunigung der Punkte im Ausklang
+const animationEnd = () => animVariant === 2 ? LAST : END;
+const secondsLeft = () => (animationEnd() - t) / yps();
+const inOutro = () => animVariant === 2 && secondsLeft() < FINAL_LEAD;
 function visibleTimeLeft(){            // Sekunden, bis der letzte Punkt am Kreisrand bzw. rechten Bildrand verschwunden ist
   const radius = R_MAX * Math.sqrt(Math.max(state(t).pop, 1) / REF_POP);
   const entryEnd = (CX - radius + 14) / (CX + 14);
@@ -98,19 +102,21 @@ function advanceAnimation(dt){
   if (scene === 3) ypsCur += ((nearEvent() ? EVENT_SPEED : narrativeSpeed()) - ypsCur) * Math.min(1, dt * 3);
   const animationDt = paused ? 0 : dt * yps();
   if (!paused && !waitingForArrival && !drainingParticles){
-    const before = t;
-    if (finalStretch()) t += (END - t) * Math.min(1, dt / Math.max(visibleTimeLeft(), .001));
-    else t += animationDt;
-    if (animVariant === 2 && before < LAST - 1 && t >= LAST - 1) approach = true;
-    if (t >= END){
-      t = END;
+    t += animationDt;
+    if (t >= animationEnd()){
+      t = animationEnd();
       drainingParticles = true;
       acc.up = acc.down = 0;
     }
   }
   const P = PHASES[phase], d = state(t).d;
-  const particleDt = scene === 3 && !finalStretch() ? animationDt / narrativeSpeed() : (paused ? 0 : dt);
-  if (!drainingParticles && !finalStretch()){
+  let particleDt = scene === 3 ? animationDt / narrativeSpeed() : (paused ? 0 : dt);
+  if (inOutro()){
+    const target = clamp(visibleTimeLeft() / Math.max(secondsLeft(), .05), 1, 8);
+    outroSpeed += (target - outroSpeed) * Math.min(1, dt * 8);
+    particleDt = paused ? 0 : dt * outroSpeed;
+  }else outroSpeed = 1;
+  if (!drainingParticles && !inOutro()){
     emit(particleDt, 'up', d[P.up.key] / DOT, true, P.up.ck);
     if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT, false, P.down.ck);
   }
@@ -176,12 +182,7 @@ function drawAnim(s){
   const leftX = (CX - R_MAX) / 2, rightX = (CX + R_MAX + W) / 2;
   // Variante 2: Zahlen laufen linear von Jahr zu Jahr; beim Erreichen eines Jahres steht exakt dessen Wert da.
   const year = clamp(Math.floor(t), FIRST, LAST), nextYear = byYear[Math.min(year + 1, LAST)], fraction = clamp(t - year, 0, 1);
-  const final = LAST - 1;                          // eingelaufene letzte Etappe: Zahlen erreichen den Endwert erst zum Schluss
-  const shown = key => {
-    if (animVariant === 1) return s.d[key];
-    if (approach && t >= final) return lerp(byYear[final][key], byYear[LAST][key], (t - final) / (END - final));
-    return lerp(byYear[year][key], nextYear[key], fraction);
-  };
+  const shown = key => animVariant === 1 ? s.d[key] : lerp(byYear[year][key], nextYear[key], fraction);
   text(P.up.name, leftX, labelY, FS.m, '#a4adbd', 400);
   text(fmt(shown(P.up.key)), leftX, numberY, FS.l, COLORS[P.up.ck], 300);
   text(P.down.name, rightX, labelY, FS.m, '#a4adbd', 400);

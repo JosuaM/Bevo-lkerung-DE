@@ -59,6 +59,10 @@ addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY;
 
 function state(time){
   const y = clamp(Math.floor(time), FIRST, LAST), f = clamp(time - y, 0, 1), d = byYear[y];
+  if (animVariant === 2 && isAnim()){            // Variante 2: Ist ein Jahr erreicht, steht dessen Stand zum Jahresende da
+    const next = byYear[Math.min(y + 1, LAST)];
+    return {y, f, d, pop: phase === 0 ? BASE + cumN[y] + f * (y < LAST ? next.wb - next.wd : 0) : lerp(d.wp, next.wp, f)};
+  }
   const previous = y === FIRST ? BASE : byYear[y - 1].wp;
   const pop = phase === 0 ? BASE + cumN[y - 1] + f * (d.wb - d.wd) : lerp(previous, d.wp, f);
   return {y, f, d, pop};

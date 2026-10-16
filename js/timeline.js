@@ -98,9 +98,7 @@ track.addEventListener('lostpointercapture', stopDragging);
 let lastYear = 0;
 const eventTextTop = () => ((CY + R_MAX * Math.sqrt(83.6e6 / REF_POP)) * SC + 24) + 'px';   // fest, unabhängig vom wachsenden Kreis
 function updateTimeline(){
-  // Variante 2: Der Zeitstrahl erreicht 2025 erst zusammen mit dem Endstand (siehe animation.js)
-  const headYear = approach && t >= LAST - 1 ? lerp(LAST - 1, LAST, (t - (LAST - 1)) / (END - (LAST - 1))) : Math.min(t, LAST);
-  const position = posPct(headYear) + '%';
+  const position = posPct(Math.min(t, LAST)) + '%';
   headEl.style.left = position;
   fillEl.style.width = position;
   const year = clamp(Math.floor(t), FIRST, LAST);
