@@ -76,9 +76,9 @@
   .mk.seen{opacity:.5;transform:scaleY(1)}
   .mk.act,.mk:hover{opacity:1;transform:scaleY(1.9);box-shadow:0 0 12px var(--ev)}
   #track.ev .mk{display:block}
-  #event{position:absolute;left:50%;bottom:122px;transform:translateX(-50%) translateY(8px);max-width:min(860px,calc(100% - 80px));text-align:center;
+  #event{position:absolute;left:50%;bottom:122px;transform:translateX(-50%);max-width:min(860px,calc(100% - 80px));text-align:center;
     font-size:var(--fs-m);font-weight:300;line-height:1.3;color:#fff;padding:10px 20px;background:var(--bg80);border-bottom:var(--lw) solid var(--ev);
-    opacity:0;transition:opacity .7s,transform .7s;pointer-events:none;z-index:40}
+    opacity:0;transition:opacity .7s;pointer-events:none;z-index:40}
   #event.on{opacity:1;transform:translateX(-50%)}
   #event .ey{color:var(--ev);font-weight:500;margin-right:.55em;font-variant-numeric:tabular-nums}
   #event .ed{display:none;margin-top:8px;font-size:var(--fs-s);line-height:1.45;color:#c9d0dc}
@@ -99,7 +99,8 @@
   #bl{left:14vw;top:12vh}
   #br{right:8vw;bottom:42vh;width:max-content}
   #bc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
-  #qs.bridge.on #bc{display:block}
+  #qs.bridge #bc{display:block;opacity:0;transition:opacity .5s}
+  #qs.bridge.on #bc{opacity:1}
   #bl{transition:opacity .8s}
   #qs.docked2 #bl{opacity:0}
   #qs.docked2 #bnext{opacity:0 !important;pointer-events:none}
@@ -242,10 +243,17 @@
   #bnext{transition:opacity .5s,background .25s,color .25s,transform .25s,box-shadow .25s}
   #bnext:hover,#bnext:focus-visible{background:#fff;color:#121212;transform:translateY(-3px);box-shadow:0 8px 24px #ffffff15}
   #bnext:active{transform:translateY(0)}
+  /* Temporärer Variantenvergleich (nur auf den Animationsfolien) */
+  #variantBox{position:fixed;top:14px;right:18px;z-index:130;display:none}
+  body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
+  #variantSel{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:7px 10px;color-scheme:dark;cursor:pointer}
+  #event.on{transform:translateX(-50%)}
+  #event{transition:opacity .7s}
 </style>
 </head>
 <body data-site-version="original">
 <nav id="stepper" aria-label="Foliennavigation"></nav>
+<div id="variantBox"><select id="variantSel" aria-label="Variante der Animation"><option value="1">Variante 1 · Ausfaden, Zahlen springen</option><option value="2">Variante 2 · harter Schnitt, Zahlen zählen</option></select></div>
 <div id="stage">
   <canvas id="c"></canvas>
   <div id="event"></div>
@@ -438,6 +446,11 @@ function saveSettings(){
 addEventListener('beforeunload',event=>{
   if(settingsSavedRevision<settingsRevision){event.preventDefault();event.returnValue='';}
 });
+let animVariant = 2;
+try{ if(localStorage.getItem('bev-anim-variant')==='1') animVariant = 1; }catch{}
+const variantSel = document.getElementById('variantSel');
+variantSel.value = String(animVariant);
+variantSel.onchange = e => { animVariant = +e.target.value; try{ localStorage.setItem('bev-anim-variant', String(animVariant)); }catch{} e.target.blur(); };
 const mouse = {x: -1, y: -1};
 addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 const byYear = {}; DATA.forEach(d => byYear[d.y] = d);
@@ -658,8 +671,12 @@ function drawParticles(rNow){
   const rEx = rNow - 16 / SC, fade = 46 / SC, band = BAND();
   for (const p of particles){
     const {x, y} = particlePosition(p);
-    const sz = lerp(SZMIN, SZMAX, p.r) / SC;
-    let a = Math.hypot(x - CX, y - CY) - sz >= rNow ? 1 : 0;           // harter Schnitt am Kreisrand (kein Ausfaden)
+    const sz = lerp(SZMIN, SZMAX, p.r) / SC, dist = Math.hypot(x - CX, y - CY);
+    let a;
+    if (animVariant === 1){
+      a = clamp((dist - rEx) / fade, 0, 1);
+      a = a * a * (3 - 2 * a);                                         // Variante 1: weicher Übergang in den Kreis
+    } else a = dist - sz >= rNow ? 1 : 0;                              // Variante 2: harter Schnitt am Kreisrand
     a *= clamp((H - 104 / SC - y) / 30, 0, 1);
     if (a <= 0.01) continue;
     ctx.globalAlpha = a * p.alpha; ctx.fillStyle = COLORS[p.ck];
@@ -691,10 +708,13 @@ function drawAnim(s){
   // Jahreswerte links / rechts, gleiche Höhe, mittig zwischen Kreis und Rand
   const numY = CY - BAND() - (18 + FS.l * 0.5) * u, labY = numY - (FS.l * 0.5 + FS.m * 0.8 + 6) * u;
   const lx = (CX - R_MAX) / 2, rx = (CX + R_MAX + W) / 2, d = s.d;
+  // Variante 2: Zahlen laufen linear von Jahr zu Jahr; beim Erreichen eines Jahres steht exakt dessen Wert da.
+  const yr = clamp(Math.floor(t), FIRST, LAST), nx = byYear[Math.min(yr + 1, LAST)], fr = clamp(t - yr, 0, 1);
+  const shown = key => animVariant === 1 ? d[key] : lerp(byYear[yr][key], nx[key], fr);
   text(P.up.name, lx, labY, FS.m, '#a4adbd', 400);
-  text(fmt(d[P.up.key]), lx, numY, FS.l, COLORS[P.up.ck], 300);
+  text(fmt(shown(P.up.key)), lx, numY, FS.l, COLORS[P.up.ck], 300);
   text(P.down.name, rx, labY, FS.m, '#a4adbd', 400);
-  text(fmt(d[P.down.key]), rx, numY, FS.l, COLORS[P.down.ck], 300);
+  text(fmt(shown(P.down.key)), rx, numY, FS.l, COLORS[P.down.ck], 300);
 }
 
 /* ---- Interaktives Dashboard ---- */
@@ -721,14 +741,20 @@ function draw(s){
 
 /* ---- Differenz-Bildschirm: Balken pro Jahr (Geburten − Gestorbene) ---- */
 const bc = $('bc'), bctx = bc.getContext('2d');
-let bcClear = true;
+let bcClear = true, bcLeave = 0;
 function niceStep(raw){
   const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
   return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
 }
 function drawBridge(){
-  if (scene !== 2){ if (!bcClear){ bctx.setTransform(1,0,0,1,0,0); bctx.clearRect(0, 0, bc.width, bc.height); bcClear = true; } return; }
-  bcClear = false;
+  if (scene !== 2){
+    if (!bcClear){
+      if (!bcLeave) bcLeave = performance.now();                       // Balken erst ausblenden lassen, dann löschen
+      if (performance.now() - bcLeave > 700){ bctx.setTransform(1,0,0,1,0,0); bctx.clearRect(0, 0, bc.width, bc.height); bcClear = true; bcLeave = 0; }
+    }
+    return;
+  }
+  bcClear = false; bcLeave = 0;
   const w = bc.clientWidth, h = bc.clientHeight;
   if (!w || !h) return;
   if (bc.width !== Math.round(w * DPR) || bc.height !== Math.round(h * DPR)){ bc.width = Math.round(w * DPR); bc.height = Math.round(h * DPR); }
@@ -843,7 +869,7 @@ function frameBody(now){
   if (evEl.classList.contains('on') && !evHover && evPinned === null && vt > evHideAt) hideEvent();
   if (scene === 3 || (isDash() && document.body.classList.contains('dashboard-three'))){
     for(const y in mks)mks[y].classList.toggle('seen',+y<=yy);
-    const radius=R_MAX*Math.sqrt(Math.max(state(t).pop,1)/REF_POP);
+    const radius=R_MAX*Math.sqrt(83.6e6/REF_POP);                // feste Position, unabhängig vom wachsenden Kreis
     const dashboardTimeline=isDash();
     evEl.style.top=dashboardTimeline?'auto':((CY+radius)*SC+24)+'px';
     evEl.style.bottom=dashboardTimeline?'114px':'auto';
@@ -977,6 +1003,10 @@ function sceneAnim2(glide){
   if (enhanced) ypsCur = narrativeSpeed();
   setPhase(1);
   beginEntrance();
+  // Nach der Differenzfolie: erst gleitet die Frage nach oben, danach blenden Kreis, Zahlen und Zeitleiste weich ein.
+  const ctrl = document.querySelector('.controls');
+  [cv, ctrl].forEach(n => { n.style.transition = 'none'; n.style.opacity = glide ? 0 : ''; });
+  if (glide) later(1000, () => [cv, ctrl].forEach(n => { n.style.transition = 'opacity 1s ease'; n.style.opacity = 1; }));
   br.removeAttribute('style');
   btext.style.cssText='font-size:var(--fs-m);transform-origin:0 0';
   btext.classList.remove('hl'); btext.textContent=BQ;
@@ -1206,6 +1236,7 @@ function goScene(n, opt){
   if (n === 3 && prev === 2 && !bridgeDone) finishBridge();
   cancelSeq(); finId++;
   drainingParticles = false;
+  if (n !== 3){ cv.style.transition = ''; cv.style.opacity = ''; const c0 = document.querySelector('.controls'); c0.style.transition = ''; c0.style.opacity = ''; }
   if(n!==5)document.body.classList.remove('dashboard-three');
   scene = n;document.body.dataset.scene=String(n);
   document.body.classList.toggle('exploring', enhanced && n === 5);

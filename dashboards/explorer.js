@@ -7,7 +7,7 @@ window.populationExplorer = (() => {
   #explorer h1{font-size:var(--fs-m);font-weight:400;margin:0 0 8px}#explorer p{color:#a4adbd;font-size:14px;line-height:1.5;margin:0}
   .ex-insight{border:1px solid #ffffff40;border-radius:8px;margin:0 0 18px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 65%)}
   .ex-insight summary{cursor:pointer;padding:13px 16px;font-size:14px;color:#eef2f6}
-  .ex-insight summary::marker{color:var(--c-in)}
+  .ex-insight summary::marker{color:#a4adbd}
   .ex-insight summary small{color:#a4adbd;font-size:12px;margin-left:12px}
   .ex-insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding:5px 18px 16px}
   .ex-insight h3{font-size:14px;font-weight:400;color:var(--ink);margin:0 0 7px}
@@ -16,6 +16,10 @@ window.populationExplorer = (() => {
   .ex-insight a{color:#c6d4e4;text-underline-offset:3px}
   @media(max-width:700px){.ex-insight-grid{grid-template-columns:1fr;gap:14px}.ex-insight summary small{display:block;margin:5px 0 0}}
   #explorer [hidden]{display:none!important}
+  #explorer{scrollbar-width:none}#explorer::-webkit-scrollbar{display:none}
+  #explorer.ex-scaled{inset:auto;left:var(--pad);top:108px;width:calc((100vw - 2 * var(--pad)) / var(--ex-z));height:calc((100vh - 132px) / var(--ex-z));transform:scale(var(--ex-z));transform-origin:0 0}
+  .dashboard-three #explorer.ex-scaled{height:calc((100vh - 220px) / var(--ex-z))}
+  #explorer .ex-topline{position:sticky;top:0;z-index:20;margin:0;padding:14px 0 12px;background:var(--bg)}
   .ex-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
   #ex-variant{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:8px 12px;color-scheme:dark}
   .ex-side-switch{display:flex;gap:4px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid #30343b}
@@ -71,7 +75,7 @@ window.populationExplorer = (() => {
   #explorer.variant-two .ex-total{font-size:calc(var(--fs-s)*.85)}
   #explorer.variant-two .ex-legend{font-size:calc(var(--fs-s)*.8)}
   #explorer.variant-two #ex-switch{width:100%;display:flex;justify-content:flex-end}
-  #explorer.variant-two #ex-chart{height:clamp(260px,40vh,420px)}
+  #explorer.variant-two #ex-chart{height:clamp(260px,calc(40vh / var(--ex-z,1)),420px)}
   #ex-event-tooltip{border-radius:10px;width:265px;padding:12px 15px;box-sizing:border-box;transition:width .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s;pointer-events:none}
   #ex-event-tooltip.expanded{width:390px;box-shadow:0 10px 32px #0006}
   .ex-tooltip-heading{font-size:calc(var(--fs-s)*.85);line-height:1.4;font-weight:400;color:#eef2f6}
@@ -93,7 +97,7 @@ window.populationExplorer = (() => {
   #explorer.variant-two .ex-tools h2{display:none}
   #explorer.variant-two .ex-tools{min-height:0}
   #explorer.variant-two #ex-switch:empty{display:none}
-  #explorer.variant-two #ex-chart{height:clamp(340px,49vh,560px);margin-top:18px}
+  #explorer.variant-two #ex-chart{height:clamp(340px,calc(49vh / var(--ex-z,1)),560px);margin-top:18px}
   #ex-event-tooltip{width:max-content;min-width:280px;max-width:none!important;transition:width .4s,box-shadow .4s}
   #ex-event-tooltip.expanded{width:max-content}
   .ex-tooltip-heading{white-space:nowrap}
@@ -151,7 +155,7 @@ window.populationExplorer = (() => {
   #explorer button:focus-visible,#ex-chart:focus-visible{outline:2px solid var(--c-in);outline-offset:3px}
   .ex-grid{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:24px}.ex-plot,.ex-card{border:1px solid #30343b;border-radius:10px;background:rgba(255,255,255,.018);padding:22px}
   .ex-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:38px;flex-wrap:wrap}.ex-tools h2{font-size:17px;font-weight:400;margin:0}.ex-switch{display:flex;gap:5px}#explorer .ex-switch button{padding:6px 10px;font-size:12px}
-  #ex-chart{display:block;width:100%;height:calc(clamp(220px,34vh,350px) + var(--event-space,0px));margin-top:14px;touch-action:pan-y;cursor:pointer}
+  #ex-chart{display:block;width:100%;height:calc(clamp(220px,calc(34vh / var(--ex-z,1)),350px) + var(--event-space,0px));margin-top:14px;touch-action:pan-y;cursor:pointer}
   .ex-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#a4adbd;margin-top:12px}.ex-legend span::before{content:'';display:inline-block;width:14px;height:3px;background:var(--key);margin-right:7px;vertical-align:middle}
   #ex-year{font-size:var(--fs-l);font-weight:300;margin:6px 0 20px}.ex-yearbar{display:flex;justify-content:space-between;align-items:center;color:#a4adbd;font-size:12px}.ex-yearbar button{padding:4px 10px!important}
   .ex-metric{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:10px 0;color:#a4adbd;border-bottom:1px solid #30343b}.ex-metric strong{font-weight:400;color:var(--ink);white-space:nowrap}.ex-total{padding-top:18px;font-size:13px;color:#a4adbd}.ex-total strong{display:block;font-size:25px;font-weight:300;color:var(--ink);margin:5px 0 12px}
@@ -177,6 +181,11 @@ window.populationExplorer = (() => {
 
 `;
   document.body.appendChild(el);
+  // Auf großen Bildschirmen wird das ganze Dashboard proportional vergrößert (Referenz: MacBook-Fenster).
+  let zoom=1;
+  const applyZoom=()=>{zoom=Math.max(1,Math.min(2.2,Math.min(innerWidth/1512,innerHeight/860)));el.style.setProperty('--ex-z',zoom);el.classList.toggle('ex-scaled',zoom>1.001);};
+  applyZoom();addEventListener('resize',applyZoom);
+  const localRect=node=>{const r=node.getBoundingClientRect();return {left:r.left/zoom,top:r.top/zoom,width:r.width/zoom,height:r.height/zoom};};
   el.querySelector('.ex-grid').insertAdjacentElement('afterend',el.querySelector('.ex-insight'));
   let view='population',detail=false,populationPercent=false,api=null,lastKey='',story=null;
   const percentFmt=n=>n.toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';
@@ -187,7 +196,7 @@ window.populationExplorer = (() => {
   surplusCanvas.setAttribute('role','button');
   surplusCanvas.tabIndex=0;
   surplusCanvas.setAttribute('aria-label','Partikelwolke bewegen');
-  surplusCanvas.style.cssText='position:relative;inset:auto;display:block;width:100%;height:clamp(120px,19vh,190px);margin-top:4px;pointer-events:auto';
+  surplusCanvas.style.cssText='position:relative;inset:auto;display:block;width:100%;height:clamp(120px,calc(19vh / var(--ex-z,1)),190px);margin-top:4px;pointer-events:auto';
   const particleSlot=document.createElement('div');particleSlot.className='ex-particle-slot';
   particleSlot.append(surplusCanvas);$('ex-side-values').append(particleSlot);
   surplusCanvas.addEventListener('keydown',e=>{
@@ -211,7 +220,7 @@ window.populationExplorer = (() => {
   surplusCanvas.addEventListener('pointermove',e=>{
     if(e.pointerType==='touch')return;
     const box=surplusCanvas.getBoundingClientRect();
-    cloudPointer.x=e.clientX-box.left;cloudPointer.y=e.clientY-box.top;cloudPointer.active=true;
+    cloudPointer.x=(e.clientX-box.left)/zoom;cloudPointer.y=(e.clientY-box.top)/zoom;cloudPointer.active=true;
   });
   const releaseCloud=()=>{cloudPointer.active=false;};
   surplusCanvas.addEventListener('pointerleave',releaseCloud);
@@ -247,7 +256,7 @@ window.populationExplorer = (() => {
     surplusCanvas.dataset.particleCount=count;
     const width=surplusCanvas.clientWidth,height=surplusCanvas.clientHeight;
     if(!width||!height)return;
-    const ratio=Math.min(devicePixelRatio||1,2);
+    const ratio=Math.min((devicePixelRatio||1)*zoom,4);
     if(surplusCanvas.width!==Math.round(width*ratio)||surplusCanvas.height!==Math.round(height*ratio)){
       surplusCanvas.width=Math.round(width*ratio);surplusCanvas.height=Math.round(height*ratio);
     }
@@ -355,7 +364,7 @@ window.populationExplorer = (() => {
         const y=Y(series[2](row));return local.y>=Math.min(y,zero)-24&&local.y<=Math.max(y,zero)+24;
       });
       if(!near){clearValueHover();return false;}
-      const panel=svg.parentElement.getBoundingClientRect(),chart=svg.getBoundingClientRect();
+      const panel=localRect(svg.parentElement),chart=localRect(svg);
       const groups=detail?[sets.slice(0,2),sets.slice(2)]:sets.map(series=>[series]);
       let nextTop=Math.max(8,chart.top-panel.top+top+12);
       groups.forEach((group,index)=>{
@@ -386,7 +395,7 @@ window.populationExplorer = (() => {
     if(!nearest){clearValueHover();return false;}
     const row=rows[Math.round(position)],x=X(row.y),key=String(row.y);
     const changed=key!==valueHoverKey;
-    const panel=svg.parentElement.getBoundingClientRect(),chart=svg.getBoundingClientRect();
+    const panel=localRect(svg.parentElement),chart=localRect(svg);
     if(populationPercent){
       const box=valueTooltip,model=sets[1],modelValue=model[2](row);
       comparisonTooltip.hidden=true;
@@ -432,7 +441,7 @@ window.populationExplorer = (() => {
     tooltip.querySelector('.ex-tooltip-heading').textContent=year+' · '+event.t;
     tooltip.querySelector('p').textContent=event.s;
     tooltip.hidden=false;
-    const panel=svg.parentElement.getBoundingClientRect(),line=marker.querySelector('line').getBoundingClientRect(),chart=svg.getBoundingClientRect();
+    const panel=localRect(svg.parentElement),line=localRect(marker.querySelector('line')),chart=localRect(svg);
     tooltip.classList.add('expanded');
     const expandedWidth=Math.min(Math.max(340,tooltip.querySelector('.ex-tooltip-heading').scrollWidth+32),panel.width-24);
     tooltip.style.width=expandedWidth+'px';
