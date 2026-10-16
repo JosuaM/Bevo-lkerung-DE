@@ -20,3 +20,11 @@ Die Zeitleiste wird nur auf den beiden Animationsfolien angezeigt. Jahresauswahl
 Projekt mit `Starten.command` (macOS) oder `python3 serve.py` starten. Der lokale Server öffnet die Vorschau und speichert sämtliche E-Einstellungen automatisch in `const DEFAULTS` der `index.html`. Nur Python-Standardbibliothek; Schreibzugriff ausschließlich über localhost und Sitzungstoken.
 
 Beim direkten Öffnen als HTML-Datei ist in Chrome/Edge einmal eine Dateifreigabe erforderlich. Es gibt keine lokalen Farb-/Tempo-Overrides mehr. Neue Einstellungen mit Git committen/pushen, damit andere Geräte sie nach dem Pull erhalten.
+
+## Website-Version
+
+Die einzige Version heißt **Original** (`index.html`, `dashboards/explorer.js`) und basiert auf der bisherigen Jeremy-Version. Die frühere Adresse `jeremy.html` leitet zur Hauptversion weiter.
+
+## Gestaltungsentscheidung: Dashboard-Partikel
+
+Ein farbiger Lichtschein und anschließend ein weicher, beweglicher Bodenschatten unter den Partikeln wurden ausprobiert. Der Bodenschatten lag mit Abstand unter der Wolke und folgte den einzelnen Partikeln; seine Deckkraft wurde zuletzt reduziert. Auf Wunsch des Nutzers wurde der Schatten wieder entfernt. Aktueller Stand: Partikel ohne Lichtschein oder Bodenschatten. Diese frühere Variante als Kontext für spätere Wünsche berücksichtigen.

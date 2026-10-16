@@ -78,15 +78,16 @@ class Handler(SimpleHTTPRequestHandler):
             if not 0 < length <= 4096:
                 raise ValueError('Ungültige Anfragegröße.')
             settings = validated_settings(json.loads(self.rfile.read(length)))
+            target = INDEX
             with LOCK:
-                source = INDEX.read_text()
+                source = target.read_text()
                 if len(DEFAULTS_PATTERN.findall(source)) != 1:
                     raise ValueError('Projektdatei kann nicht eindeutig aktualisiert werden.')
                 updated = DEFAULTS_PATTERN.sub(lambda _: 'const DEFAULTS = ' + json.dumps(settings, separators=(',', ':')) + ';', source)
-                temporary = INDEX.with_name('.index-settings.tmp')
+                temporary = target.with_name('.' + target.stem + '-settings.tmp')
                 try:
                     temporary.write_text(updated)
-                    os.replace(temporary, INDEX)
+                    os.replace(temporary, target)
                 finally:
                     temporary.unlink(missing_ok=True)
             self.reply_json(200, {'saved': True})

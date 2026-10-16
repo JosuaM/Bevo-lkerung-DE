@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bevölkerung Deutschlands 1991–2023</title>
+<title>Bevölkerung Deutschlands 1991–2025 · Original</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -226,9 +226,25 @@
   #fin .fl3{display:none}
   #event .et{font-size:calc(var(--fs-s)*1.12);font-weight:500;line-height:1.3}
   #event .es{color:#a4adbd;font-size:calc(var(--fs-s)*.9);line-height:1.4}
+  /* zentrierte Überschriften der beiden Animationen. */
+  #qs.docked #qtext{left:50%;top:76px;transform:translateX(-50%);text-align:center;width:max-content;max-width:calc(100% - 48px)}
+  #qs.docked2 #br{left:50%!important;right:auto!important;top:76px!important;transform:translateX(-50%);width:max-content;max-width:calc(100% - 48px)}
+  #qs.docked2 #btext{text-align:center}
+  #qtext{left:50%;width:max-content;max-width:calc(100% - 48px);text-align:center;transform:translate(-50%,-50%)}
+  /* Feste Textfläche: Beim Verkleinern ändert sich nur die vertikale Position. */
+  #qtext,#qs.docked #qtext{left:24px;width:calc(100% - 48px);max-width:none;text-align:center}
+  #qtext{transform:translateY(-50%)}
+  #qs.docked #qtext{transform:translateY(0)}
+  #qs.bridge:not(.docked2) #bl{left:130px}
+  #qs.bridge:not(.docked2) #br{right:60px;max-width:calc(100% - 190px)}
+  #qs.bridge:not(.docked2) #btext{font-size:calc(var(--fs-l)*.78);text-align:left}
+  #qs.bridge:not(.docked2) #bnext{display:block;margin-left:0}
+  #bnext{transition:opacity .5s,background .25s,color .25s,transform .25s,box-shadow .25s}
+  #bnext:hover,#bnext:focus-visible{background:#fff;color:#121212;transform:translateY(-3px);box-shadow:0 8px 24px #ffffff15}
+  #bnext:active{transform:translateY(0)}
 </style>
 </head>
-<body>
+<body data-site-version="original">
 <nav id="stepper" aria-label="Foliennavigation"></nav>
 <div id="stage">
   <canvas id="c"></canvas>
@@ -297,6 +313,9 @@
 <script>
 const ALL_DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045},{"y":2024,"zu":1694192,"fort":1264009,"wb":677117,"wd":1007758,"wp":83577140},{"y":2025,"zu":1479944,"fort":1244944,"wb":654241,"wd":1006588,"wp":83467117}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
 const BASE = 79753227;                            // Bevölkerung Deutschlands am 31.12.1990
+const PROJECT_VARIANT = document.body.dataset.siteVersion;
+const PROJECT_FILENAME = 'index.html';
+const SETTINGS_ENDPOINT = '/__project_settings__';
 const enhanced = true;
 document.body.classList.add('variation-one');
 const FIRST = 1991, LAST = 2025, END = LAST + 0.999;
@@ -313,7 +332,7 @@ function narrativeSpeed(){
 }
 function yps(){
   if (enhanced && scene === 1) return narrativeSpeed();
-  if (scene === 3) return EVENTS[Math.floor(t)] ? Math.min(ypsCur, .16) : ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
+  if (scene === 3) return EVENTS[Math.floor(t)] ? Math.min(ypsCur, .36) : ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
   if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
     const k = clamp((t - FIRST) / 9, 0, 1);
     return lerp(0.45, 1 / SEC_PER_YEAR, k * k * (3 - 2 * k));
@@ -339,7 +358,7 @@ function settingsHandleStore(value){
     request.onerror=()=>reject(request.error);
     request.onsuccess=()=>{
       const db=request.result,transaction=db.transaction('files',value?'readwrite':'readonly');
-      const action=value?transaction.objectStore('files').put(value,'index'):transaction.objectStore('files').get('index');
+      const action=value?transaction.objectStore('files').put(value,PROJECT_FILENAME):transaction.objectStore('files').get(PROJECT_FILENAME);
       let result=null;action.onsuccess=()=>{result=action.result;};
       transaction.oncomplete=()=>{db.close();resolve(result);};
       transaction.onerror=()=>{db.close();reject(transaction.error);};
@@ -350,17 +369,17 @@ let settingsServerToken=null;
 const settingsServerReady=(async()=>{
   if(location.protocol!=='http:'||location.hostname!=='127.0.0.1')return;
   try{
-    const response=await fetch('/__project_settings__',{cache:'no-store'});
+    const response=await fetch(SETTINGS_ENDPOINT,{cache:'no-store'});
     if(!response.ok)return;
     const result=await response.json();
-    if(result.project==='bevoelkerung-de'&&result.token){settingsServerToken=result.token;settingsStatus('Automatisches Speichern in index.html aktiv.');document.getElementById('savefile').hidden=true;}
+    if(result.project==='bevoelkerung-de'&&result.token){settingsServerToken=result.token;settingsStatus('Automatisches Speichern in '+PROJECT_FILENAME+' aktiv.');document.getElementById('savefile').hidden=true;}
   }catch{}
 })();
 const settingsFileReady=settingsHandleStore().then(handle=>{
   if(handle)settingsFile=handle;
 }).catch(()=>{});
 function validSettingsSource(source){
-  return /const DEFAULTS = \{.*\};/.test(source)&&source.includes('id="stage"')&&source.includes('function currentSettings()');
+  return /const DEFAULTS = \{.*\};/.test(source)&&source.includes('id="stage"')&&source.includes('function currentSettings()')&&source.includes('data-site-version="'+PROJECT_VARIANT+'"');
 }
 async function flushSettings(){
   if(settingsWriting||(!settingsFile&&!settingsServerToken)||settingsSavedRevision===settingsRevision)return;
@@ -369,19 +388,19 @@ async function flushSettings(){
     while(settingsSavedRevision<settingsRevision){
       const revision=settingsRevision,snapshot=currentSettings();
       if(settingsServerToken){
-        const response=await fetch('/__project_settings__',{method:'POST',headers:{'Content-Type':'application/json','X-Project-Token':settingsServerToken},body:JSON.stringify(snapshot)});
+        const response=await fetch(SETTINGS_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','X-Project-Token':settingsServerToken},body:JSON.stringify(snapshot)});
         const result=await response.json();if(!response.ok||!result.saved)throw new Error(result.error||'Speichern fehlgeschlagen.');
         settingsSavedRevision=revision;continue;
       }
       const source=await (await settingsFile.getFile()).text();
-      if(!validSettingsSource(source))throw new Error('Bitte die index.html dieses Projekts auswählen.');
+      if(!validSettingsSource(source))throw new Error('Bitte '+PROJECT_FILENAME+' dieses Projekts auswählen.');
       const next=source.replace(/const DEFAULTS = \{.*\};/,()=> 'const DEFAULTS = '+JSON.stringify(snapshot)+';');
       const writable=await settingsFile.createWritable();
       try{await writable.write(next);await writable.close();}catch(error){try{await writable.abort();}catch{}throw error;}
       settingsSavedRevision=revision;
     }
-    settingsStatus('Automatisch in index.html gespeichert.');
-    document.getElementById('savefile').textContent='Andere index.html verbinden';
+    settingsStatus('Automatisch in '+PROJECT_FILENAME+' gespeichert.');
+    document.getElementById('savefile').textContent=PROJECT_FILENAME+' neu verbinden';
   }catch(error){
     settingsStatus('Nicht gespeichert: '+(error.message||'Dateizugriff fehlt. Datei erneut verbinden.'));
   }finally{settingsWriting=false;}
@@ -392,9 +411,9 @@ async function connectSettingsFile(forcePicker=false){
     if(!window.showOpenFilePicker){settingsStatus('Für automatisches Speichern das Projekt über Starten.command öffnen.');return;}
     try{
       if(forcePicker||!settingsFile){
-        const [handle]=await window.showOpenFilePicker({multiple:false,types:[{description:'Projektdatei index.html',accept:{'text/html':['.html']}}]});
+        const [handle]=await window.showOpenFilePicker({multiple:false,types:[{description:'Projektdatei '+PROJECT_FILENAME,accept:{'text/html':['.html']}}]});
         const source=await (await handle.getFile()).text();
-        if(handle.name!=='index.html'||!validSettingsSource(source))throw new Error('Bitte die index.html dieses Projekts auswählen.');
+        if(handle.name!==PROJECT_FILENAME||!validSettingsSource(source))throw new Error('Bitte '+PROJECT_FILENAME+' dieses Projekts auswählen.');
         settingsFile=handle;
       }
       if(await settingsFile.queryPermission({mode:'readwrite'})!=='granted'){
@@ -403,14 +422,14 @@ async function connectSettingsFile(forcePicker=false){
       try{await settingsHandleStore(settingsFile);}catch{}
       await flushSettings();
     }catch(error){
-      settingsStatus(error.name==='AbortError'?'Noch nicht gespeichert. index.html einmal freigeben.':'Nicht gespeichert: '+error.message);
+      settingsStatus(error.name==='AbortError'?'Noch nicht gespeichert. '+PROJECT_FILENAME+' einmal freigeben.':'Nicht gespeichert: '+error.message);
     }
   })();
   try{await settingsConnecting;}finally{settingsConnecting=null;}
 }
 function saveSettings(){
   settingsRevision++;
-  settingsStatus('Änderung wird in index.html gespeichert …');
+  settingsStatus('Änderung wird in '+PROJECT_FILENAME+' gespeichert …');
   if(settingsServerToken){flushSettings();return;}
   if(location.protocol==='http:'&&location.hostname==='127.0.0.1'){
     settingsServerReady.then(()=>{if(settingsServerToken)flushSettings();else connectSettingsFile();});
@@ -435,7 +454,7 @@ const $ = id => document.getElementById(id);
 function hexA(h, a){ const n = parseInt(h.slice(1), 16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; }
 
 const PHASES = [
-  { label:'ohne Zu- und Abwanderung', up:{key:'wb', ck:'birth', name:'Lebendgeborene'}, down:{key:'wd', ck:'death', name:'Gestorbene'} },
+  { label:'ohne Ein- und Auswanderung', up:{key:'wb', ck:'birth', name:'Lebendgeborene'}, down:{key:'wd', ck:'death', name:'Gestorbene'} },
   { label:'tatsächliche Bevölkerung', up:{key:'zu', ck:'in', name:'Einwanderung'}, down:{key:'fort', ck:'out', name:'Auswanderung'} },
 ];
 let phase = 0;
@@ -485,6 +504,7 @@ const sleep = ms => new Promise(r => later(ms, r));
 function cancelSeq(){ timers.length = 0; ticks.length = 0; typing = null; }
 
 /* ---- Zustand ---- */
+const NAVIGATION_STATE_KEY='bev-jeremy-navigation';
 let t = FIRST, scene = 0;                         // Folien: 0 Frage · 1 Animation 1 · 2 Differenz · 3 Animation 2 · 4 Ergebnis · 5 Dashboard
 const SCENES = ['Frage', 'Animation 1', 'Differenz', 'Animation 2', 'Ergebnis', 'Dashboard'];
 const isAnim = () => scene === 1 || scene === 3;
@@ -539,7 +559,7 @@ function hideEvent(){ evEl.classList.remove('on', 'pin'); evHover=false; evPinne
 const EVENT_LABELS = {1992:'Jugoslawienkriege',1993:'Asylkompromiss',2011:'EU-Freizügigkeit',2012:'Eurokrise',2014:'Bulgarien & Rumänien',2015:'Flucht aus Syrien',2020:'Corona',2022:'Ukrainekrieg'};
 function showEvent(year, pin=false){
   const event=EVENTS[year];if(!event)return;
-  evYear=+year;evPinned=pin?+year:null;evHideAt=vt+7200;
+  evYear=+year;evPinned=pin?+year:null;evHideAt=vt+3400;
   evEl.innerHTML='<div class="et"><span class="ey">'+year+'</span>'+event.t+'</div><div class="es">'+event.s+'</div><div class="eline"></div>';
   evEl.classList.add('on');
 }
@@ -664,7 +684,8 @@ function drawAnim(s){
 
   // Kreis-Beschriftung (fest, nur der Kreis wächst/schrumpft)
   text('Bevölkerungsstand', CX, CY - (FS.l * 0.78 + FS.m * 0.75) * u, FS.m * 1.1, '#a4adbd', 400);
-  text(fmt(s.pop), CX, CY, FS.l, '#fff', 500);
+  const labelTime = scene === 3 && !paused ? Math.floor(t * 30) / 30 : t;
+  text(fmt(state(labelTime).pop), CX, CY, FS.l, '#fff', 500);
   text(P.label, CX, CY + (FS.l * 0.78 + FS.s * 1.0) * u, FS.s * 1.1, '#7d879b', 400);
 
   // Jahreswerte links / rechts, gleiche Höhe, mittig zwischen Kreis und Rand
@@ -695,7 +716,7 @@ function draw(s){
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
   if (isDash()) drawDash(s);
-  else { ctx.setTransform(DPR * SC, 0, 0, DPR * SC, 0, 0); drawAnim(s); }
+  else if (isAnim()) { ctx.setTransform(DPR * SC, 0, 0, DPR * SC, 0, 0); drawAnim(s); }
 }
 
 /* ---- Differenz-Bildschirm: Balken pro Jahr (Geburten − Gestorbene) ---- */
@@ -740,7 +761,6 @@ function drawBridge(){
     c.fillStyle = '#7d879b'; c.fillText(Math.abs(v) < 1 ? '0' : sgn(v).replace('+', ''), x0 - 12, yy);
   }
   c.fillStyle = '#4a5366'; c.fillRect(x0 - 1, top, 2, bot - top);
-  c.fillStyle = '#fff'; c.fillRect(x0, zero - 1, (x1 - x0) * axisA, 2);
   c.textAlign = 'center'; c.fillStyle = '#7d879b';
   for (let y = FIRST; y <= LAST; y++){
     if (y % 5 === 0 || y === FIRST || y === LAST){
@@ -750,7 +770,6 @@ function drawBridge(){
     }
   }
   c.globalAlpha = 1;
-  if (hov >= 0){ c.fillStyle = 'rgba(255,255,255,.06)'; c.fillRect(x0 + hov * slot, top - 4, slot, bot - top + 8); }
   DATA.forEach((d, i) => {
     const f = ease(clamp(prog - i, 0, 1)); if (f <= 0) return;
     const v = d.wb - d.wd, cx = x0 + (i + 0.5) * slot, yv = Yv(v * f);
@@ -759,6 +778,7 @@ function drawBridge(){
     c.fillRect(cx - bw / 2, Math.min(zero, yv), bw, Math.max(Math.abs(yv - zero), 1));
   });
   c.globalAlpha = 1;
+  c.fillStyle = '#fff';c.globalAlpha=axisA;c.fillRect(x0,zero-1,(x1-x0)*axisA,2);c.globalAlpha=1;
   if (hov >= 0){                                              // Wert des Jahres
     const d = DATA[hov], v = d.wb - d.wd;
     c.textAlign = 'right';
@@ -784,10 +804,11 @@ function frameBody(now){
   if (!paused) vt += dt * 1000;
   runTimers();
   layout();
-  const s = state(t);
-  if (scene === 3){ const eventYear = !!EVENTS[clamp(Math.floor(t), FIRST, LAST)]; const target = enhanced ? (eventYear ? .16 : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
+  if (scene === 3){ const eventYear = !!EVENTS[clamp(Math.floor(t), FIRST, LAST)]; const target = enhanced ? (eventYear ? .36 : narrativeSpeed()) : (eventYear ? .4 : 1); ypsCur += (target - ypsCur) * Math.min(1, dt * 3); }
+  // Eine gemeinsame Simulationszeit für Jahreszahl, Bevölkerungsstand und Partikel.
+  const animationDt = paused ? 0 : dt * yps();
   if (isAnim() && !paused && !waitingForArrival && !drainingParticles){
-    t += dt * yps();
+    t += animationDt;
     if (t >= END){
       t = END;
       if (enhanced){ drainingParticles = true; acc.up = acc.down = 0; }
@@ -799,7 +820,7 @@ function frameBody(now){
   }
   if (isAnim()){                                   // Punkte laufen auch bei Pause weiter, mit den Werten des gewählten Jahres
     const P = PHASES[phase], k = enhanced ? 1 : yps(), d = state(t).d;
-    const particleDt = paused ? 0 : dt;
+    const particleDt = scene === 3 ? animationDt / narrativeSpeed() : (paused ? 0 : dt);
     if (!drainingParticles){
       emit(particleDt, 'up', d[P.up.key] / DOT * k, true, P.up.ck);
       if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT * k, false, P.down.ck);
@@ -834,20 +855,20 @@ function frameBody(now){
 }
 
 /* ---- Text-Szenen ---- */
-const Q2 = 'Wie hätte sich die Bevölkerung\nverändert ohne Ein- und Auswanderung?';
-const BQ = 'Könnte die Ein- und Auswanderung\ndas Geburtendefizit ausgleichen?';
+const Q2 = 'Wie hätte sich Deutschlands Bevölkerung\nohne Ein- und Auswanderung verändert?';
+const BQ = 'Konnte die Ein- und Auswanderung\nDeutschlands Geburtendefizit ausgleichen?';
 const qs = $('qs'), qtext = $('qtext'), btext = $('btext'), bnext = $('bnext'), br = $('br'), fin = $('fin');
-let typing = null, introTyped = false, bridgeDone = false, finDone = false;
+let typing = null, introTyped = false, bridgeDone = false, finDone = false, resultVisited = false;
 
 function typeInto(el, str, cb){
   if (enhanced){
     el.replaceChildren();
     str.split('\n').forEach((line, i) => {
       const span = document.createElement('span'); span.className = 'reveal-line'; span.textContent = line;
-      span.style.animationDuration = (el === qtext ? 1.9 : .55) + 's';
-      span.style.animationDelay = (i * (el === qtext ? .7 : .18)) + 's'; el.appendChild(span);
+      span.style.animationDuration = 1.9 + 's';
+      span.style.animationDelay = (i * .7) + 's'; el.appendChild(span);
     });
-    later(el === qtext ? 3800 : 1600, () => { if (cb) cb(); });
+    later(3800, () => { if (cb) cb(); });
     return;
   }
   el.innerHTML = '<span></span><span class="caret"></span>';
@@ -927,7 +948,7 @@ function finishBridge(){
   cancelSeq();
   bridgeEls().forEach(el => el.classList.add('in'));
   $('bdef').textContent = sgn(cumN[LAST]);
-  btext.textContent = BQ; highlight(btext, BQ, KEYS2, true);
+  btext.classList.remove('hl'); btext.textContent = BQ;
   bnext.classList.add('on'); bridgeDone = true; bridgeFull = true;
 }
 let bridgeT0 = 0, bridgeFull = false;
@@ -943,30 +964,33 @@ function showBridge(instant){
   later(500, () => {
     l[0].classList.add('in'); l[1].classList.add('in');
     later(700, () => countUp($('bdef'), cumN[LAST], 2600, () => {
-      later(1500, () => typeInto(btext, BQ, () => {
-        highlight(btext, BQ, KEYS2);
-        later(1800, () => { bnext.classList.add('on'); bridgeDone = true; });
-      }));
+      later(1500, () => {
+        typeInto(btext, BQ);
+        later(2600, () => { bnext.classList.add('on'); bridgeDone = true; });
+      });
     }));
   });
 }
+let bridgeHeadingAnimation=null;
 function sceneAnim2(glide){
+  const previousRect=glide?btext.getBoundingClientRect():null;
   if (enhanced) ypsCur = narrativeSpeed();
   setPhase(1);
   beginEntrance();
-  if (glide){
-    const r = br.getBoundingClientRect();
-    br.style.cssText = `right:auto;bottom:auto;left:${r.left}px;top:${r.top}px;transition:none`;
-    void br.offsetWidth;
-    br.style.transition = 'left 1s cubic-bezier(.65,0,.25,1), top 1s cubic-bezier(.65,0,.25,1)';
-    br.style.left = 'var(--pad)'; br.style.top = '28px';
-    btext.style.transition = 'font-size 1s cubic-bezier(.65,0,.25,1), font-weight 1s'; btext.style.fontSize = 'var(--fs-m)';
-  } else {
-    br.style.cssText = 'right:auto;bottom:auto;left:var(--pad);top:28px;transition:none';
-    btext.style.cssText = 'font-size:var(--fs-m)';
-    btext.textContent = BQ; highlight(btext, BQ, KEYS2, true);
+  br.removeAttribute('style');
+  btext.style.cssText='font-size:var(--fs-m);transform-origin:0 0';
+  btext.classList.remove('hl'); btext.textContent=BQ;
+  if(glide) later(1100, () => highlight(btext,BQ,KEYS2));
+  else highlight(btext,BQ,KEYS2,true);
+  qs.className='bridge docked2';
+  if(previousRect){
+    const destination=btext.getBoundingClientRect();
+    const scale=previousRect.width/Math.max(destination.width,1);
+    bridgeHeadingAnimation=btext.animate([
+      {transform:`translate(${previousRect.left-destination.left}px,${previousRect.top-destination.top}px) scale(${scale})`},
+      {transform:'translate(0,0) scale(1)'}
+    ],{duration:1000,easing:'cubic-bezier(.65,0,.25,1)'});
   }
-  qs.className = 'bridge docked2';
 }
 
 /* Punktwolken: gleiche repräsentative Personenzahl pro Punkt auf beiden Seiten. */
@@ -1082,7 +1106,7 @@ function renderFinal(){
   const deficitFade = enhanced ? ease(clamp((F.m - .64) / .11, 0, 1)) : s3;
   if (F.m > (enhanced ? .64 : .75)) fsL.style.setProperty('opacity', String(1 - deficitFade), 'important'); else fsL.style.removeProperty('opacity');
   flR.textContent = s2 >= 1 ? 'Überschuss durch Zuwanderung' : 'Wanderungssaldo';
-  fnR.textContent = s2 > 0 ? 'Wanderungssaldo − Geburtendefizit' : fmt(cumZ[LAST]) + ' Zuzüge − ' + fmt(cumF[LAST]) + ' Fortzüge';
+  fnR.textContent = s2 > 0 ? 'Wanderungssaldo − Geburtendefizit' : fmt(cumZ[LAST]) + ' Einwanderungen − ' + fmt(cumF[LAST]) + ' Auswanderungen';
 }
 function tween(ms, fn, id){
   return new Promise(res => {
@@ -1102,14 +1126,14 @@ function finalText(){
     $('balanceRest').textContent = sgn(rest); $('balanceRest').style.color = COLORS.in;
   }
   fnL.textContent = fmt(cumB[LAST]) + ' Lebendgeborene − ' + fmt(cumD[LAST]) + ' Gestorbene';
-  fcap.innerHTML = 'Die Zuwanderung gleicht das Geburtendefizit seit 1991 <b>vollständig</b> aus – und liegt noch um <b>' + fmt(rest) + '</b> Menschen darüber.';
+  fcap.innerHTML = 'Die Zuwanderung gleicht das Geburtendefizit seit 1991 <b>vollständig</b> aus –<br>und liegt noch um <b>' + fmt(rest) + '</b> Menschen darüber.';
 }
 function finishFinal(){
   finId++; cancelSeq();
   F.a = F.b = F.m = 1; finalText();
   [fsL, fsR, fbL, fbR, fcap, fbtn].forEach(el => el.classList.add('in'));
   if (enhanced) $('finalBalance').classList.add('in');
-  renderFinal(); finDone = true;
+  renderFinal(); finDone = true; persistSlideState();
 }
 async function showFinal(instant){
   const id = ++finId; finDone = false;
@@ -1132,11 +1156,17 @@ async function showFinal(instant){
   fcap.classList.add('in');
   if (enhanced) $('finalBalance').classList.add('in');
   await sleep(1200); if (id !== finId) return;
-  fbtn.classList.add('in'); finDone = true;
+  fbtn.classList.add('in'); finDone = true; persistSlideState();
 }
 addEventListener('resize', () => { if (fin.classList.contains('on')) renderFinal(); });
 
 /* ---- Folien-Steuerung ---- */
+function persistSlideState(){
+  try{sessionStorage.setItem(NAVIGATION_STATE_KEY,JSON.stringify({scene,t,paused,finDone:scene===4&&finDone,resultVisited}));}catch{}
+}
+addEventListener('pagehide',persistSlideState);
+addEventListener('beforeunload',persistSlideState);
+
 let dashboardTransition = false, dashboardTransitionId = 0;
 function enterDashboard(){
   if (dashboardTransition) return;
@@ -1166,6 +1196,7 @@ function goScene(n, opt){
   opt = opt || {};
   if (enhanced && n === 5 && scene === 4 && !opt.throughBlack){ enterDashboard(); return; }
   if(!opt.throughBlack){dashboardTransitionId++;dashboardTransition=false;$('dashboardFade').classList.remove('active');}
+  if(bridgeHeadingAnimation){bridgeHeadingAnimation.cancel();bridgeHeadingAnimation=null;}
   const prev = scene;
   dragging=false;
   if(timelinePointer!==null&&track.hasPointerCapture(timelinePointer))track.releasePointerCapture(timelinePointer);
@@ -1187,12 +1218,19 @@ function goScene(n, opt){
     case 1: sceneAnim1(prev === 0); break;
     case 2: showBridge(!!opt.instant); break;
     case 3: sceneAnim2(prev === 2); break;
-    case 4: qs.className = 'bridge docked2'; showFinal(!!opt.instant); break;
+    case 4: {
+      qs.className = 'bridge docked2';
+      const showEndState = !!opt.instant || (prev === 5 && resultVisited);
+      resultVisited = true;
+      showFinal(showEndState);
+      break;
+    }
     case 5: qs.className = ''; phase = 2; t = LAST; prefill(); if (!panelOpen) setPaused(true); break;
   }
   if (n !== 4 && n !== 5 && n !== 3) { /* qs wird von den Szenen gesetzt */ }
   updateMenus();
   if(n===3)layoutEventLabels();
+  persistSlideState();
 }
 function next(){
   if (scene === 0){ if (!introTyped) introFull(); else goScene(1); }
@@ -1295,7 +1333,16 @@ cv.addEventListener('pointerdown', e => {
 });
 document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('button'); if (b) b.blur(); });
 
-goScene(0);
+const requestedSlide = Number(new URLSearchParams(location.search).get('slide') || 0);
+let restoredSlide=null;
+if(performance.getEntriesByType('navigation')[0]?.type==='reload'){
+  try{restoredSlide=JSON.parse(sessionStorage.getItem(NAVIGATION_STATE_KEY)||'null');}catch{}
+}
+const initialSlide=restoredSlide?.scene ?? requestedSlide;
+if(restoredSlide?.resultVisited)resultVisited=true;
+goScene(Number.isInteger(initialSlide)&&initialSlide>=0&&initialSlide<=5?initialSlide:0,{instant:initialSlide===4&&restoredSlide?.finDone===true});
+const requestedYear=restoredSlide?.t ?? Number(new URLSearchParams(location.search).get('year'));
+if(isAnim()&&Number.isFinite(requestedYear)&&requestedYear>FIRST&&requestedYear<=END){t=requestedYear;prefill();if(restoredSlide?.paused)setPaused(true);}
 requestAnimationFrame(frame);
 </script>
 </body>
