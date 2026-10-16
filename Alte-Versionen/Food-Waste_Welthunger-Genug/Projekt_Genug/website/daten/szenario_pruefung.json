@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-05",
+  "scenario": "Optimistischer vollständiger Transfer von drei Produktfällen; keine globale Wirksamkeitsmessung",
+  "energy": 199530869574200.9,
+  "coveredEnergy": 269591347481408.3,
+  "coveredMass": 90.18599999999999,
+  "unknownEnergy": 401660795969507.56,
+  "people": 298232360.415519,
+  "ratio": 0.4337294363227443,
+  "referenceEnergy": 460035342000000,
+  "requirement": 1833,
+  "threshold": 68.5339103179548,
+  "application": 100,
+  "maximumPeople": 1003298946.1858557,
+  "studies": [
+    {
+      "id": "M05",
+      "code": 2514,
+      "relative_reduction": 0.7647058823529411
+    },
+    {
+      "id": "W04",
+      "code": 2511,
+      "relative_reduction": 0.6923076923076924
+    },
+    {
+      "id": "B01",
+      "code": 2546,
+      "relative_reduction": 0.5454545454545454
+    }
+  ],
+  "assertions": "Bestanden: 98 Titel, 73 Energie, 16 fehlende, unbekannt bleibt null, 0/50/100 Anwendung, Deaktivierung, unabhängige Formel, fester MDER"
+}

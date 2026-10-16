@@ -1,0 +1,903 @@
+PAGE 1
+             
+LETTER • OPEN ACCESS
+The impact of refrigeration on food losses and
+associated greenhouse gas emissions throughout
+the supply chain
+To cite this article: Aaron Friedman-Heiman and Shelie A Miller 2024 Environ. Res. Lett. 19 064038
+ 
+View the article online for updates and enhancements.
+You may also like
+Harmonizing food systems emissions
+accounting for more effective climate
+action
+Kevin Karl, Francesco N Tubiello, Monica
+Crippa et al.
+-
+Greenhouse gas emissions from food
+systems: building the evidence base
+Francesco N Tubiello, Cynthia
+Rosenzweig, Giulia Conchedda et al.
+-
+A comparative review of food loss and
+waste: exploring difference between
+developed and developing countries
+Robert Wine and Minliang Yang
+-
+This content was downloaded from IP address 31.25.157.112 on 05/10/2026 at 12:06
+PAGE 2
+Environ. Res. Lett. 19 (2024) 064038 https://doi.org/10.1088/1748-9326/ad4c7b
+OPEN ACCESS
+RECEIVED
+8 December 2023
+REVISED
+22 April 2024
+ACCEPTED FOR PUBLICATION
+16 May 2024
+PUBLISHED
+28 May 2024
+Original content from
+this work may be used
+under the terms of the
+Creative Commons
+Attribution 4.0 licence.
+Any further distribution
+of this work must
+maintain attribution to
+the author(s) and the title
+of the work, journal
+citation and DOI.
+LETTER
+The impact of refrigeration on food losses and associated
+greenhouse gas emissions throughout the supply chain
+Aaron Friedman-Heiman∗ and Shelie A Miller
+Center for Sustainable Systems (CSS), School for Environment and Sustainability (SEAS), University of Michigan, Ann Arbor, MI,
+United States of America
+∗ Author to whom any correspondence should be addressed.
+E-mail: aaronfh@umich.edu
+Keywords: food supply chain, cold chain, developing regions, food loss and waste, GHG emissions, refrigeration
+Supplementary material for this article is available online
+Abstract
+One-third of food produced globally is wasted while approximately 800 million people suffer from
+hunger. Meanwhile, food losses produce approximately 8% of total anthropogenic greenhouse gas
+(GHG) emissions. This study develops a food loss estimation tool to assess how improved access to
+the cold chain could impact food loss and its associated GHG emissions for seven food types in
+seven regions. This study estimates that poor cold chain infrastructure could be responsible for up
+to 620 million metric tons (Mmt) of food loss, responsible for 1.8 GtCO 2-eq annually. Utilizing
+fully optimized cold chains could save over 100 Mmt of fruit and vegetable loss in South &
+Southeast Asia and over 700 Mmt CO2-eq in Sub-Saharan Africa. Developing more localized, less
+industrialized (‘farm-to-table’) food supply chains in both industrialized and non-industrialized
+contexts may save greater quantities of food than optimized cold chains. Utilizing localized supply
+chains could save over 250 Mmt of roots and tubers globally (over 100 Mmt more savings than
+those of an optimized cold chain) and reduce GHG emissions from meat losses in industrialized
+regions by over 300 Mmt CO2-eq. Due to the differences in the environmental intensity of food
+types, cold chain investments that prioritize reducing overall food losses will have very different
+outcomes than those that prioritize reducing GHG emissions.
+1. Introduction
+This study uses a food loss estimation tool to quantify
+changes in food loss and associated greenhouse gas
+(GHG) emissions that may occur with the introduc-
+tion or quality improvements of cold chain techno-
+logy, as well as the length of a food supply chain
+(FSC). The analyzed scenarios illustrate the differ-
+ences between more localized, less industrialized
+FSCs and globalized, more technologically-advanced
+FSCs. By modeling food losses at each stage of the
+supply chain, this study highlights where the cold
+chain can be strategically deployed and optimized to
+direct food system investments to reduce food losses
+and emissions.
+1.1. Refrigerated supply chain (‘cold chain’)
+Ideally, the cold chain provides an unbroken,
+controlled atmospheric environment to ensure the
+quality and safety of perishable products throughout
+all stages of a supply chain (Ma and Guan 2009, Aung
+and Chang 2014). The ‘cold chain’ refers to both
+temperature and humidity control, incorporating
+both physical technology and logistical management
+(Garnett 2007, Heard and Miller 2019). In the con-
+text of this paper, the term ‘refrigeration’ is used to
+represent the suite of cold chain interventions, which
+vary according to the requirements of different food
+types and can include cool storage, frozen storage,
+and humidity control with or without temperature
+control. With regard to food supply, the cold chain
+extends from farms and processing plants to retail
+(grocery) and foodservice operations (Garnett 2011,
+Kitinoja 2013). The cold chain provides many safety,
+nutritional, and health benefits. By extending the
+shelf life of food, the cold chain can improve and
+expand access to perishable foods and reduce spoil-
+age and foodborne illness (Heard and Miller 2019).
+© 2024 The Author(s). Published by IOP Publishing Ltd
+PAGE 3
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+The cold chain is also necessary for effective vac-
+cine and antibiotic delivery (Heard and Miller 2019).
+A continuous, unbroken cold chain is necessary to
+maximize the benefits of safety and reduce product
+losses; however, in many non-industrialized econom-
+ies1, cold chain elements may have inconsistent qual-
+ity, continuity or lack cold chain elements entirely
+(Ishangulyyev et al 2019).
+This study analyzes the effects of moving from
+the current state of inconsistent and variable qual-
+ity cold chains throughout the world to an optimized
+system.
+1.2. Broad impacts of food loss and waste
+The United Nations’ Sustainable Development Goals
+2 and 12 mention achieving food security and
+improved nutrition, and addressing food losses along
+supply chains, respectively (UN 2015). Delivering on
+these goals is critical from humanitarian, environ-
+mental, and financial perspectives and the cold chain
+can have a role in achieving these objectives. While
+estimates vary, approximately one-third of food pro-
+duced globally, 1.3 Gt, is wasted, equating to approx-
+imately 4.4 GtCO2e annually (Gustavsson et al 2011,
+FAO 2015). Concomitantly, it is estimated that 720–
+811 million people suffer from hunger (FAO et al
+2020). The financial cost of food loss and waste alone
+(excluding fish & seafood) is $750 billion annually;
+this does not take into account the financial costs
+of disposal, logistics, environmental damage, nor the
+human potential lost if the food were effectively dis-
+tributed (FAO 2013).
+Understanding where losses occur in the FSC is
+critical to addressing systemic inefficiencies that con-
+tribute to both hunger and climate change. While
+food loss and waste are global issues, the patterns of
+food loss and waste differ. In higher income, more
+industrialized regions, a greater proportion of food
+is wasted ( >40%) at the consumption phase of the
+FSC. In lower income regions, more than 40% of
+food losses occur in the early stages (post-harvest
+and processing) of the FSC, often due to poor logist-
+ics and lack of climate control via the cold chain
+(Gustavsson et al 2011). While fully-developed and
+under-developed cold chains are often represented
+as binary, mutually distinct states, the reality is that
+development of a cold chain is a stepwise, context-
+specific process. This model examines differences in
+refrigeration qualities (none, poor, average, good) for
+each stage of a FSC, as well as a comparison of long
+multi-stage FSCs with very short farm-to-consumer
+1 There is a range of language used across authors and disciplines to
+describe varying levels of development—developed vs. developing
+countries/economies, low- and middle-income countries vs. high
+income countries, non-industrialized vs. industrialized countries.
+W e have opted to use non-industrialized vs. industrialized econom-
+ies since our focus is the degree to which regional economies have
+industrialized their food supply chains.
+FSCs. This model can provide critical insights into
+the region- and food type-specific tradeoffs of cold
+chain implementation, thereby informing optimal
+FSC development.
+1.3. Prior FSC-cold chain research
+Research on food systems and the cold chain has been
+growing over the past couple decades but remains
+fragmented and limited in terms of direct applic-
+ability to FSC stakeholders. Most studies fall into
+one of two types: historically based (meta) ana-
+lysis and theoretical projection models. The former
+uses historical data to assess trends and rationalize
+those trends on regional and global scales. Gustavsson
+et al (2011) presents a critical meta-analysis of global
+FSCs, examining the stage-specific losses regionally
+and providing insights into the causes behind regional
+food losses and potential solutions. Porteret al (2016)
+built upon Gustavsson’s research to publish region-
+and food-specific emission factors for various food
+products and food types. The latter approach has
+largely utilized storage conditions, namely temperat-
+ure and time, to model food degradation and loss.
+James and James ( 2010) provide one of the earlier
+and more robust analyses on the relationship between
+food loss and climate change. Several other studies
+have focused on cold chain development in China,
+utilizing conditions-based frameworks to illustrate
+how various environmental factors can impact shelf
+life and food loss (Dong and Miller 2021, Hu et al
+2019, Wu et al 2022).
+More recent academic and industry studies have
+used historical data and development trends to model
+and understand how refrigeration may manifest in
+non-industrialized regions. Heard and Miller ( 2019)
+model the development of a Sub-Saharan African
+cold chain, including food losses, dietary changes,
+and the emissions associated with those factors. The
+Global Food Cold Chain Council ( 2015) modeled
+cold chain development by comparing cold chain
+penetration and food loss and waste data in non-
+industrialized regions with that of industrialized
+regions.
+Unlike previous research, this study focuses on
+potential improvements that can be realized by cold
+chain upgrade and optimization at specific stages
+within the FSC, focusing specifically on partial or
+suboptimally functioning refrigeration. Additionally,
+this study explicitly compares the losses and associ-
+ated emissions of shorter, less refrigerated FSCs with
+extended, more refrigerated FSCs.
+2. Methods
+The model’s scope and components were defined,
+including the FSC stages, refrigeration qualities and
+their associated loss rates, and relevant emissions
+2
+PAGE 4
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+factors tied to those losses. FAOSTAT Food Balance
+data were input into the model to test its efficacy and
+identify opportunities for regional FSC optimization.
+The full model is available in the supporting informa-
+tion and includes the option to customize FSC length,
+food types, regions, and loss rates to simulate a range
+of scenarios in addition to the results reported in this
+manuscript.
+2.1. Defining the model’s scope and components
+While there is not universal consensus on the defin-
+ition of food loss, it is generally understood that
+food losses are the quantitative and qualitative post-
+harvest decreases in food fit for human consump-
+tion (Chaboud and Daviron 2017). Solutions to food
+loss generally focus on management or technolo-
+gical changes to the FSC. In contrast, the term food
+waste encapsulates edible food that is supplied to the
+consumer but is never actually eaten, with solutions
+focusing more on behavioral shifts (Parfitt et al 2010,
+Gustavsson et al 2011, FAO 2019, Heard and Miller
+2019, Dong and Miller 2021). This study focuses
+on food losses in the post-harvest to retail stages of
+the FSC (illustrated by the area within the red dot-
+ted line in figure 1). Agricultural Production and
+Consumption are included for context and to show
+the relative contribution of these stages, but interven-
+tions to reduce food loss or waste at these stages fall
+outside the scope of this paper as they do not pertain
+to management of the cold chain. Additionally, only
+quantitative food loss and waste is considered in this
+model, as qualitative changes are not reported in the
+datasets utilized.
+In contrast to previous studies which have
+included five (Gustavsson et al 2011, Heard and
+Miller 2019) or seven (FAO 2019) FSC stages, the
+model developed for this study is customizable and
+includes a maximum of ten stages. The larger num-
+ber of stages does not imply a longer supply chain
+but provides a higher level of resolution to be able to
+model individual transportation and storage stages
+separately. In prior studies with five stages, transport-
+ation is generally embedded into other stages. In some
+more recent studies, transportation is represented as
+a single stage or data point (FAO 2019). By includ-
+ing and accounting for transportation throughout
+the FSC, this study allows for greater differentiation
+between the potential impact of refrigerated trans-
+portation from earlier versus later stages which is
+critical considering the trend of greater early-stage
+food loss in non-industrialized regions (Parfitt et al
+2010, Aschemann-Witzel et al 2015).
+2.2. Model construction
+The food loss and GHG model was developed using
+Microsoft Office Excel. This model is based on the
+FSC stages and associated food loss rates defined by
+Gustavsson et al (2011) and expanded upon by Dong
+and Miller ( 2021), FAO ( 2019), Heard and Miller
+(2019).
+Three scenarios were modeled for every region
+and food type: first, a ‘baseline’ scenario employ-
+ing current loss rates across the FSC; second, an
+‘optimized’ scenario employing minimum loss rates
+at each FSC stage; and third, a ‘short FSC’ scenario,
+employing current loss rates across a 4-stage sup-
+ply chain (figure 1(b)). These scenarios were used to
+provide nuance with the understanding that within
+and between regional FSCs, there is a lot of variab-
+ility in terms of their robustness—the length, dur-
+ation, and presence of stages. These scenarios were
+modeled in two ways: first, using a standard food
+input quantity—100 000 kg (as shown in figure 2);
+second, using consumption data from FAOSTAT—
+due to data constraints, FSC losses were extrapolated
+from loss rates and applied to consumption as was
+done by Heard and Miller ( 2019) (Gustavsson et al
+2011, FAOSTAT2023). Ultimately, the differences in
+food loss and associated emissions were calculated
+between these scenarios, highlighting how and where
+refrigeration can have the greatest impact within the
+FSC.
+2.3. Regions and food types
+This study focuses on regions—Europe including
+Russia, Industrialized Asia, Latin America, North
+Africa & Central Asia, North America & Oceania,
+South & Southeast Asia, and Sub-Saharan Africa—
+and food types—cereals, fish & seafood, fruits &
+vegetables, meat, milk products, oilseeds & pulses,
+roots & tubers—as defined in Gustavssonet al (2011),
+Heard and Miller (2019), Porter et al (2016).
+2.4. Food loss rates
+Food loss rates at any FSC stage are influenced by a
+variety of factors including infrastructural, societal,
+logistical, behavioral, and environmental factors. Due
+to the complex interplay of these factors, the refrigera-
+tion quality estimates incorporate the entire range of
+attributes that lead to either poor or good food loss
+rates and do not separate out cold chain technology
+specifically.
+2.5. Refrigeration quality
+Four refrigeration quality levels were developed for
+each FSC stage in the future state scenario to balance
+the simplicity and utility of the study. Those levels
+include good, average, poor, and no refrigeration,
+and were defined using baseline food loss rates. Good
+refrigeration reflects the lowest baseline loss rate,
+while no refrigeration reflects the highest baseline loss
+rate. Average and poor refrigeration are defined by the
+equations below:
+3
+PAGE 5
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 1. Visual representation of 10-stage FSC and 4-stage FSC and the mass flows for food (F) and losses (L) that can be
+included in the model developed through this study.
+Notes: Figure 1 illustrates both (a), a 10-stage FSC; this was used to model all current and optimized FSC scenarios. (b), a 4-stage
+FSC; this was used to model the short FSC detailed in figure 5. In both figures, Sn represents the FSC stage, Fn the food input into
+that stage, and Ln the food loss occurring in that stage. The red boundary indicates FSC stages that are directly impacted by
+refrigeration.
+Average Refrigeration:
+Good Refrigeration % food loss + 1
+3 (max loss % − min loss %)
+Poor Refrigeration:
+Good Refrigeration % food loss + 2
+3 (max loss % − min loss %) .
+2.6. Baseline scenario
+Baseline scenarios represent current levels of
+refrigeration with associated loss rates derived
+from Gustavsson et al (2011). T o be able to model
+differences in refrigeration quality for transportation
+and storage phases, as well as distribution and retail,
+the 5-stage system (Gustavsson) was subdivided to a
+10-stage system (figure 1).
+4
+PAGE 6
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 2. Food loss rates of different qualities of refrigeration for seven food types.
+Notes: Figure 2 shows the current mass of food loss for 100 000 kg of each food type entering the FSC at different qualities of
+refrigeration. The blue shading zones represent expected food losses associated with inconsistent-to-poor, poor-to-average, and
+average-to-good refrigeration quality, with the upper end of the top band representing consistently good refrigeration, which is
+considered optimal in this model. T o place refrigeration quality data into context, figure 2 also depicts current food losses
+associated with four regions that represent the spectrum of existing cold chain development—Europe: fully developed, Latin
+America and South & Southeast Asia: partially developing, and Sub-Saharan Africa: fully developing. While loss and waste in
+Agricultural Production (S1) and Consumption (S10) are displayed, they are not directly impacted by the cold chain.
+2.7. Optimized scenario
+Optimized scenarios represent a FSC with good-
+quality refrigeration across all stages by utilizing the
+lowest baseline loss rates for S1–S8.
+2.8. Emission factors
+Food loss emission factors (which allow for calcu-
+lating kg CO2e from kg food loss) were sourced
+from Porter et al (2016) and Hamerschlag and V enkat
+(2011). These emissions factors are region- and food
+type-specific because different regions have differ-
+ent agricultural practices, inputs, energy sources,
+etc, producing different quantities of emissions. This
+model only accounts for emissions associated with
+food losses and does not include emissions result-
+ing from refrigeration or other supply chain opera-
+tions (e.g. transportation). For greater detail on the
+food types, associated foods within each food type,
+and their emissions, see section 4 of supplementary
+information (Heard and Miller 2019).
+5
+PAGE 7
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+3. Results
+The results indicate the greatest overall loss rate
+improvements from increased refrigeration would
+occur in Sub-Saharan Africa, North Africa & Central
+Asia, South & Southeast Asia, and Latin America, par-
+ticularly with respect to meat, milk products, and
+fruits & vegetables.
+4. The impact of refrigeration quality by
+stage and food type
+The results highlight differences in how refrigeration
+quality affects food losses for different food types (see
+figure 2, which depicts food losses with respect to
+differences in refrigeration quality). While optimized
+refrigeration can reduce losses by 26%–63% for milk
+products, fruits & vegetables, and meat, it has a lesser
+impact, 13%–20% reduction, with respect to cer-
+eals, fish & seafood, oilseeds & pulses, and roots and
+tubers. This is reflected in the fact that regional differ-
+ences in food losses are more pronounced for meat,
+milk products, and fruits & vegetables. Moreover,
+the results show nuances in terms of where within
+the FSC food losses occur, and consequently where
+refrigeration would be most effectively implemented.
+For instance, improved refrigeration implemented in
+post-harvest handling & storage (S2) is most effective
+for preventing meat loss (see figure 2(a)), while refri-
+geration implemented in processing & packaging (S4)
+is most effective for preventing fruit & vegetable loss
+(figure 2(c)).
+5. Non-industrialized regions have greater
+opportunity for food loss and emissions
+prevention through optimized
+refrigeration than industrialized regions
+The results of modeling food loss and waste, and
+emissions in the FSC from Agricultural Production
+through Consumption (though the impact of refri-
+geration was only assessed post farm-gate to retail)
+indicate that an optimized cold chain has signific-
+ant potential to improve food losses and GHG emis-
+sions, particularly in non-industrialized regions (see
+figures 3(a) and (b)). Meanwhile, potential improve-
+ments are relatively modest in industrialized regions
+that already have highly developed cold chains. Key
+insights can be gained regarding regional improve-
+ment opportunities, the population density of the
+regions, and tradeoffs between food loss versus GHG
+emissions savings.
+On an absolute basis, South and Southeast
+Asia and Sub-Saharan Africa have large food losses
+and possess some of the greatest opportunities for
+improvement (figure 3(a)). In South and Southeast
+Asia, over 83 billion kg of fruits & vegetables,
+53 billion kg of cereals, and 48 billion kg of milk
+products can be saved through optimized refri-
+geration (figure 3(a)). In Sub-Saharan Africa, over
+46 billion kg of meat, and 48 billion kg of root &
+tubers can be saved through optimized refrigeration
+(figure 3(a)). Meat losses dominate the results for
+GHG emissions associated with food loss, which is
+to be expected given the high GHG intensity of meat
+production. Nevertheless, figure3(b) shows a striking
+opportunity for improvement. Sub-Saharan Africa’s
+potential meat savings translate to a 700 MmtCO2-
+eq reduction (figure 3(b)). Meanwhile, fruits & veget-
+ables, cereals, and roots & tubers in both regions pro-
+duce few emissions relative to their high loss quantit-
+ies (figure 3(b)).
+Figures 3(c) and (d) illustrate the results when
+population is considered. While exhibiting some of
+the lowest absolute food loss and waste, and emis-
+sions, North America & Oceania has the most or
+second-most food loss and waste on a per capita
+basis across four of the six food types. Nevertheless,
+the overall improvement potential via cold chain
+optimization in North America & Oceania is low.
+Meanwhile, South & Southeast Asia has the largest
+absolute food losses, but lowest per capita food
+losses under current conditions. Despite these low
+per capita food losses, South & Southeast Asia has
+the potential to experience a 45% reduction in food
+losses and a 54% decrease in the associated emis-
+sions under an optimized refrigeration scenario. In
+contrast, Sub-Saharan Africa has the largest absolute
+and per capita food loss emissions, and tremendous
+opportunities for both food loss (47%) and emis-
+sions reduction (66%) under optimized refrigeration
+conditions.
+Examining these results on a global basis, it is
+apparent that meat accounts for over 50% (2.7 Gt) of
+food loss and waste GHG emissions despite account-
+ing for less than 10% (180 Mmt) of global food loss
+and waste (figures 4(a) and (b)). Optimized refri-
+geration of meat could result in the elimination of
+over 43% (1.1 Gt) of emissions associated with meat
+loss. Meanwhile, fruits & vegetables represent 30% of
+global food loss and waste but only 9% of GHG emis-
+sions. This relationship highlights a tradeoff between
+food loss prevention and GHG emissions mitigation
+and the importance of understanding this relation-
+ship when prioritizing food quantity or embodied
+emissions reduction.
+6. Short supply chains have a greater effect
+on food losses than optimizing
+refrigeration quality
+In practice, not all foods move through all stages of
+the supply chain shown in figure 2. Supply chains can
+be highly variable according to specific local condi-
+tions and specific kinds of food. T o account for this
+variability, the extreme ends of long and short FSCs
+were modeled to assess potential differences between
+6
+PAGE 8
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 3. Regional food loss and waste, and associated emissions under current and optimally refrigerated FSC conditions.
+hyper-localization and optimized industrial refriger-
+ation. Figure 5 highlights three different scenarios:
+baseline (CC), optimized (OR), and short FSC (SF),
+representing the current case modeled in figures 2
+and 3, the optimized case modeled in figure 3, and a
+highly localized, ‘farm-to-table’ food system without
+storage, processing, distribution, or the associated
+transportation stages, respectively.
+Modeling these three scenarios showed that both
+short and longer optimized FSCs experience lower
+food losses compared with the baseline (figure 5).
+This pattern holds in non-industrialized and indus-
+trialized regions alike, though it is less pronounced
+in industrialized regions. This suggests that in devel-
+oping contexts, improvements are possible by intro-
+ducing optimized refrigeration or by making (or in
+many cases keeping) FSCs short. The actual feasib-
+ility of short FSCs is highly variable and depend-
+ent on geography, seasonality, and specific food
+type. Issues of food security and adequate nutri-
+tion, for example, are not addressed by these res-
+ults. All FSCs experienced greater food loss savings
+from shortening the supply chain than from optim-
+izing refrigeration. The disproportionate amount of
+on-farm and consumer losses in North America and
+Europe highlights the need for solutions address-
+ing food loss and waste in higher income countries
+to focus more heavily on sources of loss outside of
+the actual supply chain. Despite this, it appears that
+shortened FSCs in industrialized regions can reduce
+food losses within the supply chain beyond what has
+already been accomplished through nearly optimal
+refrigeration.
+7. Discussion
+Although cold chain infrastructure is rapidly increas-
+ing, an optimized cold chain will likely develop at dif-
+ferent rates and in different ways across the globe.
+This analysis demonstrates that while increased refri-
+geration should lead to improvements in both food
+loss and GHG emissions associated with food loss,
+there are important tradeoffs associated with cold
+chain improvements by food type and by region.
+Investment decisions will need to be prioritized
+to maximize the desired outcomes and impacts.
+As previously mentioned, improved food systems
+are aligned with a number of the Sustainability
+7
+PAGE 9
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 3. (Continued.)
+Notes: Figure 3 shows current food loss and waste, the associated emissions, and the potential reduction opportunity of an
+optimized cold chain (darkened upper portions of the bars). Figures 3(a) and (b) show the total quantity of regional loss and
+waste, and the associated GHG emissions, respectively; (c), (d) show regional per capita loss and waste, and the associated GHG
+emissions, respectively. Oilseeds & pulses are excluded due to their small contribution.
+Development Goals. If the SDG for Zero Hunger is
+the most important consideration, cold chain inter-
+ventions that provide the greatest overall food loss
+reductions and best nutritional outcomes may best
+meet that objective. Alternatively, organizations that
+prioritize Climate Action may focus on reducing meat
+losses specifically rather than total food losses. In
+addition, considerations of total impact versus per
+capita impact have different patterns of improvement
+potentials.
+The results indicate that Sub-Saharan Africa
+and South & Southeast Asia have the greatest
+overall potential for reductions in both food
+losses and emissions from increased cold chain
+implementation. Depending on the food type being
+targeted, food losses appear to experience the greatest
+reduction when refrigeration is implemented in
+the post-harvest handling & storage, transport-
+ation 2, and processing & packaging phases in
+non-industrialized regions. However, there are some
+inherent tradeoffs depending on whether improve-
+ments are targeted at reducing food loss or at reducing
+GHG emissions associated with food loss. As others
+have noted, enhanced cold chain infrastructure pro-
+duces limited improvements in industrialized regions
+(Gustavsson et al 2011, FAO 2015, Heard and Miller
+2019).
+Additionally, non-industrialized and industrial-
+ized regions appear to experience food loss reduc-
+tions from short FSCs beyond those from optimally
+refrigerated FSCs. While refrigeration helps reduce
+food degradation rates, reduced time within the
+overall supply chain can have a greater effect on
+food loss (Zanoni and Zavanella 2012, Kitinoja
+2013, Abiso et al 2015). Both solutions, however,
+have their limitations. Short FSCs are often unable
+to supply adequate nutrition throughout the year
+due to the productivity of a region, the seasonality
+8
+PAGE 10
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 4. Global food losses and associated emissions under current and optimally refrigerated FSC conditions.
+Notes: Figures 4(a) and (b) shows current food loss and waste (a) and the associated emissions (b), and the potential reduction
+opportunity of an optimized cold chain (darkened upper portions) globally.
+of agriculture, or distance from a particular food
+resource (i.e. fisheries). Meanwhile, optimally refri-
+gerated FSCs necessitate that significant infrastruc-
+tural preconditions (energy, roads, logistics services)
+be met. This speaks to the need for nuanced, region-
+ally appropriate solutions, especially as increasing cli-
+mate variability continues to shift global food pro-
+duction and increasingly burden global infrastruc-
+ture. An ‘optimized’ food system does not inher-
+ently mean highly globalized and industrialized for
+all products. While cold chain deployment can reduce
+food losses, it should accompany, rather than dis-
+place, robust, well-functioning localized food sys-
+tems. By coupling these solutions, stakeholders can
+reduce food losses while simultaneously avoiding
+some of the energy burden and emissions impacts of
+refrigeration (Heard and Miller 2019, Hu et al 2019,
+International Institute of Refrigeration (IIR) 2021)
+and the aforementioned cultural loss and health
+risks.
+This study provides novel insights on the
+potential improvements associated with cold chain
+introductions or upgrades; however, it has some
+obvious limitations. First, this study focuses solely
+on food losses and the associated emissions. It does
+not consider emissions associated with operating the
+cold chain nor any changes that could be induced in
+the system due to the presence of refrigeration, which
+researchers have found to produce a net increase in
+the overall emissions of the FSC (Heard and Miller
+2019, Hu et al 2019, IIR 2021). For example, stud-
+ies have shown that cold chain development can
+change community and regional diets resulting in
+food systems that are increasingly energy (and emis-
+sions) intensive and dependent upon refrigeration
+(Garnett 2011, Heard and Miller 2019). Further,
+reductions in food loss associated GHGs only reduce
+the non-productive GHG emissions associated with
+the food system, but does not necessarily decrease
+total GHG emissions. Improved supply chains could
+9
+PAGE 11
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 5. The relative differences of short and long supply chains on food loss.
+lead to increased access and availability of food for
+human consumption, potentially redistributing food
+to address issues of global hunger. While this is a
+favorable outcome, it will not result in decreased
+agricultural production nor the associated GHGs.
+An optimized cold chain may result in lower food
+loss, but does not consider a myriad of social, cul-
+tural, political, and economic factors that shape a
+food system. The study does not consider nutritional
+qualities of different food types or the social and
+10
+PAGE 12
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 5. (Continued.)
+cultural importance of food. From a technology
+standpoint, reliable energy infrastructure is a baseline
+requirement for cold chain expansion to improve
+access to nutrition and reduce foodborne illnesses
+(Aung and Chang 2014, Mercier et al 2018). However,
+in regions that lack the underlying infrastructure
+necessary for an effective cold chain, an ineffect-
+ive cold chain coupled with a diet dependent upon
+cold chain infrastructure could result in greater
+food loss, food insecurity, and emissions while
+potentially weakening cultural heritage and self-
+sufficiency (Mercieret al 2017, UNEP and FAO2022).
+11
+PAGE 13
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Figure 5. (Continued.)
+Notes: Figure 5: Food loss and waste for six food types are modeled under three conditions: baseline (CC), optimized (OR), and
+short FSC (SF) (illustrated in figure 1(b)) regionally (a)–(g) and globally (h). While food loss and waste in panels (a)–(e) and (g)
+is represented on equal scales, food loss and waste in S&SE Asia (f) and globally (h) are recorded on larger scales. Unlike the
+previous figures, figures 5 highlights both the relative contributions of food losses within the supply chain (i.e. farm-gate to retail)
+and those typically considered outside the supply chain. Loss and waste at all stages were calculated based on a constant state of
+demand (consumption), thus as food losses decrease in the farm-gate to retail stages, on-farm production loss and waste decrease.
+The variability in these changes is due to different regional production and consumption stage loss rates.
+As with air conditioning, the irony of refrigeration is
+that it will increasingly become a necessary tool of
+our FSCs as climate change worsens. Thus, as non-
+industrialized regions continue growing technologic-
+ally and in population, it is critical to ensure that any
+technology deployed in these regions is implemented
+sustainably and in a manner that increases com-
+munity resilience.
+Although the analysis presented can be used
+to identify major trends and opportunities across
+regions and food types, the underlying data on actual
+food loss rates remain uncertain and variability can
+exist within regions. Projections of food losses based
+on historical trends do not appear to align well
+with theoretical food degradation models (Dong and
+Miller 2021, FAOSTAT2023, Hu et al 2019, Wu et al
+2019, Zanoni and Zavanella2012). This gap could res-
+ult from many factors; for instance, others have noted
+that the FAO’s food loss and waste data are limited
+and in many cases inconsistent and uncertain due to
+evolving definitions, varying tracking and reporting
+methodologies, and data access and quality limita-
+tions (Chaboud and Daviron 2017, Lipi ´nska et al
+2019, Parfitt et al 2010, Xue et al 2017). Additionally,
+food loss estimates could further be improved by
+incorporating a quality degradation factor to account
+for potential downstream FSC losses caused by sub-
+optimal upstream conditions. Future work on this
+12
+PAGE 14
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+topic can and should account for nutritional aspects
+of food (i.e. calories, protein, micronutrients) instead
+of just total mass. While it does not directly address
+that gap, by adding greater flexibility to FSC models,
+this study provides a new way to probe the discrep-
+ancy between methodological approaches.
+While the results of this study align with the res-
+ults of previous studies (Gustavsson et al 2011, FAO
+2019, IIR 2020) relative to the percent food loss, sav-
+ings opportunities, and ratios of food types within
+the supply chain, the quantities associated with these
+percentages are significantly greater in this study than
+in previous studies. This difference is primarily a res-
+ult of methodological differences between this study
+and prior studies. Most previous studies utilize con-
+version factors to calculate the edible quantity of food
+produced. For example, Gustavsson et al (2011) use a
+50% conversion factor for fish and seafood, meaning
+that only 50% of fish and seafood produced is accoun-
+ted for as food. Since a key value of this research
+and the model is quantifying GHG emissions associ-
+ated with food loss, a conversion factor was not used.
+This methodology aligns with Porter et al (2016) who
+cite the importance of accounting for ‘the entire food
+commodity’ , as any resulting loss has embedded emis-
+sions. Additionally, a small fraction of the difference
+in food production results in the current study reflects
+the increase in food produced globally over time—
+this research used the most recent (2020) FAO Food
+Balance data in contrast to that of 2009 (Gustavsson
+et al 2011) and 2016 (IIR 2020). Between 2019 and
+2020 alone, the FAO reported ∼500 Gt more food
+produced (FAOSTAT2023).
+The findings of this study can be utilized by vari-
+ous FSC stakeholders. Farmers, food logistics firms,
+and food retailers can use this model to optim-
+ally utilize cold chain technologies to better ser-
+vice their customers. International NGOs and inter-
+governmental bodies can use it to deploy resources
+targeted at reducing food loss, hunger, and climate
+change. For example, recognizing the role of sustain-
+able cold chain infrastructure, Germany led the UN’s
+Green Cooling Initiative (GCI) in 2020, which aims
+to reduce emissions from the cooling sectors by pri-
+oritizing sustainable refrigerants, energy efficiency,
+and energy consumption (Deutsche Gesellschaft für
+Internationale Zusammenarbeit n.d., UN 2012). This
+research provides a critical supplement to GCI as it
+answers the question of where within a given FSC, and
+at what intensity, refrigeration can be deployed most
+effectively.
+Data availability statement
+All data that support the findings of this study are
+included within the article (and any supplementary
+files).
+Acknowledgments
+This work was supported by the Carrier Corporation
+and the United States National Science Foundation
+(Grant No. CBET 1804287). Any opinions, findings,
+and conclusions or recommendations expressed in
+this material are those of the authors and do not
+necessarily reflect the views of Carrier or the National
+Science Foundation.
+References
+Abiso E, Satheesh N and Hailu A 2015 Effect of storage methods
+and ripening stages on postharvest quality of tomato
+(Lycopersicom esculentum mill) cv. chali Ann. Food Sci.
+Technol. 16 127–37
+Aschemann-Witzel J, De Hooge I, Amani P , Bech-Larsen T and
+Oostindjer M 2015 Consumer-related food waste: causes
+and potential for action Sustainability 7 6457–77
+Aung M M and Chang Y S 2014 T emperature management for the
+quality assurance of a perishable food supply chain Food
+Control 40 198–207
+Chaboud G and Daviron B 2017 Food losses and waste: navigating
+the inconsistencies Glob. Food Secur. 12 1–7
+Deutsche Gesellschaft für Internationale Zusammenarbeit n.d.
+Green Cooling Initiative (available at: www.green-cooling-
+initiative.org/)
+Dong Y and Miller S A 2021 Assessing the lifecycle greenhouse gas
+(GHG) emissions of perishable food products delivered by
+the cold chain in China J. Clean. Prod. 303 126982
+FAO 2013 Food wastage footprint FAO (available at:
+www.fao.org/publications)
+FAO 2015 Food wastage footprint & climate change FAO pp 1–4
+(available at: www.fao.org/3/a-bb144e.pdf)
+FAO 2019 The State of Food and Agriculture 2019. Moving Forward
+on Food Loss and Waste Reduction License: CC BY-NC-SA
+3.0 (IGO)
+FAO, IFAD, UNICEF , WFP and WHO 2020 The State of Food
+Security and Nutrition in the W orld 2020 Transforming food
+systems for affordable healthy diets (FAO)
+(https://doi.org/10.4060/ca9692en)
+FAOSTAT 2023Food and Balance Sheets 2020 (available at:
+www.fao.org/faostat/en/#data/FBS)
+Garnett T 2007 Food refrigeration: what is the contribution to
+greenhouse gas emissions and how might emissions be
+reduced? Food Climate Research Network
+Garnett T 2011 Where are the best opportunities for reducing
+greenhouse gas emissions in the food system (including the
+food chain)? Food Policy 36 S23
+Global Food Cold Chain Council 2015 Assessing the Potential of
+the Cold Chain Sector to Reduce GHG Emissions Through
+Food Loss and Waste Reduction (available at: http://
+naturalleader.com/wp-content/uploads/2016/04/
+coldchainGHGemissionstudy.pdf)
+Gustavsson J, Cederberg C and Sonesson U 2011 Global Food
+Losses and Food Waste: Extent, Causes and Prevention
+Hamerschlag K and V enkat K 2011 Meat Eater’s guide to climate
+change and health: lifecycle assessments: methodology &
+results
+Heard B R and Miller S A 2019 Potential changes in greenhouse
+gas emissions from refrigerated supply chain introduction
+in a developing food system Environ. Sci. Technol.
+53 251–60
+Heard B R and Miller S A 2019 Supporting information for
+‘Potential changes in greenhouse gas emissions from
+refrigerated supply chain introduction in a developing food
+system’ ACS Publications pp S1–S16
+13
+PAGE 15
+Environ. Res. Lett. 19 (2024) 064038 A Friedman-Heiman and S A Miller
+Hu G, Mu X, Xu M and Miller S A 2019 Potentials of GHG
+emission reductions from cold chain systems: case studies of
+China and the United States J. Clean. Prod. 239 118053
+IIR 2020 The role of refrigeration in worldwide nutrition: 6th
+Informatory Note on Refrigeration and Food 11 (available at:
+https://iifiir.org/en/fridoc/6-lt-sup-gt-th-lt-sup-gt-
+informatory-note-on-refrigeration-and-food-the-role-
+142029)
+IIR 2021 The Carbon Footprint of the Cold Chain: 7th Informatory
+Note on Refrigeration and Food (https://doi.org/
+10.18462/iir.INfood07.04.2021)
+Ishangulyyev R, Kim S and Lee S H 2019 Understanding food loss
+and waste-why are we losing and wasting food? Foods 8 297
+James S J and James C 2010 The food cold-chain and climate
+change Food Res. Int. 43 1944–56
+Kitinoja L 2013 Use of cold chains for reducing food losses in
+developing countries (No. 13-03) PEF White Paper
+Lipi´nska M, T omaszewska M and Koło˙zyn-Krajewska D 2019
+Identifying factors associated with food losses during
+transportation: potentials for social purposes Sustainability
+11 2046
+Ma G and Guan H 2009 The application research of cold-chain
+logistics delivery schedule based on JIT 2009 Int. Conf. on
+Industrial Mechatronics and Automation, ICIMA 2009
+pp 368–70
+Mercier S, Mondor M, Villeneuve S and Marcos B 2018 The
+Canadian food cold chain: a legislative, scientific, and
+prospective overview Int. J. Refrig. 88 637–45
+Mercier S, Villeneuve S, Mondor M and Uysal I 2017
+Time–temperature management along the food cold chain:
+a review of recent developments Compr. Rev. Food Sci. Food
+Saf. 16 647–67
+Parfitt J, Barthel M and MacNaughton S 2010 Food waste within
+food supply chains: quantification and potential for change
+to 2050 Phil. Trans. R. Soc. B 365 3065–81
+Porter S D, Reay D S, Higgins P and Bomberg E 2016 A
+half-century of production-phase greenhouse gas emissions
+from food loss & waste in the global food supply chain Sci.
+Total Environ. 571 721–9
+UN 2012 The Green Cooling Initiative (available at: https://sdgs.
+un.org/partnerships/green-cooling-initiative)
+UN 2015 Resolution adopted by the general
+assembly—transforming our world: the 2030 Agenda for
+sustainable development 70th Session Agenda Items 15 and
+116 (https://doi.org/10.1163/157180910X12665776638740)
+UNEP and FAO 2022 Sustainable food cold chains: opportunities,
+challenges and the way forward ( https://doi.org/
+10.4060/cc0923en)
+Wu J, Li Q, Liu G, Xie R, Zou Y , Scipioni A and Manzardo A 2022
+Evaluating the impact of refrigerated transport trucks in
+China on climate change from the life cycle perspective
+Environ. Impact Assess. Rev. 97 106866
+Wu W et al 2019 Supplementary materials: environmental
+trade-offs in fresh-fruit cold chains by combining virtual
+cold chains with life cycle assessment Appl. Energy
+254 113586
+Xue L, Liu G, Parfitt J, Liu X, V an Herpen E, Stenmarck Å,
+O’Connor C, Östergren K and Cheng S 2017 Missing
+food, missing data? A critical review of global food
+losses and food waste data Environ. Sci. Technol.
+51 6618–33
+Zanoni S and Zavanella L 2012 Chilled or frozen? Decision
+strategies for sustainable food supply chains Int. J. Prod.
+Econ. 140 731–6
+14

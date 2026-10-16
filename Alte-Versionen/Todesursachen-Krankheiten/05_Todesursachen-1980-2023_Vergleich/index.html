@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Todesursachen 1980–2023</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --border: rgba(11, 11, 11, .10);
+    --colA: #6a35c4;      /* Todesursache 1: Lila */
+    --colB: #e0651f;      /* Todesursache 2: Orange */
+    --peak: #1baf7a;      /* Höchstwert-Markierung */
+    --sel: #f0ebfa;
+    --hover: rgba(11, 11, 11, .05);
+    --cap: 30px;
+    --cells-h: 360px;
+    --yax: 44px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface: #1a1a19;
+      --ink: #ffffff;
+      --ink2: #c3c2b7;
+      --grid: #2c2c2a;
+      --border: rgba(255, 255, 255, .10);
+      --colA: #a177ee;
+      --colB: #ee8442;
+      --peak: #199e70;
+      --sel: #251c38;
+      --hover: rgba(255, 255, 255, .07);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  button, select { font: inherit; color: inherit; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  :focus-visible { outline: 2px solid var(--colA); outline-offset: 2px; }
+  [hidden] { display: none !important; }
+
+  /* ---- Kopfzeile ---- */
+  .top {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 12px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .top h1 { margin: 0; font-size: 18px; font-weight: 650; line-height: 1.2; }
+  .top p { margin: 2px 0 0; font-size: 12.5px; color: var(--ink2); }
+
+  .region {
+    display: inline-flex; padding: 3px; gap: 2px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--page);
+  }
+  .region button {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 12px; border: 0; border-radius: 9px;
+    background: transparent; cursor: pointer;
+    font-size: 13.5px; font-weight: 550; color: var(--ink2);
+  }
+  .region button:hover { background: var(--hover); }
+  .region button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+  .region svg { display: block; flex: none; }
+
+  /* ---- Gesamtlayout ---- */
+  .layout {
+    display: grid; grid-template-columns: 300px minmax(0, 1fr);
+    max-width: 1680px; margin: 0 auto;
+  }
+
+  /* ---- Linke Liste ---- */
+  .causes {
+    position: sticky; top: 0; align-self: start;
+    max-height: 100vh; overflow-y: auto;
+    padding: 18px 12px 24px 20px;
+  }
+  .causes h2 {
+    margin: 0 0 2px 10px; font-size: 12px; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--ink2);
+  }
+  .causes .sub { margin: 0 0 8px 10px; font-size: 12px; color: var(--ink2); }
+  .causes ul { list-style: none; margin: 0; padding: 0; }
+  .cause {
+    position: relative; display: flex; align-items: baseline; gap: 8px;
+    width: 100%; padding: 8px 10px 8px 13px; border: 0; border-radius: 8px;
+    background: transparent; text-align: left; cursor: pointer; line-height: 1.3;
+  }
+  .cause:hover { background: var(--hover); }
+  .cause .name { flex: 1 1 auto; min-width: 0; }
+  .cause .n { flex: none; font-size: 11.5px; color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .cause .badge {
+    flex: none; align-self: center; display: none; width: 17px; height: 17px; border-radius: 50%;
+    font-size: 11px; font-weight: 700; line-height: 17px; text-align: center; color: #fff;
+  }
+  .cause[data-slot] { font-weight: 600; background: var(--sel); }
+  .cause[data-slot]::before {
+    content: ""; position: absolute; left: 0; top: 7px; bottom: 7px; width: 3px; border-radius: 2px;
+  }
+  .cause[data-slot="0"]::before, .cause[data-slot="0"] .badge { background: var(--colA); }
+  .cause[data-slot="1"]::before, .cause[data-slot="1"] .badge { background: var(--colB); }
+  .compare-on .cause[data-slot] .badge { display: block; }
+
+  /* ---- Mitte ---- */
+  main { padding: 20px 24px 32px 8px; min-width: 0; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px 22px 18px;
+  }
+  .head {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+    gap: 24px; align-items: start; margin-bottom: 18px;
+  }
+  .compare-on .head { grid-template-columns: minmax(0, 1fr); }
+  .slot { display: flex; align-items: center; gap: 10px; max-width: 720px; }
+  .slot + .slot { margin-top: 2px; }
+  .slot .sw { flex: none; width: 12px; height: 12px; border-radius: 3px; }
+  .slot[data-slot="0"] .sw { background: var(--colA); }
+  .slot[data-slot="1"] .sw { background: var(--colB); }
+  .selectwrap { position: relative; flex: 1 1 auto; min-width: 0; }
+  .selectwrap select {
+    width: 100%; appearance: none; -webkit-appearance: none;
+    padding: 4px 36px 4px 0; border: 0; border-bottom: 1px solid transparent;
+    background: transparent; cursor: pointer;
+    font-size: 24px; font-weight: 650; line-height: 1.25; text-overflow: ellipsis;
+  }
+  .compare-on .selectwrap select { font-size: 19px; }
+  .selectwrap select:hover { border-bottom-color: var(--grid); }
+  .selectwrap select option { font-size: 15px; font-weight: 400; }
+  .selectwrap svg { position: absolute; right: 6px; top: 50%; margin-top: -8px; pointer-events: none; color: var(--ink2); }
+
+  .cmp {
+    display: inline-flex; align-items: center; gap: 7px; margin: 8px 0 2px;
+    padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px;
+    background: var(--page); cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink2);
+  }
+  .cmp:hover { background: var(--hover); color: var(--ink); }
+  .cmp[aria-pressed="true"] { border-color: var(--colB); color: var(--ink); }
+  .cmp svg { flex: none; }
+
+  .summary { margin: 8px 0 0; color: var(--ink2); font-size: 13.5px; }
+  .summary b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .summary .line { display: flex; align-items: baseline; gap: 8px; }
+  .summary .line + .line { margin-top: 2px; }
+  .summary .sq { flex: none; width: 10px; height: 10px; border-radius: 2px; transform: translateY(1px); }
+  .summary .hint { color: var(--ink2); font-style: italic; }
+
+  /* Liniendiagramm: oben rechts (eine Ursache), in der Mitte unter den Heatmaps (Vergleich) */
+  .trend {
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 12px 6px; background: var(--page);
+  }
+  .trendmid { margin-top: 20px; }
+  .trend h3 { margin: 0; font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+  .trend .key { margin: 3px 0 4px; font-size: 11.5px; color: var(--ink2); display: flex; flex-wrap: wrap; gap: 2px 14px; }
+  .trend .key span { display: inline-flex; align-items: center; gap: 5px; }
+  .trend .key .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--peak); }
+  .trend .key .ln { width: 14px; height: 3px; border-radius: 2px; }
+  #trendBox { position: relative; }
+  #trendSvg { display: block; width: 100%; overflow: visible; touch-action: pan-y; cursor: pointer; }
+  #trendSvg text { font-size: 11px; fill: var(--ink2); font-variant-numeric: tabular-nums; }
+  #trendSvg .gl { stroke: var(--grid); stroke-width: 1; }
+  #trendSvg .line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  #trendSvg .future { fill: none; stroke-width: 1.5; stroke-dasharray: 2 4; opacity: .55; }
+  #trendSvg .s0 { stroke: var(--colA); }
+  #trendSvg .s1 { stroke: var(--colB); }
+  #trendSvg .cross { stroke: var(--ink2); stroke-width: 1; stroke-dasharray: 3 3; }
+  #trendSvg .pt { stroke: var(--surface); stroke-width: 2; }
+  #trendSvg .lbl { fill: var(--ink); font-weight: 650; }
+
+  /* Heatmaps */
+  .heats { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .compare-on .heats { grid-template-columns: repeat(2, minmax(0, 1fr)); --cells-h: 260px; }
+  .heatblock { min-width: 0; }
+  .htitle {
+    display: flex; align-items: center; gap: 8px; min-width: 0; margin-bottom: 8px;
+    font-size: 15px; font-weight: 650; line-height: 1.3;
+  }
+  .htitle .sq { flex: none; width: 12px; height: 12px; border-radius: 3px; }
+  .heatblock[data-slot="0"] .htitle .sq { background: var(--colA); }
+  .heatblock[data-slot="1"] .htitle .sq { background: var(--colB); }
+  .htitle .hname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hplace {
+    display: grid; place-items: center; text-align: center; padding: 16px;
+    height: calc(var(--cap) + var(--cells-h) + 40px);
+    border: 1.5px dashed var(--grid); border-radius: 12px; color: var(--ink2);
+  }
+
+  .heat { display: grid; grid-template-columns: var(--yax) minmax(0, 1fr); column-gap: 10px; }
+  .cap {
+    grid-column: 1 / -1; height: var(--cap); margin: 0; display: flex; align-items: flex-start;
+    font-size: 12px; font-weight: 600; color: var(--ink2);
+  }
+  .yaxis { display: grid; grid-template-rows: repeat(10, 1fr); height: var(--cells-h); }
+  .yaxis span {
+    display: flex; align-items: center; justify-content: flex-end;
+    font-size: 12px; color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .cells {
+    position: relative; display: grid; gap: 1px; height: var(--cells-h);
+    grid-template-columns: repeat(44, minmax(0, 1fr));
+    grid-template-rows: repeat(10, 1fr);
+  }
+  .cell { border-radius: 2px; background: #000; transition: background-color .25s, opacity .2s; cursor: pointer; }
+  .cell.zero, .sw0 { background: transparent; box-shadow: inset 0 0 0 1px var(--grid); }
+  .cell.nodata, .swnd {
+    background: repeating-linear-gradient(135deg, var(--grid) 0 1.5px, transparent 1.5px 5px);
+    box-shadow: inset 0 0 0 1px var(--grid);
+  }
+  .cell.future { opacity: .07; }
+  .cell.hl { outline: 2px solid #fff; box-shadow: 0 0 0 3px #000; z-index: 2; }
+  .colhl, .focushl {
+    position: absolute; top: -3px; bottom: -3px; pointer-events: none; border-radius: 3px;
+  }
+  .colhl {
+    display: none; background: rgba(255, 255, 255, .18);
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgba(0, 0, 0, .75);
+  }
+  .focushl {
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .85), inset 0 0 0 1px rgba(0, 0, 0, .85);
+    transition: left .2s;
+  }
+  .xaxis { position: relative; grid-column: 2; height: 24px; margin-top: 6px; }
+  .xaxis .t {
+    position: absolute; top: 0; transform: translateX(-50%);
+    font-size: 12px; color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .xaxis .t.off { display: none; }
+
+  .hlegend { margin: 6px 0 0 calc(var(--yax) + 10px); }
+  .hnote { margin: 4px 0 0 calc(var(--yax) + 10px); font-size: 12px; color: var(--ink2); }
+
+  /* Jahr-Regler */
+  .timeline { display: grid; grid-template-columns: var(--yax) minmax(0, 1fr); column-gap: 10px; }
+  .play {
+    justify-self: end; align-self: start; margin-top: -3px;
+    display: grid; place-items: center; width: 34px; height: 34px;
+    border: 0; border-radius: 50%; cursor: pointer;
+    background: var(--ink); color: var(--surface);
+  }
+  .play:hover { filter: brightness(1.25); }
+  .scrub { position: relative; height: 56px; cursor: pointer; touch-action: none; border-radius: 6px; }
+  .scrub .rail, .scrub .fill { position: absolute; left: 0; top: 11px; height: 6px; border-radius: 3px; }
+  .scrub .rail { right: 0; background: var(--grid); }
+  .scrub .fill { background: var(--colA); }
+  .scrub .thumb {
+    position: absolute; top: 3px; height: 22px; min-width: 10px; transform: translateX(-50%);
+    border: 2px solid var(--surface); border-radius: 6px; background: var(--colA);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  }
+  .scrub .badge {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 5px;
+    padding: 1px 7px; border-radius: 6px; background: var(--ink); color: var(--surface);
+    font-size: 12px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+
+  /* Legende / Farbskalen */
+  .legend {
+    display: flex; align-items: flex-start; gap: 8px 28px; flex-wrap: wrap;
+    margin: 6px 0 0 calc(var(--yax) + 10px); font-size: 12px; color: var(--ink2);
+  }
+  .compare-on .legend { margin-left: 0; margin-top: 14px; }
+  .rampbox { width: 240px; max-width: 100%; }
+  .ramp { position: relative; padding-bottom: 18px; }
+  .ramp .bar { height: 10px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--border); }
+  .ramp .tick { position: absolute; top: 14px; white-space: nowrap; font-size: 12px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .legend .zero, .legend .nd { align-self: flex-start; }
+  .legend .zero i, .legend .nd i { display: inline-block; width: 12px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+  .legend .note { flex-basis: 100%; }
+
+  /* Tooltip */
+  .tip {
+    position: fixed; z-index: 10; left: 0; top: 0; display: none; pointer-events: none;
+    min-width: 150px; max-width: 320px; padding: 9px 12px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .18);
+  }
+  .tip .row { display: flex; align-items: baseline; gap: 7px; }
+  .tip .row + .row { margin-top: 3px; }
+  .tip .row i { flex: none; width: 9px; height: 9px; border-radius: 2px; }
+  .tip .v { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tip .n { font-size: 12px; color: var(--ink2); }
+  .tip .l { margin-top: 4px; font-size: 12.5px; color: var(--ink2); }
+
+  /* Tabelle */
+  details.tbl { margin-top: 22px; border-top: 1px solid var(--grid); padding-top: 12px; }
+  details.tbl summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink2); }
+  details.tbl h4 { margin: 14px 0 0; font-size: 13px; }
+  .tblscroll { margin-top: 10px; max-height: 360px; overflow: auto; border: 1px solid var(--grid); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 5px 10px; text-align: right; white-space: nowrap; }
+  thead th { position: sticky; top: 0; background: var(--surface); box-shadow: 0 1px 0 var(--grid); }
+  tbody tr:nth-child(even) { background: var(--hover); }
+  tbody th { text-align: left; font-weight: 600; }
+
+  .foot { margin: 16px 2px 0; font-size: 12px; color: var(--ink2); }
+
+  @media (max-width: 1100px) {
+    .head { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  }
+  @media (max-width: 1000px) {
+    .compare-on .heats { grid-template-columns: minmax(0, 1fr); --cells-h: 240px; }
+  }
+  @media (max-width: 820px) {
+    :root { --cells-h: 320px; }
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    .causes { display: none; }
+    main { padding: 16px; }
+    .card { padding: 16px 14px; }
+    .top { padding: 10px 16px; }
+    .top p { display: none; }
+    .region button span { display: none; }
+    .region button { padding: 8px 11px; }
+    .selectwrap select { font-size: 19px; }
+    .compare-on .selectwrap select { font-size: 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cell, .focushl { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <h1>Todesursachen</h1>
+    <p>Todesfälle nach Alter und Jahr, 1980–2023</p>
+  </div>
+  <div class="region" role="group" aria-label="Region wählen">
+    <button type="button" data-region="global" aria-pressed="true" title="Global">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.5"/>
+        <path d="M2.5 12h19"/>
+        <path d="M12 2.5c2.8 2.6 4.2 5.8 4.2 9.5s-1.4 6.9-4.2 9.5c-2.8-2.6-4.2-5.8-4.2-9.5S9.2 5.1 12 2.5z"/>
+      </svg>
+      <span>Global</span>
+    </button>
+    <button type="button" data-region="de" aria-pressed="false" title="Deutschland">
+      <svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true">
+        <clipPath id="flagClip"><rect width="24" height="18" rx="3"/></clipPath>
+        <g clip-path="url(#flagClip)">
+          <rect width="24" height="6" fill="#111"/>
+          <rect y="6" width="24" height="6" fill="#dd0000"/>
+          <rect y="12" width="24" height="6" fill="#ffce00"/>
+        </g>
+        <rect x=".5" y=".5" width="23" height="17" rx="2.5" fill="none" stroke="rgba(128,128,128,.55)"/>
+      </svg>
+      <span>Deutschland</span>
+    </button>
+  </div>
+</header>
+
+<div class="layout" id="layout">
+  <nav class="causes" aria-label="Todesursachen Level 2">
+    <h2>Todesursachen · Level 2</h2>
+    <p class="sub" id="listSub"></p>
+    <ul id="causeList"></ul>
+  </nav>
+
+  <main>
+    <div class="card">
+      <div class="head">
+        <div>
+          <div class="slot" data-slot="0">
+            <i class="sw" aria-hidden="true" id="swA" hidden></i>
+            <div class="selectwrap">
+              <label class="sr-only" for="causeSelect0">Todesursache wählen</label>
+              <select id="causeSelect0"></select>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6"/></svg>
+            </div>
+          </div>
+          <div class="slot" data-slot="1" id="slotB" hidden>
+            <i class="sw" aria-hidden="true"></i>
+            <div class="selectwrap">
+              <label class="sr-only" for="causeSelect1">Zweite Todesursache wählen</label>
+              <select id="causeSelect1"></select>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6"/></svg>
+            </div>
+          </div>
+          <button type="button" class="cmp" id="cmpBtn" aria-pressed="false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" id="cmpIcon"><path d="M8 3v10M3 8h10"/></svg>
+            <span id="cmpText">Zweite Todesursache vergleichen</span>
+          </button>
+          <div class="summary" id="summary"></div>
+        </div>
+        <div id="trendHead">
+          <section class="trend" id="trend" aria-label="Todesfälle in Prozent der Bevölkerung">
+            <h3 id="trendTitle"></h3>
+            <div class="key" id="trendKey"></div>
+            <div id="trendBox"><svg id="trendSvg" role="img" aria-label="Liniendiagramm: Todesfälle in Prozent der Bevölkerung pro Jahr"></svg></div>
+          </section>
+        </div>
+      </div>
+
+      <div class="heats" id="heats"></div>
+
+      <div class="timeline">
+        <button type="button" class="play" id="play" aria-label="Animation abspielen" title="Animation abspielen"></button>
+        <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Jahr im Fokus">
+          <div class="rail"></div><div class="fill" id="scrubFill"></div>
+          <div class="thumb" id="scrubThumb"><span class="badge" id="scrubBadge"></span></div>
+        </div>
+      </div>
+
+      <div class="trendmid" id="trendMid"></div>
+
+      <div class="legend" id="legend"></div>
+
+      <details class="tbl">
+        <summary>Daten als Tabelle anzeigen</summary>
+        <div id="tables"></div>
+      </details>
+    </div>
+    <p class="foot">Quelle: Global Burden of Disease Study 2023 (GBD 2023), IHME, Seattle 2024; Bevölkerung: Weltbank (World Development Indicators). Werte sind Modellschätzungen; die 5-Jahres-Altersgruppen sind zu 10er-Gruppen zusammengefasst.</p>
+  </main>
+</div>
+
+<template id="heatTpl">
+  <div class="heatblock">
+    <div class="htitle" hidden><i class="sq" aria-hidden="true"></i><span class="hname"></span></div>
+    <div class="heat">
+      <h3 class="cap">Alter in Jahren</h3>
+      <div class="yaxis"></div>
+      <div class="cells" role="img"></div>
+      <div class="xaxis"></div>
+    </div>
+    <div class="hlegend"></div>
+    <div class="hnote" hidden></div>
+    <div class="hplace" hidden>Wähle in der Liste links oder im Auswahlfeld oben eine zweite Todesursache.</div>
+  </div>
+</template>
+
+<div class="tip" id="tip" role="tooltip"><div id="tipRows"></div><div class="l" id="tipL"></div></div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  'use strict';
+  var D = window.TODESURSACHEN;
+  var Y = D.years, A = D.ages, NY = Y.length, NA = A.length;
+  var REGIONS = { global: 'Global', de: 'Deutschland' };
+  var POP_NAME = { global: 'der Weltbevölkerung', de: 'der Bevölkerung Deutschlands' };
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  var SLOT_VAR = ['var(--colA)', 'var(--colB)'];
+
+  var nf0 = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 });
+  var nf1 = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 1 });
+  var nfSig = new Intl.NumberFormat('de-DE', { maximumSignificantDigits: 3 });
+  function num(v) { return v > 0 && v < 0.5 ? '< 1' : nf0.format(v); }
+  function compact(v) {
+    if (v >= 1e6) return nf1.format(v / 1e6) + ' Mio.';
+    if (v >= 1e4) return nf0.format(v / 1e3) + ' Tsd.';
+    if (v >= 1e3) return nf1.format(v / 1e3) + ' Tsd.';
+    return nf0.format(v);
+  }
+  function pctText(v) { return nfSig.format(v) + ' %'; }
+
+  /* Farbskalen: Schwarz = wenig; Lila (Ursache 1) bzw. Orange (Ursache 2) = viel */
+  function hex2rgb(h) { return [1, 3, 5].map(function (i) { return parseInt(h.substr(i, 2), 16); }); }
+  var RAMPS = [
+    ['#000000', '#150a2b', '#2f1860', '#4b2594', '#6b36c4'],
+    ['#000000', '#2b1106', '#6a2a0a', '#a8460f', '#dd6420']
+  ].map(function (r) { return r.map(hex2rgb); });
+  function ramp(slot, t) {
+    var st = RAMPS[slot];
+    var p = Math.min(Math.max(t, 0), 1) * (st.length - 1);
+    var i = Math.min(Math.floor(p), st.length - 2), f = p - i, a = st[i], b = st[i + 1];
+    return 'rgb(' + [0, 1, 2].map(function (k) { return Math.round(a[k] + (b[k] - a[k]) * f); }).join(',') + ')';
+  }
+
+  /* ---- Daten vorberechnen: Summe je Ursache und Jahr ---- */
+  var TOT = {}, SUM = {};
+  Object.keys(D.data).forEach(function (r) {
+    TOT[r] = {}; SUM[r] = {};
+    Object.keys(D.data[r]).forEach(function (id) {
+      var g = D.data[r][id], t = new Array(NY).fill(0), s = 0;
+      for (var a = 0; a < NA; a++) for (var y = 0; y < NY; y++) { t[y] += g[a][y]; s += g[a][y]; }
+      TOT[r][id] = t; SUM[r][id] = s;
+    });
+  });
+
+  /* causes[0] = zuerst gewählte Ursache (Lila), causes[1] = zweite (Orange) */
+  var state = { region: 'global', causes: [491], compare: false, year: NY - 1 };
+  var views = [];
+
+  function causeName(id) {
+    for (var i = 0; i < D.causes.length; i++) if (D.causes[i].id === id) return D.causes[i].name;
+    return '';
+  }
+  function makeView(id) {
+    var key = String(id);
+    var grid = D.data[state.region][key], totals = TOT[state.region][key], pop = D.population[state.region];
+    var pct = totals.map(function (v, i) { return v / pop[i] * 100; });
+    var max = 0;
+    for (var a = 0; a < NA; a++) for (var y = 0; y < NY; y++) if (grid[a][y] > max) max = grid[a][y];
+    return { id: id, name: causeName(id), grid: grid, totals: totals, pct: pct, max: max, pctMax: Math.max.apply(null, pct) };
+  }
+  function derive() { views = state.causes.map(makeView); }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Spalten-Position in px-genauer calc()-Schreibweise (Zellen haben 1px Abstand) */
+  function colLeft(i) { return 'calc(' + i + ' * (100% - ' + (NY - 1) + 'px) / ' + NY + ' + ' + i + 'px)'; }
+  var colW = 'calc((100% - ' + (NY - 1) + 'px) / ' + NY + ')';
+
+  /* ---- Heatmaps (eine je Todesursache) aufbauen ---- */
+  var heats = [];
+  function makeHeat(slot) {
+    var node = $('heatTpl').content.firstElementChild.cloneNode(true);
+    node.dataset.slot = String(slot);
+    var h = {
+      slot: slot, node: node,
+      htitle: node.querySelector('.htitle'), hname: node.querySelector('.hname'),
+      heat: node.querySelector('.heat'), yaxis: node.querySelector('.yaxis'),
+      cells: node.querySelector('.cells'), xaxis: node.querySelector('.xaxis'),
+      hlegend: node.querySelector('.hlegend'), hnote: node.querySelector('.hnote'),
+      hplace: node.querySelector('.hplace'),
+      cellEls: [], tickEls: []
+    };
+    for (var a = NA - 1; a >= 0; a--) {          // jüngste Gruppe unten, 90+ oben
+      var s = document.createElement('span');
+      s.textContent = A[a];
+      h.yaxis.appendChild(s);
+    }
+    for (var r = 0; r < NA; r++) for (var c = 0; c < NY; c++) {
+      var d = document.createElement('div');
+      d.className = 'cell';
+      d.dataset.a = String(NA - 1 - r);
+      d.dataset.y = String(c);
+      h.cells.appendChild(d);
+      h.cellEls.push(d);
+    }
+    h.colHL = document.createElement('div');
+    h.colHL.className = 'colhl'; h.colHL.style.width = colW;
+    h.focusHL = document.createElement('div');
+    h.focusHL.className = 'focushl'; h.focusHL.style.width = colW;
+    h.cells.appendChild(h.colHL); h.cells.appendChild(h.focusHL);
+    Y.forEach(function (yr, i) {
+      var t = document.createElement('span');
+      t.className = 't';
+      t.textContent = String(yr);
+      t.style.left = ((i + 0.5) / NY * 100) + '%';
+      h.xaxis.appendChild(t);
+      h.tickEls.push(t);
+    });
+
+    h.cells.addEventListener('pointermove', function (e) {
+      var el = e.target.closest('.cell');
+      if (!el) return;
+      var a = Number(el.dataset.a), y = Number(el.dataset.y), two = views.length === 2;
+      setHover(y, a);
+      if (trendHover !== y) { trendHover = y; drawTrend(); }
+      showTip(views.map(function (v, i) {
+        var val = v.grid[a][y], cov = coverage(v)[a];
+        var main = cov === 0 ? 'Keine Daten in der Quelle' : (val > 0 ? num(val) + ' Todesfälle' : 'Keine Todesfälle');
+        var extra = cov === 1 ? 'nur Teil der Altersgruppe in den Daten' : '';
+        return {
+          color: two ? SLOT_VAR[i] : null,
+          v: main,
+          n: [two ? v.name : '', extra].filter(Boolean).join(' · ')
+        };
+      }), 'Alter ' + A[a] + ' · ' + Y[y], e.clientX, e.clientY);
+    });
+    h.cells.addEventListener('pointerleave', function () {
+      clearHover();
+      if (trendHover !== -1) { trendHover = -1; drawTrend(); }
+    });
+    h.cells.addEventListener('click', function (e) {
+      var el = e.target.closest('.cell');
+      if (!el) return;
+      pause();
+      setYear(Number(el.dataset.y));
+    });
+    if (window.ResizeObserver) new ResizeObserver(function () { layoutXAxis(h); }).observe(h.cells);
+
+    $('heats').appendChild(node);
+    return h;
+  }
+  heats.push(makeHeat(0));
+  heats.push(makeHeat(1));
+
+  /* ---- Rendern: alles, was sich bei Region/Ursachen ändert ---- */
+  // Abdeckung der Altersgruppen in den Quelldaten: 0 = keine Werte, 1 = nur ein Teil, 2 = vollständig
+  function coverage(view) { return D.present[state.region][String(view.id)]; }
+
+  function paintCells(h) {
+    var view = views[h.slot];
+    if (!view) return;
+    var cov = coverage(view);
+    for (var r = 0; r < NA; r++) for (var c = 0; c < NY; c++) {
+      var a = NA - 1 - r, val = view.grid[a][c], el = h.cellEls[r * NY + c];
+      el.classList.toggle('nodata', cov[a] === 0);
+      if (cov[a] === 0) { el.classList.remove('zero'); el.style.backgroundColor = ''; }
+      else if (val > 0 && view.max > 0) { el.classList.remove('zero'); el.style.backgroundColor = ramp(h.slot, Math.sqrt(val / view.max)); }
+      else { el.classList.add('zero'); el.style.backgroundColor = ''; }
+    }
+    // Hinweis unter der Heatmap, wenn Altersgruppen in den Daten fehlen
+    var none = [], part = [];
+    cov.forEach(function (n, i) { if (n === 0) none.push(A[i]); else if (n === 1) part.push(A[i]); });
+    var t = '';
+    if (none.length) t += 'In den Daten fehlen Werte für die Altersgruppen ' + none.join(', ') + ' (schraffiert). ';
+    if (part.length) t += 'Für ' + part.join(', ') + ' liegt nur ein Teil der Altersgruppe vor.';
+    h.hnote.textContent = t;
+    h.hnote.hidden = !t;
+  }
+
+  function renderAll() {
+    derive();
+    applyLayout();
+    heats.forEach(paintCells);
+    renderLegend();
+    renderTables();
+    syncControls();
+    heats.forEach(function (h, i) {
+      var v = views[i];
+      if (!v) return;
+      h.hname.textContent = v.name;
+      h.cells.setAttribute('aria-label', 'Heatmap der Todesfälle durch ' + v.name +
+        ' (' + REGIONS[state.region] + '). Die Werte stehen unten in der Tabelle.');
+    });
+    $('trendTitle').textContent = 'Todesfälle pro Jahr in % ' + POP_NAME[state.region];
+    renderKey();
+    renderYear();
+    heats.forEach(layoutXAxis);
+  }
+
+  /* Anordnung: eine Ursache = Heatmap mittig, Diagramm oben rechts;
+     Vergleich = zwei Heatmaps oben nebeneinander, Diagramm darunter in der Mitte */
+  function applyLayout() {
+    var two = state.compare;
+    $('layout').classList.toggle('compare-on', two);
+    heats[1].node.hidden = !two;
+    heats.forEach(function (h, i) {
+      h.htitle.hidden = !two;
+      var waiting = two && i === 1 && !views[i];
+      h.heat.hidden = waiting; h.hlegend.hidden = waiting; h.hplace.hidden = !waiting;
+    });
+    var target = two ? $('trendMid') : $('trendHead'), trendEl = $('trend');
+    if (trendEl.parentNode !== target) target.appendChild(trendEl);
+  }
+
+  /* Auswahlfelder, Vergleichs-Button, Markierung in der Liste */
+  function syncControls() {
+    var two = state.compare;
+    $('slotB').hidden = !two;
+    $('swA').hidden = !two;
+    var sel0 = $('causeSelect0'), sel1 = $('causeSelect1');
+    if (sel0.value !== String(state.causes[0])) sel0.value = String(state.causes[0]);
+    var v1 = state.causes[1] != null ? String(state.causes[1]) : '';
+    if (sel1.value !== v1) sel1.value = v1;
+    $('cmpBtn').setAttribute('aria-pressed', two ? 'true' : 'false');
+    $('cmpText').textContent = two ? 'Vergleich beenden' : 'Zweite Todesursache vergleichen';
+    $('cmpIcon').innerHTML = two ? '<path d="M4 4l8 8M12 4l-8 8"/>' : '<path d="M8 3v10M3 8h10"/>';
+    document.querySelectorAll('.cause').forEach(function (b) {
+      var i = state.causes.indexOf(Number(b.dataset.id));
+      if (i >= 0) { b.dataset.slot = String(i); b.querySelector('.badge').textContent = String(i + 1); }
+      else delete b.dataset.slot;
+      b.setAttribute('aria-current', i >= 0 ? 'true' : 'false');
+    });
+  }
+
+  function renderKey() {
+    var k = $('trendKey');
+    k.textContent = '';
+    function item(cls, color, text) {
+      var sp = document.createElement('span');
+      var i = document.createElement('i');
+      i.className = cls;
+      if (color) i.style.background = color;
+      sp.appendChild(i);
+      sp.appendChild(document.createTextNode(text));
+      k.appendChild(sp);
+    }
+    if (views.length === 2) views.forEach(function (v, i) { item('ln', SLOT_VAR[i], v.name); });
+    item('dot', null, 'Höchstwert bis zum gewählten Jahr');
+  }
+
+  /* ---- Rendern: alles, was am Jahr im Fokus hängt ---- */
+  function renderYear() {
+    var yi = state.year, yr = Y[yi];
+
+    heats.forEach(function (h) {
+      for (var r = 0; r < NA; r++) for (var c = 0; c < NY; c++) {
+        h.cellEls[r * NY + c].classList.toggle('future', c > yi);
+      }
+      h.focusHL.style.left = colLeft(yi);
+    });
+
+    // Regler
+    var half = 'calc(' + colLeft(yi) + ' + ' + colW + ' / 2)';
+    $('scrubThumb').style.left = half;
+    $('scrubThumb').style.width = colW;
+    $('scrubFill').style.width = half;
+    $('scrubBadge').textContent = String(yr);
+    var sc = $('scrub');
+    sc.setAttribute('aria-valuemin', String(Y[0]));
+    sc.setAttribute('aria-valuemax', String(Y[NY - 1]));
+    sc.setAttribute('aria-valuenow', String(yr));
+    sc.setAttribute('aria-valuetext', String(yr));
+
+    // Liste links: Anzahl im gewählten Jahr
+    $('listSub').textContent = 'Anzahl Todesfälle im Jahr ' + yr;
+    document.querySelectorAll('.cause').forEach(function (b) {
+      b.querySelector('.n').textContent = compact(TOT[state.region][b.dataset.id][yi]);
+    });
+
+    renderSummary();
+    drawTrend();
+  }
+
+  function renderSummary() {
+    var s = $('summary'), yi = state.year, yr = Y[yi];
+    s.textContent = '';
+    function bold(txt) { var b = document.createElement('b'); b.textContent = txt; return b; }
+    function line(slot, view, withName) {
+      var p = document.createElement('div');
+      p.className = 'line';
+      if (slot != null) {
+        var sq = document.createElement('i'); sq.className = 'sq'; sq.style.background = SLOT_VAR[slot];
+        p.appendChild(sq);
+      }
+      var t = document.createElement('span');
+      if (withName) t.appendChild(document.createTextNode(view.name + ': '));
+      else t.appendChild(document.createTextNode(REGIONS[state.region] + ' · ' + yr + ': '));
+      t.appendChild(bold(num(view.totals[yi]) + ' Todesfälle'));
+      t.appendChild(document.createTextNode(' · '));
+      t.appendChild(bold(pctText(view.pct[yi])));
+      t.appendChild(document.createTextNode(' ' + POP_NAME[state.region]));
+      p.appendChild(t);
+      s.appendChild(p);
+    }
+    if (views.length === 2) {
+      var head = document.createElement('div');
+      head.textContent = REGIONS[state.region] + ' · ' + yr;
+      s.appendChild(head);
+      views.forEach(function (v, i) { line(i, v, true); });
+    } else if (state.compare) {
+      line(0, views[0], false);
+      var hint = document.createElement('div');
+      hint.className = 'hint';
+      hint.textContent = 'Wähle jetzt in der Liste oder im Auswahlfeld eine zweite Todesursache.';
+      s.appendChild(hint);
+    } else {
+      line(null, views[0], false);
+    }
+  }
+
+  function rampBox(slot, view) {
+    var box = document.createElement('div'); box.className = 'rampbox';
+    var rp = document.createElement('div'); rp.className = 'ramp';
+    var bar = document.createElement('div'); bar.className = 'bar';
+    var st = RAMPS[slot], g = [];
+    for (var i = 0; i < st.length; i++) {
+      var p = i / (st.length - 1);
+      g.push(ramp(slot, p) + ' ' + (p * 100).toFixed(1) + '%');
+    }
+    bar.style.background = 'linear-gradient(to right,' + g.join(',') + ')';
+    rp.appendChild(bar);
+    // Wurzelskala: m/16, m/4, m liegen bei 25 %, 50 %, 100 %
+    [[0, 0], [0.25, view.max / 16], [0.5, view.max / 4], [1, view.max]].forEach(function (q) {
+      var t = document.createElement('span');
+      t.className = 'tick';
+      t.style.left = (q[0] * 100) + '%';
+      t.style.transform = q[0] === 0 ? 'none' : (q[0] === 1 ? 'translateX(-100%)' : 'translateX(-50%)');
+      t.textContent = q[1] === 0 ? '0' : compact(q[1]);
+      rp.appendChild(t);
+    });
+    box.appendChild(rp);
+    return box;
+  }
+
+  function renderLegend() {
+    var lg = $('legend'), two = state.compare;
+    lg.textContent = '';
+    heats.forEach(function (h) { h.hlegend.textContent = ''; });
+    if (two) {
+      views.forEach(function (v, i) { heats[i].hlegend.appendChild(rampBox(i, v)); });
+    } else {
+      lg.appendChild(rampBox(0, views[0]));
+    }
+    var z = document.createElement('span'); z.className = 'zero';
+    var zi = document.createElement('i'); zi.className = 'sw0';
+    z.appendChild(zi); z.appendChild(document.createTextNode('keine Todesfälle'));
+    lg.appendChild(z);
+    if (views.some(function (v) { return coverage(v).indexOf(0) >= 0; })) {
+      var nd = document.createElement('span'); nd.className = 'nd';
+      var ni = document.createElement('i'); ni.className = 'swnd';
+      nd.appendChild(ni); nd.appendChild(document.createTextNode('keine Daten in der Quelle'));
+      lg.appendChild(nd);
+    }
+    var note = document.createElement('span'); note.className = 'note';
+    note.textContent = two
+      ? 'Schwarz = wenig, Lila bzw. Orange = viel. Jede Heatmap hat ihre eigene Farbskala (Wurzel der Anzahl); das Liniendiagramm vergleicht beide auf einer gemeinsamen Achse.'
+      : 'Schwarz = wenig, Lila = viel. Die Farbe folgt der Wurzel der Anzahl, damit auch kleine Werte sichtbar bleiben.';
+    lg.appendChild(note);
+  }
+
+  function renderTables() {
+    var box = $('tables');
+    var html = '';
+    views.forEach(function () {
+      html += '<h4></h4>';
+      html += '<div class="tblscroll"><table></table></div>';
+    });
+    box.innerHTML = html;
+    var tables = box.querySelectorAll('table'), heads = box.querySelectorAll('h4');
+    views.forEach(function (v, slot) {
+      var h = '<thead><tr><th scope="col" style="text-align:left">Jahr</th>';
+      A.forEach(function (a) { h += '<th scope="col">' + a + '</th>'; });
+      h += '<th scope="col">Gesamt</th><th scope="col">in % ' + POP_NAME[state.region] + '</th></tr></thead><tbody>';
+      for (var y = 0; y < NY; y++) {
+        var tds = '';
+        for (var a = 0; a < NA; a++) tds += '<td>' + num(v.grid[a][y]) + '</td>';
+        h += '<tr><th scope="row">' + Y[y] + '</th>' + tds + '<td><b>' + num(v.totals[y]) + '</b></td><td>' + pctText(v.pct[y]) + '</td></tr>';
+      }
+      tables[slot].innerHTML = h + '</tbody>';
+      heads[slot].textContent = v.name + ' · ' + REGIONS[state.region];
+      heads[slot].style.display = views.length > 1 ? '' : 'none';
+    });
+  }
+
+  /* ---- Liniendiagramm (Todesfälle in % der Bevölkerung) ---- */
+  var trendHover = -1;
+  function svgEl(name, attrs, parent) {
+    var n = document.createElementNS(SVG_NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function niceMax(v) {
+    if (!(v > 0)) return 1;
+    var e = Math.pow(10, Math.floor(Math.log10(v))), f = v / e;
+    var steps = [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+    for (var i = 0; i < steps.length; i++) if (steps[i] >= f - 1e-9) return steps[i] * e;
+    return 10 * e;
+  }
+  function decimalsFor(v) {
+    for (var d = 0; d <= 6; d++) {
+      var p = Math.pow(10, d);
+      if (Math.abs(Math.round(v * p) / p - v) < v * 1e-6) return d;
+    }
+    return 6;
+  }
+
+  var trendBox = $('trendBox'), trendSvg = $('trendSvg');
+  var trendGeom = null;
+
+  function drawTrend() {
+    var W = trendBox.clientWidth;
+    if (!W || !views.length) return;
+    var H = state.compare ? 200 : 150, m = { l: 52, r: 16, t: 14, b: 24 };
+    var pw = W - m.l - m.r, ph = H - m.t - m.b;
+    trendSvg.textContent = '';
+    trendSvg.setAttribute('width', W); trendSvg.setAttribute('height', H);
+    trendSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    var ymax = niceMax(Math.max.apply(null, views.map(function (v) { return v.pctMax; })));
+    var dec = decimalsFor(ymax / 2);
+    var nfTick = new Intl.NumberFormat('de-DE', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    function X(i) { return m.l + i / (NY - 1) * pw; }
+    function P(v) { return m.t + (1 - v / ymax) * ph; }
+    trendGeom = { l: m.l, pw: pw };
+
+    [0, 0.5, 1].forEach(function (f) {
+      var y = P(ymax * f);
+      svgEl('line', { x1: m.l, x2: W - m.r, y1: y, y2: y, 'class': 'gl' }, trendSvg);
+      var t = svgEl('text', { x: m.l - 8, y: y + 4, 'text-anchor': 'end' }, trendSvg);
+      t.textContent = nfTick.format(ymax * f) + ' %';
+    });
+    var colPx = pw / (NY - 1), xstep = colPx * 5 >= 40 ? 5 : 10;
+    var xt = [];
+    for (var yy = Y[0]; yy <= Y[NY - 1]; yy += xstep) xt.push(yy);
+    if (xt[xt.length - 1] !== Y[NY - 1] && (Y[NY - 1] - xt[xt.length - 1]) * colPx >= 40) xt.push(Y[NY - 1]);
+    xt.forEach(function (yr) {
+      var t = svgEl('text', { x: X(Y.indexOf(yr)), y: H - 8, 'text-anchor': 'middle' }, trendSvg);
+      t.textContent = String(yr);
+    });
+
+    var yi = state.year, marks = [];
+    views.forEach(function (v, slot) {
+      var pts = [], fut = [];
+      for (var i = 0; i < NY; i++) {
+        var pt = X(i).toFixed(1) + ',' + P(v.pct[i]).toFixed(1);
+        if (i <= yi) pts.push(pt);
+        if (i >= yi) fut.push(pt);
+      }
+      if (fut.length > 1) svgEl('polyline', { points: fut.join(' '), 'class': 'future s' + slot }, trendSvg);
+      if (pts.length > 1) svgEl('polyline', { points: pts.join(' '), 'class': 'line s' + slot }, trendSvg);
+      var pk = 0;
+      for (var j = 1; j <= yi; j++) if (v.pct[j] > v.pct[pk]) pk = j;
+      marks.push({ slot: slot, pk: pk, fx: X(yi), fy: P(v.pct[yi]), text: pctText(v.pct[yi]) });
+    });
+
+    // Höchstwerte, dann Punkte im Fokus-Jahr
+    marks.forEach(function (mk) {
+      if (mk.pk !== yi) svgEl('circle', { cx: X(mk.pk), cy: P(views[mk.slot].pct[mk.pk]), r: 4.5, fill: 'var(--peak)', 'class': 'pt' }, trendSvg);
+    });
+    marks.forEach(function (mk) {
+      var c = svgEl('circle', { cx: mk.fx, cy: mk.fy, r: 5, fill: SLOT_VAR[mk.slot], 'class': 'pt' }, trendSvg);
+      if (mk.pk === yi) { c.setAttribute('stroke', 'var(--peak)'); c.setAttribute('stroke-width', '3'); }
+    });
+    // Beschriftungen, bei zwei Linien gegeneinander versetzt
+    var ly = marks.map(function (mk) { return Math.max(mk.fy - 9, 11); });
+    if (marks.length === 2 && Math.abs(ly[0] - ly[1]) < 13) {
+      var top = ly[0] <= ly[1] ? 0 : 1;      // die höher liegende Beschriftung bleibt, die andere rückt darunter
+      ly[1 - top] = ly[top] + 13;
+    }
+    marks.forEach(function (mk, i) {
+      var right = mk.fx > W - 70;
+      var lbl = svgEl('text', { x: mk.fx + (right ? -9 : 9), y: ly[i], 'text-anchor': right ? 'end' : 'start', 'class': 'lbl' }, trendSvg);
+      lbl.textContent = mk.text;
+    });
+
+    if (trendHover >= 0) {
+      var hx = X(trendHover);
+      svgEl('line', { x1: hx, x2: hx, y1: m.t, y2: m.t + ph, 'class': 'cross' }, trendSvg);
+      views.forEach(function (v, slot) {
+        svgEl('circle', { cx: hx, cy: P(v.pct[trendHover]), r: 4, fill: SLOT_VAR[slot], 'class': 'pt' }, trendSvg);
+      });
+    }
+  }
+
+  function trendIndex(e) {
+    var rect = trendSvg.getBoundingClientRect();
+    var i = Math.round((e.clientX - rect.left - trendGeom.l) / trendGeom.pw * (NY - 1));
+    return Math.min(NY - 1, Math.max(0, i));
+  }
+  trendSvg.addEventListener('pointermove', function (e) {
+    if (!trendGeom) return;
+    var i = trendIndex(e), two = views.length === 2;
+    trendHover = i;
+    setHover(i, null);
+    showTip(views.map(function (v, slot) {
+      return { color: two ? SLOT_VAR[slot] : null, v: pctText(v.pct[i]), n: (two ? v.name + ' · ' : '') + num(v.totals[i]) + ' Todesfälle' };
+    }), String(Y[i]) + ' · in % ' + POP_NAME[state.region], e.clientX, e.clientY);
+    drawTrend();
+  });
+  trendSvg.addEventListener('pointerleave', function () { trendHover = -1; clearHover(); drawTrend(); });
+  trendSvg.addEventListener('click', function (e) {
+    if (!trendGeom) return;
+    pause();
+    setYear(trendIndex(e));
+  });
+
+  /* ---- Liste links, Auswahlfelder, Vergleich, Region ---- */
+  function buildCauseList() {
+    var sorted = D.causes.slice().sort(function (p, q) {
+      return SUM[state.region][String(q.id)] - SUM[state.region][String(p.id)];
+    });
+    var ul = $('causeList'), sel0 = $('causeSelect0'), sel1 = $('causeSelect1');
+    ul.textContent = ''; sel0.textContent = ''; sel1.textContent = '';
+    var ph = document.createElement('option');
+    ph.value = ''; ph.textContent = 'Zweite Todesursache wählen …';
+    sel1.appendChild(ph);
+    sorted.forEach(function (c) {
+      var li = document.createElement('li');
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'cause'; b.dataset.id = String(c.id);
+      var name = document.createElement('span'); name.className = 'name'; name.textContent = c.name;
+      var badge = document.createElement('span'); badge.className = 'badge';
+      var n = document.createElement('span'); n.className = 'n';
+      b.appendChild(name); b.appendChild(badge); b.appendChild(n);
+      li.appendChild(b); ul.appendChild(li);
+
+      [sel0, sel1].forEach(function (sel) {
+        var o = document.createElement('option');
+        o.value = String(c.id); o.textContent = c.name;
+        sel.appendChild(o);
+      });
+    });
+  }
+
+  // Klick in der Liste: ohne Vergleich wählt man die Ursache, im Vergleich die zweite
+  $('causeList').addEventListener('click', function (e) {
+    var b = e.target.closest('.cause');
+    if (!b) return;
+    var id = Number(b.dataset.id), cs = state.causes;
+    if (!state.compare) {
+      state.causes = [id];
+    } else {
+      var i = cs.indexOf(id);
+      if (i === 1) state.causes = [cs[0]];            // zweite Ursache wieder abwählen
+      else if (i === 0) state.causes = cs.length === 2 ? [cs[1]] : cs; // erste abwählen: zweite rückt nach
+      else state.causes = [cs[0], id];                // neue zweite Ursache
+    }
+    renderAll();
+  });
+  $('causeSelect0').addEventListener('change', function (e) {
+    var id = Number(e.target.value), cs = state.causes;
+    state.causes = cs.length === 2 && cs[1] === id ? [id, cs[0]] : (cs.length === 2 ? [id, cs[1]] : [id]);
+    renderAll();
+  });
+  $('causeSelect1').addEventListener('change', function (e) {
+    var cs = state.causes, id = e.target.value === '' ? null : Number(e.target.value);
+    state.causes = id === null || id === cs[0] ? [cs[0]] : [cs[0], id];
+    renderAll();
+  });
+  $('cmpBtn').addEventListener('click', function () {
+    state.compare = !state.compare;
+    if (!state.compare) state.causes = [state.causes[0]];
+    trendHover = -1;
+    clearHover();
+    renderAll();
+  });
+  document.querySelector('.region').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-region]');
+    if (!b || b.dataset.region === state.region) return;
+    state.region = b.dataset.region;
+    document.querySelectorAll('.region button').forEach(function (x) {
+      x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+    });
+    trendHover = -1;
+    clearHover();
+    buildCauseList();
+    renderAll();
+  });
+
+  /* ---- Hover / Tooltip ---- */
+  var tip = $('tip'), tipRows = $('tipRows'), tipL = $('tipL');
+  var hoverEls = [];
+
+  // Spalte (und ggf. Zelle) in allen sichtbaren Heatmaps hervorheben
+  function setHover(yi, a) {
+    hoverEls.forEach(function (el) { el.classList.remove('hl'); });
+    hoverEls = [];
+    heats.forEach(function (h) {
+      if (yi >= 0) { h.colHL.style.display = 'block'; h.colHL.style.left = colLeft(yi); }
+      else h.colHL.style.display = 'none';
+      if (yi >= 0 && a != null) {
+        var el = h.cellEls[(NA - 1 - a) * NY + yi];
+        el.classList.add('hl');
+        hoverEls.push(el);
+      }
+    });
+  }
+  function clearHover() { setHover(-1, null); tip.style.display = 'none'; }
+
+  // rows: [{color, v, n}] – Wert zuerst, Name danach
+  function showTip(rows, label, x, y) {
+    tipRows.textContent = '';
+    rows.forEach(function (r) {
+      var row = document.createElement('div'); row.className = 'row';
+      if (r.color) { var sq = document.createElement('i'); sq.style.background = r.color; row.appendChild(sq); }
+      var v = document.createElement('span'); v.className = 'v'; v.textContent = r.v; row.appendChild(v);
+      if (r.n) { var n = document.createElement('span'); n.className = 'n'; n.textContent = r.n; row.appendChild(n); }
+      tipRows.appendChild(row);
+    });
+    tipL.textContent = label;
+    tip.style.display = 'block';
+    var w = tip.offsetWidth, h = tip.offsetHeight, pad = 14;
+    var left = x + pad, top = y + pad;
+    if (left + w > window.innerWidth - 8) left = x - w - pad;
+    if (top + h > window.innerHeight - 8) top = y - h - pad;
+    tip.style.left = Math.max(8, left) + 'px';
+    tip.style.top = Math.max(8, top) + 'px';
+  }
+
+  /* ---- Jahr-Regler + Animation ---- */
+  var timer = null;
+  var PLAY_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>';
+  var PAUSE_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>';
+  var playBtn = $('play');
+
+  function setYear(i) {
+    i = Math.min(NY - 1, Math.max(0, i));
+    if (i === state.year) return;
+    state.year = i;
+    renderYear();
+  }
+  function setPlayUi(on) {
+    playBtn.innerHTML = on ? PAUSE_ICON : PLAY_ICON;
+    var label = on ? 'Animation anhalten' : 'Animation abspielen';
+    playBtn.setAttribute('aria-label', label);
+    playBtn.title = label;
+  }
+  function pause() {
+    if (timer) { clearInterval(timer); timer = null; }
+    setPlayUi(false);
+  }
+  function play() {
+    if (state.year >= NY - 1) { state.year = 0; renderYear(); }
+    setPlayUi(true);
+    timer = setInterval(function () {
+      if (state.year >= NY - 1) { pause(); return; }
+      setYear(state.year + 1);
+    }, 260);
+  }
+  playBtn.addEventListener('click', function () { if (timer) pause(); else play(); });
+  setPlayUi(false);
+
+  var scrubEl = $('scrub'), dragging = false;
+  function scrubYear(e) {
+    var rect = scrubEl.getBoundingClientRect();
+    return Math.floor((e.clientX - rect.left) / rect.width * NY);
+  }
+  scrubEl.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    pause();
+    scrubEl.setPointerCapture(e.pointerId);
+    setYear(scrubYear(e));
+  });
+  scrubEl.addEventListener('pointermove', function (e) { if (dragging) setYear(scrubYear(e)); });
+  scrubEl.addEventListener('pointerup', function () { dragging = false; });
+  scrubEl.addEventListener('pointercancel', function () { dragging = false; });
+  scrubEl.addEventListener('keydown', function (e) {
+    var step = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1, PageDown: -5, PageUp: 5 }[e.key];
+    if (e.key === 'Home') setYear(0);
+    else if (e.key === 'End') setYear(NY - 1);
+    else if (step) setYear(state.year + step);
+    else return;
+    pause();
+    e.preventDefault();
+  });
+
+  /* ---- Jahreszahlen je nach Breite ausdünnen ---- */
+  function layoutXAxis(h) {
+    var w = h.cells.clientWidth;
+    if (!w) return;
+    var cw = w / NY, minGap = 36;
+    var step = cw * 5 >= minGap ? 5 : 10;
+    var lastPos = -Infinity;
+    h.tickEls.forEach(function (t, i) {
+      var show = (Y[i] - Y[0]) % step === 0;
+      if (show) lastPos = (i + 0.5) * cw;
+      t.classList.toggle('off', !show);
+    });
+    var last = NY - 1;
+    if (h.tickEls[last].classList.contains('off') && (last + 0.5) * cw - lastPos >= minGap) {
+      h.tickEls[last].classList.remove('off');
+    }
+  }
+  if (window.ResizeObserver) new ResizeObserver(drawTrend).observe(trendBox);
+  window.addEventListener('resize', function () { heats.forEach(layoutXAxis); drawTrend(); });
+
+  buildCauseList();
+  renderAll();
+})();
+</script>
+</body>
+</html>

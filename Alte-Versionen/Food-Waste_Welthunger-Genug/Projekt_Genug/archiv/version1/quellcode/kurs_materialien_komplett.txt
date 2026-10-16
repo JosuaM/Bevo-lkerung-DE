@@ -1,0 +1,3360 @@
+
+FILE day_1 (introducion & objects)\day1_A (no objects)\basic objetc.pdf
+PAGE 1
+dr. prof. franklin hernández-castro
+function draw() {
+background(15);
+o1.display();
+o2.display();
+o3.display();
+fill (50);
+text("frameRate: " + Math.round(frameRate()), 20, width-20 );
+text("click to setup", 20, height-8 );
+}
+function mouseReleased(){
+setup();
+}
+function setup() {
+createCanvas(400, 400);
+colorMode (HSB, 360, 100, 100);
+o1 = new MyObject ( random (width), random(height) );
+o2 = new MyObject ( random (width), random(height) );
+o3 = new MyObject ( random (width), random(height) );
+}
+main
+// declarations
+setup ( )
+// assignation
+draw ( )
+// events
+let o1, o2, o3;
+display () {
+fill(this.myColor);
+noStroke();
+ellipse (this.myX, this.myY,
+this.mySize, this.mySize);
+}
+constructor (_x, _y){
+this.myX = _x;
+this.myY = _y;
+this.mySize = random(10,25);
+this.myColor = color(20, random(100),
+random(50,90));
+}
+MyObject
+// constructor/assignation
+# metods
+
+FILE day_1 (introducion & objects)\day1_A (no objects)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_1 (objects)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_1 (introducion & objects)\day1_A (no objects)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+let myX, myY, mySize;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100);
+    myX = random (width);
+    myY = random (height);
+    mySize = random (10,50);
+    myColor = color(20, random(100), random(70,100));
+}
+
+function draw() {
+    background(15);
+    fill(myColor);
+    noStroke();
+    ellipse (myX, myY, mySize, mySize);
+    fill (50);
+    text("click to setup", 20, height-8);
+}
+
+function mouseReleased(){
+    setup();
+}
+
+FILE day_1 (introducion & objects)\day1_B (objects)\basic objetc.pdf
+PAGE 1
+dr. prof. franklin hernández-castro
+function draw() {
+background(15);
+o1.display();
+o2.display();
+o3.display();
+fill (50);
+text("frameRate: " + Math.round(frameRate()), 20, width-20 );
+text("click to setup", 20, height-8 );
+}
+function mouseReleased(){
+setup();
+}
+function setup() {
+createCanvas(400, 400);
+colorMode (HSB, 360, 100, 100);
+o1 = new MyObject ( random (width), random(height) );
+o2 = new MyObject ( random (width), random(height) );
+o3 = new MyObject ( random (width), random(height) );
+}
+main
+// declarations
+setup ( )
+// assignation
+draw ( )
+// events
+let o1, o2, o3;
+display () {
+fill(this.myColor);
+noStroke();
+ellipse (this.myX, this.myY,
+this.mySize, this.mySize);
+}
+constructor (_x, _y){
+this.myX = _x;
+this.myY = _y;
+this.mySize = random(10,25);
+this.myColor = color(20, random(100),
+random(50,90));
+}
+MyObject
+// constructor/assignation
+# metods
+
+FILE day_1 (introducion & objects)\day1_B (objects)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_1 (objects)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Object.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_1 (introducion & objects)\day1_B (objects)\Object.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+class MyObject {
+
+    constructor (_x, _y){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = random(10,25);
+        this.myColor = color(20, random(100), random(50,90));
+    }
+
+
+    display () {
+        fill(this.myColor);
+        noStroke();
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+    }
+
+}
+
+FILE day_1 (introducion & objects)\day1_B (objects)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+let o1, o2, o3;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100);
+    o1 = new MyObject ( random (width), random(height) );
+    o2 = new MyObject ( random (width), random(height) );
+    o3 = new MyObject ( random (width), random(height) );
+}
+
+function draw() {
+    background(15);
+    o1.display();
+    o2.display();
+    o3.display();
+    fill (50);
+    text("click to setup", 20, height-8);
+}
+
+function mouseReleased(){
+    setup();
+}
+
+FILE day_1 (introducion & objects)\day1_C (array)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_2 (array)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Object.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_1 (introducion & objects)\day1_C (array)\Object.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+class MyObject {
+    constructor (_x, _y){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = random(5,15);
+        this.myColor = color(20, random(100), random(50,90));
+    }
+
+
+    display () {
+        fill(this.myColor);
+        noStroke();
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+    }
+
+}
+
+FILE day_1 (introducion & objects)\day1_C (array)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+let myObjects = [];
+let numObjects = 50;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i] = new MyObject ( random (width), random(height) );
+    }
+}
+
+function draw() {
+    background(15);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].display();
+    }
+
+    fill (50);
+    text("click to setup", 20, height-8);
+}
+
+function mouseReleased(){
+    setup();
+}
+
+FILE day_1 (introducion & objects)\day1_D (variable array)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_3 (variable array)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Object.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_1 (introducion & objects)\day1_D (variable array)\Object.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+class MyObject {
+    constructor (_x, _y){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = random(5,15);
+        this.myColor = color(20, random(100), random(50,90));
+    }
+
+
+    display () {
+        fill(this.myColor);
+        noStroke();
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+    }
+
+}
+
+FILE day_1 (introducion & objects)\day1_D (variable array)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+let myObjects;
+let numObjects;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100);
+    myObjects = [];
+    numObjects = 0;
+}
+
+function draw() {
+    background(15);
+    for (let i = 0; i < myObjects.length; i++) {
+        myObjects[i].display();
+    }
+    fill (50);
+    text("frameRate:   " + Math.round(frameRate()), 20, width-20);
+    text("click to setup", 20, height-8);
+}
+
+function mouseReleased(){
+    setup();
+}
+
+// Add a new object into the System
+function mouseMoved() {
+    myObjects[numObjects] = new MyObject ( mouseX, mouseY );
+    numObjects++;
+}
+
+FILE day_1 (introducion & objects)\day_1_1_administrativos WS2026.pdf
+PAGE 1
+3-dimensionale Grundlagen im medialem Raumprof. dr. franklin hernández-castro 
+www.skizata.com (v ws2026)
+PAGE 2
+1 week 3 weeks
+theory project
+presentation
+consultancylectures & practices
+timeline
+PAGE 3
+
+PAGE 4
+DIKW hierarchy 
+Information Data Knowledge Wisdom 
+PAGE 5
+historical introduction
+PAGE 6
+scotland 1801
+PAGE 7
+william playfair’s circles | (1801)
+
+PAGE 8
+william playfair’s circles | (1801)
+GDP Gross domestic product
+TAX
+rate
+population
+
+PAGE 9
+dijon 1814
+PAGE 10
+monsieur minard, napoleon's mapmaker, | (1814)
+stroke weight (422000->10000)
+temperature
+color means direction of travel
+PAGE 11
+monsieur minard, napoleon's mapmaker, | (1814)
+berezina river
+PAGE 12
+london 1845
+PAGE 13
+dr. john snow | (1845)
+water taps
+PAGE 14
+cambridge 1973
+PAGE 15
+anscombe's quartet | (1973)
+Observation x1 y1 x2y2 x3 y3 x4y4
+1 108.04 109.14 107 .46 86.58
+2 86.95 88.14 86.77 85.76
+3 137 .58 138.74 1312.74 87.7 1
+4 9 8.81 98.77 9 7.1 1 88.84
+5 118.33 119.26 117. 8 1 88.47
+6 149.96 148.1 148.84 87. 0 4
+7 6 7. 24 66.13 66.08 85.25
+8 44.26 4 3.1 45.39 1912.5
+9 1210.84 129.13 128.15 85.56
+10 74.82 77. 2 6 76.42 87. 91
+11 55.68 54.74 55.73 86.89
+statistics
+variance 11 11 11 11 11 11 11 11
+mean 9.007 .50 9.007 .50 9.007 .50 9.007 .50
+standard deviation3.161.94 3.161.94 3.161.94 3.161.94
+correlation 0.82 0.82 0.82 0.82
+
+PAGE 16
+anscombe's Data | (1973)
+
+PAGE 17
+prof. dr. franklin hernández-castro 
+www.skizata.com (v ws2026)
+
+FILE day_1 (introducion & objects)\day_1_2_OOP_ws26.pdf
+PAGE 1
+object-oriented programming (OOP)  
+& CT As
+dr. prof. franklin hernández.castro
+H                       f     G 
+Hochschule für Gestaltung 
+Schwäbisch Gmünd
+tecnológico  
+de costa rica
+PAGE 2
+outgoing position
+Life Expectancy by Country, 2024
+source word bank
+PAGE 3
+outgoing position
+Life Expectancy by Country, 2022-24
+source word bank
+PAGE 4
+outgoing position
+
+PAGE 5
+outgoing position
+• we need to visualize hundreds of elements. 
+• each element has its own position, size, color, data, and behavior. 
+• if we manage all these properties using separate variables and arrays, the code quickly becomes 
+difficult to understand, modify, and reuse.
+PAGE 6
+object-oriented programming principles
+• encapsulation 
+• abstraction 
+• inheritance 
+• polymorphism
+PAGE 7
+object-oriented programming advantages
+• scope 
+• maintenance 
+• team work 
+• updates
+PAGE 8
+o.o.p. concept
+cat
+color
+name
+mood
+hungry
+energie
+miau ( )
+eat ( )
+sleep ( )
+play ( )
+state variables
+functions or methods
+eat ( )
+mood ++
+hungry  - -
+energie ++
+miau ( )
+sleep ( )
+hungry  ++
+energie ++
+play ( )
+mood ++
+energie ++
+miau ( )
+miau ( )
+eneldo minino gruñónrobert
+say miaow
+PAGE 9
+data + status + behavior
+main
+// declarations
+let o1, o2, o3;
+// assignations 
+function setup( ) { 
+ createCanvas(400, 400); 
+ colorMode (HSB, 360, 100, 100); 
+ o1 = new MyObject ( random (width), random(height) ); 
+ o2 = new MyObject ( random (width), random(height) ); 
+ o3 = new MyObject ( random (width), random(height) ); 
+}
+// loop 
+function draw( ) { 
+ background(15); 
+ o1.display(); 
+ o2.display(); 
+ o3.display(); 
+ fill (50); 
+ text("frameRate: " + Math.round(frameRate()), 20, width-20); 
+ text("click to setup", 20, height-8); 
+}
+// events 
+function mouseReleased( ){ 
+ setup( ); 
+}
+myObject
+// constructor/assignation
+constructor (_x, _y){ 
+ this.myX = _x; 
+ this.myY = _y; 
+ this.mySize = random(10,25); 
+ this.myColor = color(20, random(100), 
+ random(50,90)); 
+}
+# metods
+display () { 
+ fill(this.myColor); 
+ noStroke(); 
+ ellipse (this.myX, this.myY, 
+ this.mySize, this.mySize); 
+}
+
+
+FILE day_1 (introducion & objects)\oop situations.pdf
+PAGE 1
+oop
+only one thing a few things
+many objects
+it is not known how manyit is known how many
+draw and update the thing
+before setup()
+in setup()
+in draw()
+assign the variables, with their 
+own name, to objects created 
+for that purpose
+use a “for” loop to update and 
+draw the objects that are in the 
+array
+write the class that corresponds 
+to the required object
+declare the objects to be used 
+with a proper name each 
+write the class that corresponds 
+to the required object
+declare the array and the 
+number of objects that will be 
+needed
+assign the array with the 
+number of objects it will 
+contain
+use a “for” loop to create the 
+objects and fill the array with 
+them
+write the class that corresponds 
+to the required object
+declare the empty array and the 
+variable that will contain the 
+number of objects that the array 
+will contain at any given time
+update and draw the objects 
+each by its own name
+use a “for” loop to update and 
+draw the objects that are in the 
+array
+assign the empty array and 
+the number of objects to 0
+declation and assignment of objects according to conditions
+dr. prof. franklin hernández-castro
+nothing
+nothing
+
+FILE day_2 (events)\day2_A (hover)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_4 (over)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Object.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_2 (events)\day2_A (hover)\Object.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+class MyObject {
+    constructor (_x, _y){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = random(5,15);
+        this.myColor = color(20, random(100), random(50,90));
+        this.hover = false;
+    }
+
+
+    display () {
+        let d = dist(mouseX, mouseY, this.myX, this.myY);
+        this.hover = d < this.mySize/2;
+
+        stroke(0,0,100);
+        if (this.hover) strokeWeight (2);
+        else noStroke();
+
+        fill(this.myColor);
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+        noStroke();
+    }
+
+}  // end of class
+
+FILE day_2 (events)\day2_A (hover)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+let myObjects = [];
+let numObjects = 10;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i] = new MyObject ( random (width), random(height) );;
+    }
+}
+
+function draw() {
+    background(15);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].display();
+    }
+
+    fill (50);
+    text("click to setup", 20, height-8);
+}
+
+function mouseReleased(){
+    setup();
+}
+
+
+FILE day_2 (events)\day2_B (selecting)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_5 (selecting)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Object.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_2 (events)\day2_B (selecting)\Object.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+class MyObject {
+    constructor (_x, _y){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = random(5,15);
+        this.myColor = color(20, random(100), random(50,90));
+        this.hover = false;
+        this.selected = false;
+    }
+
+
+    display () {
+        this.hover = mouseX > this.myX - this.mySize / 2 && mouseX < this.myX + this.mySize / 2 &&
+            mouseY > this.myY - this.mySize / 2 && mouseY < this.myY + this.mySize / 2;
+
+        stroke(0,0,100);
+        if (this.hover) strokeWeight (2);
+        else noStroke();
+
+        fill(this.myColor);
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+        noStroke();
+
+        // selected
+        if (this.selected) {
+            noFill();
+            stroke (0, 0, 100, 0.3 );
+            strokeWeight (3);
+            ellipse (this.myX, this.myY, this.mySize*3, this.mySize*3);
+        }
+    }
+
+
+    releasedOverMe () {
+        if (this.hover) this.selected = !this.selected;
+    }
+
+}  // end of class
+
+FILE day_2 (events)\day2_B (selecting)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+let myObjects = [];
+let numObjects = 10;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100, 1);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i] = new MyObject ( random (width), random(height) );
+    }
+}
+
+function draw() {
+    background(15);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].display();
+    }
+
+    fill (50);
+    noStroke();
+    text("click to select", 20, height-8);
+}
+
+function mouseReleased(){
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].releasedOverMe();
+    }
+}
+
+FILE day_2 (events)\day2_C (dragging)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_6 (dragging)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Object.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_2 (events)\day2_C (dragging)\Object.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+class MyObject {
+    constructor (_x, _y){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = random(5,15);
+        this.myColor = color(20, random(100), random(50,90));
+        this.hover = false;
+        this.captured = false;
+        this.xOffset = 0.0;
+        this.yOffset = 0.0;
+    }
+
+
+    display () {
+        this.hover = mouseX > this.myX - this.mySize / 2 && mouseX < this.myX + this.mySize / 2 &&
+            mouseY > this.myY - this.mySize / 2 && mouseY < this.myY + this.mySize / 2;
+
+        stroke(0,0,100);
+        if (this.hover) strokeWeight (2);
+        else noStroke();
+
+        fill(this.myColor);
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+        noStroke();
+
+    }
+
+    clickOverMe() {
+        if (this.hover) {
+            this.captured  = true;
+            this.xOffset = mouseX-this.myX;
+            this.yOffset = mouseY-this.myY;
+        } else{
+            this.captured = false;
+        }
+    }
+
+    draggingMe() {
+        if (this.captured) {
+            this.myX = mouseX-this.xOffset;
+            this.myY = mouseY-this.yOffset;
+        }
+    }
+
+    released () {
+        this.captured = false;
+    }
+
+}  // end of class
+
+FILE day_2 (events)\day2_C (dragging)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+
+let myObjects = [];
+let numObjects = 10;
+
+function setup() {
+    createCanvas(400, 400);
+    colorMode (HSB, 360, 100, 100, 1);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i] = new MyObject ( random (width), random(height) );;
+    }
+} // end of setup
+
+function draw() {
+    background(15);
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].display();
+    }
+    fill (50);
+    noStroke();
+    text("frameRate:   " + Math.round(frameRate()), 20, width-20);
+    text("click to setup", 20, height-8);
+} // end of draw
+
+
+
+function mousePressed() {
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].clickOverMe();
+    }
+}
+
+function mouseDragged() {
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].draggingMe();
+    }
+}
+
+function mouseReleased(){
+    for (let i = 0; i < numObjects; i++) {
+        myObjects[i].released();
+    }
+} // end of mouseReleased
+
+FILE day_2 (events)\day2_D (gui)\Button.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+class Button {
+    constructor ( _x,_y, _sZ, _tl ){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = _sZ;
+        this.myTitle = _tl;
+        this.myColor = color(155, 255, 155, 90);
+        this.myOverMeColor = color(255, 255, 155, 80);
+        this.myStrokeColor = color(255, 255, 155);
+        this.mouseOverMe = false;
+        this.selected = false;
+        this.myTextSize = 12;
+    }
+
+    display () {
+
+        fill(255,0,0);
+        //ellipse (this.myX, this.myY, 5,5);
+
+        this.mouseOverMe = mouseX > this.myX  && mouseX < this.myX + this.mySize &&
+            mouseY > this.myY  && mouseY < this.myY + this.mySize ;
+
+        fill(this.myColor);
+        if (this.mouseOverMe) fill(this.myOverMeColor);
+
+        strokeWeight(1);
+        stroke(this.myStrokeColor);
+        rect(this.myX, this.myY, this.mySize, this.mySize);
+
+        if (this.mouseOverMe){
+            fill(255);
+            noStroke();
+            textAlign(CENTER);
+            textSize(this.myTextSize);
+            text(this.myTitle, this.myX + this.mySize/2, this.myY + this.mySize + this.myTextSize*1.5);
+        }
+
+        if(this.selected){
+            strokeWeight(1);
+            noFill();
+            stroke(this.myStrokeColor);
+            rect(this.myX-2, this.myY-2, this.mySize + 4, this.mySize + 4);
+        }
+    }
+
+    releasedOverMe () {
+        if (this.mouseOverMe) this.selected = !this.selected;
+    }
+
+} // end of class
+
+FILE day_2 (events)\day2_D (gui)\CTA.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+class CTA { // button Call To Action (CTA)
+    constructor ( _x,_y, _sZ, _tl ){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = _sZ;
+        this.myTitle = _tl;
+        this.myColor = color(155, 255, 155, 90);
+        this.myOverMeColor = color(255, 255, 155, 80);
+        this.myStrokeColor = color(255, 255, 155);
+        this.mouseOverMe = false;
+        this.myTextSize = 12;
+    }
+
+    display () {
+
+        fill(255,0,0);
+        //ellipse (this.myX, this.myY, 5,5);
+
+        this.mouseOverMe = mouseX > this.myX  && mouseX < this.myX + this.mySize &&
+            mouseY > this.myY  && mouseY < this.myY + this.mySize ;
+
+        fill(this.myColor);
+        if (this.mouseOverMe) fill(this.myOverMeColor);
+
+        strokeWeight(1);
+        stroke(this.myStrokeColor);
+        rect(this.myX, this.myY, this.mySize, this.mySize);
+
+        if (this.mouseOverMe){
+            fill(255);
+            noStroke();
+            textAlign(CENTER);
+            textSize(this.myTextSize);
+            text(this.myTitle, this.myX + this.mySize/2, this.myY + this.mySize + this.myTextSize*1.5);
+        }
+    }
+
+    releasedOverMe () {
+        if (this.mouseOverMe) return true;
+    }
+
+} // end of class
+
+FILE day_2 (events)\day2_D (gui)\DualSlider.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+
+function DualSlider (_x, _y, _mW, _mH, _vMin, _vMax, _myT){
+    this.myX=_x;
+    this.myY=_y;
+
+    this.myWidth = _mW;
+    this.myHeight = _mH;
+    this.myMin = _vMin;
+    this.myMax = _vMax;
+    this.myTitle = _myT;
+
+    this.posButtonLEFT = map(this.myMin, this.myMin, this.myMax, this.myX, this.myX+this.myWidth);
+    this.posButtonRIGHT = map(this.myMax, this.myMin, this.myMax, this.myX, this.myX+this.myWidth);
+
+    this.myLEFTvalue = this.myMin;
+    this.myRIGHTvalue = this.myMax;
+
+    this.overMeLEFT  = false;
+    this.overMeRIGHT = false;
+    this.overMeCENTER = false;
+
+    this.draggingLEFT = false;
+    this.draggingRIGHT = false;
+    this.draggingCENTER = false;
+
+
+    let dif = 0;
+    let difLEFT = 0;
+    let difRIGHT = 0;
+
+
+    this.render = function () {
+        fill(255, 255, 255, 150);
+        stroke(255, 255, 155);
+        strokeWeight(2);
+        let primerCuarto = this.myWidth * 0.25;
+        let mitad = this.myWidth * 0.5;
+        let tercerCuarto = this.myWidth * 0.75;
+        line(this.myX + primerCuarto, this.myY - 1, this.myX + primerCuarto, this.myY + this.myHeight + 1);
+        line(this.myX + mitad, this.myY - 1, this.myX + mitad, this.myY + this.myHeight + 1);
+        line(this.myX + tercerCuarto, this.myY - 1, this.myX + tercerCuarto, this.myY + this.myHeight + 1);
+
+        noStroke();
+        fill(80, 80, 80);
+        rect(this.myX, this.myY, this.myWidth, this.myHeight);
+
+        // botón izquierdo
+        fill(255, 255, 155, 40);
+        if (this.overMeLEFT) fill(255, 255, 155, 90);
+
+        strokeWeight(1);
+        stroke(255, 255, 155);
+        rect(this.posButtonLEFT - this.myHeight, this.myY, this.myHeight, this.myHeight);
+        line(this.posButtonLEFT, this.myY - 10, this.posButtonLEFT, this.myY + this.myHeight + 10);
+
+        // botón derecho
+        fill(255, 255, 155, 40);
+        if (this.overMeRIGHT) fill(255, 255, 155, 90);
+
+        strokeWeight(1);
+        rect(this.posButtonRIGHT, this.myY,  this.myHeight, this.myHeight);
+        line(this.posButtonRIGHT, this.myY - 10, this.posButtonRIGHT, this.myY + this.myHeight + 10);
+
+        // boton central
+        fill(255, 255, 155, 40);
+        noStroke();
+        if (this.overMeCENTER) fill(255, 255, 155, 90);
+        let anchoRec = this.posButtonRIGHT - this.posButtonLEFT;
+        rect(this.posButtonLEFT, this.myY, anchoRec, this.myHeight);
+
+
+        // líneas de los límites
+        strokeWeight(2);
+        fill(255, 255, 255, 150);
+        line(this.myX, this.myY - 1, this.myX, this.myY + this.myHeight + 1);
+        line(this.myX + this.myWidth, this.myY - 1, this.myX + this.myWidth, this.myY + this.myHeight + 1);
+
+        // texto tiutlo
+        textSize(12);
+        fill(250, 250, 250);
+        textAlign(CENTER);
+        text(this.myTitle, this.myX + (this.myWidth / 2), this.myY - 10);
+
+        //texto valores
+        textSize(10);
+        textAlign(RIGHT);
+        text(this.myLEFTvalue.toFixed(0), this.posButtonLEFT-3, this.myY + this.myHeight + 25);
+        textAlign(LEFT);
+        text(this.myRIGHTvalue.toFixed(0), this.posButtonRIGHT+5, this.myY + this.myHeight + 25);
+
+    };
+
+
+    this.overMe = function (checkX, checkY) {
+        // left button
+        this.overMeLEFT = (checkY > this.myY && checkY < this.myY + this.myHeight &&
+            checkX > this.posButtonLEFT - this.myHeight && checkX < this.posButtonLEFT);
+        // right button
+        this.overMeRIGHT = (checkY > this.myY && checkY < this.myY + this.myHeight &&
+            checkX > this.posButtonRIGHT && checkX < this.posButtonRIGHT + this.myHeight);
+        // center button
+        this.overMeCENTER = (checkY > this.myY && checkY < this.myY + this.myHeight &&
+            checkX > this.posButtonLEFT && checkX < this.posButtonRIGHT);
+
+    }; // end of this.overMe
+
+
+
+    this.mouseCheckMe = function (checkX, checkY){
+        /*
+        la lógica de un slider está en que se debe separar el dragging true de la ejecucion
+        asi que se declara true y esto se queda asi hasta que no se haga mouse released
+         */
+        // LEFT BUTTON ----------------------------------------------------------------
+        if (checkY > this.myY && checkY < this.myY + this.myHeight &&
+            checkX > this.posButtonLEFT - this.myHeight && checkX < this.posButtonLEFT) {
+            this.draggingLEFT = true;
+            dif = this.posButtonLEFT - checkX;
+        }
+        if(this.draggingLEFT){
+            if (checkX > this.myX - this.myWidth && checkX < this.posButtonRIGHT){
+                if (checkX > this.myX) this.posButtonLEFT = checkX + dif;
+                else this.posButtonLEFT = this.myX;
+                this.myLEFTvalue = map(this.posButtonLEFT, this.myX, this.myX + this.myWidth, this.myMin, this.myMax);
+            }
+        }
+
+
+        // RIGHT BUTTON ----------------------------------------------------------------
+        if (checkY > this.myY && checkY < this.myY + this.myHeight &&
+            checkX > this.posButtonRIGHT && checkX < this.posButtonRIGHT + this.myHeight) {
+            this.draggingRIGHT = true;
+            dif = this.posButtonRIGHT - checkX;
+        }
+        if(this.draggingRIGHT){
+            if (checkX > this.myX && checkX < this.myX+this.myWidth+this.myHeight){
+                if (checkX < this.myX + this.myWidth) this.posButtonRIGHT = checkX + dif;
+                else this.posButtonRIGHT = this.myX+this.myWidth;
+                this.myRIGHTvalue = map(this.posButtonRIGHT, this.myX, this.myX + this.myWidth, this.myMin, this.myMax);
+            }
+        }
+
+
+        // CENTER BUTTON ----------------------------------------------------------------
+        if (checkY > this.myY && checkY < this.myY + this.myHeight &&
+            checkX > this.posButtonLEFT && checkX < this.posButtonRIGHT &&
+            !this.draggingCENTER) {
+            this.draggingCENTER = true;
+            difRIGHT = this.posButtonRIGHT - checkX;
+            difLEFT = this.posButtonLEFT - checkX;
+            //console.log("this.draggingCENTER = true" );
+        }
+
+
+        if(this.draggingCENTER){
+            if (this.posButtonLEFT >= this.myX){
+                this.posButtonLEFT = checkX + difLEFT;
+                this.myLEFTvalue = map(this.posButtonLEFT, this.myX, this.myX + this.myWidth, this.myMin, this.myMax);
+            }
+            if (this.posButtonRIGHT <= this.myX + this.myWidth){
+                this.posButtonRIGHT = checkX + difRIGHT;
+                this.myRIGHTvalue = map(this.posButtonRIGHT, this.myX, this.myX + this.myWidth, this.myMin, this.myMax);
+            }
+            if (this.posButtonLEFT < this.myX) {
+                this.posButtonLEFT = this.myX;
+                this.myLEFTvalue = this.myMin;
+            }
+            if (this.posButtonRIGHT > this.myX + this.myWidth) {
+                this.posButtonRIGHT = this.myX + this.myWidth;
+                this.myRIGHTvalue = this.myMax;
+            }
+        }
+
+
+    };
+
+
+    this.mouseReleasedMe = function (){
+        this.draggingLEFT = false;
+        this.draggingRIGHT = false;
+        this.draggingCENTER = false;
+        dif = 0;
+        difLEFT = 0;
+        difRIGHT = 0;
+    };
+
+} // end of class
+
+
+FILE day_2 (events)\day2_D (gui)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1_7 (gui)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="DualSlider.js"></script>
+    <script src="CTA.js"></script>
+    <script src="Button.js"></script>
+    <script src="Slider.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_2 (events)\day2_D (gui)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+let mySlider;
+let myDualSlider;
+let myButton;
+let myCTA;
+let localBoolean;
+
+function setup() {
+    createCanvas(800, 400);
+    myCTA = new CTA(190,80, 20, "CTA");
+    myButton = new Button(390,80, 20, "selection button");
+    mySlider = new Slider(200, 180, 400, 20, 0, 255, 127, "color");
+    myDualSlider = new DualSlider(150, 300, 500, 10, 0,100,"percentage");
+    localBoolean = false;
+}
+
+function draw() {
+    background(51);
+
+    mySlider.render();
+    myButton.display();
+    myCTA.display();
+
+    myDualSlider.render(mouseX, mouseY);
+    myDualSlider.overMe(mouseX, mouseY);
+
+    text("local boolean: " + localBoolean, 220, 95);
+}
+
+function mousePressed() {
+    mySlider.mouseClickMe();
+}
+
+function mouseReleased(){
+    mySlider.mouseReleasedMe();
+    myDualSlider.mouseReleasedMe(mouseX, mouseY);
+    myButton.releasedOverMe();
+    if (myCTA.releasedOverMe()) localBoolean = !localBoolean;
+}
+
+function mouseDragged() {
+    mySlider.mouseDraggingMe();
+    myDualSlider.mouseCheckMe(mouseX, mouseY);
+}
+
+FILE day_2 (events)\day2_D (gui)\Slider.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+
+function Slider (_x, _y, _mW, _mH, _vMin, _vMax, _vIn, _myT){
+    this.myX =_x;
+    this.myY =_y;
+
+    this.myWidth = _mW;
+    this.myHeight = _mH;
+    this.myMin = _vMin;
+    this.myMax = _vMax;
+    this.myInitial = _vIn;
+    this.myTitle = _myT;
+    this.myTextSize = 12;
+
+    this.posButtonX = map(this.myInitial, this.myMin, this.myMax, this.myX, this.myX+this.myWidth);
+    this.myValue = _vIn;
+
+    this.mouseOverMe  = false;
+    this.draggingMe = false;
+    let dif = 0;
+
+
+    this.render = function () {
+        this.mouseOverMe = (mouseY > this.myY && mouseY < this.myY + this.myHeight &&
+            mouseX > this.posButtonX - this.myHeight/2 && mouseX < this.posButtonX + this.myHeight/2);
+
+        fill(255, 255, 255, 150);
+        stroke(255, 255, 155);
+        strokeWeight(2);
+        let primerCuarto = this.myWidth * 0.25;
+        let mitad = this.myWidth * 0.5;
+        let tercerCuarto = this.myWidth * 0.75;
+        line(this.myX + primerCuarto, this.myY - 1, this.myX + primerCuarto, this.myY + this.myHeight + 1);
+        line(this.myX + mitad, this.myY - 1, this.myX + mitad, this.myY + this.myHeight + 1);
+        line(this.myX + tercerCuarto, this.myY - 1, this.myX + tercerCuarto, this.myY + this.myHeight + 1);
+
+        noStroke();
+        fill(80, 80, 80);
+        rect(this.myX, this.myY, this.myWidth, this.myHeight);
+
+        // button
+        fill(255, 255, 155, 40);
+        if (this.mouseOverMe) fill(255, 255, 155, 90);
+        strokeWeight(1);
+        stroke(255, 255, 155);
+        rect(this.posButtonX - this.myHeight/2, this.myY, this.myHeight, this.myHeight);
+        line(this.posButtonX, this.myY-5, this.posButtonX, this.myY+5);
+
+        // title text
+        noStroke();
+        textSize(this.myTextSize);
+        fill(250, 250, 250);
+        textAlign(CENTER);
+        text(this.myTitle, this.myX + (this.myWidth / 2), this.myY - 10);
+        //value text
+        textSize(this.myTextSize-2);
+        textAlign(CENTER);
+        text(this.myValue.toFixed(0), this.posButtonX-3, this.myY + this.myHeight + 25);
+    };
+
+    this.mouseClickMe= function (){
+        if (this.mouseOverMe) {
+            this.draggingMe = true;
+            dif = this.posButtonX - mouseX;
+        }
+    };
+
+    this.mouseDraggingMe = function (){
+        if(this.draggingMe){
+            if (this.mouseOverMe){
+                if (mouseX > this.myX && mouseX < this.myX + this.myWidth )
+                this.posButtonX = mouseX + dif;
+                if (this.posButtonX < this.myX ) this.posButtonX = this.myX;
+                if (this.posButtonX > this.myX  + this.myWidth ) this.posButtonX = this.myX  + this.myWidth;
+                this.myValue = map(this.posButtonX, this.myX, this.myX + this.myWidth, this.myMin, this.myMax);
+            }
+        }
+    };
+
+
+    this.mouseReleasedMe = function (){
+        this.draggingMe = false;
+        dif = 0;
+    };
+
+} // end of class
+
+
+FILE day_2 (events)\day_2_events_ws26.pdf
+PAGE 1
+events & CT As
+dr. prof. franklin hernández.castro
+H                       f     G 
+Hochschule für Gestaltung 
+Schwäbisch Gmünd
+tecnológico  
+de costa rica
+PAGE 2
+outgoing positionthe 25 most populous cities in the world
+
+PAGE 3
+outgoing positionthe 25 most populous cities in the world
+
+PAGE 4
+four levels of interaction
+• hover → identify 
+• click → select 
+• drag → manipulate 
+• button → control
+PAGE 5
+coding strategies  hover & selecting
+in rectangles
+mouseX, mouseY
+miX, miY
+miX, miY
+mouseX, mouseY
+distance = dist(mouseX, mouseY, myX, myY);
+if (distance < this.mySize/2)
+if (mouseX>myX-myWidth/2 && mouseX<myX+myWidth/2 &&
+mouseY>myY-myHeight/2 && mouseY<myY+myHeight/2)
+in circles
+mouseX, mouseY
+myX, myY
+myX, myY
+this.mySize myWidth
+myHeight
+distance
+mouseX, mouseY
+PAGE 6
+coding strategies  dragging
+mousePressed( )
+looking if something
+is under the mouse
+move with the mouse stop moving with
+the mouse
+mouseDragged( ) mouseReleased( )
+PAGE 7
+coding strategies  samplers 
+
+FILE day_3 (CSV)\day3_A (csv_reader)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day3_1 (csv_reader)</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_3 (CSV)\day3_A (csv_reader)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+let countryData;
+
+function preload(){
+    countryData = loadTable('data/countries&areas.csv', 'csv', 'header');
+}
+
+function setup() {
+    createCanvas(200, 200);
+    let i= 0;
+
+    for (let myRow of countryData.rows){
+        let countryName = myRow.get('CountryName');
+        let countryArea = myRow.get('sqrKm');
+        console.log(i + ": " + countryName + "   area: " + countryArea);
+        i++;
+    }
+}
+
+function draw() {
+    background(51);
+}
+
+FILE day_3 (CSV)\day3_B (csv_objects-bars)\Countries.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+class Country {
+    constructor ( ){
+        this.myCountry = "NaN";
+        this.myCountryArea = 0;
+        this.myCountryISO = "NaN";
+        this.mySize = 0;
+        this.myWidth = 6;
+        this.myColor = color(100,100,200);
+        this.hover = false;
+    }
+
+    display (myX, myY) {
+        this.hover = mouseX > myX  && mouseX < myX + this.myWidth &&
+            mouseY > myY - this.mySize && mouseY < myY;
+
+        noStroke();
+        fill(this.myColor);
+        rect (myX, myY, this.myWidth, -this.mySize);
+
+        if (this.hover) {
+            fill (200);
+            text(this.myCountryArea, myX, myY+30);
+            text(this.myCountry, myX, myY +15);
+        }
+    } // end of display
+
+}  // end of class
+
+FILE day_3 (CSV)\day3_B (csv_objects-bars)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countries areas bars</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Countries.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_3 (CSV)\day3_B (csv_objects-bars)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+let countryData;
+let myCountries = [];
+
+function preload(){
+    countryData = loadTable('data/countries&areas.csv', 'csv', 'header');
+}
+
+function setup() {
+    createCanvas(1400, 800);
+    let i=0;
+
+    for (let myRow of countryData.rows){
+        let currentCountry = new Country();
+
+        currentCountry.myCountryArea = myRow.get('sqr_Km');
+
+        if (currentCountry.myCountryArea > 10000){
+            currentCountry.myCountry = myRow.get('Country_Name');
+            currentCountry.myCountryISO = myRow.get('ISO_A3');
+            currentCountry.mySize = map( currentCountry.myCountryArea, 17098250,50,  700,5) ; // [17 098 250,50]
+
+            if ( currentCountry.myCountryISO === "DEU" || currentCountry.myCountryISO === "CRI")
+                currentCountry.myColor = color(200,100,100);
+
+            myCountries [i] = currentCountry;
+            i++;
+        }
+    }
+}
+
+function draw() {
+    background(51);
+
+    let currentX = 10;
+    let currentY = 750;
+
+    for (let i = 0; i < myCountries.length; i++) {
+        myCountries [i].display (currentX, currentY);
+        currentX += myCountries[i].myWidth+2;
+    }
+
+    fill (200);
+    textSize(18);
+    text ("countries by area", 10, 30);
+    textSize(12);
+    text("frameRate:   " + Math.round(frameRate()), 10, height-5);
+
+}
+
+FILE day_3 (CSV)\day_3_data types intro & csv_ws26.pdf
+PAGE 1
+data types
+prof. dr. franklin hernández.castro
+H                       f     G 
+Hochschule für Gestaltung 
+Schwäbisch Gmünd
+tecnológico  
+de costa rica
+PAGE 2
+initial situation
+PAGE 3
+outgoing position    countries by areas
+
+PAGE 4
+outgoing position    countries by areas | names
+["Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Antigua and 
+Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas, 
+The","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and 
+Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cabo 
+Verde","Cambodia","Cameroon","Canada","Cayman Islands","Central African Republic","Chad","Channel 
+Islands","Chile","China","Colombia","Comoros","Congo, Dem. Rep.","Congo, Rep.","Costa Rica","Cote 
+d'Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican 
+Republic","Ecuador","Egypt, Arab Rep.","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Faroe 
+Islands","Fiji","Finland","France","French Polynesia","Gabon","Gambia, The", z"Georgia","Germany","Ghana","Gibraltar","Greece", 
+"Greenland","Grenada","Guam","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hong Kong SAR, 
+China","Hungary","Iceland","India","Indonesia","Iran, Islamic Rep.","Iraq","Ireland","Isle of Man","Israel","Italy"," Jamaica", 
+"J a p a n","J o rd a n"," Kaza k h s ta n"," Ke n ya"," K i r i b a t i "," Ko re a, D e m. Pe o p l e’s Rep.","Korea, Rep.","Kosovo","Kuwait","Kyrgyz 
+Republic","Lao PDR","Latvia","Lebanon","Lesotho","Liberia","Libya", "Liechtenstein","Lithuania","Luxembourg","Macao SAR, 
+China","Madagascar","Malawi","Malaysia","Maldives", "Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico", 
+"Micronesia, Fed. Sts.","Moldova","Monaco","Mongolia", "Montenegro","Morocco"," Mozambique","Myanmar", 
+"Namibia","Nauru","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North 
+Macedonia","Northern Mariana Islands","Norway","Oman","Pacific island small states","Pakistan","Palau","Panama","Papua New 
+Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Romania","Russian Federation","Rwanda", 
+"Samoa","San Marino","Sao T ome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Sint 
+Maarten (Dutch part)","Slovak Republic","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri 
+Lanka","St. Kitts and Nevis","St. Lucia","St. Martin (French part)","St. Vincent and the Grenadines","Sudan","Suriname", 
+"Sweden","Switzerland","Syrian Arab Republic","T ajikistan","T anzania","Thailand","Timor-Leste","T ogo","T onga","T rinidad and 
+To b a g o "," Tu n i s i a "," Tu r k e y "," Tu r k m e n i s t a n "," Tu r k s  a n d  C a i c o s  I s l a n d s "," Tu v a l u "," U g a n d a ", " U k r a i n e "," U n i t e d  A r a b  
+Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Venezuela, RB","Vietnam","Virgin Islands 
+(U.S.)","West Bank and Gaza","Yemen, Rep.","Zambia","Zimbabwe"]
+PAGE 5
+["AFG","ALB","DZA","ASM","AND","AGO","A TG","ARG","ARM","ABW","AUS","AUT","AZE","BHS","BHR","BGD","BRB","BLR","BEL","BL
+Z","BEN","BMU","BTN","BOL","BIH","BWA","BRA","VGB","BRN","BGR","BFA","BDI","CPV","KHM","CMR","CAN","CYM","CAF","TCD",
+"CHI","CHL","CHN","COL","COM","COD","COG","CRI","CIV","HRV","CUB","CUW","CYP","CZE","DNK","DJI","DMA","DOM","ECU","
+EGY","SLV","GNQ","ERI","EST","SWZ","ETH","FRO","FJI","FIN","FRA","PYF","GAB","GMB","GEO","DEU","GHA","GIB","GRC","GRL","
+GRD","GUM","GTM","GIN","GNB","GUY","HTI","HND","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","IMN","ISR","IT A"," JAM"," JPN
+"," JOR","KAZ","KEN","KIR","PRK","KOR","XKX","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY","LIE","L TU","LUX","MAC","MDG
+","MWI","MYS","MDV","MLI","ML T","MHL","MRT","MUS","MEX","FSM","MDA","MCO","MNG","MNE","MAR","MOZ","MMR","NAM","
+NRU","NPL","NLD","NCL","NZL","NIC","NER","NGA","MKD","MNP","NOR","OMN","PSS","PAK","PLW","PAN","PNG","PRY","PER","P
+HL","POL","PRT","PRI","QA T","ROU","RUS","RWA","WSM","SMR","STP","SAU","SEN","SRB","SYC","SLE","SGP","SXM","SVK","SVN",
+"SLB","SOM","ZAF","SSD","ESP","LKA","KNA","LCA","MAF","VCT","SDN","SUR","SWE","CHE","SYR","TJK","TZA","THA","TLS","TG
+O","TON","TTO","TUN","TUR","TKM","TCA","TUV","UGA","UKR","ARE","GBR","USA","URY","UZB","VUT","VEN","VNM","VIR","PSE",
+"YEM","ZMB","ZWE"]
+outgoing position    countries by areas | ISO code
+PAGE 6
+[652860,28750,2381740,200,470,1246700,440,2780400,29740,180,7741220,83879,86600,13880,778,147630,430,2
+07600,30530,22970,114760,4290,38394,1098580,51210,581730,8515770,150,5770,111000,274220,27830,4030,1810
+40,475440,9984670,260,622980,1284000,198,756700,9562910,1141749,1861,2344860,342000,51100,322460,5659
+0,109880,444,9250,78870,42920,23200,750,48670,256370,1001450,21040,28050,117600,45340,17360,1104300,13
+96,18270,338450,549087 ,4000,267670,11300,69700,357580,238540,10,131960,410450,340,540,108890,245860,3
+6130,214970,27750,112490,1110,93030,103000,3287259,1913580,1745150,435052,70280,570,22070,301340,10990,
+377970,89320,2724902,580370,810,120540,100339,10908,17820,199950,236800,64490,10450,30360,111370,1759
+540,160,65286,2590,30,587295,118480,330345,300,1240190,320,180,1030700,2040,1964375,700,33850,2020,156
+4120,13810,446550,786380,676590,824290,20,147180,41540,18580,267710,130370,1267000,923770,25710,460,62
+5217 ,309500,65150,796100,460,75420,462840,406752,1285220,300000,312680,92226,8870,11610,238400,17098
+250,26340,2840,60,960,2149690,196710,88360,460,72300,719,37 ,49030,20675,28900,637660,1219090,619745,50
+5935,65610,260,620,53,390,1886068,163820,447430,41290,185180,141380,947300,513120,14870,56790,750,5130,1
+63610,785350,488100,950,30,241550,603550,83600,243610,9831510,176220,447400,12190,912050,331230,350,6
+020,527970,752610,390760]
+outgoing position    countries by areas | areas en km2
+PAGE 7
+outgoing position    countries by areas | file
+
+PAGE 8
+data types
+PAGE 9
+data types | files or sources
+• csv (tabular data)  
+• JSON (javascript object notation) 
+— 
+• pdf 
+• text file 
+• wed data 
+— 
+• API (application programing interface: data changes very fast in time)
+PAGE 10
+data types | others 
+• (other) no notation data 
+• pdf 
+• text file 
+• wed data
+PAGE 11
+data types | pdf
+
+PAGE 12
+data types | text
+
+PAGE 13
+data types | web data
+
+PAGE 14
+APIs application programing interface
+data changes very fast in time
+PAGE 15
+APIs application programing interface
+data changes very fast in time
+
+PAGE 16
+csv (tabular data)
+PAGE 17
+csv (tabular data) | syntax
+
+PAGE 18
+csv (tabular data) | syntax
+
+PAGE 19
+csv (tabular data) | syntax
+
+PAGE 20
+data sets 
+PAGE 21
+data sets
+•https://data.oecd.org 
+•https://data.giss.nasa.gov 
+•https://dataunodc.un.org 
+•http://visionofhumanity.org/reports/ 
+•http://www.fao.org/faostat/en/#data 
+•https://public.opendatasoft.com/explore/?sort=modified 
+•https://data.worldbank.org
+PAGE 22
+coding strategies
+PAGE 23
+coding strategies  map function 
+500
+for (let i = 0; i < numOfPeoples; i++) {
+currentheight = map (currentAge, 12, 65 , 125, 500 );
+}
+PAGE 24
+data minig process  CSV
+tecnológico de costa rica
+ph.d. franklin hernández-castro
+the variables to be used are declared, in this case:
+countryData:  which will contain the data coming from ﬁle and 
+myCountries:  which will be the array where all objects will be 
+stored 
+data are mined from the row storing them and stored in the 
+newly created object  currentCountry
+"for loop " where all rows of data are processed.
+a new object is created and named currentCountry
+once the new object is ﬁlled with the mined data it is 
+stored in the object array myCountries
+data are loaded from the ﬁle into the variable prepared 
+for this purpose countryData
+1
+5
+3
+4
+6
+2
+data mining process CSV
+PAGE 25
+coding strategies  code examples 
+
+FILE day_4 (JSON-data types)\code flow data viz.pdf
+PAGE 1
+function draw() {
+…
+for (let i = 0; i < numOfCities; i++) {
+        myCities[i].display(); // display each object
+    }
+}
+function mouseReleased(){
+    for (let i = 0; i < numOfCities; i++) {
+        myCities[i].clickOverMe();//call to an internal function of each object
+    }
+}
+function setup() {
+    …
+// reading data from drive
+mostPopCities = loadJSON ("data/1KCities.json");
+numOfCities = mostPopulatedCities.cities.length;
+…
+   for (let c = 0; c < numOfCities; c++) {
+      let currentCity = new Cities(); // 1. create a new object
+…
+// 2. fill the object's characteristics with the table data
+    currentCity.myLongitude = mostPopCities.cities[c].longitude;
+     currentCity.myLatitude = mostPopCities.cities[c].latitude;
+…
+// 3. add the new object to the object array
+myCities [c] = currentCountry;
+  } 
+}
+main
+// declarations
+setup ( )
+// assignation
+draw ( )
+// events
+let myCities = [];
+let numOfCities;
+display () {
+        fill(this.myColor);
+        noStroke();
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+}
+clickOverMe() {
+        if (this.hover) {
+            this.captured  = true;
+            this.xOffset = mouseX-this.myX;
+            this.yOffset = mouseY-this.myY;
+        } else{
+            this.captured = false;
+        }
+}
+constructor (_x, _y){
+  this.myLongitude= 0;
+  this.myLatitude = 0;
+ …
+this.isOverMe = false;
+}
+City
+// constructor/assignation
+# metods 
+code flow in data visualization
+dr. prof. franklin hernández-castro
+
+FILE day_4 (JSON-data types)\day4_A (json_reader)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_4 (JSON-data types)\day4_A (json_reader)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+let mostPopulatedCities;
+
+function preload(){
+    // reading data from drive
+    mostPopulatedCities = loadJSON ("data/25mostPopulatedCities.json");
+}
+
+
+function setup() {
+    createCanvas(400, 400);
+    console.log (mostPopulatedCities);
+}
+
+function draw() {
+    background(51);
+
+    fill (200);
+    text("frameRate:   " + Math.round(frameRate()), 20, width-20);
+}
+
+FILE day_4 (JSON-data types)\day4_B (json_oneData)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_4 (JSON-data types)\day4_B (json_oneData)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+let mostPopulatedCities;
+let oneData;
+
+function preload(){
+    // reading data from drive
+    mostPopulatedCities = loadJSON ("data/25mostPopulatedCities.json");
+}
+
+
+function setup() {
+    createCanvas(400, 400);
+    oneData = mostPopulatedCities.cities[2].population;
+    console.log (mostPopulatedCities);
+}
+
+function draw() {
+    background(51);
+    fill (200);
+    text(oneData, 20, width/2);
+}
+
+FILE day_4 (JSON-data types)\day4_C (json_oneCity)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_4 (JSON-data types)\day4_C (json_oneCity)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+let mostPopulatedCities;
+let population, nameOfCity, nameOfCountry, iso3;
+
+function preload(){
+    // reading data from drive
+    mostPopulatedCities = loadJSON ("data/25mostPopulatedCities.json");
+}
+
+
+function setup() {
+    createCanvas(400, 400);
+    let numberOfCity = 6;
+    population = mostPopulatedCities.cities[numberOfCity].population;
+    nameOfCity = mostPopulatedCities.cities[numberOfCity].city_ascii;
+    nameOfCountry = mostPopulatedCities.cities[numberOfCity].country;
+    iso3 = mostPopulatedCities.cities[numberOfCity].iso3;
+}
+
+function draw() {
+    background(51);
+    fill (200);
+    text(nameOfCity, 20, width/2);
+    text(nameOfCountry, 20, width/2+15);
+    text("code of country: " + iso3, 20, width/2+30);
+    text("population: " + population, 20, width/2+45);
+}
+
+FILE day_4 (JSON-data types)\day4_D (json_cities)\globe projection systems.pdf
+PAGE 1
+dr. prof. franklin hernández-castro
+table pivot
+geographical coordinates
+cartographic projection
+cylindrical projection
+longitude [-180, 180]
+longitude [-180, 180]
+latitude [-90, 90]
+0
+0 50-50 100-100 150-150
+25
+-25
+50
+-50
+75
+-75 latitude [-90, 90]
+flat projection conic projection
+
+
+FILE day_4 (JSON-data types)\day4_D (json_cities)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_4 (JSON-data types)\day4_D (json_cities)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+let mostPopulatedCities;
+let backgroundImage;
+
+function preload(){
+    // reading data from drive
+    mostPopulatedCities = loadJSON ("data/25mostPopulatedCities.json");
+    backgroundImage = loadImage ('data/mapaMundi1600x800.png');
+}
+
+
+function setup() {
+    createCanvas(1600, 800);
+}
+
+function draw() {
+    image(backgroundImage, 0, 0);
+    noStroke();
+    fill (100,100,255, 100); // circle color
+    let numOfCities = mostPopulatedCities.cities.length;
+    for (let r = 0; r < numOfCities; r++) {
+        let lonNow = mostPopulatedCities.cities[r].longitude;
+        let latNow = mostPopulatedCities.cities[r].latitude;
+        let posX = map (lonNow, -180,180, 0,width );
+        let posY = map (latNow, 90,-90, 0,height );
+
+        let pop = map( mostPopulatedCities.cities[r].population, 35000000,500000,  200,5) ;
+
+        ellipse(posX, posY,pop,pop);
+    } // end for
+    noLoop();
+}
+
+FILE day_4 (JSON-data types)\day4_E (json_cities objetos)\Cities.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+class Cities {
+    constructor ( ) {
+        this.myLongitude= 0;
+        this.myLatitude = 0;
+        this.myX = 0;
+        this.myY = 0;
+        this.mySize = 0;
+        this.myCountry = "NaN";
+        this.myCountryISO = "NaN";
+        this.myPopulation = 0;
+        this.myName = "NaN";
+        this.myColor = color(100,100,255, 100);
+        this.isOverMe = false;
+    }
+
+
+    display () {
+        let distance = dist(mouseX,mouseY,this.myX, this.myY);
+        this.isOverMe =  (distance < this.mySize/2);
+
+        noStroke();
+        fill(this.myColor);
+        ellipse (this.myX, this.myY, this.mySize, this.mySize);
+
+        if (this.isOverMe) {
+            fill (200);
+            text(this.myName, this.myX, this.myY);
+            text(this.myCountry, this.myX, this.myY +15);
+            text("code of country: " + this.myCountryISO, this.myX, this.myY + 30);
+            text("population: " + this.myPopulation, this.myX, this.myY + 45);
+        }
+
+    } // end of display
+
+}  // end of class
+
+FILE day_4 (JSON-data types)\day4_E (json_cities objetos)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="libs/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="Cities.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_4 (JSON-data types)\day4_E (json_cities objetos)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+*/
+
+
+let mostPopulatedCities;
+let backgroundImage;
+let myCities = [];
+let numOfCities;
+
+function preload(){
+    // reading data from drive
+    mostPopulatedCities = loadJSON ("data/25mostPopulatedCities.json");
+    backgroundImage = loadImage ('data/mapaMundi1800x600.png');
+}
+
+
+function setup() {
+    createCanvas(1600, 800);
+
+    numOfCities = mostPopulatedCities.cities.length;
+    for (let r = 0; r < numOfCities; r++) {
+        // 1. create a new object
+        let currentCountry = new Cities();
+
+        // 2. fill the object's characteristics with the table data
+        currentCountry.myLongitude = mostPopulatedCities.cities[r].longitude;
+        currentCountry.myLatitude = mostPopulatedCities.cities[r].latitude;
+        currentCountry.myX = map (currentCountry.myLongitude, -180,180, 0,width );
+        currentCountry.myY = map (currentCountry.myLatitude, 90,-90, 0,height );
+        currentCountry.mySize = map( mostPopulatedCities.cities[r].population, 35000000,500000,  100,5) ;
+        currentCountry.myPopulation = mostPopulatedCities.cities[r].population;
+        currentCountry.myName = mostPopulatedCities.cities[r].city_ascii;
+        currentCountry.myCountry = mostPopulatedCities.cities[r].country;
+        currentCountry.myCountryISO = mostPopulatedCities.cities[r].iso3;
+
+        // 3. add the new object to the object array
+        myCities [r] = currentCountry;
+    } // end for
+}
+
+function draw() {
+    image(backgroundImage, 0, 0);
+    for (let i = 0; i < numOfCities; i++) {
+        // display each object
+        myCities[i].display();
+    }
+}
+
+FILE day_4 (JSON-data types)\day_4_data types JSON_ws26.pdf
+PAGE 1
+data types (json)
+prof. dr. franklin hernández.castro
+H                       f     G 
+Hochschule für Gestaltung 
+Schwäbisch Gmünd
+tecnológico  
+de costa rica
+PAGE 2
+JSON (javascript object notation) | format sintaxis  
+PAGE 3
+JSON (javascript object notation) | data structure
+ISO lon lat
+“ad” 42.5000 1.5000
+“ae” 24.0000 54.0000
+“af” 33.0000 65.0000
+“ag” 17 .0500 -61.8000
+… … …
+… … …
+“za” -29.0000 24.0000
+“zm” -15.0000 30.0000
+“zw” -20.0000 30.0000
+events, samples,  
+observations, inputs properties, data
+card
+
+PAGE 4
+JSON (javascript object notation) | syntax
+ISO lon lat
+“ad”42.50001.5000
+“ae”24.000054.0000
+“af”33.000065.0000
+“ag”17 .0500-61.8000
+… … …
+… … …
+“za”-29.000024.0000
+“zm”-15.000030.0000
+“zw”-20.000030.0000
+
+PAGE 5
+JSON (javascript object notation) | IDs of  data
+ISO lon lat
+“ad” 42.5000 1.5000
+“ae” 24.0000 54.0000
+“af” 33.0000 65.0000
+“ag” 17 .0500 -61.8000
+… … …
+… … …
+“za” -29.0000 24.0000
+“zm” -15.0000 30.0000
+“zw” -20.0000 30.0000
+IDs
+PAGE 6
+JSON (javascript object notation) | syntax
+ISO lon lat
+“ad”42.50001.5000
+“ae”24.000054.0000
+“af”33.000065.0000
+“ag”17 .0500-61.8000
+… … …
+… … …
+“za”-29.000024.0000
+“zm”-15.000030.0000
+“zw”-20.000030.0000
+PAGE 7
+JSON (javascript object notation) | preview
+ firefox
+PAGE 8
+data minig JSON
+PAGE 9
+JSON (javascript object notation) | nested lists
+
+PAGE 10
+o.o.p. concept
+cat
+color
+name
+mood
+hungry
+energie
+miau ( )
+eat ( )
+sleep ( )
+play ( )
+state variables
+functions or methods
+eat ( )
+mood ++
+hungry  - -
+energie ++
+miau ( )
+sleep ( )
+hungry  ++
+energie ++
+play ( )
+mood ++
+energie ++
+miau ( )
+miau ( )
+eneldo minino gruñónrobert
+say miaow
+PAGE 11
+eneldo
+minino
+gruñón
+robert
+{
+“file name”: “myCats.json” ,
+“source”: “https:// skizata.com” ,
+“cats”: 
+[
+{
+“name”:”robert” ,
+“color”:”brown”,
+“mood”:80,
+“hungry”:90,
+“energie”:67
+},
+{
+“name”:”eneldo” ,
+“color”:”black”,
+“mood”:50,
+“hungry”:100,
+“energie”:40
+},
+{
+“name”:”minimo” ,
+“color”:”balck&brown”,
+“mood”:90,
+“hungry”:30,
+“energie”:27
+},
+{
+“name”:”gruñón” ,
+“color”:”gray”,
+“mood”:60,
+“hungry”:95,
+“energie”:79
+}
+]
+}
+
+PAGE 12
+data minig process  JSON
+PAGE 13
+myCats.JSON
+PAGE 14
+class MyCat {
+PAGE 15
+class MyCat {
+PAGE 16
+[ , , , ]
+PAGE 17
+tecnológico de costa rica
+ph.d. franklin hernández-castro
+data mining process JSON
+the variables to be used are declared, in this case:
+catsData: which will contain the data coming from file and
+myCats: which will be the array where all objects/cities will be stored
+data are mined from each row and stored in the newly created object 
+currentCat
+"for loop" where all rows of data are processed.
+a new object is created and named currentCat
+once the new object is filled with the mined data it is stored in the object
+array myCats
+in draw function, every object will display itseft in a for loop
+data are loaded from the file into the variable prepared for this purpose
+catasData
+[ , , , ]
+
+PAGE 18
+coding strategies  code examples 
+
+FILE day_5 (time)\day5_1_(GDP histórico)\classCountry.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+
+class Country {
+
+    constructor () {
+        // country ID data
+        this.myName = "";
+        this.myCode = "";
+        // array for data
+        this.arrayOfYears = [];
+        this.arrayOfGDPs = [];
+        this.arrayOfpoints = [];
+        // boolean for events
+        this.overMe = false;
+        this.selected = false;
+        // colors
+        this.myNormalColor = color(255, 150, 100, 150);
+        this.myHoverColor = color(255, 150, 100, 255);
+    }
+
+
+    drawCountryGDP () {
+        this.isOverMe();
+        // defines the color and thickness of the line to be drawn depending on whether it is hovering or not.
+        for (let year = 0; year < this.arrayOfpoints.length; year++) {
+            if (this.overMe || this.selected) {
+                fill(this.myHoverColor);
+                stroke(this.myHoverColor);
+                strokeWeight (2);
+            } else {
+                fill(this.myNormalColor);
+                stroke(this.myNormalColor);
+                strokeWeight (1);
+            }
+
+            // draw circles of the years
+            ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, 3,3);
+            // draw lines between circles
+            if (year > 0) line(this.arrayOfpoints[year-1].x, this.arrayOfpoints[year-1].y, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+
+            // If the country is selected, enter the country code at the end of the country line.
+            if (this.selected) {
+                fill(200);
+                noStroke();
+                textSize(18);
+                text( this.myCode, this.arrayOfpoints[this.arrayOfpoints.length-1].x+5, this.arrayOfpoints[this.arrayOfpoints.length-1].y);
+            }
+
+        }
+
+    };
+
+    isOverMe () {
+        // go through all the positions of the points for each year and compare them with the position of the mouse. if any are less than 5 pixels, return true
+        let ifAny = false;
+        for (let year = 0; year < this.arrayOfpoints.length; year++) {
+            let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+            if (distance < 5) {
+                fill(200);
+                textSize(24);
+                text( (this.arrayOfGDPs[year]/ 1000000000000).toFixed(2) + " MoM",       this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-70);
+                text( this.myName, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-45);
+                text( this.arrayOfYears[year], this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-20);
+                ifAny = true;
+            }
+        }
+        this.overMe = ifAny;
+    };
+
+    clickOverMe () {
+        // When clicked, it scans all the positions of the points for each year and compares them with the position of the mouse.
+        // If any are less than 5 pixels, it changes the value of “selected.”
+        for (let year = 0; year < this.arrayOfpoints.length; year++) {
+            let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+            if (distance < 5) this.selected = !this.selected;
+        }
+    }
+
+} // end of class
+
+
+
+FILE day_5 (time)\day5_1_(GDP histórico)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDP historico</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="classCountry.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_5 (time)\day5_1_(GDP histórico)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+
+let GDP_data;
+let arrayOfCountries = [];
+let baseLine = 0;
+let firstYear = 1960;
+let numYears = 65; // for the distribution of the points in Xs
+let stepX;
+let border = 25;
+
+// --------------------------------------------------------  PRELOAD  ----------------------------------------------------
+function preload() {
+    GDP_data = loadTable('data/GPD historicoMini_2024.csv', 'csv', 'header');
+}// -------------------------------------------------------  PRELOAD  ----------------------------------------------------
+
+
+// --------------------------------------------------------  SET UP ----------------------------------------------------
+function setup() {
+    // verifying that the data has been uploaded correctly -------------------------
+    console.log(' total rows in GDP_data: ' + GDP_data.getRowCount()); // 266
+    console.log(' total columns in GDP_data: ' + GDP_data.getColumnCount()); // 64
+
+    // verifying that the data has been uploaded correctly -------------------------
+    createCanvas(1600, 1200);
+    stepX = (width - 150) / numYears;
+    baseLine = height - 50; //chart bottom
+
+    //creates and fills country object data --------------------------
+    let currentCountry;
+    for (let r = 0; r < GDP_data.getRowCount(); r++) {
+        let currentCountryCODE = GDP_data.getString(r, 1);
+        let currentCountryNAME = GDP_data.getString(r, 0);
+        currentCountry = new Country();
+        currentCountry.myName = currentCountryNAME;
+        currentCountry.myCode = currentCountryCODE;
+
+        // save the years data in each country object
+        let index = 2; // before we have: Country Name & Country Code
+        let year = firstYear;
+        for (let i = 0; i < numYears; i++) {
+            currentCountry.arrayOfYears.push(year);
+            let currentGDP = GDP_data.getString(r, index);
+            currentCountry.arrayOfGDPs.push(currentGDP);
+
+            // calculating the position of points for each year
+            let currentX = border + (i) * stepX;
+            let currentY = map (currentGDP, 10000000, 27000000000000,  baseLine, 150);
+            let currentPoint = createVector (currentX,currentY);
+            currentCountry.arrayOfpoints.push(currentPoint);
+
+            index++;
+            year++;
+        }
+        if(currentCountry.myCode === "DEU") currentCountry.selected=true;
+
+        arrayOfCountries.push(currentCountry);
+    } // end for  tablaDeAreas --------------------------------------------------
+
+}// --------------------------------------------------------  SET UP ----------------------------------------------------
+
+
+// -----------------------------------------------------------  DRAW  ----------------------------------------------------
+function draw() {
+    background(51);
+    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+        arrayOfCountries[country].drawCountryGDP();
+    }
+
+    // chart title and subtitle  ____________________
+    noStroke();
+    fill(200);
+    textSize(18);
+    text("Gross Domestic Product (GDP)", 20, 30);
+    text("1960-2024", 20, 50);
+
+    fill(200);
+    textSize(12);
+    text(frameRate().toFixed(2), 20, height - 30);
+}// -----------------------------------------------------------  DRAW  ----------------------------------------------------
+
+
+function mouseReleased() {
+    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+        arrayOfCountries[country].clickOverMe();
+    }
+}
+
+FILE day_5 (time)\day5_2_(GDP histórico animacion)\Button.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+class Button {
+    constructor ( _x,_y, _sZ, _tl ){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = _sZ;
+        this.myTitle = _tl;
+        this.myColor = color(128);
+        this.myOverMeColor = color(200);
+        this.myStrokeColor = color(255);
+        this.mouseOverMe = false;
+        this.selected = false;
+        this.myTextSize = 18;
+    }
+
+    display () {
+
+        fill(255,0,0);
+        //ellipse (this.myX, this.myY, 5,5);
+
+        this.mouseOverMe = mouseX > this.myX  && mouseX < this.myX + this.mySize &&
+            mouseY > this.myY  && mouseY < this.myY + this.mySize ;
+
+        fill(this.myColor);
+        if (this.mouseOverMe) fill(this.myOverMeColor);
+
+        strokeWeight(1);
+        stroke(this.myStrokeColor);
+        rect(this.myX, this.myY, this.mySize, this.mySize);
+
+        fill(255);
+        noStroke();
+        textAlign(LEFT);
+        textSize(this.myTextSize);
+        text(this.myTitle, this.myX + this.mySize + this.myTextSize, this.myY + this.myTextSize);
+
+        if(this.selected){
+            strokeWeight(4);
+            noFill();
+            stroke(this.myStrokeColor);
+            rect(this.myX, this.myY, this.mySize, this.mySize);
+        }
+    }
+
+    releasedOverMe () {
+        if (this.mouseOverMe) this.selected = !this.selected;
+    }
+
+} // end of class
+
+FILE day_5 (time)\day5_2_(GDP histórico animacion)\classCountry.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+
+class Country {
+
+    constructor () {
+        // country ID data
+        this.myName = "";
+        this.myCode = "";
+        // array for data
+        this.arrayOfYears = [];
+        this.arrayOfGDPs = [];
+        this.arrayOfpoints = [];
+        // boolean for events
+        this.overMe = false;
+        this.selected = false;
+        // colors
+        this.myNormalColor = color(255, 150, 100, 150);
+        this.myHoverColor = color(255, 150, 100, 255);
+    }
+
+
+    drawCountryGDP () {
+        this.isOverMe();
+        // defines the color and thickness of the line to be drawn depending on whether it is hovering or not.
+        for (let year = 0; year < this.arrayOfpoints.length; year++) {
+            if (this.overMe || this.selected) {
+                fill(this.myHoverColor);
+                stroke(this.myHoverColor);
+                strokeWeight (2);
+            } else {
+                fill(this.myNormalColor);
+                stroke(this.myNormalColor);
+                strokeWeight (1);
+            }
+
+            // draw circles of the years
+            ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, 3,3);
+            // draw lines between circles
+            if (year > 0) line(this.arrayOfpoints[year-1].x, this.arrayOfpoints[year-1].y, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+
+            // If the country is selected, enter the country code at the end of the country line.
+            if (this.selected) {
+                fill(200);
+                noStroke();
+                textSize(18);
+                text( this.myCode, this.arrayOfpoints[this.arrayOfpoints.length-1].x+5, this.arrayOfpoints[this.arrayOfpoints.length-1].y);
+            }
+
+        }
+
+    };
+
+    isOverMe () {
+        // go through all the positions of the points for each year and compare them with the position of the mouse. if any are less than 5 pixels, return true
+        let ifAny = false;
+        for (let year = 0; year < this.arrayOfpoints.length; year++) {
+            let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+            if (distance < 5) {
+                fill(200);
+                textSize(24);
+                text( (this.arrayOfGDPs[year]/ 1000000000000).toFixed(2) + " MoM",       this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-70);
+                text( this.myName, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-45);
+                text( this.arrayOfYears[year], this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-20);
+                ifAny = true;
+            }
+        }
+        this.overMe = ifAny;
+    };
+
+    clickOverMe () {
+        // When clicked, it scans all the positions of the points for each year and compares them with the position of the mouse.
+        // If any are less than 5 pixels, it changes the value of “selected.”
+        for (let year = 0; year < this.arrayOfpoints.length; year++) {
+            let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+            if (distance < 5) this.selected = !this.selected;
+        }
+    }
+
+
+    displayBall(year) {
+        fill(250, 150, 150, 50);
+        noStroke();
+        if (this.arrayOfpoints[year].y < 1127){ // 1140
+            // drawing dates
+            let mySize = round(map (this.arrayOfpoints[year].y, 1200, 150,  1, 500));
+            ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, mySize, mySize);
+
+            // text
+            fill(200);
+            noStroke();
+            textAlign(CENTER);
+            textSize(10);
+            text( this.myCode, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-5);
+            text( year+1960, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y+15);
+        }
+    }
+
+} // end of class
+
+
+
+FILE day_5 (time)\day5_2_(GDP histórico animacion)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDP historico</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="classCountry.js"></script>
+    <script src="Button.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_5 (time)\day5_2_(GDP histórico animacion)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+
+let GDP_data;
+let arrayOfCountries = [];
+let baseLine = 0;
+let firstYear = 1960;
+let numYears = 65; // for the distribution of the points in Xs
+let stepX;
+let border = 25;
+let currentYear;
+let myButton;
+
+// --------------------------------------------------------  PRELOAD  ----------------------------------------------------
+function preload() {
+    GDP_data = loadTable('data/GPD historicoMini_2024.csv', 'csv', 'header');
+}// -------------------------------------------------------  PRELOAD  ----------------------------------------------------
+
+
+// --------------------------------------------------------  SET UP ----------------------------------------------------
+function setup() {
+    // verifying that the data has been uploaded correctly -------------------------
+    console.log(' total rows in GDP_data: ' + GDP_data.getRowCount()); // 266
+    console.log(' total columns in GDP_data: ' + GDP_data.getColumnCount()); // 64
+
+    // verifying that the data has been uploaded correctly -------------------------
+    createCanvas(1600, 1200);
+    stepX = (width - 150) / numYears;
+    baseLine = height - 50; //chart bottom
+
+    //creates and fills country object data --------------------------
+    let currentCountry;
+    for (let r = 0; r < GDP_data.getRowCount(); r++) {
+        let currentCountryCODE = GDP_data.getString(r, 1);
+        let currentCountryNAME = GDP_data.getString(r, 0);
+        currentCountry = new Country();
+        currentCountry.myName = currentCountryNAME;
+        currentCountry.myCode = currentCountryCODE;
+
+        // save the years data in each country object
+        let index = 2; // before we have: Country Name & Country Code
+        let year = firstYear;
+        for (let i = 0; i < numYears; i++) {
+            currentCountry.arrayOfYears.push(year);
+            let currentGDP = GDP_data.getString(r, index);
+            currentCountry.arrayOfGDPs.push(currentGDP);
+
+            // calculating the position of points for each year
+            let currentX = border + (i) * stepX;
+            let currentY = map (currentGDP, 10000000, 27000000000000,  baseLine, 150);
+            let currentPoint = createVector (currentX,currentY);
+            currentCountry.arrayOfpoints.push(currentPoint);
+
+            index++;
+            year++;
+        }
+        if(currentCountry.myCode === "DEU") currentCountry.selected=true;
+
+        arrayOfCountries.push(currentCountry);
+    } // end for  tablaDeAreas --------------------------------------------------
+
+    currentYear = 0;
+    myButton = new Button (20, 70, 20, "play");
+
+}// --------------------------------------------------------  SET UP ----------------------------------------------------
+
+
+// -----------------------------------------------------------  DRAW  ----------------------------------------------------
+function draw() {
+    background(51);
+    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+        arrayOfCountries[country].drawCountryGDP();
+        arrayOfCountries[country].displayBall(currentYear);
+    }
+
+    if (myButton.selected && frameCount%20 === 0) {
+        if(currentYear < 64) currentYear++;
+        else currentYear=0;
+    }
+    myButton.display();
+
+    // chart title and subtitle  ____________________
+    noStroke();
+    fill(200);
+    textSize(18);
+    text("Gross Domestic Product (GDP)", 20, 30);
+    text("1960-2024", 20, 50);
+
+    fill(200);
+    textSize(12);
+    text(frameRate().toFixed(2), 20, height - 30);
+}// -----------------------------------------------------------  DRAW  ----------------------------------------------------
+
+
+function mouseReleased() {
+    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+        arrayOfCountries[country].clickOverMe();
+    }
+
+    myButton.releasedOverMe();
+}
+
+FILE day_5 (time)\day5_3_(GDP histórico animation bars)\Button.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2019
+ */
+
+class Button {
+    constructor ( _x,_y, _sZ, _tl ){
+        this.myX = _x;
+        this.myY = _y;
+        this.mySize = _sZ;
+        this.myTitle = _tl;
+        this.myColor = color(128);
+        this.myOverMeColor = color(200);
+        this.myStrokeColor = color(255);
+        this.mouseOverMe = false;
+        this.selected = false;
+        this.myTextSize = 24;
+    }
+
+    display () {
+
+        fill(255,0,0);
+        //ellipse (this.myX, this.myY, 5,5);
+
+        this.mouseOverMe = mouseX > this.myX  && mouseX < this.myX + this.mySize &&
+            mouseY > this.myY  && mouseY < this.myY + this.mySize ;
+
+        fill(this.myColor);
+        if (this.mouseOverMe) fill(this.myOverMeColor);
+
+        strokeWeight(1);
+        stroke(this.myStrokeColor);
+        rect(this.myX, this.myY, this.mySize, this.mySize);
+
+        fill(255);
+        noStroke();
+        textAlign(LEFT);
+        textSize(this.myTextSize);
+        text(this.myTitle, this.myX + 3, this.myY + 40);
+
+        if(this.selected){
+            strokeWeight(4);
+            noFill();
+            stroke(this.myStrokeColor);
+            rect(this.myX, this.myY, this.mySize, this.mySize);
+        }
+    }
+
+    releasedOverMe () {
+        if (this.mouseOverMe) this.selected = !this.selected;
+    }
+
+} // end of class
+
+FILE day_5 (time)\day5_3_(GDP histórico animation bars)\clases.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+ */
+
+class Country {
+    constructor () {
+        this.myCode = "";
+        this.myColor = color(128);
+        this.arrayOfData = [];
+        this.myWidth = 0;
+    }
+
+    displayBar(year, positionX, positionY) {
+        this.myWidth = map (this.arrayOfData[year].y, 10000000, 22000000000000,  0, 1200);
+        fill(this.myColor);
+        rect(positionX, positionY, this.myWidth, 35);
+        textSize(20);
+        fill(200);
+        text (this.myCode, positionX+this.myWidth+5, positionY+20);
+        let currentGPD = (this.arrayOfData[year].y / 1000000000000).toFixed(2) + " MoM";
+        text (currentGPD, positionX+this.myWidth+50, positionY+20);
+    }
+} // end of class
+
+
+
+FILE day_5 (time)\day5_3_(GDP histórico animation bars)\index.html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDP historico</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/p5.dom.min.js"></script>
+
+    <script src="sketch.js"></script>
+    <script src="clases.js"></script>
+    <script src="Button.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+FILE day_5 (time)\day5_3_(GDP histórico animation bars)\sketch.js
+/*
+franklin hernandez-castro
+www.skizata.com
+TEC costa rica, hfg schw. gmuend
+2022
+ */
+
+let GDP_data;
+let myFont;
+let arrayOfCountries = [];
+let selectedCountries = ['BRA',  'CAN', 'CHN', 'DEU', 'EUU', 'FRA', 'GBR',  'ITA', 'JPN', 'MEX', 'RUS', 'USA', 'CHL','IND','LCN' ];
+let currentYear;
+let myPlayButton, myRewindButton;
+
+// --------------------------------------------------------  PRELOAD  ----------------------------------------------------
+function preload(){
+    GDP_data = loadTable('data/GPD historical2021.csv', 'csv', 'header'); // CountryName,ISO_A3,sqrKm,population,gdpPc,gdp
+    myFont = loadFont('assets/Roboto-Medium.ttf');
+}// -------------------------------------------------------  PRELOAD  ----------------------------------------------------
+
+
+// --------------------------------------------------------  SET UP ----------------------------------------------------
+function setup() {
+    createCanvas(1600, 1200);
+    textFont(myFont);
+    // to check loaded files -------------------------
+    console.log(' total rows in GDP_data: ' + GDP_data.getRowCount() ); // 266
+    console.log(' total columns in GDP_data: ' + GDP_data.getColumnCount() ); // 64
+    console.log(' number of selected countries: ' + selectedCountries.length ); // 217
+
+    //create and fill data in country objects --------------------------
+    let currentCountry;
+    for (let r = 0; r < GDP_data.getRowCount(); r++) {
+        let currentCountryCODE = GDP_data.getString(r, 1);
+        if (isThere(currentCountryCODE)){
+            let currentCountryNAME = GDP_data.getString(r, 0);
+            currentCountry = new Country();
+            currentCountry.myName = currentCountryNAME;
+            currentCountry.myCode = currentCountryCODE;
+            if ( currentCountry.myCode === "DEU") currentCountry.myColor = color(200,200,100,150);
+            if ( currentCountry.myCode === "USA") currentCountry.myColor = color(100,100,255);
+            if ( currentCountry.myCode === "CHN") currentCountry.myColor = color(200,100,100);
+            if ( currentCountry.myCode === "EUU") currentCountry.myColor = color(50,100,100);
+            if ( currentCountry.myCode === "LCN") currentCountry.myColor = color(150,100,100);
+            arrayOfCountries.push(currentCountry);
+        }
+    } // end for  tablaDeAreas --------------------------------------------------
+    console.log('number of country objects: ' + arrayOfCountries.length );
+
+    // save the years data in each country object
+    foundCountries = 0;
+    for (let r = 0; r < GDP_data.getRowCount(); r++) { // runs through the whole table
+        let currentCountryCODE = GDP_data.getString(r, 1);
+        if (isThere(currentCountryCODE)){
+            for (let country = 0; country < arrayOfCountries.length; country++){ // runs through the whole object list
+                if(arrayOfCountries[country].myCode === currentCountryCODE){
+                    foundCountries++;
+                    let index = 2; // before we have: Country Name & Country Code
+                    for (let year = 1960; year < 2022; year++) {
+                        let currentGDP = GDP_data.getString(r, index);
+                        let currentPaar = createVector (year,currentGDP); // small array with [year,GDP]
+                        arrayOfCountries[country].arrayOfData.push(currentPaar);
+                        index++;
+                    }
+                }
+            }
+        }
+    }
+    console.log('number of found countries: ' + foundCountries );
+
+    currentYear = 0;
+    myPlayButton = new Button (100, 80, 20, ">");
+    myRewindButton = new Button (50, 80, 20, "<<");
+}// --------------------------------------------------------  SET UP ----------------------------------------------------
+
+
+
+
+
+
+
+// -----------------------------------------------------------  DRAW  ----------------------------------------------------
+function draw() {
+    background(51);
+
+    // Use sort function to sort the array of countries by highest GDP.
+    arrayOfCountries = arrayOfCountries.sort((b, a) => parseFloat(a.arrayOfData[currentYear].y) - parseFloat(b.arrayOfData[currentYear].y))
+    // https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/array/sort
+
+    let yNow = 150;
+    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+        // year ∈ [0, 61] -> [1960, 2021]
+        arrayOfCountries[country].displayBar(currentYear, 50, yNow);
+        yNow += 40;
+    }
+
+    if (myPlayButton.selected && frameCount % 10 === 0) {
+        if(currentYear < 61) currentYear++;
+        else {
+            currentYear=61;
+            myPlayButton.selected = false;
+        }
+    }
+
+    if (myRewindButton.selected) {
+            currentYear=0;
+            myRewindButton.selected = false;
+    }
+
+    myPlayButton.display();
+    myRewindButton.display();
+
+    textAlign(LEFT);
+    fill(200);
+    noStroke();
+    textSize(18);
+    text("Gross Domestic Product (GDP)", 50, 40);
+    text("1960-2021", 50, 60);
+    textSize(40);
+    text(arrayOfCountries[0].arrayOfData[currentYear].x, 150, 105);
+}// -----------------------------------------------------------  DRAW  ----------------------------------------------------
+
+
+
+
+
+// -----------------------------------------------------------  EVENTS  ----------------------------------------------------
+function mouseReleased() {
+    myPlayButton.releasedOverMe();
+    myRewindButton.releasedOverMe();
+}
+
+
+
+// -----------------------------------------------------------  miscellaneous  ----------------------------------------------------
+
+function isThere (candidate) {
+    let answer = false;
+    for (let i = 0; i < selectedCountries.length; i++) {
+        if (selectedCountries[i] === candidate) answer = true;
+    }
+    return (answer);
+}
+
+FILE day_5 (time)\day_5_time_ws26.pdf
+PAGE 1
+time
+prof. dr. franklin hernández.castro
+H                       f     G 
+Hochschule für Gestaltung 
+Schwäbisch Gmünd
+tecnológico  
+de costa rica
+PAGE 2
+initial situation
+PAGE 3
+outgoing position    countries by GDP 2025
+
+PAGE 4
+outgoing position    countries by GDP 2006-2025
+
+PAGE 5
+time | vrs. no time
+• single value → comparison 
+• values over time → trend 
+• multiple time series → comparison of trends
+PAGE 6
+coding strategies
+PAGE 7
+coding strategies  pivot table 
+this.myName = "";
+this.arrayOfYears =  [];
+this.arrayOfData = [];
+class Country
+1960 1961 1962 1963 1964 1965 ...year
+...
+1276.. 476.. 207.. 8456.. 8723.. 947..GDP
+PAGE 8
+coding strategies  class Country
+
+PAGE 9
+coding strategies  data mining
+
+PAGE 10
+coding strategies  code examples 
+
+FILE day_5 (time)\project\day_5B_proyect_ws26.pdf
+PAGE 1
+project
+dr. prof. franklin hernández-castro
+PAGE 2
+examples
+PAGE 3
+https://www.ted.com/talks/hans_rosling_the_truth_about_hiv
+
+PAGE 4
+Networks: Emphasis on Time (When?) (NT)
+
+PAGE 5
+https://www.behance.net/gallery/22539163/dataviz-Weather-Eindhoven-2014
+PAGE 6
+https://www.behance.net/gallery/22539163/dataviz-Weather-Eindhoven-2014
+PAGE 7
+https://www.behance.net/gallery/22539163/dataviz-Weather-Eindhoven-2014
+PAGE 8
+http://www.pitchinteractive.com/election2008/jobarcs.html
+PAGE 9
+iReal 
+Obama donation
+most common
+PAGE 10
+iReal 
+Obama donation
+least common
+PAGE 11
+iReal 
+Obama donation
+<100 100-500 500-1000 >1000
+PAGE 12
+ObamaMcCain
+PAGE 13
+
+PAGE 14
+
+PAGE 15
+
+PAGE 16
+
+PAGE 17
+https://insanelab.com/blog/web-development/data-visualization-d3js/
+
+PAGE 18
+https://insanelab.com/blog/web-development/data-visualization-d3js/
+
+PAGE 19
+WS 2019 Katharina Paur & Julian Pohl
+PAGE 20
+SS 2023 Nils Philip, Felix Schönherr
+PAGE 21
+SS 2023 Emily Kühl, Olivia Regattiere, Ron Mandic
+PAGE 22
+https://drones.pitchinteractive.com/
+PAGE 23
+https://vimeo.com/293121685
+PAGE 24
+https://guns.periscopic.com/?year=2010
+PAGE 25
+data sets 
+PAGE 26
+data sets
+•https://data.oecd.org 
+•https://data.giss.nasa.gov 
+•https://dataunodc.un.org 
+•http://visionofhumanity.org/reports/ 
+•http://www.fao.org/faostat/en/#data 
+•https://public.opendatasoft.com/explore/?sort=modified 
+•https://data.worldbank.org
+PAGE 27
+project
+PAGE 28
+parameters 
+•coherent design 
+•use of color as a directional of focus attention 
+•low cognitive burden 
+•interaction 
+•information from the data (aha efect) 
+PAGE 29
+steps 
+1.EDA exploratory data analysis 
+2.relative/absolute data 
+3.TQs target questions 
+4.visualization paradigms 
+5.implementation 
+6.documentation
+PAGE 30
+1˚ step  | EDA exploratory data analysis 
+completeness & coherence 
+exploratory (https://exploratory.io/)
+
+PAGE 31
+2˚ step  | relative/absolute data 
+0
+3500
+7000
+10500
+14000
+DEU CHN FRA USA
+CO2_totals_2021
+source: EDGAR - Emissions Database for Global Atmospheric Research, European commission 
+https://edgar.jrc.ec.europa.eu/report_2022
+CO2 emissions
+Mt CO2/yr 0
+3.75
+7.5
+11.25
+15
+DEU CHN FRA USA
+CO2_per_capita_2021
+t CO2/cap/yr
+PAGE 32
+3˚ step  | TQs 
+target questions
+•TQs are the information we are going to extract from the data  
+•in "form" of questions  
+•that you will be able to answer intuitively and efficiently in the future visualization
+PAGE 33
+4˚ step  | visualization paradigms 
+https://datavizcatalogue.com/index.html
+
+PAGE 34
+4˚ step  | visualization paradigms 
+https://datavizproject.com
+
+PAGE 35
+5˚ step  | implementation 
+
+PAGE 36
+6˚ step  | documentation 
+
+PAGE 37
+to present 
+PAGE 38
+to present 
+1. demonstration & presentation 
+  
+2. animatic: 
+•2 minutes (max) 
+•emphasis in information from the data 
+•mp4 format 
+•credits: school, semester, professor, students, etc. 
+•no copyrights music 
+3. files: 
+•a. all surge data 
+•b. presentation file 
+•c. animatic 
+•d. images and other sketches files (illustrator, pdf, etc.)  
+•e. team photo with names
+PAGE 39
+presentation
+ph.d. franklin hernandez-castro
+project begins
+timeline | 2026 ss
+visualization paradigms
+03.10 07.1004.10 05.10 06.1002.10 08.10 10.10 11.10 14.10 16.10 21.10
+design concept 
+mandatory talk 
+presentation (story telling) & 
+video production
+EDA exploratory data analysis 
+relative/absolute data 
+TQs target questions
+09.10 12.10 13.10 15.10 20.1017.10 18.10 19.10
+implementation
+design concept 
+mandatory talk 
+documentation presentation & 
+video
+PAGE 40
+ph.d. franklin hernandez-castro
+Q?
+
+FILE day_5 (time)\project\to present.pdf
+PAGE 1
+presentation outline:
+•the hook:  
+•a problem to be shared with the audience to make them think 
+about it 
+•where the data comes from 
+•how the data came in (format, several sources) and how it was 
+processed 
+•some of the data class design (OOP) 
+•always refer to good quality sources 
+•aha moment:  
+•present only data relevant to the story 
+•developing a clear "path" in the narrative 
+•supporting the narrative with clear views of the data 
+visualization 
+•this is when the audience comes to a conclusion on its own, 
+based on what has been said 
+•the solution:  
+•the graphic affirmation of the conclusion reached by the 
+audience 
+•what more could be done with more time 
+•questions from the public
+to present 
+1. demonstration & presentation 
+  
+2. animatic: 
+•2 minutes (max) 
+•emphasis in information from the data 
+•mp4 format 
+•credits: school, semester, professor, students, etc. 
+•no copyrights music 
+3. files: 
+•a. all surge data 
+•b. Presentation file 
+•c. animatic 
+•d. images and other sketches files (illustrator, pdf, 
+etc.)  
+•e. team photo with names

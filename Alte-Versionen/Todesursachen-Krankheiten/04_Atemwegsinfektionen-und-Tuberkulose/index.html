@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atemwegsinfektionen und Tuberkulose in Deutschland, 1980–2023</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; background: #fff; color: #222; }
+    h1 { font-size: 1.4rem; margin: 0 0 4px; }
+    p.sub { margin: 0 0 16px; color: #666; font-size: .9rem; }
+    .wrap { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+    #chart { flex: 1 1 700px; min-width: 0; }
+    svg { width: 100%; height: auto; display: block; }
+    svg text { font-size: 11px; fill: #444; }
+    .grid { stroke: #e3e3e3; }
+    .legend { flex: 0 0 280px; font-size: .85rem; }
+    .legend div { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+    .legend i { width: 12px; height: 12px; border-radius: 2px; flex: none; }
+    #tip { position: fixed; pointer-events: none; background: #fff; border: 1px solid #ccc; border-radius: 6px;
+           padding: 8px 10px; font-size: .8rem; box-shadow: 0 2px 8px rgba(0,0,0,.15); display: none; }
+    .pick { display: inline-block; margin-right: 16px; margin-bottom: 12px; font-size: .9rem; }
+    .pick[hidden] { display: none; }
+    .pick select { font: inherit; padding: 4px 8px; margin-left: 6px; }
+    circle, path.st { cursor: pointer; }
+    path.sl, rect.bar { cursor: pointer; }
+    path.sl { stroke: #fff; stroke-width: 1; }
+    path.st { stroke: #fff; stroke-width: .6; }
+    path.st:hover, path.st.sel { stroke: #000; stroke-width: 1.2; }
+    text.sl { font-size: 12px; fill: #fff; stroke: rgba(0,0,0,.45); stroke-width: 2.5px; paint-order: stroke; pointer-events: none; text-anchor: middle; }
+    circle:hover, circle.sel { fill-opacity: 1; stroke: #000; stroke-width: 1.5; }
+    #tip { max-width: 360px; z-index: 5; }
+    #tip hr { border: 0; border-top: 1px solid #ddd; margin: 6px 0; }
+    #tip .row { display: flex; justify-content: space-between; gap: 12px; }
+    .legend .note { color: #777; font-size: .75rem; margin-top: 10px; }
+    #controls { display: none; align-items: center; gap: 12px; margin: 0 0 8px; }
+    #controls button { font: inherit; padding: 6px 14px; min-width: 110px; cursor: pointer; }
+    #prog { flex: 1; max-width: 600px; height: 60px; cursor: ew-resize; touch-action: none; background: #fafafa; border-radius: 4px; }
+    #controls b { font-size: 1.3rem; min-width: 3.2em; }
+    svg.rad text { fill: #e8e6f5; font-size: 10px; }
+    svg.rad text.dim { fill: #8b8fb8; }
+    svg.rad text.halo { paint-order: stroke; stroke: #1b1e3f; stroke-width: 3px; }
+    footer { margin-top: 16px; color: #888; font-size: .75rem; }
+
+    body.radial-bars { background:#1b1e3f; color:#e8e6f5; min-height:100vh; box-sizing:border-box; padding-bottom:16px; }
+    body.radial-bars h2, body.radial-bars p.sub, body.radial-bars footer,
+    body.radial-bars .legend .note { color:#a8acd0 !important; }
+    body.radial-bars .pick select, body.radial-bars #play { background:#262a55; color:#e8e6f5; border:1px solid #555b88; border-radius:6px; }
+    body.radial-bars .wrap { display:grid; grid-template-columns:minmax(360px,520px) minmax(0,880px) 340px; gap:24px; justify-content:center; align-items:center; }
+    body.radial-bars #radialPanel { grid-column:2; width:100%; min-width:0; }
+    #radialPanel .sub { line-height:1.3; text-align:center; font-size:.85rem; margin-bottom:8px; }
+    #yearControl { width:50%; margin:16px auto 0; box-sizing:border-box; }
+    #yearSlider { display:block; width:100%; margin:0; accent-color:#f0a35e; cursor:ew-resize; }
+    .year-scale { position:relative; height:52px; margin:5px 8px 0; color:#a8acd0; font-size:.65rem; font-variant-numeric:tabular-nums; }
+    .year-tick { position:absolute; top:0; height:5px; width:1px; background:#626991; }
+    .year-tick.major { height:10px; background:#a8acd0; }
+    .year-tick-label { position:absolute; top:14px; transform:translateX(-50%); }
+    .year-tick-label.first { transform:none; }
+    .year-tick-label.last { top:32px; transform:translateX(-100%); }
+    #radialPanel .sub span { font-size:.72rem; }
+    #agePanel { display:none; }
+    body.radial-bars #agePanel { display:block; grid-column:1; width:100%; min-width:0; align-self:start; margin-top:24px; }
+    #agePanel h3 { font-size:1rem; line-height:1.3; font-weight:500; margin:0 0 12px; }
+    #agePanel svg text { fill:#b9bdd9; font-size:9px; }
+    #agePanel .age-pick { display:block; }
+    #agePanel select { box-sizing:border-box; width:100%; margin:6px 0 14px; padding:6px; background:#262a55; color:#e8e6f5; border:1px solid #555b88; border-radius:5px; }
+    #agePanel .age-pick, #agePanel p { font-size:.72rem; color:#a8acd0; }
+    #agePanel rect { cursor:pointer; }
+    #agePanel rect.age-hit:hover { stroke:#fff; stroke-width:1; }
+    body.radial-bars #chart svg { max-height:calc(100vh - 300px) !important; min-height:320px; }
+    body.radial-bars .legend { grid-column:3; display:flex; flex-direction:column; gap:10px; padding:16px 0; font-size:.76rem; }
+    body.radial-bars .legend div[data-k] { margin:0; min-height:28px; box-sizing:border-box; width:245px; padding:3px 0; transform:translateX(var(--oval-offset)); cursor:pointer; line-height:1.35; }
+    body.radial-bars .legend div[data-k]:hover { color:#fff; }
+    body.radial-bars .legend i { width:9px; height:9px; border-radius:50%; }
+    body.radial-bars #controls { position:static; box-sizing:border-box; margin:28px 0 0; padding:0; width:100%; flex-direction:column; align-items:stretch; gap:8px; }
+    body.radial-bars #play { font:inherit; cursor:pointer; align-self:flex-end; margin:18px 1.667% 0 0; min-width:126px; min-height:44px; padding:10px 20px; font-size:1rem; }
+    body.radial-bars #controls #prog { flex:none; width:100%; }
+    body.radial-bars #prog { background:transparent; max-width:none; min-width:0; height:140px; }
+    body.radial-bars #tip { background:#10132c; color:#e8e6f5; border-color:#555b88; }
+    @media(max-width:1250px) {
+      body.radial-bars .wrap { grid-template-columns:minmax(320px,430px) minmax(0,1fr); }
+      body.radial-bars #radialPanel { grid-column:2; }
+      body.radial-bars .legend { grid-column:2; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 20px; }
+      body.radial-bars .legend div[data-k] { transform:none; width:auto; }
+    }
+    @media(max-width:720px) {
+      body.radial-bars .wrap { display:flex; flex-direction:column; align-items:center; }
+      body.radial-bars .legend { flex:auto; width:100%; grid-template-columns:1fr; }
+      body.radial-bars #chart svg { min-height:0; }
+      body.radial-bars #agePanel { margin-top:12px; }
+    }
+  </style>
+</head>
+<body>
+  <label class="pick" hidden>Datensatz:
+    <select id="dataset"><option value="de">Deutschland</option></select>
+  </label>
+  <label class="pick" hidden>Variation:
+    <select id="variation"><option value="respiratory">Atemwegsinfektionen und Tuberkulose · Unterkategorien</option></select>
+  </label>
+  <p id="variationNote" style="display:none;color:#a8acd0;font-size:.8rem;margin:0 0 10px">Unterkategorien: Daten nur für Deutschland. Radialdiagramm: alle Altersgruppen zusammen · Heatmap links: Altersgruppen im Zeitverlauf.</p>
+  <input id="mode" type="hidden" value="radialbars">
+  <h1 id="title">Atemwegsinfektionen und Tuberkulose in Deutschland, 1980–2023</h1>
+  <h2 style="font-size:1rem;font-weight:normal;margin:0 0 4px;color:#444">Wir sind Jere, Josi, Bambi &amp; Claudio</h2>
+  <div id="controls">
+    <svg id="prog" viewBox="0 0 600 220" preserveAspectRatio="none" aria-label="Verlauf: Anteil Gestorbener an der Bevölkerung, zum Springen klicken"></svg>
+    <p id="timelineCaption" style="margin:0 0 0 8%;width:90.333%;font-size:.75rem;color:#a8acd0">Todesfälle in % der Bevölkerung · alle Ursachen</p>
+    <button id="play" type="button">▶ Start</button>
+  </div>
+  <div class="wrap">
+    <aside id="agePanel" aria-label="Altersgruppen"></aside>
+    <section id="radialPanel">
+      <p class="sub">Todesfälle pro Jahr in % der Bevölkerung<br><span>Alle Altersgruppen · beide Geschlechter · Wurzelskala</span></p>
+      <div id="chart"></div>
+      <div id="yearControl">
+        <input id="yearSlider" type="range" min="1980" max="2023" step="1" value="1980" aria-label="Jahr für die Diagramme auswählen">
+        <div class="year-scale" id="yearTicks" aria-hidden="true"></div>
+      </div>
+    </section>
+    <div class="legend" id="legend"></div>
+  </div>
+  <div id="tip"></div>
+  <footer>Quelle: Global Burden of Disease Study 2023 (GBD 2023), IHME, Seattle 2024. Bevölkerung: Weltbank, World Development Indicators.</footer>
+<script src="respiratory-data.js"></script>
+<script src="age-data.js"></script>
+<script>
+const COLORS = ["#c0392b","#e67e22","#f1c40f","#27ae60","#16a085","#2980b9","#8e44ad","#d35400","#7f8c8d","#e84393",
+  "#00b894","#0984e3","#6c5ce7","#fdcb6e","#b2bec3","#a29bfe","#55efc4","#fab1a0","#636e72","#e17055","#74b9ff"];
+const STREAM_COLOR = "#7b1fa2";
+const TOP_N = 10; // animierte Ansichten zeigen nur die TOP_N größten Ursachen
+
+// Bevölkerung pro Jahr (Personen), Quelle: Weltbank, World Development Indicators (Zeilen WLD und DEU).
+// Ohne Werte sind die Ansichten mit Bevölkerungsbezug deaktiviert.
+const POP = {"global": {"1980": 4437473406, "1981": 4516792587, "1982": 4599385851, "1983": 4682734714, "1984": 4765813206, "1985": 4850494238, "1986": 4937459951, "1987": 5026770385, "1988": 5116898810, "1989": 5207378374, "1990": 5298962018, "1991": 5388203305, "1992": 5476822930, "1993": 5564459142, "1994": 5650534421, "1995": 5736205135, "1996": 5822327903, "1997": 5908180322, "1998": 5993730786, "1999": 6078069822, "2000": 6161528496, "2001": 6244739668, "2002": 6327171255, "2003": 6409352386, "2004": 6492354627, "2005": 6575410029, "2006": 6659536021, "2007": 6744049498, "2008": 6830080867, "2009": 6916168196, "2010": 7000860073, "2011": 7086704141, "2012": 7176482165, "2013": 7265404737, "2014": 7353532223, "2015": 7441084771, "2016": 7528221579, "2017": 7613788655, "2018": 7696159728, "2019": 7777162476, "2020": 7853863139, "2021": 7919567995, "2022": 7988550201, "2023": 8062923417}, "de": {"1980": 78288576, "1981": 78407907, "1982": 78333366, "1983": 78128282, "1984": 77858685, "1985": 77684873, "1986": 77720436, "1987": 77839920, "1988": 78144619, "1989": 78751283, "1990": 79433029, "1991": 80013896, "1992": 80624598, "1993": 81156363, "1994": 81438348, "1995": 81678051, "1996": 81914831, "1997": 82034771, "1998": 82047195, "1999": 82100243, "2000": 82211508, "2001": 82349925, "2002": 82488495, "2003": 82534176, "2004": 82516260, "2005": 82469422, "2006": 82376451, "2007": 82266372, "2008": 82110097, "2009": 81902307, "2010": 81776930, "2011": 80274983, "2012": 80425823, "2013": 80645605, "2014": 80982500, "2015": 81686611, "2016": 82348669, "2017": 82657002, "2018": 82905782, "2019": 83092962, "2020": 83160871, "2021": 83196078, "2022": 83177813, "2023": 83287273}};
+
+const W = 1000, H = 520, M = {l: 70, r: 10, t: 10, b: 40};
+const iw = W - M.l - M.r, ih = H - M.t - M.b;
+const fmt = v => v.toLocaleString("de-DE");
+const pct = (v, d = 1) => v.toLocaleString("de-DE", {minimumFractionDigits: d, maximumFractionDigits: d}) + " %";
+const tip = document.getElementById("tip"), chart = document.getElementById("chart");
+const selData = document.getElementById("dataset"), selMode = document.getElementById("mode");
+let topPie, key, series, years, totals, pop, pinned = null;
+
+function niceStep(max) {
+  const raw = max / 6, p = Math.pow(10, Math.floor(Math.log10(raw)));
+  return [1, 2, 5, 10].map(f => f * p).find(v => v >= raw);
+}
+
+function prepare() {
+  const d = RESPIRATORY_DATA[key];
+  years = d.years;
+  series = d.causes.map((c, k) => ({name: c.name, values: c.values, color: COLORS[k % COLORS.length]}));
+  // feste Top-N für das Kreisdiagramm: größte Ursachen über alle Jahre
+  const sum = c => c.values.reduce((x, y) => x + y, 0);
+  topPie = series.map((c, k) => k).sort((a, b) => sum(series[b]) - sum(series[a])).slice(0, TOP_N).sort((a, b) => a - b);
+  totals = years.map((_, i) => series.reduce((s, c) => s + c.values[i], 0));
+  pop = years.map(yr => POP[key][yr] || null);
+}
+
+// Wert eines Segments in der gewählten Ansicht
+function val(v, i, view) {
+  if (view === "share") return v / totals[i] * 100;
+  if (view === "pop") return v / pop[i] * 100;
+  return v;
+}
+
+const opac = k => (1 - .88 * k / Math.max(1, series.length - 1)).toFixed(2);
+
+function meta(mode) {
+  const n = years.length;
+  document.getElementById("legend").innerHTML = series.map((c, k) => mode === "stream" ?
+    `<div><i style="background:${STREAM_COLOR};opacity:${opac(k)}"></i>${c.name}</div>` :
+    `<div data-k="${k}" style="--oval-offset:${(90*Math.sin(Math.PI*k/Math.max(1,series.length-1))).toFixed(1)}px"><i style="background:${c.color}"></i>${c.name}</div>`).join("") +
+    (mode === "radialbars" ? "" :
+    mode === "radial" ? `<p class="note">Radial: Liniendiagramm um den Kreis gebogen (1980 links, im Uhrzeigersinn). Radius = Todesfälle in % der Bevölkerung (Wurzelskala), innen die Gesamtrate pro Jahr. Über Linie oder Legende hovern zeigt den Namen, Klick wählt das Jahr.</p>` :
+    mode === "pie" || mode === "race" ? `<p class="note">Animierte Ansichten zeigen nur die Top ${TOP_N}${mode === "pie" ? " (über alle Jahre)" : " des jeweiligen Jahres"}.</p>` : "");
+  const region = key === "de" ? "in Deutschland" : "weltweit";
+  const detail = document.getElementById("variation").value === "respiratory";
+  const t = detail ? `Atemwegsinfektionen und Tuberkulose ${region}, ${years[0]}–${years[n - 1]}` : `Todesfälle ${region} nach Todesursache, ${years[0]}–${years[n - 1]}`;
+  document.getElementById("timelineCaption").textContent = detail ? "Todesfälle in % der Bevölkerung · Atemwegsinfektionen und Tuberkulose" : "Todesfälle in % der Bevölkerung · alle Ursachen";
+  document.getElementById("title").textContent = t;
+  document.title = t;
+}
+
+function render() {
+  const detail = document.getElementById("variation").value === "respiratory";
+  if (detail) { selData.value = "de"; key = "de"; }
+  document.getElementById("variationNote").style.display = detail ? "block" : "none";
+  radB = null; rad = null;
+  const radialBars = selMode.value === "radialbars";
+  document.body.classList.toggle("radial-bars", radialBars);
+  if (!radialBars) document.querySelector(".wrap").before(controls);
+  selData.disabled = true;
+  prepare();
+  unpin();
+  const view = "pop", n = years.length;
+  const vals = series.map(c => c.values.map((v, i) => val(v, i, view)));
+  const mode = selMode.value;
+  stopAnim();
+  if (mode === "pie" || mode === "race" || mode === "radial" || mode === "radialbars") { startAnim(mode); meta(mode); return; }
+  controls.style.display = "none";
+  const x = i => M.l + (i + .5) * iw / n;
+  const bump = pts => pts.map(([px, py], j) => {
+    if (!j) return `M${px},${py}`;
+    const mx = (pts[j - 1][0] + px) / 2;
+    return `C${mx},${pts[j - 1][1]} ${mx},${py} ${px},${py}`;
+  }).join("");
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Diagramm der Todesfälle">`;
+  const yearLabels = () => years.map((yr, i) => (yr % 5 === 0 || i === n - 1) ? `<text x="${x(i)}" y="${H - M.b + 18}" text-anchor="middle">${yr}</text>` : "").join("");
+  let ylabel;
+  if (mode === "line") {
+    const dataMax = Math.max(...vals.flat());
+    const step = niceStep(dataMax), yMax = Math.ceil(dataMax / step) * step;
+    const y = v => M.t + ih - v / yMax * ih;
+    const label = v => v.toLocaleString("de-DE", {maximumFractionDigits: 2}) + " %";
+    for (let v = 0; v <= yMax + 1e-9; v += step) {
+      s += `<line class="grid" x1="${M.l}" x2="${W - M.r}" y1="${y(v)}" y2="${y(v)}"/>`;
+      s += `<text x="${M.l - 6}" y="${y(v) + 4}" text-anchor="end">${label(v)}</text>`;
+    }
+    s += yearLabels();
+    series.forEach((c, k) => {
+      s += `<polyline fill="none" stroke="${c.color}" stroke-width="2" stroke-linejoin="round" points="${vals[k].map((v, i) => x(i) + "," + y(v)).join(" ")}"/>`;
+    });
+    series.forEach((c, k) => vals[k].forEach((v, i) => {
+      s += `<circle data-i="${i}" data-k="${k}" cx="${x(i)}" cy="${y(v)}" r="4" fill="${c.color}" fill-opacity="0"/>`;
+    }));
+    ylabel = "Todesfälle in % der Bevölkerung";
+  } else {
+    // Streamgraph: gestapelt, Grundlinie so verschoben, dass die Summe um die Mitte zentriert ist
+    const tot = years.map((_, i) => vals.reduce((a, v) => a + v[i], 0));
+    const half = Math.max(...tot) / 2, cy = M.t + ih / 2;
+    const y = v => cy - v / half * ih / 2;
+    const lo = tot.map(t => -t / 2), acc = lo.slice();
+    const layers = series.map((c, k) => {
+      const bot = acc.slice(), top = acc.map((a, i) => a + vals[k][i]);
+      top.forEach((t, i) => acc[i] = t);
+      return {bot, top};
+    });
+    series.forEach((c, k) => {
+      const {bot, top} = layers[k];
+      const up = top.map((t, i) => [x(i), y(t)]), down = bot.map((b, i) => [x(i), y(b)]).reverse();
+      s += `<path class="st" data-k="${k}" fill="${STREAM_COLOR}" fill-opacity="${opac(k)}" d="${bump(up)}L${down[0][0]},${down[0][1]}${bump(down).replace(/^M[^C]*/, "")}Z"/>`;
+    });
+    series.forEach((c, k) => {
+      const {bot, top} = layers[k];
+      let bi = 0;
+      top.forEach((t, i) => { if (t - bot[i] > top[bi] - bot[bi]) bi = i; });
+      const px = (top[bi] - bot[bi]) / half * ih / 2;
+      if (px >= 13) s += `<text class="sl" x="${Math.min(Math.max(x(bi), M.l + 90), W - M.r - 90)}" y="${y((top[bi] + bot[bi]) / 2) + 4}" style="font-size:${Math.min(16, 9 + px / 8)}px">${c.name.length > 28 ? c.name.slice(0, 26) + "…" : c.name}</text>`;
+    });
+    s += yearLabels();
+    const sb = 0.05, sbPx = sb / half * ih / 2 * 2;
+    s += `<line x1="${M.l - 20}" x2="${M.l - 20}" y1="${cy - sbPx / 2}" y2="${cy + sbPx / 2}" stroke="#444" stroke-width="2"/>`;
+    s += `<text x="${M.l - 26}" y="${cy + 4}" text-anchor="end">${(sb).toLocaleString("de-DE")} %</text>`;
+    ylabel = "Todesfälle in % der Bevölkerung (Höhe)";
+  }
+  s += `<text x="12" y="${M.t + ih / 2}" text-anchor="middle" transform="rotate(-90 12 ${M.t + ih / 2})">${ylabel}</text>`;
+  s += `<text x="${M.l + iw / 2}" y="${H - 4}" text-anchor="middle">Jahr</text></svg>`;
+  chart.innerHTML = s;
+
+  meta(mode);
+}
+
+
+// ---------- Animierte Varianten (Kreis / Balken) ----------
+const controls = document.getElementById("controls"), playBtn = document.getElementById("play"),
+      prog = document.getElementById("prog");
+const SPEED = 2.5; // Jahre pro Sekunde
+let tYear = 0, playing = false, rafId = 0, lastTs = 0, dirty = false, settled = true, animMode = null, pos = [];
+const lerpAt = (arr, t) => { const i = Math.min(arr.length - 1, Math.floor(t)), j = Math.min(arr.length - 1, i + 1), f = t - i; return arr[i] * (1 - f) + arr[j] * f; };
+const rank = vs => { const o = vs.map((v, k) => k).sort((a, b) => vs[b] - vs[a]), r = []; o.forEach((k, p) => r[k] = p); return r; };
+
+const yearSlider = document.getElementById("yearSlider");
+document.getElementById("yearTicks").innerHTML = Array.from({length:44}, (_, i) => {
+  const year = 1980+i, left = i/43*100, major = year%10===0 || year===2023;
+  return `<span class="year-tick${major ? ' major' : ''}" style="left:${left}%"></span>` +
+    (year%10===0 ? `<span class="year-tick-label${i===0?' first':''}" style="left:${left}%">${year}</span>` : '');
+}).join('');
+yearSlider.addEventListener("input", () => {
+  setPlaying(false);
+  tYear = Math.max(0, years.indexOf(Number(yearSlider.value)));
+  dirty = true;
+});
+function syncYearSlider() {
+  const year = years[Math.min(years.length-1, Math.round(tYear))];
+  yearSlider.value = year;
+  yearSlider.setAttribute("aria-valuetext", String(year));
+}
+function setPlaying(p) { playing = p; playBtn.textContent = p ? "❚❚ Pause" : "▶ Start"; }
+function stopAnim() { cancelAnimationFrame(rafId); setPlaying(false); animMode = null; }
+function startAnim(mode) {
+  animMode = mode; tYear = 0; dirty = true;
+  lastRad = ""; hoverK = -1;
+  controls.style.display = "flex";
+  pos = rank(series.map(c => c.values[0] / pop[0]));
+  lastTs = performance.now();
+  rafId = requestAnimationFrame(loop);
+}
+function loop(ts) {
+  rafId = requestAnimationFrame(loop);
+  const dt = Math.min(.1, (ts - lastTs) / 1000 || 0); lastTs = ts;
+  let need = dirty; dirty = false;
+  if (playing) {
+    tYear += dt * SPEED; need = true;
+    if (tYear >= years.length - 1) { tYear = years.length - 1; setPlaying(false); }
+  }
+  if (animMode === "race" && !settled) need = true;
+  if (need) drawAnim(dt);
+}
+playBtn.addEventListener("click", () => {
+  if (!playing && tYear >= years.length - 1) tYear = 0;
+  setPlaying(!playing); dirty = true;
+});
+const scrub = e => {
+  const r = prog.getBoundingClientRect();
+  tYear = Math.min(1, Math.max(0, ((e.clientX - r.left) / r.width * 600 - 48) / 542)) * (years.length - 1); dirty = true;
+};
+prog.addEventListener("pointerdown", e => { prog.setPointerCapture(e.pointerId); scrub(e); });
+prog.addEventListener("pointermove", e => { if (prog.hasPointerCapture(e.pointerId)) scrub(e); });
+// Fortschrittsverlauf: Anteil aller Todesfälle an der Bevölkerung pro Jahr als Linie, bis zum aktuellen Jahr hervorgehoben
+function drawProg() {
+  const n = years.length, rate = totals.map((t, i) => t / pop[i] * 100);
+  const px = i => 48 + i / (n - 1) * 542, py = v => 180 - v * 120;
+  const pts = rate.map((v, i) => [px(i), py(v)]);
+  const t = Math.min(n - 1, tYear), i0 = Math.floor(t), f = t - i0, i1 = Math.min(n - 1, i0 + 1);
+  const current = rate[i0] * (1 - f) + rate[i1] * f;
+  const cur = [px(t), py(current)], past = pts.slice(0, i0 + 1).concat([cur]);
+  const points = ps => ps.map(p => p.join(',')).join(' ');
+  const area = ps => `${points(ps)} ${ps[ps.length - 1][0]},180 ${ps[0][0]},180`;
+  let s = '';
+  [0,.5,1].forEach(v => {
+    s += `<line x1="48" x2="590" y1="${py(v)}" y2="${py(v)}" stroke="#3a3f73" stroke-dasharray="3 4"/>` +
+      `<text x="40" y="${py(v)+5}" text-anchor="end" style="fill:#a8acd0;font-size:16px">${pct(v, v === .5 ? 1 : 0)}</text>`;
+  });
+  s += `<polygon fill="#f0a35e" fill-opacity=".08" points="${area(pts)}"/>` +
+    `<polygon fill="#f0a35e" fill-opacity=".18" points="${area(past)}"/>` +
+    `<polyline fill="none" stroke="#f0a35e" stroke-opacity=".3" stroke-width="2" vector-effect="non-scaling-stroke" points="${points(pts)}"/>` +
+    `<polyline fill="none" stroke="#f0a35e" stroke-width="2" vector-effect="non-scaling-stroke" points="${points(past)}"/>` +
+    `<line x1="${cur[0]}" x2="${cur[0]}" y1="32" y2="180" stroke="#f0a35e" stroke-opacity=".5"/>` +
+    `<circle cx="${cur[0]}" cy="${cur[1]}" r="4" fill="#f0a35e"/>` +
+    `<text x="${Math.max(80,Math.min(555,cur[0]))}" y="22" text-anchor="middle" style="fill:#f0a35e;font-size:23px;font-weight:600">${pct(current,2)}</text>`;
+  years.forEach((year,i) => { if(year % 10 === 0 || i === n-1) s += `<text x="${px(i)}" y="210" text-anchor="${i===0?'start':i===n-1?'end':'middle'}" style="fill:#a8acd0;font-size:16px">${year}</text>`; });
+  prog.innerHTML = s;
+}
+
+function drawAnim(dt) {
+  const n = years.length, yi = Math.min(n - 1, Math.round(tYear));
+  syncYearSlider(); drawProg(); drawAgeHeatmap();
+  if (animMode === "radial") { drawRadial(yi, Math.min(n - 1, tYear)); return; }
+  if (animMode === "radialbars") { drawRadialBars(yi, Math.min(n - 1, tYear)); return; }
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Animiertes Diagramm der Todesfälle">`;
+  if (animMode === "pie") {
+    const cx = W / 2, cy = H / 2, Rmax = H / 2 - 12;
+    const abs = series.map(c => lerpAt(c.values, tYear)), tot = abs.reduce((a, b) => a + b, 0);
+    const R = Rmax * Math.sqrt(tot / Math.max(...totals));
+    s += `<circle cx="${cx}" cy="${cy}" r="${Rmax}" fill="none" stroke="#ddd" stroke-dasharray="4 4"/>`;
+    const topSum = topPie.reduce((a, k) => a + abs[k], 0);
+    let a0 = -Math.PI / 2;
+    topPie.forEach(k => {
+      const c = series[k];
+      const a1 = a0 + abs[k] / topSum * 2 * Math.PI, am = (a0 + a1) / 2;
+      const p = (a, r) => `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
+      s += `<path class="sl" data-k="${k}" data-i="${yi}" fill="${c.color}" d="M${cx},${cy}L${p(a0, R)}A${R},${R} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${p(a1 - 1e-6, R)}Z"/>`;
+      if (abs[k] / topSum > .04) s += `<text class="sl" x="${cx + R * .68 * Math.cos(am)}" y="${cy + R * .68 * Math.sin(am) + 4}">${pct(abs[k] / tot * 100, 0)}</text>`;
+      a0 = a1;
+    });
+    s += `<text x="${W - 20}" y="40" text-anchor="end" style="font-size:34px;font-weight:600">${years[yi]}</text>`;
+    s += `<text x="${W - 20}" y="64" text-anchor="end" style="font-size:14px">${(tot / lerpAt(pop, tYear) * 100).toLocaleString("de-DE", {minimumFractionDigits: 3, maximumFractionDigits: 3})} % der Bevölkerung gestorben (insgesamt)</text>`;
+    s += `<text x="20" y="${H - 14}" style="font-size:12px">Fläche = Zahl der Todesfälle (gestrichelt: Maximum), Segmente = Top ${TOP_N}, Prozent = Anteil an allen Todesfällen</text>`;
+  } else {
+    const B = {l: 70, r: 10, t: 40, b: 190}, ihb = H - B.t - B.b, iwb = W - B.l - B.r;
+    const all = series.map(c => c.values.map((v, i) => v / pop[i] * 100));
+    const dmax = Math.max(...all.flat()), step = niceStep(dmax), yMax = Math.ceil(dmax / step) * step;
+    const y = v => B.t + ihb - v / yMax * ihb;
+    for (let v = 0; v <= yMax + 1e-9; v += step) {
+      s += `<line class="grid" x1="${B.l}" x2="${W - B.r}" y1="${y(v)}" y2="${y(v)}"/>`;
+      s += `<text x="${B.l - 6}" y="${y(v) + 4}" text-anchor="end">${v.toLocaleString("de-DE", {maximumFractionDigits: 2})} %</text>`;
+    }
+    const cur = all.map(a => lerpAt(a, tYear)), tgt = rank(cur), sw = iwb / TOP_N;
+    const e = dt === undefined ? 1 : 1 - Math.exp(-dt * 9);
+    let maxd = 0;
+    series.forEach((c, k) => {
+      pos[k] += (tgt[k] - pos[k]) * e; maxd = Math.max(maxd, Math.abs(tgt[k] - pos[k]));
+      if (pos[k] >= TOP_N) return;
+      const bx = B.l + pos[k] * sw + sw * .12, bw = sw * .76, mid = bx + bw / 2;
+      s += `<rect class="bar" data-k="${k}" data-i="${yi}" x="${bx}" width="${bw}" y="${y(cur[k])}" height="${Math.max(0, y(0) - y(cur[k]))}" fill="${c.color}" opacity="${Math.min(1, TOP_N - pos[k])}"/>`;
+      s += `<text opacity="${Math.min(1, TOP_N - pos[k])}" x="${mid}" y="${y(cur[k]) - 6}" text-anchor="middle">${cur[k].toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2})} %</text>`;
+      if (tYear >= years.length - 1) {
+        const d = (cur[k] / all[k][0] - 1) * 100;
+        s += `<text opacity="${Math.min(1, TOP_N - pos[k])}" x="${mid}" y="${y(cur[k]) - 20}" text-anchor="middle" style="font-weight:600;fill:${d > 0 ? "#c0392b" : "#27ae60"}">${d > 0 ? "+" : "−"}${Math.abs(d).toLocaleString("de-DE", {maximumFractionDigits: 0})} %</text>`;
+      }
+      const nm = c.name.length > 30 ? c.name.slice(0, 28) + "…" : c.name;
+      s += `<text opacity="${Math.min(1, TOP_N - pos[k])}" x="${mid + 4}" y="${y(0) + 12}" text-anchor="end" transform="rotate(-40 ${mid + 4} ${y(0) + 12})">${nm}</text>`;
+    });
+    settled = maxd < .003;
+    s += `<text x="${W - 20}" y="${B.t + 20}" text-anchor="end" style="font-size:34px;font-weight:600">${years[yi]}</text>`;
+    const totNow = series.reduce((t, c) => t + lerpAt(c.values, tYear), 0);
+    s += `<text x="${W - 20}" y="${B.t + 44}" text-anchor="end" style="font-size:14px">${(totNow / lerpAt(pop, tYear) * 100).toLocaleString("de-DE", {minimumFractionDigits: 3, maximumFractionDigits: 3})} % der Bevölkerung gestorben (insgesamt)</text>`;
+    s += `<text x="12" y="${B.t + ihb / 2}" text-anchor="middle" transform="rotate(-90 12 ${B.t + ihb / 2})">Todesfälle in % der Bevölkerung</text>`;
+  }
+  chart.innerHTML = s + "</svg>";
+}
+
+function tipHtml(i, k) {
+  const c = series[k], v = c.values[i];
+  let h = `<b>${years[i]}</b> · ${c.name}<br>${fmt(v)} Todesfälle`;
+  h += `<br>${pct(v / totals[i] * 100)} aller Todesfälle (${fmt(totals[i])})`;
+  if (pop[i]) h += `<br>${pct(v / pop[i] * 100, 3)} der Bevölkerung (${fmt(pop[i])})`;
+  return h;
+}
+function hit(e) {
+  const t = e.target;
+  if (t.tagName === "circle") return {el: t, i: +t.dataset.i, k: +t.dataset.k};
+  if ((t.tagName === "rect" || t.tagName === "path") && t.dataset.i !== undefined) return {el: t, i: +t.dataset.i, k: +t.dataset.k};
+  if (t.tagName === "path" && t.dataset.k !== undefined) {
+    const r = chart.querySelector("svg").getBoundingClientRect();
+    const sx = (e.clientX - r.left) / r.width * W;
+    const i = Math.min(years.length - 1, Math.max(0, Math.round((sx - M.l) / iw * years.length - .5)));
+    return {el: t, i, k: +t.dataset.k};
+  }
+  return null;
+}
+function showTip(e, h) {
+  tip.innerHTML = tipHtml(h.i, h.k);
+  tip.style.display = "block";
+  tip.style.left = Math.max(0, Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8)) + "px";
+  tip.style.top = Math.max(0, Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8)) + "px";
+}
+function unpin() {
+  if (pinned) pinned.el.classList.remove("sel");
+  pinned = null; tip.style.display = "none";
+}
+chart.addEventListener("mousemove", e => {
+  if (isRad()) return radialTip(e);
+  if (pinned) return;
+  const h = hit(e);
+  if (!h) { tip.style.display = "none"; return; }
+  showTip(e, h);
+});
+chart.addEventListener("mouseleave", () => { if (!pinned) tip.style.display = "none"; });
+chart.addEventListener("click", e => {
+  if (isRad()) { const h = radialLocate(e); if (h?.bar) selectAgeCause(series[h.cause].name); if (h && !h.bar && h.year !== undefined) { setPlaying(false); tYear = h.year; dirty = true; } return; }
+  if (animMode) return;
+  const h = hit(e), was = pinned;
+  unpin();
+  if (h && !(was && was.el === h.el && was.i === h.i)) { pinned = h; h.el.classList.add("sel"); showTip(e, h); }
+});
+// ---------- Radial: Liniendiagramm um den Kreis gebogen ----------
+const RW = 880, RC = RW / 2, RGAP = 18, RSTART = 270 + RGAP / 2; // 1980 beginnt links, Lücke links für die Skala
+const RR = {y0: 74, y1: 140, b0: 150, b1: 178, in: 192, out: 410};
+const rP = (th, r) => [RC + r * Math.sin(th * Math.PI / 180), RC - r * Math.cos(th * Math.PI / 180)];
+const f1 = v => v.toFixed(1);
+const rAng = (t, n) => RSTART + t * (360 - RGAP) / (n - 1);
+let rad = null, hoverK = -1, lastRad = "";
+function rArc(a0, a1, r0, r1) {
+  const [x0, y0] = rP(a0, r1), [x1, y1] = rP(a1, r1), [x2, y2] = rP(a1, r0), [x3, y3] = rP(a0, r0), big = a1 - a0 > 180 ? 1 : 0;
+  return `M${f1(x0)},${f1(y0)}A${r1},${r1} 0 ${big} 1 ${f1(x1)},${f1(y1)}L${f1(x2)},${f1(y2)}A${r0},${r0} 0 ${big} 0 ${f1(x3)},${f1(y3)}Z`;
+}
+// weiche Kurve durch die Punkte (Catmull-Rom -> Bezier)
+function rSmooth(pts) {
+  let d = `M${f1(pts[0][0])},${f1(pts[0][1])}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+    d += `C${f1(p1[0] + (p2[0] - p0[0]) / 6)},${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)},${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])},${f1(p2[1])}`;
+  }
+  return d;
+}
+function radialSetup() {
+  const n = years.length;
+  const v = series.map(c => c.values.map((x, i) => x / pop[i] * 100));
+  const rate = totals.map((t, i) => t / pop[i] * 100);
+  const mx = Math.max(...v.flat()), vmax = [.001,.002,.005,.01,.02,.05,.1,.2,.25,.3,.4,.5,.6,.8,1,2].find(x => x >= mx);
+  let ticks = [.01,.05,.1,.2,.3,.5,1,2].filter(x => x <= vmax); if (!ticks.length) ticks = [vmax];
+  const rOf = x => RR.in + Math.sqrt(x / vmax) * (RR.out - RR.in);
+  const lo = Math.min(...rate), hi = Math.max(...rate), pad = (hi - lo) * .12 || .01;
+  const yOf = x => RR.y0 + (x - lo + pad) / (hi - lo + 2 * pad) * (RR.y1 - RR.y0);
+  const A = i => rAng(i, n);
+  let s = `<rect width="${RW}" height="${RW}" rx="12" fill="#1b1e3f"/><g stroke="#3a3f73" stroke-width=".7" fill="none">`;
+  ticks.forEach(x => s += `<path d="${rArc(RSTART, RSTART + 360 - RGAP, rOf(x) - .3, rOf(x) + .3)}" fill="#3a3f73" stroke="none"/>`);
+  years.forEach((y, i) => { if (y % 5 === 0) { const [x0, y0] = rP(A(i), RR.b0), [x1, y1] = rP(A(i), RR.out); s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke-opacity="${y % 10 === 0 ? .6 : .3}" stroke-dasharray="${y % 10 === 0 ? "" : "2 4"}"/>`; } });
+  [RR.y0, RR.y1, RR.b0, RR.b1, RR.in, RR.out].forEach(r => s += `<path d="${rArc(RSTART, RSTART + 360 - RGAP, r - .4, r + .4)}" fill="#3a3f73" stroke="none"/>`);
+  s += `</g>`;
+  // Bandring mit Jahresbeschriftung
+  years.forEach((y, i) => {
+    const maj = y % 10 === 0, mid = y % 5 === 0, [x0, y0] = rP(A(i), RR.b1), [x1, y1] = rP(A(i), RR.b1 - (maj ? 10 : mid ? 7 : 4));
+    s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke="#8b8fb8" stroke-width="${maj ? 1.2 : .7}"/>`;
+    if (mid) { const [tx, ty] = rP(A(i), (RR.b0 + RR.b1) / 2 + 3); s += `<text class="dim" x="${f1(tx)}" y="${f1(ty + 3)}" text-anchor="middle" style="font-size:${maj ? 10 : 8.5}px">${y}</text>`; }
+  });
+  // Gesamtanteil pro Jahr: Linie im inneren Ring
+  const ip = rate.map((x, i) => rP(A(i), yOf(x)));
+  const base = years.map((_, i) => rP(A(i), RR.y0));
+  s += `<path d="${rSmooth(ip)}L${base.slice().reverse().map(p => f1(p[0]) + "," + f1(p[1])).join("L")}Z" fill="#f0a35e" fill-opacity=".18"/>`;
+  s += `<path d="${rSmooth(ip)}" fill="none" stroke="#f0a35e" stroke-width="2"/>`;
+  // Skalenbeschriftung in der Lücke
+  ticks.forEach(x => s += `<text class="halo dim" x="${f1(RC - rOf(x))}" y="${RC + 3}" text-anchor="middle" style="font-size:9.5px">${x.toLocaleString("de-DE")} %</text>`);
+  [hi, lo].forEach(x => s += `<text class="halo dim" x="${f1(RC - yOf(x))}" y="${RC + 3}" text-anchor="middle" style="font-size:8px;fill:#f0a35e">${x.toLocaleString("de-DE", {maximumFractionDigits: 1})} %</text>`);
+  s += `<text class="dim" x="${RC - (RR.in + RR.out) / 2}" y="${RC - 10}" text-anchor="middle" style="font-size:9px">Todesfälle in % der Bevölkerung</text>`;
+  s += `<text class="dim" x="${RC - (RR.y0 + RR.y1) / 2}" y="${RC - 10}" text-anchor="middle" style="font-size:8px;fill:#f0a35e">alle</text>`;
+  rad = {key, static: s, v, rate, rOf, yOf, A, n, ip};
+}
+function drawRadial(i, tt) {
+  if (!rad || rad.key !== key) radialSetup();
+  const sig = tt.toFixed(2) + "|" + hoverK;
+  if (sig === lastRad && chart.querySelector("svg.rad")) return;
+  lastRad = sig;
+  const {v, rate, rOf, yOf, A, n} = rad;
+  const i0 = Math.min(Math.floor(tt), n - 2), fr = tt - i0, At = rAng(tt, n);
+  const lp = (arr, f) => { const j = Math.floor(tt); return arr[j] + (j < n - 1 ? (arr[j + 1] - arr[j]) * (tt - j) : 0); };
+  // gezeichnet wird nur bis zum aktuellen Zeitpunkt tt
+  const upTo = (arr, rf) => { const pts = []; for (let j = 0; j <= Math.floor(tt); j++) pts.push(rP(A(j), rf(arr[j]))); if (tt > Math.floor(tt)) pts.push(rP(At, rf(lp(arr)))); return pts; };
+  const ip = upTo(rate, yOf);
+  let h = `<path d="${rSmooth(ip)}L${ip.map((_, j) => rP(j < ip.length - 1 || tt === Math.floor(tt) ? A(j) : At, RR.y0)).reverse().map(q => f1(q[0]) + "," + f1(q[1])).join("L")}Z" fill="#f0a35e" fill-opacity=".18"/><path d="${rSmooth(ip)}" fill="none" stroke="#f0a35e" stroke-width="2"/>`;
+  series.forEach((c, k) => {
+    const on = hoverK === k, dim = hoverK >= 0 && !on;
+    h += `<path d="${rSmooth(upTo(v[k], rOf))}" fill="none" stroke="${c.color}" stroke-width="${on ? 3.2 : 1.6}" stroke-opacity="${dim ? .18 : .95}" stroke-linejoin="round"/>`;
+  });
+  // gewähltes Jahr
+  const [sx0, sy0] = rP(At, RR.b1), [sx1, sy1] = rP(At, RR.out);
+  h += `<line x1="${f1(sx0)}" y1="${f1(sy0)}" x2="${f1(sx1)}" y2="${f1(sy1)}" stroke="#fff" stroke-opacity=".55" stroke-width="1"/>`;
+  series.forEach((c, k) => {
+    if (hoverK >= 0 && hoverK !== k) return;
+    const [x, y] = rP(At, rOf(lp(v[k])));
+    h += `<circle cx="${f1(x)}" cy="${f1(y)}" r="3.6" fill="${c.color}" stroke="#fff" stroke-width="1.2"/>`;
+  });
+  const ie = ip[ip.length - 1];
+  h += `<circle cx="${f1(ie[0])}" cy="${f1(ie[1])}" r="4" fill="#f0a35e" stroke="#fff" stroke-width="1.2"/>`;
+  const [tx, ty] = rP(At, (RR.b0 + RR.b1) / 2 + 3);
+  h += `<text x="${f1(tx)}" y="${f1(ty + 3.5)}" text-anchor="middle" style="font-weight:700;font-size:11px;fill:#fff;paint-order:stroke;stroke:#1b1e3f;stroke-width:4px">${years[i]}</text>`;
+  const name = hoverK >= 0 ? series[hoverK].name : "";
+  h += `<text x="${RC}" y="${RC + 9}" text-anchor="middle" style="font-size:30px;font-weight:600">${years[i]}</text>` +
+    `<text class="dim" x="${RC}" y="${RC + 26}" text-anchor="middle" style="font-size:9.5px">${pct(rate[i], 2)} gestorben</text>` +
+    `<text class="dim" x="${RC}" y="${RC - 20}" text-anchor="middle" style="font-size:9px">${fmt(Math.round(totals[i]))}</text>` +
+    `<text class="dim" x="${RC}" y="${RC - 10}" text-anchor="middle" style="font-size:8px">Todesfälle</text>`;
+  chart.innerHTML = `<svg class="rad" viewBox="0 0 ${RW} ${RW}" style="max-height:calc(100vh - 140px)" role="img" aria-label="Radiales Liniendiagramm der Todesursachen">${rad.static}${h}</svg>`;
+}
+function setHover(k) {
+  if (k === hoverK) return;
+  hoverK = k;
+  document.querySelectorAll("#legend div[data-k]").forEach(d => d.style.opacity = k < 0 || +d.dataset.k === k ? 1 : .3);
+  dirty = true;
+}
+// ---------- Radial: Balken pro Ursache mit Peak-Schatten ----------
+let radB = null;
+const isRad = () => animMode === "radial" || animMode === "radialbars";
+function radialBarsSetup() {
+  const n = years.length, N = series.length, span = 360 - RGAP, secW = span / N;
+  const v = series.map(c => c.values.map((x, i) => x / pop[i] * 100));
+  const rate = totals.map((t, i) => t / pop[i] * 100);
+  // Prefix maxima: future years never contribute to the visible record.
+  const records = v.map(a => { let best = 0; return a.map((x, i) => { if (x > a[best]) best = i; return best; }); });
+  const lows = v.map(a => { let best = 0; return a.map((x, i) => { if (x < a[best]) best = i; return best; }); });
+  const peak = records.map(a => a[0]);
+  const mx = Math.max(...v.flat()), vmax = [.001,.002,.005,.01,.02,.05,.1,.2,.25,.3,.4,.5,.6,.8,1,2].find(x => x >= mx);
+  let ticks = [.01,.05,.1,.2,.3,.5,1,2].filter(x => x <= vmax); if (!ticks.length) ticks = [vmax];
+  const rOf = x => RR.in + Math.sqrt(x / vmax) * (RR.out - RR.in);
+  // Fixed percentage scale; values above 1% extend beyond the 1% ring.
+  const yOf = x => RR.y0 + x * (RR.y1 - RR.y0);
+  const A = i => rAng(i, n), sA = k => RSTART + k * secW;
+  const band = (r, w = .4) => `<path d="${rArc(RSTART, RSTART + span, r - w, r + w)}" fill="#3a3f73"/>`;
+  let s = `<rect width="${RW}" height="${RW}" rx="12" fill="#1b1e3f"/>`;
+  ticks.forEach(x => s += band(rOf(x), .3));
+  [RR.y0, RR.y1, RR.b0, RR.b1, RR.in, RR.out].forEach(r => s += band(r));
+  s += `<g stroke="#3a3f73" stroke-width=".7">`;
+  for (let k = 0; k <= N; k++) { const [x0, y0] = rP(sA(k), RR.in), [x1, y1] = rP(sA(k), RR.out); s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke-opacity=".5"/>`; }
+  s += `</g>`;
+  years.forEach((y, i) => {
+    const maj = y % 10 === 0, mid = y % 5 === 0, [x0, y0] = rP(A(i), RR.b1), [x1, y1] = rP(A(i), RR.b1 - (maj ? 10 : mid ? 7 : 4));
+    s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke="#8b8fb8" stroke-width="${maj ? 1.2 : .7}"/>`;
+    if (mid) { const [tx, ty] = rP(A(i), (RR.b0 + RR.b1) / 2 + 3); s += `<text class="dim" x="${f1(tx)}" y="${f1(ty + 3)}" text-anchor="middle" style="font-size:${maj ? 10 : 8.5}px">${y}</text>`; }
+  });
+  ticks.forEach(x => s += `<text class="halo dim" x="${f1(RC - rOf(x))}" y="${RC + 3}" text-anchor="middle" style="font-size:9.5px">${x.toLocaleString("de-DE")} %</text>`);
+  [0, .5, 1].forEach(x => s += `<text class="halo dim" x="${f1(RC - yOf(x))}" y="${RC + 3}" text-anchor="middle" style="font-size:8px;fill:#f0a35e">${x.toLocaleString("de-DE", {maximumFractionDigits: 1})} %</text>`);
+  s += `<text class="dim" x="${RC - (RR.in + RR.out) / 2}" y="${RC - 10}" text-anchor="middle" style="font-size:9px">Todesfälle in % der Bevölkerung</text>`;
+  const bw = secW * .08;
+  radB = {key, static:s, v, rate, rOf, yOf, A, sA, secW, bw, n, N, peak, records, lows, positions:[]};
+}
+function drawRadialBars(i, tt) {
+  if (!radB || radB.key !== key) radialBarsSetup();
+  const sig = "b" + tt.toFixed(2) + "|" + hoverK;
+  if (sig === lastRad && chart.querySelector("svg.rad")) return;
+  lastRad = sig;
+  const {v, rate, rOf, yOf, A, sA, secW, bw, n} = radB, At = rAng(tt, n), j = Math.floor(tt);
+  const lp = arr => arr[j] + (j < n - 1 ? (arr[j + 1] - arr[j]) * (tt - j) : 0);
+  // Gesamtlinie im Innenring (bis zum aktuellen Jahr)
+  const ip = []; for (let q = 0; q <= j; q++) ip.push(rP(A(q), yOf(rate[q]))); if (tt > j) ip.push(rP(At, yOf(lp(rate))));
+  const baseP = ip.map((_, q) => rP(q <= j ? A(q) : At, RR.y0)).reverse().map(p => f1(p[0]) + "," + f1(p[1])).join("L");
+  let h = `<path d="${rSmooth(ip)}L${baseP}Z" fill="#f0a35e" fill-opacity=".18"/><path d="${rSmooth(ip)}" fill="none" stroke="#f0a35e" stroke-width="2"/>`;
+  const current = v.map(lp), targets = rank(current);
+  // Smooth rank movement while keeping direct seeks deterministic.
+  if (!radB.positions.length || Math.abs(tt - (radB.time ?? tt)) > .5 || tt < radB.time) radB.positions = targets.slice();
+  let moving = false;
+  series.forEach((c, k) => {
+    radB.positions[k] += (targets[k] - radB.positions[k]) * .22;
+    if (Math.abs(targets[k] - radB.positions[k]) < .002) radB.positions[k] = targets[k];
+    else moving = true;
+    const a0 = sA(radB.positions[k]) + bw, a1 = sA(radB.positions[k]) + secW - bw;
+    const pk = radB.records[k][j]; radB.peak[k] = pk;
+    const record = Math.max(v[k][pk], current[k]), rp = rOf(record);
+    const low = Math.min(v[k][radB.lows[k][j]], current[k]), rl = rOf(low);
+    const [lx0, ly0] = rP(a0, rl), [lx1, ly1] = rP(a1, rl);
+    const dim = hoverK >= 0 && hoverK !== k, rv = rOf(current[k]);
+    h += `<g data-cause="${k}" opacity="${dim ? .25 : 1}">` +
+      `<path d="${rArc(a0, a1, rl, rp)}" fill="${c.color}" fill-opacity=".22"/>` +
+      `<path d="${rArc(a0, a1, RR.in, Math.max(RR.in + .5, rv))}" fill="${c.color}" fill-opacity=".95"${hoverK === k ? ' stroke="#fff" stroke-width="1.2"' : ""}/>` +
+      `<path d="${rArc(a0, a1, rp - 1.2, rp + 1.2)}" fill="${c.color}"/>` +
+      `<path d="M${f1(lx0)},${f1(ly0)}A${rl},${rl} 0 0 1 ${f1(lx1)},${f1(ly1)}" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="3 3" pointer-events="none"/>`;
+    h += `</g>`;
+  });
+  radB.time = tt;
+  if (moving) { dirty = true; lastRad = ""; }
+  const ie = ip[ip.length - 1];
+  h += `<circle cx="${f1(ie[0])}" cy="${f1(ie[1])}" r="4" fill="#f0a35e" stroke="#fff" stroke-width="1.2"/>`;
+  const [sx0, sy0] = rP(At, RR.b0), [sx1, sy1] = rP(At, RR.b1);
+  h += `<line x1="${f1(sx0)}" y1="${f1(sy0)}" x2="${f1(sx1)}" y2="${f1(sy1)}" stroke="#fff" stroke-width="2"/>`;
+  h += `<text x="${RC}" y="${RC + 9}" text-anchor="middle" style="font-size:30px;font-weight:600">${years[i]}</text>` +
+    `<text class="dim" x="${RC}" y="${RC + 26}" text-anchor="middle" style="font-size:9.5px">${pct(rate[i], 2)} gestorben</text>`;
+  chart.innerHTML = `<svg class="rad" viewBox="0 0 ${RW} ${RW}" style="max-height:calc(100vh - 140px)" role="img" aria-label="Radiale Balken der Todesursachen">${radB.static}${h}</svg>`;
+}
+
+// Zeiger -> Jahr, Ursache (nächste Linie)
+function radialLocate(e) {
+  const svg = chart.querySelector("svg"), matrix = svg?.getScreenCTM(), n = years.length;
+  if (!matrix) return null;
+  // The SVG can be letterboxed by max-height: use its actual screen transform.
+  const point = svg.createSVGPoint(); point.x = e.clientX; point.y = e.clientY;
+  const local = point.matrixTransform(matrix.inverse());
+  const x = local.x - RC, y = local.y - RC, rr = Math.hypot(x, y);
+  // Native hit testing resolves the visible, topmost bar during rank swaps.
+  const bar = e.target?.closest?.("[data-cause]");
+  if (animMode === "radialbars" && bar && svg.contains(bar)) {
+    return {year:Math.round(tYear), cause:Number(bar.dataset.cause), bar:true};
+  }
+  const deg = (((Math.atan2(x, -y) * 180 / Math.PI) - RSTART) % 360 + 360) % 360;
+  const t = deg / (360 - RGAP) * (n - 1);
+  if (deg > 360 - RGAP || rr < RR.y0 - 4) return null;
+  const i = Math.round(t);
+  if (rr < RR.y1 + 6) return {year: i, total: true};
+  if (rr < RR.in - 2) return {year: i, band: true};
+  if (animMode === "radialbars") {
+    return null;
+  }
+  if (!rad || rr > RR.out + 6) return null;
+  if (t > tYear + .5) return {year: i};
+  const i0 = Math.min(n - 2, Math.floor(t)), f = t - i0;
+  let best = -1, bd = 14;
+  series.forEach((c, k) => { const d = Math.abs(rad.rOf(rad.v[k][i0] * (1 - f) + rad.v[k][i0 + 1] * f) - rr); if (d < bd) { bd = d; best = k; } });
+  return {year: i, cause: best};
+}
+function radialTip(e) {
+  const h = radialLocate(e);
+  setHover(h && h.cause !== undefined ? h.cause : -1);
+  if (!h) { tip.style.display = "none"; return; }
+  const i = h.year;
+  if (h.bar) {
+    const k = h.cause, c = series[k], pk = radB.peak[k], cu = lerpAt(radB.v[k], tYear), record = Math.max(radB.v[k][pk], cu);
+    const lk = radB.lows[k][Math.floor(tYear)], low = Math.min(radB.v[k][lk], cu);
+    tip.innerHTML = `<b style="color:${c.color}">${k + 1} · ${c.name}</b><br>${years[Math.round(tYear)]}: ${pct(cu, 4)} der Bevölkerung<br>Bisheriger Höchststand: ${pct(record, 4)} (${cu > radB.v[k][pk] ? "aktueller Zeitpunkt" : years[pk]})<br>Bisheriger Tiefststand: ${pct(low, 4)} (${cu < radB.v[k][lk] ? "aktueller Zeitpunkt" : years[lk]})<br>Spannweite: ${(record - low).toLocaleString("de-DE", {maximumFractionDigits:4})} Prozentpunkte`;
+    tip.style.display = "block";
+    tip.style.left = Math.max(0, Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8)) + "px";
+    tip.style.top = Math.max(0, Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8)) + "px";
+    return;
+  }
+  const html = h.cause >= 0 ? tipHtml(i, h.cause) : h.cause === undefined ?
+    `<b>${years[i]}</b>${h.total ? " · alle Ursachen" : ""}<br>${fmt(Math.round(totals[i]))} Todesfälle<br>${pct(totals[i] / pop[i] * 100, 3)} der Bevölkerung (${fmt(pop[i])})` : `<b>${years[i]}</b>`;
+  tip.innerHTML = html; tip.style.display = "block";
+  tip.style.left = Math.max(0, Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8)) + "px";
+  tip.style.top = Math.max(0, Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8)) + "px";
+}
+document.getElementById("legend").addEventListener("mouseover", e => { if (!isRad()) return; const d = e.target.closest("div[data-k]"); setHover(d ? +d.dataset.k : -1); });
+document.getElementById("legend").addEventListener("mouseleave", () => { if (isRad()) setHover(-1); });
+
+document.getElementById("variation").addEventListener("change", render);
+selMode.addEventListener("change", render);
+selData.addEventListener("change", () => { key = selData.value; render(); });
+document.getElementById("legend").addEventListener("click", e => {
+  const item = e.target.closest("div[data-k]");
+  if (item && selMode.value === "radialbars") selectAgeCause(series[Number(item.dataset.k)].name);
+});
+key = selData.value;
+render();
+</script>
+<script src="age-heatmap.js"></script>
+</body>
+</html>

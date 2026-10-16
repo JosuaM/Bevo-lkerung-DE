@@ -1,0 +1,319 @@
+{
+  "fbs": {
+    "path": "FoodBalanceSheets\\FoodBalanceSheets_E_All_Data_(Normalized).csv",
+    "bytes": 633057019,
+    "sha256": "2834e1012daaebf4e4f8195fa86ce9063d1c81fdd9d7c04cbf0aba758ccfa020",
+    "rows": 4820497,
+    "missing_values": 0,
+    "unique_areas": 213,
+    "unique_items": 123,
+    "years": {
+      "2010": 339586,
+      "2011": 339789,
+      "2012": 340413,
+      "2013": 340604,
+      "2014": 341090,
+      "2015": 341006,
+      "2016": 341141,
+      "2017": 342114,
+      "2018": 341972,
+      "2019": 351377,
+      "2020": 351040,
+      "2021": 350578,
+      "2022": 350063,
+      "2023": 349724
+    },
+    "flags": {
+      "X": 2901,
+      "E": 2618688,
+      "I": 2198908
+    },
+    "units": {
+      "1000 No": 2901,
+      "kcal/cap/d": 310263,
+      "million Kcal": 310263,
+      "g/cap/d": 620532,
+      "t": 620532,
+      "1000 t": 2647972,
+      "kg/cap": 308034
+    },
+    "elements": {
+      "Total Population - Both sexes": 2901,
+      "Food supply (kcal/capita/day)": 310263,
+      "Food supply (kcal)": 310263,
+      "Protein supply quantity (g/capita/day)": 310263,
+      "Protein supply quantity (t)": 310263,
+      "Fat supply quantity (g/capita/day)": 310269,
+      "Fat supply quantity (t)": 310269,
+      "Production": 225994,
+      "Import quantity": 318901,
+      "Stock Variation": 271538,
+      "Export quantity": 268537,
+      "Domestic supply quantity": 329755,
+      "Feed": 114828,
+      "Losses": 146268,
+      "Other uses (non-food)": 110944,
+      "Seed": 63173,
+      "Residuals": 303491,
+      "Food": 308034,
+      "Processing": 92939,
+      "Food supply quantity (kg/capita/yr)": 308034,
+      "Tourist consumption": 93570
+    },
+    "world_2022_rows": 2195,
+    "world_2022_duplicate_keys": 0
+  },
+  "security": {
+    "path": "Food_Security_Data\\Food_Security_Data_E_All_Data_(Normalized).csv",
+    "bytes": 52366034,
+    "sha256": "abf2baa282e104e02b7c42ec2224c0b0909f391a3b50ae4a7da51cc3ef6bbe36",
+    "rows": 287735,
+    "missing_values": 40603,
+    "unique_areas": 246,
+    "unique_items": 68,
+    "years": {
+      "2000-2002": 2398,
+      "2001-2003": 2398,
+      "2002-2004": 2399,
+      "2003-2005": 2400,
+      "2004-2006": 2400,
+      "2005-2007": 2414,
+      "2006-2008": 2414,
+      "2007-2009": 2414,
+      "2008-2010": 2370,
+      "2009-2011": 2370,
+      "2010-2012": 2402,
+      "2011-2013": 2405,
+      "2012-2014": 2403,
+      "2013-2015": 2401,
+      "2014-2016": 11261,
+      "2015-2017": 11258,
+      "2016-2018": 11262,
+      "2017-2019": 11254,
+      "2018-2020": 11249,
+      "2019-2021": 11287,
+      "2020-2022": 11292,
+      "2021-2023": 11289,
+      "2022-2024": 9982,
+      "2023-2025": 9746,
+      "2001": 4709,
+      "2002": 4724,
+      "2003": 4727,
+      "2004": 4744,
+      "2005": 4773,
+      "2006": 4814,
+      "2007": 4766,
+      "2008": 4763,
+      "2009": 4751,
+      "2010": 4799,
+      "2011": 4771,
+      "2012": 4822,
+      "2013": 4757,
+      "2014": 7085,
+      "2015": 7038,
+      "2016": 7050,
+      "2017": 7040,
+      "2018": 7079,
+      "2019": 7063,
+      "2020": 6995,
+      "2021": 6613,
+      "2022": 6525,
+      "2023": 6505,
+      "2024": 5910,
+      "2000": 4375,
+      "2025": 3069
+    },
+    "flags": {
+      "E": 162121,
+      "X": 83595,
+      "Q": 10947,
+      "O": 29647,
+      "A": 1416,
+      "L": 9
+    },
+    "units": {
+      "%": 147120,
+      "kcal/cap/d": 26782,
+      "g/cap/d": 14109,
+      "Int$/cap": 5777,
+      "million No": 87971,
+      "No": 4014,
+      "km": 1962
+    },
+    "elements": {
+      "Value": 210551,
+      "Confidence interval: Lower bound": 38592,
+      "Confidence interval: Upper bound": 38592
+    },
+    "world_2022_rows": 75,
+    "world_2022_duplicate_keys": 0
+  },
+  "consumer": {
+    "rows": 554,
+    "world_2022": [
+      {
+        "Entity": "World",
+        "Code": "OWID_WRL",
+        "Year": "2022",
+        "Retail": "16.45",
+        "Out-of-home consumption": "36.34",
+        "Household": "79.12"
+      }
+    ],
+    "path": "Food_Waste_Consumer\\food-waste-per-capita_OWID.csv",
+    "sha256": "5848fd335c53f738652f9d33b4f1253b51dbd50e85aff0327d14d123395f166f"
+  },
+  "group_crosschecks": [
+    {
+      "group": "Getreide",
+      "aggregate_code": 2905,
+      "leaf_loss_1000t": 136067.0,
+      "aggregate_loss_1000t": 136067.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Wurzeln & Knollen",
+      "aggregate_code": 2907,
+      "leaf_loss_1000t": 87402.0,
+      "aggregate_loss_1000t": 87402.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Zuckerpflanzen",
+      "aggregate_code": 2908,
+      "leaf_loss_1000t": 131636.0,
+      "aggregate_loss_1000t": 131636.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Zucker & Honig",
+      "aggregate_code": 2909,
+      "leaf_loss_1000t": 151.0,
+      "aggregate_loss_1000t": 151.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Hülsenfrüchte",
+      "aggregate_code": 2911,
+      "leaf_loss_1000t": 5192.0,
+      "aggregate_loss_1000t": 5191.0,
+      "rounding_delta_1000t": 1.0
+    },
+    {
+      "group": "Nüsse",
+      "aggregate_code": 2912,
+      "leaf_loss_1000t": 991.0,
+      "aggregate_loss_1000t": 991.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Ölpflanzen",
+      "aggregate_code": 2913,
+      "leaf_loss_1000t": 55856.0,
+      "aggregate_loss_1000t": 55855.0,
+      "rounding_delta_1000t": 1.0
+    },
+    {
+      "group": "Pflanzenöle",
+      "aggregate_code": 2914,
+      "leaf_loss_1000t": 354.0,
+      "aggregate_loss_1000t": 355.0,
+      "rounding_delta_1000t": -1.0
+    },
+    {
+      "group": "Gemüse",
+      "aggregate_code": 2918,
+      "leaf_loss_1000t": 114264.0,
+      "aggregate_loss_1000t": 114265.0,
+      "rounding_delta_1000t": -1.0
+    },
+    {
+      "group": "Obst",
+      "aggregate_code": 2919,
+      "leaf_loss_1000t": 73893.0,
+      "aggregate_loss_1000t": 73891.0,
+      "rounding_delta_1000t": 2.0
+    },
+    {
+      "group": "Kaffee, Kakao & Tee",
+      "aggregate_code": 2922,
+      "leaf_loss_1000t": 1331.0,
+      "aggregate_loss_1000t": 1331.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Gewürze",
+      "aggregate_code": 2923,
+      "leaf_loss_1000t": 898.0,
+      "aggregate_loss_1000t": 897.0,
+      "rounding_delta_1000t": 1.0
+    },
+    {
+      "group": "Alkohol",
+      "aggregate_code": 2924,
+      "leaf_loss_1000t": 239.0,
+      "aggregate_loss_1000t": 239.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Fleisch",
+      "aggregate_code": 2943,
+      "leaf_loss_1000t": 1744.0,
+      "aggregate_loss_1000t": 1744.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Innereien",
+      "aggregate_code": 2945,
+      "leaf_loss_1000t": 1781.0,
+      "aggregate_loss_1000t": 1781.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Tierische Fette",
+      "aggregate_code": 2946,
+      "leaf_loss_1000t": 1263.0,
+      "aggregate_loss_1000t": 1264.0,
+      "rounding_delta_1000t": -1.0
+    },
+    {
+      "group": "Eier",
+      "aggregate_code": 2949,
+      "leaf_loss_1000t": 4753.0,
+      "aggregate_loss_1000t": 4753.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Milch",
+      "aggregate_code": 2948,
+      "leaf_loss_1000t": 26541.0,
+      "aggregate_loss_1000t": 26541.0,
+      "rounding_delta_1000t": 0.0
+    },
+    {
+      "group": "Fisch & Meeresfrüchte",
+      "aggregate_code": 2960,
+      "leaf_loss_1000t": 0,
+      "aggregate_loss_1000t": null,
+      "rounding_delta_1000t": null
+    },
+    {
+      "group": "Wasserpflanzen & Meeressäuger",
+      "aggregate_code": 2961,
+      "leaf_loss_1000t": 0,
+      "aggregate_loss_1000t": null,
+      "rounding_delta_1000t": null
+    },
+    {
+      "group": "Sonstiges",
+      "aggregate_code": 2928,
+      "leaf_loss_1000t": 0,
+      "aggregate_loss_1000t": null,
+      "rounding_delta_1000t": null
+    }
+  ],
+  "method": "FBS-Einzeltitel, World2022. Faktor = Food supply (million kcal) / Food (1000 t) in kcal/kg. Gleiches Energie- und Ausbeuteprofil für gerettete Verlustmasse wie für Food ist eine Modellannahme.",
+  "exclusion_policy": "Zuckerpflanzen, Baumwollsaat, Palmkerne, Kaffee, Tee, Alkohol ausgeschlossen. Fehlende Losses nicht als gemessene Null interpretiert.",
+  "source_download_date": "2026-10-05",
+  "analysis_date": "2026-10-05"
+}

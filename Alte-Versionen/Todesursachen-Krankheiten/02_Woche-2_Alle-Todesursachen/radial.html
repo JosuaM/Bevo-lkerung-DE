@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todesursachen radial</title>
+<style>
+  :root { --bg:#1b1e3f; --ink:#e8e6f5; --dim:#8b8fb8; --grid:#3a3f73; }
+  html,body { margin:0; background:var(--bg); color:var(--ink); font-family:system-ui,sans-serif; height:100%; }
+  body { display:flex; flex-direction:column; align-items:center; padding:10px 12px 8px; box-sizing:border-box; }
+  #bar { display:flex; flex-wrap:wrap; gap:6px 18px; align-items:center; justify-content:center; font-size:.85rem; width:100%; }
+  #bar select,#bar button { font:inherit; background:#262a55; color:var(--ink); border:1px solid var(--grid); border-radius:6px; padding:4px 10px; }
+  #bar button { cursor:pointer; min-width:84px; }
+  #bar input[type=range] { width:min(380px,50vw); accent-color:#f0a35e; }
+  #bar b { min-width:2.8em; font-size:1.1rem; }
+  h1 { font-size:1.05rem; font-weight:500; margin:2px 0 6px; text-align:center; }
+  #chart { width:100%; display:flex; justify-content:center; }
+  svg { width:100%; height:auto; max-height:calc(100vh - 120px); }
+  svg text { fill:var(--ink); font-size:10px; }
+  svg text.dim { fill:var(--dim); }
+  .halo { paint-order:stroke; stroke:var(--bg); stroke-width:3px; }
+  footer { color:var(--dim); font-size:.7rem; margin-top:4px; text-align:center; }
+  #tip { position:fixed; pointer-events:none; display:none; z-index:5; background:#0f1129; border:1px solid var(--grid); border-radius:6px; padding:7px 10px; font-size:.78rem; max-width:320px; box-shadow:0 2px 10px rgba(0,0,0,.5); }
+</style>
+</head>
+<body>
+<div id="bar">
+  <label>Datensatz: <select id="dataset"><option value="global">Global</option><option value="de">Deutschland</option></select></label>
+  <label>Skala: <select id="scale"><option value="sqrt">Wurzel (Details sichtbar)</option><option value="lin">Linear</option></select></label>
+  <button id="play" type="button">▶ Start</button>
+  <input id="yr" type="range" min="0" value="0" aria-label="Jahr">
+  <b id="yl"></b>
+</div>
+<h1 id="title"></h1>
+<div id="chart"></div>
+<footer>Todesfälle pro Jahr in % der Bevölkerung · Quelle: GBD 2023, IHME; Bevölkerung: Weltbank (WDI)</footer>
+<div id="tip"></div>
+<script>
+const DATASETS = {"global": {"years": [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023], "causes": [{"name": "Kardiovaskuläre Erkrankungen", "values": [12116562, 12106954, 12128840, 12319654, 12417936, 12508893, 12471067, 12581132, 12808061, 12943329, 13137959, 13327578, 13474029, 13846500, 13977323, 14031971, 14094218, 14167863, 14298992, 14504589, 14562529, 14642880, 14814534, 14933723, 14766205, 14890596, 14997258, 15199484, 15390486, 15459562, 15688390, 15883651, 16207835, 16479215, 16684995, 17208352, 17668629, 18005151, 17988588, 17642038, 17658558, 18685877, 18943537, 19139018]}, {"name": "Tumore", "values": [4818276, 4881465, 4954714, 5066566, 5160304, 5288608, 5380639, 5511127, 5690734, 5855359, 6022751, 6154231, 6255581, 6389343, 6465570, 6572089, 6654518, 6731462, 6841067, 6974623, 7072884, 7166173, 7264828, 7343417, 7363431, 7462059, 7555460, 7714333, 7846376, 7923111, 8033779, 8108617, 8227694, 8316486, 8463820, 8720601, 8978097, 9212518, 9302755, 9348942, 9484332, 9964218, 10379893, 10558585]}, {"name": "Infektionen der Atemwege und Tuberkulose", "values": [5148956, 5089462, 5049523, 5060961, 5043592, 5040578, 5012535, 4983486, 4967651, 4944294, 4904489, 4858968, 4829543, 4832139, 4822179, 4815580, 4768468, 4706830, 4643393, 4551299, 4446222, 4341736, 4278488, 4220025, 4137474, 4084559, 4021345, 3994784, 3974861, 3936007, 3907950, 3882266, 3856670, 3854313, 3839256, 3860084, 3848433, 3841356, 3802215, 3729081, 8783149, 12598911, 5779442, 4386286]}, {"name": "Störungen bei Müttern und Neugeborenen", "values": [3836715, 3800541, 3784942, 3787259, 3785690, 3764746, 3725310, 3681975, 3642017, 3608302, 3568262, 3524637, 3477510, 3436006, 3391233, 3337695, 3276043, 3208810, 3146383, 3078847, 3007163, 2934384, 2872049, 2814089, 2751499, 2697625, 2659363, 2632360, 2601125, 2564944, 2509685, 2455650, 2414799, 2382828, 2343846, 2298393, 2248372, 2192780, 2130644, 2062818, 2017260, 1955386, 1912232, 1867890]}, {"name": "Chronische Atemwegskrankheiten", "values": [1814284, 1844766, 1879451, 1930899, 1972369, 2016471, 2045365, 2093681, 2153222, 2214090, 2260220, 2304133, 2352327, 2419029, 2466537, 2529385, 2590331, 2657025, 2739369, 2817011, 2885326, 2961827, 3057619, 3150480, 3194492, 3238722, 3226361, 3271856, 3316644, 3317036, 3340135, 3375122, 3407200, 3442155, 3479129, 3539325, 3601088, 3670748, 3721772, 3757600, 3495308, 3547997, 3963517, 4154452]}, {"name": "Enterale Infektionen", "values": [4498633, 4388462, 4317121, 4264594, 4230672, 4187984, 4130658, 4043839, 3933152, 3805894, 3685839, 3613934, 3497172, 3380749, 3305108, 3217179, 3125538, 3017616, 2921940, 2779141, 2658525, 2561103, 2490834, 2446501, 2397783, 2354027, 2314541, 2267132, 2205564, 2121202, 2033962, 1932870, 1837246, 1781543, 1712870, 1643849, 1590500, 1546533, 1482951, 1428287, 1372956, 1323561, 1325590, 1268589]}, {"name": "Verdauungserkrankungen", "values": [1625710, 1637996, 1649188, 1677040, 1698131, 1724825, 1734964, 1756658, 1785117, 1816230, 1836558, 1859236, 1882979, 1916438, 1940327, 1960600, 1970654, 1982347, 2004583, 2029042, 2052323, 2080217, 2115804, 2145070, 2155787, 2178724, 2179789, 2200688, 2229447, 2225587, 2239256, 2238369, 2244743, 2247761, 2262650, 2306523, 2332535, 2355790, 2363843, 2375058, 2351249, 2373383, 2440441, 2416075]}, {"name": "Diabetes und Nierenerkrankungen", "values": [1050153, 1061733, 1076550, 1102530, 1121084, 1143142, 1162882, 1187614, 1222673, 1261512, 1301815, 1335907, 1368090, 1409420, 1443340, 1485190, 1526825, 1565508, 1615470, 1668365, 1719497, 1769624, 1824870, 1876420, 1904469, 1953797, 2001359, 2065926, 2132782, 2184974, 2262259, 2323014, 2389061, 2461313, 2549128, 2670823, 2774206, 2888207, 2974033, 3081769, 3189486, 3349692, 3475146, 3533893]}, {"name": "Andere Infektionskrankheiten", "values": [3521374, 3430474, 3348926, 3280949, 3227692, 3151110, 3052502, 2940973, 2819664, 2678988, 2542204, 2460461, 2365501, 2296605, 2251718, 2216237, 2186244, 2108783, 2044654, 1971019, 1888811, 1800053, 1715181, 1633814, 1545430, 1466354, 1376194, 1306413, 1248775, 1206896, 1168902, 1138628, 1094718, 1047215, 1006495, 964510, 922586, 900670, 870547, 846352, 738441, 723298, 840428, 841601]}, {"name": "Unbeabsichtigte Verletzungen", "values": [1840056, 1807199, 1785448, 1785338, 1788610, 1821008, 1769900, 1782582, 1808436, 1785228, 1831869, 1943811, 1797500, 1831461, 1836133, 1843781, 1826683, 1810499, 1839764, 1855986, 1791384, 1816567, 1810016, 1841930, 2030374, 1869790, 1795954, 1794253, 2008715, 1769902, 2011647, 1769626, 1747621, 1765691, 1748103, 1790335, 1802047, 1826168, 1823406, 1819822, 1842736, 1909109, 1975716, 2077759]}, {"name": "Neurologische Störungen", "values": [687449, 707079, 726341, 756500, 779576, 810733, 836716, 865486, 901001, 933281, 965986, 996399, 1024681, 1063507, 1090953, 1130306, 1164743, 1197172, 1234691, 1279147, 1316058, 1357969, 1407891, 1462128, 1490304, 1554075, 1594314, 1656615, 1726998, 1776755, 1853646, 1914759, 1993133, 2057979, 2133990, 2245002, 2332232, 2439310, 2516417, 2598629, 2669110, 2792858, 2957491, 3017152]}, {"name": "Verletzungen im Verkehr", "values": [1103701, 1106091, 1112855, 1123643, 1138727, 1155944, 1177686, 1201913, 1229399, 1263898, 1284582, 1301216, 1308677, 1323706, 1334086, 1339826, 1345110, 1343057, 1347868, 1360823, 1370012, 1375914, 1385402, 1384631, 1377335, 1379934, 1392160, 1400315, 1397172, 1386908, 1383151, 1381010, 1371189, 1347935, 1341455, 1346483, 1350724, 1353580, 1340535, 1330113, 1333861, 1412910, 1406472, 1425070]}, {"name": "Selbstschädigung und zwischenmenschliche Gewalt", "values": [997998, 1035853, 1172737, 1130830, 1157863, 1156612, 1253071, 1169202, 1152944, 1112245, 1168234, 1175936, 1226637, 1289561, 2076364, 1326800, 1326420, 1330800, 1344282, 1391405, 1399567, 1344053, 1353386, 1350795, 1336222, 1312359, 1299454, 1276001, 1256897, 1253887, 1235508, 1224581, 1270827, 1296711, 1342481, 1325415, 1324675, 1317197, 1293300, 1279064, 1266051, 1311703, 1365909, 1371232]}, {"name": "Andere nicht übertragbare Krankheiten", "values": [1061863, 1061900, 1064717, 1075283, 1089449, 1104126, 1111712, 1117517, 1124374, 1130640, 1132100, 1132007, 1132022, 1137775, 1142320, 1145637, 1139848, 1130900, 1124972, 1123495, 1120974, 1124853, 1128675, 1125891, 1123790, 1128278, 1132749, 1144524, 1153391, 1153098, 1154093, 1152734, 1161959, 1174806, 1190680, 1213408, 1232582, 1243552, 1250722, 1261656, 1284716, 1307506, 1326694, 1338282]}, {"name": "Vernachlässigte Tropenkrankheiten und Malaria", "values": [936246, 939373, 935744, 947401, 960358, 976685, 1006465, 1018844, 1035789, 1026022, 1034446, 1040573, 1031146, 1019682, 1021574, 1025162, 1034751, 1055268, 1065227, 1058991, 1050298, 1063232, 1066498, 1075469, 1077185, 1051071, 1026666, 1004307, 991638, 982644, 970371, 919408, 887157, 848172, 848415, 829312, 797290, 782429, 786270, 792284, 851691, 845869, 834723, 804915]}, {"name": "HIV/AIDS und sexuell übertragbare Erkrankungen", "values": [100020, 102565, 109213, 119199, 134282, 155469, 184501, 225233, 278003, 348040, 429483, 524251, 628052, 741420, 863334, 983017, 1100083, 1218390, 1342689, 1463596, 1578165, 1665925, 1743939, 1791767, 1793705, 1735932, 1642838, 1533521, 1429152, 1341656, 1274224, 1214179, 1158896, 1110922, 1075539, 1050459, 1036017, 1014513, 996293, 985356, 956125, 930682, 930350, 916918]}, {"name": "Mangelernährung", "values": [584706, 593095, 588859, 765025, 844255, 659944, 582782, 580220, 569977, 555379, 542825, 532022, 512792, 498693, 488215, 536878, 526942, 511731, 495185, 443021, 425423, 409026, 397083, 361726, 347104, 334559, 326593, 321990, 313598, 302721, 349017, 445494, 334514, 280751, 284280, 288737, 289744, 292950, 289102, 284472, 288191, 296537, 293543, 288353]}, {"name": "Drogenkonsum induzierte Störungen", "values": [152824, 154665, 156386, 159044, 157967, 150835, 148970, 152518, 160304, 168676, 179021, 190499, 207633, 234455, 255084, 254641, 246560, 238607, 237970, 244570, 254502, 261569, 268523, 270717, 272139, 276491, 271089, 265445, 263473, 254396, 250971, 246423, 245746, 246791, 251763, 258086, 266136, 273651, 279056, 288191, 311233, 334445, 342703, 344073]}, {"name": "Muskel-Skelett-Erkrankungen", "values": [49797, 50525, 51043, 52275, 54137, 55639, 56649, 57884, 59601, 61326, 62658, 63988, 65075, 66926, 68743, 71109, 72463, 73791, 75256, 77620, 80249, 82528, 84705, 86339, 86254, 88054, 89390, 91289, 93671, 94234, 95837, 97158, 98925, 100796, 102809, 106797, 110020, 113533, 115715, 117725, 119899, 123012, 129882, 131675]}, {"name": "Haut- und Unterhautkrankheiten", "values": [35165, 35534, 36333, 37950, 39464, 41105, 42711, 44018, 45465, 46778, 48081, 49355, 50207, 51982, 53593, 55377, 57176, 58707, 60743, 63596, 65960, 68334, 71435, 73559, 74492, 76589, 77909, 80225, 82776, 84237, 86850, 88433, 91007, 95063, 99823, 106908, 113288, 119788, 125204, 130337, 134843, 145332, 153861, 161036]}, {"name": "Psychische und durch Drogenkonsum induzierte Störungen", "values": [125, 126, 127, 132, 134, 133, 137, 141, 147, 151, 156, 160, 168, 182, 191, 199, 204, 209, 210, 216, 218, 222, 228, 231, 227, 224, 222, 226, 231, 234, 238, 240, 241, 240, 242, 241, 239, 234, 228, 223, 228, 229, 232, 237]}]}, "de": {"years": [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023], "causes": [{"name": "Kardiovaskuläre Erkrankungen", "values": [481347, 482858, 474714, 471394, 458534, 463388, 459204, 444207, 438809, 434067, 436024, 425180, 408615, 411504, 401986, 398019, 395153, 384146, 379131, 372371, 360594, 353146, 355842, 357661, 334452, 333888, 326302, 324396, 325837, 326023, 323332, 316012, 321561, 328216, 315064, 335091, 322987, 329247, 332497, 322542, 326557, 326682, 337264, 345453]}, {"name": "Tumore", "values": [219956, 221276, 221395, 222681, 220382, 223522, 225541, 225338, 227093, 226822, 229871, 232410, 231421, 235344, 234591, 236769, 237853, 234392, 233864, 233131, 233168, 230312, 232449, 234858, 230977, 234943, 234857, 237132, 242421, 245267, 245780, 246166, 249117, 254924, 252276, 261207, 261328, 263393, 268078, 266522, 268183, 268314, 275926, 280758]}, {"name": "Infektionen der Atemwege und Tuberkulose", "values": [21726, 21712, 22840, 23675, 22575, 22596, 22759, 19562, 18640, 18873, 19756, 17742, 16504, 16727, 17074, 17204, 17202, 16764, 16692, 17196, 17093, 16467, 17465, 18727, 17630, 18996, 18872, 19689, 20424, 20897, 19807, 19426, 19647, 20602, 19245, 22168, 22125, 24049, 25732, 23597, 63145, 97127, 106579, 27121]}, {"name": "Störungen bei Müttern und Neugeborenen", "values": [5645, 5214, 4682, 4112, 3680, 3389, 3212, 3082, 2943, 2815, 2651, 2383, 2134, 1942, 1816, 1750, 1732, 1717, 1713, 1694, 1644, 1595, 1567, 1536, 1504, 1432, 1411, 1390, 1324, 1263, 1242, 1206, 1202, 1209, 1249, 1317, 1386, 1392, 1373, 1314, 1271, 1251, 1241, 1211]}, {"name": "Chronische Atemwegskrankheiten", "values": [40511, 40648, 40061, 40037, 39380, 40301, 39580, 37644, 37124, 37403, 38714, 38168, 36682, 37324, 36575, 36445, 35971, 33900, 32835, 32624, 32459, 31376, 32511, 33694, 31781, 32331, 32149, 33163, 34623, 36785, 37516, 37974, 39435, 41565, 40952, 44982, 44933, 47105, 48237, 47166, 45061, 44469, 48809, 49952]}, {"name": "Enterale Infektionen", "values": [589, 550, 539, 510, 476, 470, 442, 422, 423, 499, 560, 602, 636, 601, 552, 534, 552, 576, 624, 693, 809, 888, 1051, 1363, 1604, 1969, 2383, 3033, 3668, 4013, 4067, 3759, 3993, 4313, 4192, 4484, 4032, 3862, 3694, 3104, 2794, 2527, 2792, 2840]}, {"name": "Verdauungserkrankungen", "values": [40504, 40219, 39367, 38433, 37214, 39245, 36209, 35212, 36536, 41230, 43359, 44211, 43244, 43695, 43517, 42690, 42623, 41628, 41637, 41844, 42460, 42634, 43560, 44426, 43518, 44261, 44051, 43867, 44767, 44649, 44844, 44457, 44905, 45276, 43553, 45927, 45657, 46479, 47175, 46749, 47059, 48082, 50273, 51150]}, {"name": "Diabetes und Nierenerkrankungen", "values": [32206, 31705, 30713, 30435, 29931, 30521, 31348, 30526, 30559, 31649, 33671, 33136, 32845, 34902, 34509, 33845, 33905, 32527, 31644, 32416, 35267, 36990, 39094, 40547, 39665, 41003, 40707, 41624, 43302, 44677, 46621, 47721, 50053, 52484, 52364, 57241, 56308, 58523, 60605, 60696, 63252, 63978, 63534, 64965]}, {"name": "Andere Infektionskrankheiten", "values": [1734, 1713, 1685, 1614, 1583, 1618, 1629, 1571, 1564, 1586, 1555, 1492, 1416, 1433, 1403, 1312, 1333, 1299, 1248, 1229, 1217, 1200, 1219, 1225, 1188, 1226, 1206, 1221, 1258, 1290, 1297, 1338, 1368, 1423, 1388, 1453, 1514, 1618, 1741, 1734, 1606, 1603, 1728, 1729]}, {"name": "Unbeabsichtigte Verletzungen", "values": [18474, 18588, 18562, 18213, 17468, 17144, 16865, 16663, 16503, 17012, 17729, 18002, 17184, 16785, 15698, 15132, 15163, 14010, 13459, 13362, 13593, 13559, 13863, 14579, 14418, 14972, 14978, 14746, 15540, 16338, 17513, 17459, 18424, 19780, 20308, 22830, 24341, 26424, 27981, 28207, 27618, 28673, 31178, 38274]}, {"name": "Neurologische Störungen", "values": [35770, 37130, 37831, 38906, 39341, 41416, 42687, 43050, 44307, 46120, 48279, 48789, 48702, 50482, 51704, 54106, 55806, 55469, 56703, 58123, 59857, 61049, 63471, 65410, 63328, 66343, 67313, 69327, 72843, 74865, 76389, 77293, 80194, 82787, 82031, 88701, 88715, 93272, 97330, 97632, 99798, 101324, 105136, 107475]}, {"name": "Verletzungen im Verkehr", "values": [18358, 17419, 16881, 16298, 14889, 13481, 13318, 12601, 12782, 12545, 13006, 13051, 12499, 11826, 11285, 10626, 10083, 9566, 9250, 8883, 8630, 8085, 7829, 7479, 6830, 6415, 6067, 5787, 5451, 5113, 4782, 4813, 4572, 4416, 4344, 4444, 4363, 4323, 4325, 3980, 3263, 3119, 3240, 3144]}, {"name": "Selbstschädigung und zwischenmenschliche Gewalt", "values": [15644, 15968, 15919, 15684, 15133, 14860, 14276, 14076, 13980, 15650, 16098, 16126, 15679, 15243, 15194, 15442, 15169, 14855, 14245, 13822, 13647, 13518, 13521, 13384, 12946, 12462, 12030, 11694, 11737, 11892, 12070, 12009, 11859, 12005, 12036, 12160, 12045, 11833, 11875, 11662, 11424, 11234, 12141, 12972]}, {"name": "Andere nicht übertragbare Krankheiten", "values": [12601, 12327, 11856, 11169, 10668, 10419, 10182, 9958, 9740, 9364, 8902, 8139, 7535, 7263, 7147, 7956, 8293, 8285, 8315, 8255, 8282, 8257, 8571, 8986, 8842, 9277, 9542, 9983, 10643, 11092, 11478, 11596, 12269, 13272, 13477, 14670, 14846, 15553, 16326, 16443, 16825, 17542, 18711, 19269]}, {"name": "Vernachlässigte Tropenkrankheiten und Malaria", "values": [13, 13, 18, 11, 17, 26, 23, 13, 16, 22, 17, 16, 24, 17, 30, 35, 32, 30, 36, 31, 22, 22, 23, 25, 23, 24, 23, 23, 25, 26, 36, 28, 29, 30, 30, 33, 39, 39, 57, 43, 41, 42, 44, 44]}, {"name": "HIV/AIDS und sexuell übertragbare Erkrankungen", "values": [383, 378, 378, 385, 411, 487, 621, 818, 1063, 1331, 1661, 1991, 2263, 2507, 2538, 2297, 1786, 1284, 980, 846, 785, 748, 729, 721, 701, 685, 670, 651, 634, 626, 619, 606, 591, 578, 562, 568, 570, 567, 551, 498, 438, 394, 385, 359]}, {"name": "Mangelernährung", "values": [312, 298, 285, 278, 270, 269, 269, 251, 244, 233, 224, 193, 178, 174, 171, 184, 182, 181, 178, 180, 195, 198, 203, 215, 210, 223, 237, 254, 284, 293, 325, 337, 364, 402, 416, 532, 579, 691, 762, 784, 821, 896, 965, 963]}, {"name": "Drogenkonsum induzierte Störungen", "values": [4617, 4479, 4367, 4378, 4459, 4578, 4944, 5241, 5718, 6089, 6579, 7076, 7262, 7504, 7751, 7915, 7995, 7919, 7785, 7626, 7344, 7109, 7089, 7113, 6973, 7040, 6889, 6961, 7121, 7152, 7297, 7299, 7410, 7759, 7658, 8109, 8142, 8015, 8049, 7913, 8068, 8262, 8781, 8830]}, {"name": "Muskel-Skelett-Erkrankungen", "values": [1587, 1510, 1445, 1426, 1364, 1343, 1304, 1298, 1277, 1248, 1177, 1090, 1021, 1017, 1084, 1453, 1526, 1456, 1338, 1246, 1243, 1259, 1230, 1255, 1227, 1250, 1296, 1288, 1354, 1450, 1551, 1674, 1763, 1858, 1863, 2051, 2129, 2317, 2497, 2465, 2327, 2372, 2567, 2526]}, {"name": "Haut- und Unterhautkrankheiten", "values": [405, 416, 426, 441, 448, 471, 486, 489, 501, 517, 532, 535, 532, 546, 549, 561, 571, 527, 477, 485, 524, 535, 594, 651, 704, 792, 863, 971, 1105, 1253, 1383, 1458, 1591, 1751, 1847, 2110, 2270, 2480, 2714, 2816, 2854, 2976, 3351, 3509]}, {"name": "Psychische und durch Drogenkonsum induzierte Störungen", "values": [20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 24, 24, 23, 22, 23, 23, 22, 23, 23, 24, 24, 24, 24, 24, 24, 24, 25, 25, 26, 27, 29, 38]}]}};
+const POP = {"global": {"1980": 4437473406, "1981": 4516792587, "1982": 4599385851, "1983": 4682734714, "1984": 4765813206, "1985": 4850494238, "1986": 4937459951, "1987": 5026770385, "1988": 5116898810, "1989": 5207378374, "1990": 5298962018, "1991": 5388203305, "1992": 5476822930, "1993": 5564459142, "1994": 5650534421, "1995": 5736205135, "1996": 5822327903, "1997": 5908180322, "1998": 5993730786, "1999": 6078069822, "2000": 6161528496, "2001": 6244739668, "2002": 6327171255, "2003": 6409352386, "2004": 6492354627, "2005": 6575410029, "2006": 6659536021, "2007": 6744049498, "2008": 6830080867, "2009": 6916168196, "2010": 7000860073, "2011": 7086704141, "2012": 7176482165, "2013": 7265404737, "2014": 7353532223, "2015": 7441084771, "2016": 7528221579, "2017": 7613788655, "2018": 7696159728, "2019": 7777162476, "2020": 7853863139, "2021": 7919567995, "2022": 7988550201, "2023": 8062923417}, "de": {"1980": 78288576, "1981": 78407907, "1982": 78333366, "1983": 78128282, "1984": 77858685, "1985": 77684873, "1986": 77720436, "1987": 77839920, "1988": 78144619, "1989": 78751283, "1990": 79433029, "1991": 80013896, "1992": 80624598, "1993": 81156363, "1994": 81438348, "1995": 81678051, "1996": 81914831, "1997": 82034771, "1998": 82047195, "1999": 82100243, "2000": 82211508, "2001": 82349925, "2002": 82488495, "2003": 82534176, "2004": 82516260, "2005": 82469422, "2006": 82376451, "2007": 82266372, "2008": 82110097, "2009": 81902307, "2010": 81776930, "2011": 80274983, "2012": 80425823, "2013": 80645605, "2014": 80982500, "2015": 81686611, "2016": 82348669, "2017": 82657002, "2018": 82905782, "2019": 83092962, "2020": 83160871, "2021": 83196078, "2022": 83177813, "2023": 83287273}};
+const COLORS = ["#ff6b5e","#ff9f43","#feca57","#5fd68a","#2ec4b6","#54a0ff","#a78bfa","#f08a4b","#9fb1c4","#ff7eb6",
+  "#1dd1a1","#48dbfb","#8c7ae6","#fbc531","#c8d6e5","#c4b5fd","#7bed9f","#ffb8a1","#a4b0be","#ff8f6b","#74b9ff"];
+const W = 1160, C = W / 2, GAP = 14, SEC_PAD = 1.2;
+const R = {c:62, y0:72, y1:134, lab:150, band0:166, band1:182, in:200, out:400};
+const sel = id => document.getElementById(id);
+const tip = sel("tip"), chart = sel("chart"), slider = sel("yr"), play = sel("play");
+const fmt = v => v.toLocaleString("de-DE");
+const pc = (v, d = 3) => v.toLocaleString("de-DE", {minimumFractionDigits:d, maximumFractionDigits:d}) + " %";
+let key, years, series, pop, totals, rate, vmax, tickVals, cur = 0, geo = {}, timer = 0;
+
+const rad = d => d * Math.PI / 180;
+const P = (th, r) => [C + r * Math.sin(rad(th)), C - r * Math.cos(rad(th))];
+const f1 = n => n.toFixed(1);
+function arc(a0, a1, r0, r1) {
+  const [x0,y0] = P(a0,r1), [x1,y1] = P(a1,r1), [x2,y2] = P(a1,r0), [x3,y3] = P(a0,r0), big = a1 - a0 > 180 ? 1 : 0;
+  return `M${f1(x0)},${f1(y0)}A${r1},${r1} 0 ${big} 1 ${f1(x1)},${f1(y1)}L${f1(x2)},${f1(y2)}A${r0},${r0} 0 ${big} 0 ${f1(x3)},${f1(y3)}Z`;
+}
+function ring(r) { return `<circle cx="${C}" cy="${C}" r="${r}" fill="none" />`; }
+
+function prepare() {
+  const d = DATASETS[key];
+  years = d.years;
+  pop = years.map(y => POP[key][y]);
+  series = d.causes.map((c, k) => ({name:c.name, color:COLORS[k % COLORS.length], v:c.values.map((x, i) => x / pop[i] * 100), n:c.values}));
+  totals = years.map((_, i) => series.reduce((s, c) => s + c.n[i], 0));
+  rate = totals.map((t, i) => t / pop[i] * 100);
+  const mx = Math.max(...series.flatMap(c => c.v));
+  const cand = [.001,.002,.005,.01,.02,.05,.1,.2,.25,.3,.4,.5,.6,.8,1,2];
+  vmax = cand.find(v => v >= mx);
+  const base = cand.filter(v => v <= vmax);
+  tickVals = sel("scale").value === "sqrt" ? base.filter(v => [.01,.05,.1,.2,.3,.5,1,2].includes(v)) : base.filter(v => [1,2,5].includes(+(v / Math.pow(10, Math.floor(Math.log10(v)))).toFixed(1)) && v >= vmax / 8);
+  if (!tickVals.length) tickVals = base;
+  slider.max = years.length - 1;
+}
+const rOf = v => R.in + (sel("scale").value === "sqrt" ? Math.sqrt(v / vmax) : v / vmax) * (R.out - R.in);
+
+function build() {
+  const n = years.length, N = series.length, secW = (360 - GAP) / N;
+  const sec0 = k => GAP / 2 + k * secW;            // Start, 0° = oben, im Uhrzeigersinn; Lücke liegt bei 0° (oben)
+  // Lücke nach links drehen: Winkel um 90° verschieben
+  const rot = 270;
+  const th = a => a + rot;
+  const yA = (i, j) => th(sec0(0)) + 0;           // Platzhalter, nicht benutzt
+  geo = {secW, rot, sec0, N, n};
+  const yearAngle = i => 360 / n * (i + .5);       // Jahresring: volle 360°
+  const ang = (k, i) => th(sec0(k) + SEC_PAD / 2 + (i + .5) * (secW - SEC_PAD) / n);
+  geo.ang = ang; geo.yearAngle = yearAngle;
+  let s = `<svg viewBox="0 0 ${W} ${W}" role="img" aria-label="Radiales Diagramm der Todesursachen">`;
+  // --- Raster
+  s += `<g stroke="#3a3f73" stroke-width=".7" fill="none">`;
+  tickVals.forEach(v => s += `<circle cx="${C}" cy="${C}" r="${f1(rOf(v))}" stroke-dasharray="2 4" />`);
+  s += `<circle cx="${C}" cy="${C}" r="${R.in}" /><circle cx="${C}" cy="${C}" r="${R.out}" />`;
+  s += `<circle cx="${C}" cy="${C}" r="${R.y0}" /><circle cx="${C}" cy="${C}" r="${R.y1}" stroke-dasharray="1 3" />`;
+  s += `<circle cx="${C}" cy="${C}" r="${R.band1 + 6}" />`;
+  // Sektor-Trenner
+  for (let k = 0; k <= N; k++) { const a = th(sec0(k)); const [x0,y0] = P(a, R.band0), [x1,y1] = P(a, R.out); s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke-opacity=".55" />`; }
+  s += `</g>`;
+  // --- Jahresring (Gesamtrate pro Jahr)
+  const rmax = Math.max(...rate);
+  const yr = v => R.y0 + v / rmax * (R.y1 - R.y0);
+  s += `<g id="ybars">`;
+  rate.forEach((v, i) => {
+    const a0 = 360 / n * i + .25, a1 = 360 / n * (i + 1) - .25;
+    s += `<path data-y="${i}" class="yb" d="${arc(a0, a1, R.y0, yr(v))}" fill="#f0a35e" fill-opacity=".55" />`;
+  });
+  s += `</g>`;
+  [0.5, 1].map(f => f * rmax).forEach(() => {});
+  // Jahresmarken (alle 5 Jahre) zwischen Jahresring und Bändern
+  years.forEach((y, i) => {
+    const a = yearAngle(i), maj = y % 10 === 0, mid = y % 5 === 0;
+    const [x0,y0] = P(a, R.y1 + 2), [x1,y1] = P(a, R.y1 + (maj ? 11 : mid ? 7 : 4));
+    s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke="#8b8fb8" stroke-width="${maj ? 1.2 : .7}" />`;
+    if (mid) { const [tx,ty] = P(a, R.lab + 6); s += `<text class="dim" x="${f1(tx)}" y="${f1(ty + 3)}" text-anchor="middle" style="font-size:${maj ? 9.5 : 8}px">${y}</text>`; }
+  });
+  // --- Ursachen-Band
+  series.forEach((c, k) => {
+    const a0 = th(sec0(k)) + SEC_PAD / 2, a1 = th(sec0(k) + secW) - SEC_PAD / 2;
+    s += `<path d="${arc(a0, a1, R.band0, R.band1)}" fill="${c.color}" fill-opacity=".85" />`;
+    const [tx, ty] = P((a0 + a1) / 2, (R.band0 + R.band1) / 2);
+    s += `<text x="${f1(tx)}" y="${f1(ty + 3.5)}" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#14172e">${k + 1}</text>`;
+    // Jahresticks am inneren Rand der Linienzone (alle 10 Jahre)
+    years.forEach((y, i) => { if (y % 10 === 0) { const a = ang(k, i), [x0,y0] = P(a, R.band1 + 1), [x1,y1] = P(a, R.in - 2); s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke="${c.color}" stroke-opacity=".35" stroke-width=".7" stroke-dasharray="1 2" />`; } });
+    // Name außen
+    const m = (a0 + a1) / 2, norm = ((m % 360) + 360) % 360, left = norm > 180;
+    const [px, py] = P(m, R.out + 8);
+    const nm = (k + 1) + " " + (c.name.length > 30 ? c.name.slice(0, 28) + "…" : c.name);
+    s += `<text x="${f1(px)}" y="${f1(py)}" dy="3" text-anchor="${left ? "end" : "start"}" transform="rotate(${f1(left ? m + 90 : m - 90)} ${f1(px)} ${f1(py)})" style="font-size:10px;fill:${c.color}">${nm}</text>`;
+  });
+  // --- Linien (Lollipops) je Ursache und Jahr
+  s += `<g id="lolli">`;
+  series.forEach((c, k) => {
+    s += `<g stroke="${c.color}" fill="${c.color}">`;
+    c.v.forEach((v, i) => {
+      const a = ang(k, i), r1 = rOf(v), [x0,y0] = P(a, R.in), [x1,y1] = P(a, r1);
+      s += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke-width=".45" stroke-opacity=".6" /><circle cx="${f1(x1)}" cy="${f1(y1)}" r="1.4" stroke="none" />`;
+    });
+    s += `</g>`;
+  });
+  s += `</g><g id="hl"></g>`;
+  // --- Skalenbeschriftung in der Lücke (links)
+  const gx = C;
+  tickVals.forEach(v => { const r = rOf(v); s += `<text class="halo dim" x="${f1(gx - r)}" y="${C + 3}" text-anchor="middle" style="font-size:9.5px">${v.toLocaleString("de-DE")} %</text>`; });
+  s += `<text class="dim" x="${C - R.in - 2}" y="${C - 8}" text-anchor="middle" style="font-size:8.5px">% der Bevölkerung</text>`;
+  s += `<text class="dim" x="${C}" y="${C - R.y1 - 14}" text-anchor="middle" style="font-size:8px;opacity:0">.</text>`;
+  s += `<g id="ctr"></g></svg>`;
+  chart.innerHTML = s;
+  mark();
+}
+
+function mark() {
+  const i = cur, n = years.length, N = series.length;
+  let h = "";
+  const a = geo.yearAngle(i);
+  h += `<path d="${arc(360 / n * i, 360 / n * (i + 1), R.y0, R.y1)}" fill="#fff" fill-opacity=".14" />`;
+  series.forEach((c, k) => {
+    const ak = geo.ang(k, i), r1 = rOf(c.v[i]), [x0,y0] = P(ak, R.in), [x1,y1] = P(ak, r1), [x2,y2] = P(ak, R.out);
+    h += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="#fff" stroke-opacity=".12" stroke-width=".6" />`;
+    h += `<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(x1)}" y2="${f1(y1)}" stroke="#fff" stroke-width="1.8" /><circle cx="${f1(x1)}" cy="${f1(y1)}" r="3.4" fill="${c.color}" stroke="#fff" stroke-width="1.2" />`;
+  });
+  sel("hl").innerHTML = h;
+  sel("ctr").innerHTML = `<text x="${C}" y="${C + 9}" text-anchor="middle" style="font-size:30px;font-weight:600">${years[i]}</text>` +
+    `<text class="dim" x="${C}" y="${C + 26}" text-anchor="middle" style="font-size:9.5px">${pc(rate[i], 2)} gestorben</text>` +
+    `<text class="dim" x="${C}" y="${C - 20}" text-anchor="middle" style="font-size:9px">${fmt(Math.round(totals[i]))}</text>` +
+    `<text class="dim" x="${C}" y="${C - 10}" text-anchor="middle" style="font-size:8px">Todesfälle</text>`;
+  slider.value = i; sel("yl").textContent = years[i];
+}
+
+function setYear(i) { cur = Math.max(0, Math.min(years.length - 1, i)); mark(); }
+function stop() { clearInterval(timer); timer = 0; play.textContent = "▶ Start"; }
+play.onclick = () => {
+  if (timer) return stop();
+  if (cur >= years.length - 1) setYear(0);
+  play.textContent = "❚❚ Pause";
+  timer = setInterval(() => { if (cur >= years.length - 1) return stop(); setYear(cur + 1); }, 350);
+};
+slider.oninput = () => { stop(); setYear(+slider.value); };
+
+// Treffererkennung per Polarkoordinaten
+function locate(e) {
+  const svg = chart.querySelector("svg"), r = svg.getBoundingClientRect(), sc = W / r.width;
+  const x = (e.clientX - r.left) * sc - C, y = (e.clientY - r.top) * sc - C, rr = Math.hypot(x, y);
+  const t = ((Math.atan2(x, -y) * 180 / Math.PI) % 360 + 360) % 360, n = years.length;
+  if (rr >= R.y0 && rr <= R.y1 + 12) return {year: Math.min(n - 1, Math.floor(t / 360 * n))};
+  if (rr >= R.band0 && rr <= R.out + 4) {
+    const u = (((t - geo.rot) % 360) + 360) % 360 - 0; // relativ zum Start der ersten Sektoren
+    const rel = u - GAP / 2;
+    if (rel < 0 || rel >= 360 - GAP) return null;
+    const k = Math.floor(rel / geo.secW), inner = rel - k * geo.secW - SEC_PAD / 2;
+    const i = Math.floor(inner / ((geo.secW - SEC_PAD) / n));
+    if (i < 0 || i >= n) return {cause: k};
+    return {cause: k, year: i, line: rr >= R.in};
+  }
+  return null;
+}
+chart.addEventListener("mousemove", e => {
+  const h = locate(e);
+  if (!h || (h.year === undefined && h.cause === undefined)) { tip.style.display = "none"; return; }
+  let html;
+  if (h.cause === undefined) html = `<b>${years[h.year]}</b> · alle Ursachen<br>${fmt(Math.round(totals[h.year]))} Todesfälle<br>${pc(rate[h.year])} der Bevölkerung (${fmt(pop[h.year])})`;
+  else {
+    const c = series[h.cause];
+    html = `<b style="color:${c.color}">${h.cause + 1} · ${c.name}</b>`;
+    if (h.year !== undefined && h.line !== false) html += `<br><b>${years[h.year]}</b>: ${fmt(c.n[h.year])} Todesfälle<br>${pc(c.v[h.year], 4)} der Bevölkerung<br>${pc(c.n[h.year] / totals[h.year] * 100, 1)} aller Todesfälle`;
+  }
+  tip.innerHTML = html; tip.style.display = "block";
+  tip.style.left = Math.max(0, Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8)) + "px";
+  tip.style.top = Math.max(0, Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8)) + "px";
+});
+chart.addEventListener("mouseleave", () => tip.style.display = "none");
+chart.addEventListener("click", e => { const h = locate(e); if (h && h.year !== undefined) { stop(); setYear(h.year); } });
+
+function render() {
+  key = sel("dataset").value; stop(); prepare();
+  const t = `Todesfälle ${key === "de" ? "in Deutschland" : "weltweit"} nach Todesursache, ${years[0]}–${years[years.length - 1]}`;
+  sel("title").textContent = t; document.title = t;
+  cur = Math.min(cur, years.length - 1);
+  build();
+}
+sel("dataset").onchange = render; sel("scale").onchange = render;
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,722 @@
+ 
+ 
+ 
+             Piloting reusable plastic crates in the tomato value chain in Benin 
+Janvier Egah, Nicodeme Fassinou Hotegni, Melanie Kok & Youri Dijkxhoorn  
+January 2025 
+    Working Paper 
+
+ 
+ 
+The CGIAR Research Initiative on Fruit and Vegetables for Sustainable Healthy Diets (FRESH) aims to 
+use an end-to-end approach to increase fruit and vegetable intake and in turn improve diet quality, 
+nutrition and health outcomes while also improving livelihoods, empowering women and youth and 
+mitigating negative environmental impacts. 
+The FRESH Initiative activities are bundled into six packages, namely:  
+ Work Package 1: Understanding and Influencing Consumer Behaviour  
+ Work Package 2: Biodiversity, genetic innovation, and seed systems 
+ Work Package 3: Safe and sustainable production systems 
+ Work Package 4: Post-harvest and inclusive markets 
+ Work Package 5: Food Environments 
+ Work Package 6: Strengthening the enabling environment. 
+To learn more about this Initiative, please visit: 
+Fruit and Vegetables for Sustainable Healthy Diets (FRESH) - CGIAR 
+ 
+ 
+ Citation: 
+Egah, J., Hotegni, N. F., Kok, M., & Dijkxhoorn, Y. 2025. Piloting reusable plastic crates in the tomato value 
+chain in Benin. Wageningen University & Research, Netherlands. 22 pages. 
+ About the authors: Janvier Egah. Senior lecturer agricultural socioeconomics. Laboratory Society- Environment (LaSEn), University of Parakou. egahjanvier@gmail.com & Janvier.egah@fa-up.bj  Nicodeme Fassinou Hotegni. Lecturer-Researcher. Faculty of Agricultural Sciences (FSA), Université d'Abomey-Calavi. fassinouhotegni@gmail.com  Melanie Kok. Researcher supply chain development. Wageningen Food and Biobased Research. the Netherlands. melanie.kok@wur.nl  Youri Dijkxhoorn. Food system researcher. Wageningen Social & Economic Research. youri.dijkxhoorn@wur.nl  
+ Cover photo: Tomatoes for sale at the Dantokpa Market, Benin. IFPRI/M. Cooperman. 
+ Copyright © WUR 
+This work is licensed under a Creative Commons 
+Attribution 4.0 International License (CC BY 4.0). 
+https://creativecommons.org/licenses/by/4.0/ 
+  
+ 
+ 
+ 
+Piloting reusable plastic crates in the tomato value chain in Benin 
+ 
+ 
+ 
+ 
+ 
+ 
+Janvier Egah1, Nicodeme Fassinou Hotegni2, Melanie Kok3 & Youri Dijkxhoorn4  
+ 
+ 
+ 
+ 1 University of Parakou, Benin 2 Université d'Abomey-Calavi, Benin 
+3 Wageningen Food and Biobased Research, the Netherlands 
+4 Wageningen Social & Economic Research, the Netherlands 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+4 
+ 
+Acknowledgements 
+The FRESH Initiative is being implemented by CGIAR researchers from IFPRI, CIMMYT, The Alliance of 
+Bioversity International and CIAT, IWMI, and CIP in close partnership with the World Vegetable Center, 
+Applied Horticultural Research, the University of Sydney, the Institute of Development Studies, 
+Wageningen University & Research, the University of California, Davis, Sokoine University of 
+Agriculture, Wayamba University of Sri Lanka, and the Philippines Department of Science and 
+Technology-Food and Nutrition Research Institute, along with other partners.  
+ 
+We would like to thank all funders who support this research through their contributions to the CGIAR 
+Trust Fund: www.cgiar.org/funders. We would like to thank all the enumerators and value chain actors 
+who participated in the study.  
+5 
+ 
+Summary 
+Do reusable plastic crates perform better compared to traditional baskets? 
+The study highlights the challenges of introducing reusable plastic crates as an alternative packaging 
+solution in South Benin’s tomato value chain. The study produced mixed outcomes, making it difficult 
+to state that reusable plastic crates perform better compared to traditional baskets.  
+ 
+Reusable plastic crates show potential for reducing post-harvest losses and increasing value in 
+the tomato value chain, but their adoption faces challenges in cost and logistics, necessitating 
+innovative business models for scalability. 
+The results showed variability in post-harvest losses across packaging methods. While reusable plastic 
+crates demonstrated slightly lower post-harvest losses compared to traditional baskets, the 
+differences were not substantial. Loss percentages from farm to the retail level were inconsistent, with 
+in some cases no clear trend favoring crates over traditional methods. 
+Our study indicates a small opportunity to increase value across all stakeholders in the value chain by 
+adopting improved packaging solutions. In the first round of assessments, four value chains 
+demonstrated significantly higher monetary losses when using traditional baskets compared to 
+reusable plastic crates. While crates preserved quality slightly better, the marginal improvement in 
+prices did not offset the additional costs associated with the investment. Participants noted that the 
+initial investment in crates posed a significant barrier, especially given the limited observed advantages 
+during the pilot.  
+Feedback highlighted logistical challenges with crate availability and the need for better integration 
+into existing workflows. Some participants had concerns about limited tomato availability during the 
+study period and this further complicated the data collection, particularly during the second round of 
+data collection. 
+Developing a sustainable business model for the returnable plastic crate intervention poses 
+challenges. Implementing requires substantial investments, which are beyond the financial capacity of 
+the participants. As a result, exploring alternative funding mechanisms or business models is essential 
+to ensure the project's feasibility and long-term success. 
+ 
+Methodology 
+The study was conducted in Ouidah in Benin. Farmers in Ouidah receive support from the FRESH 
+initiative. Ouidah has a large agricultural center where many different fruits and vegetables are 
+produced and traded in large volumes. study also revealed limitations of the intervention due to 
+contextual factors. The distance to the market might have influenced this and the proximity of farms to 
+markets reduced the potential impact of improved packaging, as shorter transport durations 
+minimized spoilage risks. The limited sample size, the differences in packing, the difference in weight 
+between the units and seasonal constraints also limit the robustness of the findings.  
+ 
+ 
+Keywords: 
+Fruit and vegetables, post-harvest losses, value chain, tomato 
+  
+6 
+ 
+Contents 
+Acknowledgements ........................................................................................................................................... 4 
+Summary ............................................................................................................................................................ 5 
+1. Introduction ............................................................................................................................................... 7 
+2. Methodology .............................................................................................................................................. 8 
+2.1 Study area ........................................................................................................................................... 8 
+2.2. Participants and sampling approach ................................................................................................ 8 
+3.1 Descriptive results ............................................................................................................................ 10 
+3.2 Pilot results ........................................................................................................................................ 12 
+Post-harvest losses .................................................................................................................................. 12 
+Reduced quality loss ............................................................................................................................... 13 
+Economic value assessed ....................................................................................................................... 14 
+3.3 Findings from feedback workshop and opportunities for scaling................................................ 15 
+Adoption barriers .................................................................................................................................... 15 
+Stakeholder perception of reusable plastic crates ............................................................................... 16 
+Scaling up reusable plastic crate adoption ........................................................................................... 17 
+3.4 Feasibility assessment ...................................................................................................................... 17 
+4. Conclusion and discussion ..................................................................................................................... 18 
+4.1 Conclusion ......................................................................................................................................... 18 
+4.2 Discussion ......................................................................................................................................... 19 
+Limitations of the study design .............................................................................................................. 19 
+Challenges regarding uptake ................................................................................................................. 19 
+References ....................................................................................................................................................... 21 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+7 
+ 
+1. Introduction 
+Good postharvest management of vegetables is a critical challenge for value chain actors, as these 
+crops exhibit significantly higher post-harvest losses compared to cereals or pulses. In Benin, 
+tomatoes, characterized by a high-water content (85%-95%) (Aisso, et al., 2018), are particularly prone 
+to spoilage due to inadequate packaging and poor handling during transportation and storage 
+(Fassinou Hotegni et al. 2022). Traditional methods such as using traditional baskets lead to significant 
+losses, estimated at 6.9% to 16.5% of the total volume from farm to wholesale levels (Kablan and 
+Bancal, 2019). Additionally, damaged tomatoes are sold at reduced prices, further exacerbating 
+economic losses for farmers and retailers. As a result, the post-harvest losses also contribute to 
+economic losses for the farmers and the wholesalers. Using other packaging units such as reusable 
+plastic crates for transportation and storage could offer a good alternative to reduce the post-harvest 
+losses of tomatoes (Kok et al., 2019).  
+ 
+The adoption of innovative packaging solutions in Nigeria has significantly reduced post-harvest losses 
+and improved product quality for perishable goods, including tomatoes (Plaisier et al., 2019; Kok et al 
+2019). These materials have proven particularly effective in maintaining the quality of tomatoes during 
+transportation and storage, enhancing their market value. Given the similarities in agricultural 
+practices and market conditions, introducing such packing materials in Benin presents a viable 
+opportunity to address storage and transportation challenges.  
+ 
+This study assesses the effectiveness of reusable plastic crates as an alternative packaging solution to 
+reduce post-harvest losses and increase economic value in South Benin’s tomato value chain. In this 
+report we will answer the following research question: 
+ 
+ Do reusable plastic crates perform better compared to traditional baskets? 
+ 
+Sub-research questions: 
+ Does the use of reusable plastic crates reduce tomato post-harvest losses compared to the use 
+of traditional baskets? 
+ Does the use of reusable plastic crates increase the value of the tomatoes traded in the value 
+chain compared to traditional baskets? 
+ How are the plastic crates perceived by the stakeholders in the tomato value chain and what 
+are the opportunities for scaling?  
+ What is a feasible business model for the implementation of this innovation?  
+ 
+Piloting this approach strengths the value chain by reducing losses, improving the value in the entire 
+value chain of fresh produce, and aligning with the broader goals of the CGIAR initiative on Fruit and 
+Vegetables for Sustainable Healthy Diets (FRESH). 
+ 
+  
+8 
+ 
+2. Methodology 
+2.1 Study area 
+The study was conducted in Ouidah in Benin. Farmers in Ouidah receive support from the FRESH 
+initiative. Ouidah has a large agricultural center where many different fruits and vegetables are 
+produced and traded in large volumes. The FRESH hub is accessible by a main road that has recently 
+been built. The main fruit and vegetable crops cultivated are tomato, gboma, chilli, watermelon, 
+vernonia, African basilic (tchiayo), amaranth, cucumber, cabbage, and onion (Egah et al., 2024). This 
+study describes the trade dynamics in the area and explains, amongst others, that the unit of 
+measurement of these products varies. Tomatoes are sold by stakeholders using a basket, whereas 
+fruits such as watermelons, gherkins, cucumbers, and melons are sold per unit according to size of the 
+fruit after harvesting (the larger, the higher the price). Leafy vegetables are sold by land portion (about 
+5 m² of area) on the farm to wholesalers. Fruit and vegetables are sold on inside and outside markets. 
+This system of selling per basket is not kg-based and this easily allows for overlading of the units, 
+affecting the quality of the produce and resulting in post-harvest losses (PHL).  
+ 
+The local markets are close to the production site. More distant markets are in other communes, 
+specifically in larger towns such as Tokpa in Cotonou, Togba and Akassato in Abomey-Calavi. Distant 
+markets are targeted when farmers cannot find local buyers during periods of abundance. During 
+periods of abundance, the sale price is lower, as farmers accept the price fixed by the traders on these 
+markets. In periods of scarcity, wholesalers visit the farmers and they define sales agreements on the 
+spot. 
+ 
+2.2. Participants and sampling approach 
+The study targeted midstream actors, including wholesalers, retailers, transporters, and farmers active 
+in the tomato value chain. Five wholesalers were selected as primary participants using a snowball 
+sampling technique. These wholesalers facilitated the identification of other midstream actors in the 
+same value chain. Consent and availability to participate in all study activities were obtained from 
+participants, including stakeholder workshops. 
+ 
+2.3 Study design and implementation 
+The study followed a participatory and comparative design, involving three key steps (preparation 
+phase, implementation phase and final phase). 
+ Preparation phase: The preparation phase focused on mobilizing stakeholders from value 
+chains of tomato through workshops and exploratory interviews, making the reusable 
+plastic crates and measurement tools available, and developing questionnaires to collect 
+data on socioeconomic indicators, weight and quality of tomatoes, and perceptions of 
+packaging methods. Enumerators were trained to ensure accurate data collection and 
+adherence to the study’s protocol. The questionnaire and study protocol were based on a 
+previously used structure as used in other PHL measurement projects implemented by WUR 
+(see for example Kok et al., 2019). 
+ Implementation phase: During the implementation phase from the mid of October to the 
+mid of November, tomatoes were packed in reusable plastic crates, weighed baskets and 
+9 
+ 
+not filled above the top of the basket, and traditionally packed baskets without weighing 
+(baseline). See picture 1A below with the different packing types. The weighing was added as 
+an alternative solution to overcome the common practice of over-packing. Initial and final 
+weights were measured at key points: farm level, wholesale level, and at the retail level. A 
+specific quality grading system was developed to assess the quality of tomatoes during the 
+pilot intervention at farm level to retail level. This was based on the quality grades applied 
+by retailers at the final market so that we could assess the actual retail value at the different 
+stages in the value chain (see picture 1B below with the different quality grades). During the 
+implementation, 2 units of reusable plastic crates, 2 units of weighted baskets, and 2 units 
+of traditional packed baskets without weighing were tracked per value chain. This was 
+repeated twice. The trained enumerators tracked each package’s journey, collecting data on 
+weight loss, transportation costs, and economic returns at various stages in the value chain. 
+Each package was labelled to allow identification and trace it during transportation 
+ Final phase: The final phase involved data analysis and reporting. Descriptive statistics were 
+used, and postharvest losses were calculated by comparing initial and final weights per 
+value chain. Economic feasibility and social perceptions were analyzed, and findings were 
+shared through a final feedback workshop with all involved participants (December 2024) to 
+capitalize on lessons learned and share the results of the pilot with the participants. 
+ 
+ 
+Picture 1: Different packing options (Left) and quality grades (Right) (source authors)  
+  
+ 
+  
+
+10 
+ 
+3. Results 
+3.1 Descriptive results  
+This section presents an overview of participant profiles based on descriptive information. In total 18 
+value chain actors participated of which 39% were women. The farmers and transporters were mainly 
+men. The main markets they delivered their products to are Pahou and Kpassè markets in Ouidah. 
+ 
+Table 1: Participants in the study  
+Actor category Number  Female % (No.) 
+Farmers 5 0 
+Wholesale traders 5 60% (3) 
+Retailers 5 80% (4) 
+Transporters 3 0 
+Total 18 39% (7) 
+ 
+The participants were linked in 5 different value chains (VC) that are described in terms of 
+transportation time to the various markets in table 2. In Fonsa 2 farmers from different locations 
+participated in the pilot.  
+ 
+Table 2: Location, time and distance to the market, tomato variety per value chain 
+Value 
+chain 
+Location (village and 
+market) 
+Transportation 
+time, round 1 
+(hrs) 
+Transportation 
+time, round 2 
+(hrs) 
+Average distance 
+(kms) Tomato variety 
+1 Djebadji to the market of 
+Kpassè 14:01 12:08 4.1 Akikonkui 
+2 Fonsa to the market in 
+Pahou 3:07 13:05* 11.3 Cobra 
+3 Fonsa to the market in 
+Pahou 1:05 1:53 9.0 Padma/Anita 
+4 Degoue to the market in 
+Kpassè 15:01 15:00 10.0 Tounvi/Akikonkui  
+5 Avleketé to the market in 
+Pahou 5:30 5:50 6.6 Cobra/Akikonkui/T
+ounvi 
+*The wholesaler received first the product at her home and took it the next day to the market. She proceeded like that because she could not 
+get enough tomatoes from the producers; so, the next day additional tomatoes were taken from other producers before taking the whole lot 
+in the market.  
+ 
+  
+11 
+ 
+Picture 2: Different packing options (Left) and means of transportation during the pilot in value chain 
+5 of tomatoes from Avleketé (Right) (source authors)  
+  
+ 
+The baskets and crates used during the intervention had a weight ranging between 12.5 and 47.6 kg. 
+Implying a significant variation in the quantity of produce supplied and related pressure on the 
+tomatoes during transport. Some farmers opted for smaller-sized baskets, contributing to 
+inconsistencies in measurement. Additionally, the traditional baskets were not always the same size 
+and the reusable plastic crates were not consistently filled during the intervention, further impacting 
+uniformity in the quantities measured. In addition, the limited supply of tomatoes during the second 
+round, combined with poor weather conditions, also contributed to deviations in the measurements. 
+ 
+Table 3: Average weight of the different baskets and crates (kg) at farm level 
+    VC 1 VC 2 VC 3 VC 4 VC 5  Average 
+Round 1 basket traditional 
+(n=2) 26.2 47.7 47.6 27.9 44.7 38.8 
+  baskets weighted 
+(n=2) 14.2 42.9 36.4 20.6 30.6 28.9 
+  plastic crates (n=2) 24.9 43.0 38.3 34.1 33.1 34.7 
+Round 2  basket traditional 
+(n=2) 31.6 42.9 34.1 26.9 37.5 34.6 
+  baskets weighted 
+(n=2) 12.5 34.9 28.3 19.7 27.1 24.5 
+  plastic crates (n=2) 24.0 42.7 38.8 27.0 38.0 34.1 
+ 
+ 
+
+12 
+ 
+3.2 Pilot results 
+Post-harvest losses 
+The study results show mixed outcomes, revealing limitations of the intervention due to contextual 
+factors. The results of the first round showed variability in postharvest losses across piloted packaging 
+methods for the different value chains, see Figure 1. While on average the reusable plastic crates 
+demonstrated slightly lower losses compared to traditional baskets, the differences were not 
+significant. 
+ 
+Figure 1: Tomatoes from farm to retailer total volume losses (%) - round 1 
+ 
+ 
+The results of the second round showed even greater variability in postharvest losses (PHL) across 
+piloted packaging methods for the different value chains. On average the reusable plastic crates 
+demonstrated even higher losses compared to traditional baskets. The second round of data collection 
+faced also more external influences; a lack of tomatoes available due to poor weather conditions 
+affected the tomatoes for all types of piloted packing options due to heavy rains. Farmers experienced 
+delays before they could fill the units. This impacted the data collected and results. See the Figure 
+below for an overview of the different observations in the second round.  
+ 
+  
+13.9%6.1%9.0%0.2%7.8%7.4%3.8%4.7%9.2%2.8%11.1%6.3%2.8%4.7%6.8%0.8%7.7%4.5%0%2%4%6%8%10%12%14%VC1 VC2 VC3 VC4 VC5 AverageLoss of total volume (in %)basket traditionalbaskets weightedplastic crates
+13 
+ 
+Figure 2: Tomatoes from farm to retailer total volume losses (%) - round 2 
+ 
+ 
+Reduced quality loss 
+Quality losses are observed in all value chains (Figure 3). It shows the percentage performance of 
+grade A+B tomatoes across five value chains in "Round 1" for the three different packaging types. 
+Reusable plastic crates show the highest performance in all value chains, with an average of 95% of the 
+quality being preserved. In 3 out of 5 value chains the weighted baskets demonstrate a higher 
+performance than traditional baskets, averaging 92%.  
+ 
+ 
+Figure 3: Quality preservation (%) of A+B grade tomatoes - round 1 
+ 
+ 
+  
+4.2%2.1%6.9%1.5%4.3%3.8%8.7%1.7%12.0%2.3%7.5%6.4%0.0%10.3%4.1%2.5%6.7%4.7%0%2%4%6%8%10%12%14%VC1 VC2 VC3 VC4 VC5 AverageAxis TitleAxis Titlebasket traditionalbaskets weightedplastic crates87%98%88%99%89%93%100%91%96%82%97%100%91%99%90%-10%10%30%50%70%90%110%VC1 VC2 VC3 VC4 VC5Remains quality A+B based on start volume (in %)basket traditionalbaskets weightedplastic crates
+14 
+ 
+The second round shows mixed results due to the poor weather conditions, as described before. 
+Overall, there is a positive average result for only VC1 and VC3 for the reusable plastic crates 
+compared to the traditional basket packing type (see Figure 4). All other value chains show results in 
+favor of the traditional basket (Data VC2 weighted basket is incorrect, as there is an increase in quality).  
+  
+Figure 4: Quality preservation (%) of A+B grade tomatoes - round 2 
+ 
+ 
+Economic value assessed  
+The economic losses incurred due to the proportion of tomatoes lost during transportation have been 
+quantified (Figure 5). In the first round of assessments, four out of five value chains demonstrated 
+higher monetary losses when using traditional baskets compared to reusable plastic crates. This 
+indicates an opportunity to enhance value for all stakeholders in the value chain by adopting improved 
+packaging solutions. Economic value lost  
+ 
+Figure 5: Economic value lost (West African Franc, CFA/kg) from farm to retailer - round 1 
+ 
+ 
+95%98%93%97%93%89%103%80%96%92%99%85%96%96%92%-10%10%30%50%70%90%110%VC1 VC2 VC3 VC4 VC5Remains quality A+B based on start volume (in %)basket traditionalbaskets weightedplastic crates
+-23-16-90-38-7-6-15-1-19-40-35-30-25-20-15-10-50VC1 VC2 VC3 VC4 VC5Economic value lost (in CFA/kg)basket traditionalplastic crates
+15 
+ 
+The second round of data collection reveals contradicting results (Figure 6). While these findings have 
+their origin in the previous results regarding the extent of loss (measured in volume, see the previous 
+section), they also highlight variations in the economic value lost. Interestingly, in this case, the use of 
+reusable plastic crates, which are praised for their potential to reduce physical losses, appears to result 
+in an average higher economic loss compared to traditional baskets. This unexpected outcome 
+suggests that while reusable crates may mitigate some types of damage, other factors—such as supply 
+and weather conditions—may influence their overall economic impact.  
+ 
+Figure 6: Economic value lost (West African Franc, CFA/kg) from farm to retailer – round 2 
+ 
+ 
+3.3 Findings from feedback workshop and opportunities for scaling 
+Adoption barriers 
+Stakeholder feedback revealed several logistical challenges associated with the use of reusable plastic 
+crates. These included issues with crate availability and the difficulty of integrating their use into 
+existing workflows. Some participants questioned the feasibility of adopting plastic crates under 
+current market conditions, particularly given concerns about limited tomato availability during the 
+study period. Additionally, the proximity of farms to markets reduced the potential benefits of 
+improved packaging, as shorter transport durations minimized spoilage risks.  
+ 
+The study’s findings were further constrained by a limited sample size and seasonal challenges. 
+Stakeholders raised concerns about the scalability of reusable plastic crates, particularly in the 
+absence of financial incentives such as government subsidies. They emphasized the need for further 
+testing under varying conditions and distances to better assess the potential benefits of crate 
+adoption. See Table 1 for an overview of the observations on suggested recommendations.  
+ 
+  
+-6-3-190-10-1-15-3-1-27-40-35-30-25-20-15-10-50VC1 VC2 VC3 VC4 VC5Economic value lost (in CFA/kg)basket traditionalplastic crates
+16 
+ 
+Table 4: Participants observations and recommendations  
+Category Observations Recommendations suggested 
+Crate availability           Limited crate availability and integration 
+difficulties.                                                                                               
+Ensure crates are widely available, possibly 
+through subsidies. Encourage small-scale 
+adoption through donations or subsidies to 
+demonstrate benefits.                                                       
+Seasonal constraints           
+Limited tomato availability during the study 
+period; study conducted at the end of the 
+harvest season 
+Start interventions earlier in the harvest 
+season (July–September).                                                 
+Transport conditions           Suboptimal transport led to tomato 
+spoilage; crates not handled properly.        
+Train transporters to handle crates 
+carefully, avoid overloading, and limit 
+transport speeds.                        
+Varietal susceptibility        Some are perceived to have higher losses. Consider varietal differences in future 
+assessments.                                                                 
+On farm damage            
+Heavy rot caused by ripeness, insect 
+damage, or contamination before 
+transportation.                                                 
+Harvest tomatoes early in the morning or 
+late in the afternoon to reduce stress and 
+improve freshness.                
+Fertilizer overuse             Excessive chemical fertilizer use caused 
+variations in tomato quality.     
+Educate farmers on sustainable fertilizer 
+practices.                                                                 
+Packaging and stacking 
+issues   
+Overfilled crates caused damage during 
+stacking.        
+Avoid overfilling crates to minimize 
+damage.                                                                         
+Scalability concerns           
+Stakeholders questioned feasibility under 
+current market conditions; lack of financial 
+incentives might hinder adoption.            
+Provide financial incentives (e.g., subsidies) 
+and scale adoption through small-scale 
+pilot programs.                | 
+Crate sizes Crate sizes do not align with traditional 
+baskets. 
+Standardize crate sizes to align with 
+traditional baskets. 
+ 
+Stakeholder perception of reusable plastic crates   
+The discussion during the workshop highlighted both the advantages and limitations of reusable 
+plastic crate use compared to traditional baskets.   
+ 
+Advantages mentioned:    
+ Elimination of the need for wood supports during loading.   
+ Reduced effort required for tying plastic crates.   
+ Easier stacking compared to baskets.   
+ Protection of tomatoes from direct damage by ropes. 
+ 
+Limitations mentioned:  
+ Resistance from traders to accept equivalent quantities between crates and baskets.   
+ Challenges in transporting larger quantities of crates, particularly for smaller vehicles like 
+tricycles. 
+ 
+17 
+ 
+Scaling up reusable plastic crate adoption  
+Stakeholders emphasized the importance of engaging a wide range of actors to scale up the use of 
+reusable plastic crates (awareness raising). Key players mentioned include:   
+ Local extension services.   
+ Regional agricultural development agencies (ATDA).   
+ Partner projects such as SafeVeg, Support Project for the Development of Market Gardening 
+(PADMAR), and AgriSud.   
+ National and local government bodies, including the ministries of agriculture and trade.   
+ Private investors to rent-out crates to value chain actors, as a business.   
+ National Federation of gardener Organizations of Benin (FeNOMA) to coordinate the 
+standardization of unit sizes at the national level. 
+They also mentioned to consider establishing monitoring committees at the district level to oversee 
+crate usage and discourage reverting to traditional baskets.   
+ 
+3.4 Feasibility assessment  
+The business model for reusable plastic crates in Benin faces significant challenges in availability, cost, 
+and leadership for implementation. Currently, there is no local production of reusable plastic crates 
+due to a lack of demand, which has deterred manufacturers of plastic materials from entering this 
+market. As a result, crates must be imported from Ghana or Nigeria, driving up costs to a minimum of 
+6,000 CFA (or USD10) per crate, making them prohibitively expensive for value chain actors to 
+purchase. This relatively high cost poses a major barrier for adoption, particularly in a context where 
+access to finance is limited. Leadership in implementing this model remains unclear. However, 
+experiences from other contexts, such as Nigeria, suggest that external investors—often from outside 
+the tomato value chain —can play a pivotal role by introducing crate rental services, reducing the 
+upfront costs for local actors. As highlighted in the forthcoming study by Becker et al., such rental 
+services provide a viable pathway to overcome the financial and logistical barriers associated with 
+direct crate ownership, offering a potential solution for the Benin context. In Nigeria, the widespread 
+adoption of reusable plastic crates was driven by several factors: the identification of a profitable 
+business opportunity by crate renters, the complementary benefits of reduced postharvest losses, and 
+the immediate, positive return on investment experienced by users across the value chain. The 
+initiative covered the North, Nigeria's tomato production hub, where significant seasonal losses 
+necessitated innovative solutions for transporting tomatoes to southern markets (Becker et al., 
+forthcoming). 
+ 
+In Nigeria, the emergence of crate renters as new entrants into the value chain was pivotal. These 
+investors, many of whom were already active in tomato trading, recognized the growing demand for 
+reusable plastic crates and formed an association to coordinate their activities. The association 
+ensured exclusivity by negotiating MOUs with major plastic manufacturers to create unique crate 
+designs and colour codes reserved for their members. This not only protected their business but also 
+facilitated the identification and return of crates. 
+ 
+18 
+ 
+The association established an efficient system for returning crates from southern markets to the 
+North. Coordinators at southern markets, well-connected with market leadership, managed crate 
+collections and arranged transport for large volumes (minimum 1,500 crates) back to aggregation 
+centers in the North. Crate renters recovered their investments after just seven uses per crate, with 
+crates used up to four times per month, translating into profitability within two months. In Nigeria the 
+crates had a lifespan of up to two years and beyond, making the business lucrative despite risks such 
+as loss, damage, or delays. 
+ 
+In Benin, the lack of local manufacturing and high costs per crate make it difficult for individual value 
+chain actors to adopt reusable plastic crates. However, replicating the Nigerian model, where investors 
+from outside the sector lead the introduction of crate rental services, could be transformative. 
+Establishing a crate renters' business in Benin could address operational challenges and ensure 
+efficient collection, return, and redistribution of crates. Additionally, highlighting the reduction of 
+postharvest losses and potential profitability could attract investors, while strategic partnerships with 
+manufacturers or importers could ensure a steady supply of crates with unique designs.  
+ 
+4. Conclusion and discussion  
+4.1 Conclusion  
+The study highlights the challenges of introducing reusable plastic crates as an alternative packaging 
+solution in South Benin’s tomato value chain. The study produced mixed outcomes, making it difficult 
+to state that reusable plastic crates perform better compared to traditional baskets. The study also 
+revealed limitations of the intervention due to contextual factors.  
+ Does the use of reusable plastic crates reduce tomato post-harvest losses compared to the use of 
+traditional baskets? 
+The results showed variability in post-harvest losses across packaging methods. While reusable plastic 
+crates demonstrated slightly lower post-harvest losses compared to traditional baskets (in round 1), 
+the differences were not significant. Loss percentages from farm to retail level were inconsistent, with 
+in some cases no clear trend favoring crates over traditional methods. The distance to the market 
+might have influenced this and the proximity of farms to markets reduced the potential impact of 
+improved packaging, as shorter transport durations minimized spoilage risks. The limited sample size, 
+the differences in packing, the difference in weight between the units and seasonal constraints also 
+limit the robustness of the findings.  
+ Does the use of reusable plastic increase the value of the tomatoes traded in the value chain 
+compared to traditional baskets? 
+Our study indicates a small opportunity to increase value across all stakeholders in the value chain by 
+adopting improved packaging solutions. In the first round of assessments, four value chains 
+demonstrated significantly higher monetary losses when using traditional baskets compared to 
+reusable plastic crates. Data collection in the second round was affected by poor weather conditions 
+and showed contradicting results.  
+ 
+19 
+ 
+While crates preserved quality slightly better, the marginal improvement in prices did not consistently 
+offset the additional costs associated with their use. Participants noted that the initial investment in 
+crates posed a significant barrier, especially given the limited observed advantages during the pilot.  
+ How are the plastic crates perceived by the stakeholders in the tomato value chain and what are 
+the opportunities for scaling?  
+Feedback highlighted logistical challenges with crate availability and the need for better integration 
+into existing workflows. Some participants had concerns about limited tomato availability during the 
+study period and this further complicated the data collection, particularly during the second round of 
+data collection. 
+ What is a feasible business model for the implementation of this innovation?  
+Developing a sustainable business model for the returnable plastic crate intervention poses 
+challenges. Implementing requires substantial investments, which are beyond the financial capacity of 
+the participants. As a result, exploring alternative funding mechanisms or business models is essential 
+to ensure the project's feasibility and long-term success. 
+ 
+4.2 Discussion 
+The study revealed two distinct categories of issues that we address in the discussion: limitations 
+related to the study design and challenges associated with the practical uptake of the proposed 
+innovations. 
+ 
+Limitations of the study design 
+The small sample size was a significant limitation, restricting the generalizability of the findings. 
+Additionally, the proximity of the farmers' markets to the farms minimized transit times, reducing the 
+potential for fruit deterioration during transport. As a result, the outcomes were influenced by the 
+initial quality of the produce at the farm level rather than the impact of the interventions during 
+transport and handling.  
+ 
+Variability in the quantities supplied also posed a challenge, as some farmers used smaller baskets, 
+and the crates were inconsistently filled, further complicating efforts to achieve uniformity in 
+monitoring the effects of the various practices. 
+ 
+It would be valuable to repeat the pilot during both the peak supply period and over a longer distance 
+to identify benefits. Also when tomatoes are more expensive, the potential economic benefits of 
+packing them in reusable plastic crates are likely to be more pronounced. 
+ 
+Challenges regarding uptake 
+The study also highlighted several barriers to the practical adoption of the innovations. One critical 
+issue was the lack of local reusable plastic crate manufacturers, which made crates prohibitively 
+expensive for many farmers. Additionally, the size of the crates required adjustment to better align 
+with user needs and transport requirements. Participants noted that the high initial investment 
+needed for crates posed a significant financial barrier, particularly in the absence of clear short-term 
+20 
+ 
+advantages. These economic constraints underscored the need for addressing socioeconomic barriers 
+to adoption. 
+ 
+To encourage broader uptake, future efforts should focus on exploring ways to make innovations like 
+reusable plastic crates more accessible and affordable while also testing under a wider range of 
+conditions. Socioeconomic factors, such as the cost-benefit perception among farmers and midstream 
+actors, must be considered alongside strategies to enhance awareness, improve affordability (e.g. 
+financial incentives from the government like subsidies) and address logistical challenges and 
+ownership issues. These steps are essential to ensure the long-term success of post-harvest loss 
+reduction initiatives. 
+ 
+ 
+ 
+ 
+ 
+  
+  
+21 
+ 
+References 
+Aisso, C. B. R., Aissi M. V., Assogba K. F., Mensah A. C. G. & Soumanou M. M., 2018. Aptitude à la 
+transformation en purée de quatre variétés améliorées de tomate introduites au Bénin.» Revue 
+Internationale des Sciences Appliquées, 2018: 32-41. 
+ 
+Becker, K. Khush Bakht Aalia, Talabi, J., Dijkxhoorn, Y., Termeer, E., Jarman, A., de Steenhuijsen Pieters, 
+Bart. & McGuire, E., Forthcoming. Leveraging the Innovation Potential of Informal Midstream Actors to 
+Enhance Food Systems Outcomes.  
+  
+Egah, J., Termeer, E., Dijkxhoorn, Y. & Raoult, J. 2024., A value chain analysis of two fruit and vegetable 
+production hubs in south-Benin. FRESH Initiative Technical Report. CGIAR System Organization. 
+https://hdl.handle.net/10568/159936  
+ 
+Fassinou Hotegni, V. N.; Godonou, L. Y.; & Salaou, M., 2022. Fruit and Vegetable Value Chains in Benin: 
+Identification of Intervention Entry Points. Washington, DC: International Food Policy Research Institute 
+(IFPRI) https://hdl.handle.net/10568/128531  
+ 
+Fassinou Hotegni, N., Salaou M., Dossa G. C., Elegbede D. & Atikpa H., 2024. Assessment of post-
+harvest losses along the tomato marketing segments in Benin. CGIAR Report. 
+https://hdl.handle.net/10568/138975  
+ 
+Kablan, V. & Bancal T., 2017. Etude des modalités de réduction des pertes après récolte dans les 
+cultures maraichères en Côte d’Ivoire.» Rapport d'expertise/FED 360-441. 
+ 
+Kok, M. G., Groot, J. J., Dastoum, S., Plaisier, C., Dijkxhoorn, Y. & Wagenberg, C. P. A., 2019. A 
+measurement tool on food losses and waste: applied in a tomato value chain in Nigeria. (Wageningen 
+Food & Biobased Research report; No. 1906). Wageningen Food & Biobased Research. 
+https://doi.org/10.18174/470201      
+ 
+Plaisier, C., Sibomana, M., van der Waal, J., Clercx, L., van Wagenberg, C. P. A. & Dijkxhoorn, Y., 2019. 
+Approach for designing context-specific, locally owned interventions to reduce postharvest losses: 
+Case study on tomato value chains in Nigeria. Sustainability, 11(1), Article 247. 
+https://doi.org/10.3390/su11010247  
+  
+22 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The FRESH Initiative is being implemented by CGIAR researchers from IFPRI, CIMMYT, The Alliance of Bioversity 
+International and CIAT, IWMI, and CIP, in close partnership with World Vegetable Center, Applied Horticultural 
+Research, the University of Sydney, the Institute of Development Studies, Wageningen University & Research, 
+the University of California, Davis, Sokoine University of Agriculture, Wayamba University of Sri Lanka, and the 
+Philippines Department of Science and Technology-Food and Nutrition Research Institute, along with other 
+partners. 
+ 
+We would like to thank all funders who support this research through their contributions to the CGIAR Trust 
+Fund: www.cgiar.org/funders  
+ 
+ 
+The views and opinions expressed in this publication are those of the author(s) and are not necessarily representative of 
+or endorsed by CGIAR.  
+ 
+Wageningen University & Research  
+Wageningen, Netherlands 
+https://www.wur.nl/en 
+ 

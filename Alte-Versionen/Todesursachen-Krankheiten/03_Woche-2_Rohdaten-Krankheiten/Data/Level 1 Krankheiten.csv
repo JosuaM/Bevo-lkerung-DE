@@ -1,0 +1,133 @@
+population_group_id,population_group_name,measure_id,measure_name,location_id,location_name,sex_id,sex_name,age_id,age_name,cause_id,cause_name,metric_id,metric_name,year,val,upper,lower
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1980,30402.019468062743,31921.031878043323,28739.390473194748
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1980,52475.65852706642,54601.57948152267,50685.795886921886
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1983,30586.351739579437,32054.45082684457,28708.264265127804
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1983,50195.20663612227,51811.44178195996,48509.312565453314
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1980,869523.6637372222,872997.2587498245,866217.0208783324
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1981,29878.37112049463,31281.694178190264,28207.30529261393
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1982,30426.131288807377,31816.846994240426,28688.843667355468
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1981,51975.10052619239,54023.29327838957,50167.954676314046
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1982,51362.05274483744,53086.546297448775,49596.11440803382
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1985,28854.024352217035,30328.542063615558,26860.237485460526
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1985,45484.33775119357,47109.397137287015,43439.55255021776
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1981,872588.9739300134,876035.5472223909,869496.668262544
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1984,29011.900553222713,30443.551432780365,27198.14948690358
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1986,28953.811130085545,30374.98801626573,26911.146353812983
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1986,44458.914173594945,45987.4626601015,42542.76374960064
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1984,47489.551258740285,49099.279568976766,45679.273349419454
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1982,862195.2957940996,866219.4374018005,858787.8265048431
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1983,859320.0531597431,863171.9160510568,856260.6135668148
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1987,43339.231686393876,44867.24090303306,41550.16955214478
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1984,841743.590265201,845742.4288501777,838346.5444700799
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1985,855225.6904231102,859371.7856895727,851896.3526193991
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1986,851505.5328142783,855536.9734114705,848629.6077926969
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1989,25359.663460881082,26496.24543949211,23585.36299882967
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1989,45206.6004066564,46985.13881774722,42993.74853051157
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1988,24893.428693181762,26161.67083805694,23208.643381319416
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1987,832984.6408622898,836550.4294512613,829806.5597809632
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1988,43264.35380009264,44915.811161174985,41414.68104144875
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1987,25718.50163877751,27079.093408280776,23967.8701570764
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1990,26422.28184922895,27635.966861836554,24489.033123739544
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1990,46832.862011993115,48690.97852525218,44504.48881856934
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1991,24418.9542026915,25508.188366528175,22706.526851319482
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1991,47178.16246734633,49053.71702084173,44862.67518659351
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1988,831685.4002373378,835346.2508821742,828702.4885733083
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1989,834530.061764014,838527.0155215733,831021.80738318
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1993,23401.814118876697,24540.33006073568,21641.693924910945
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1993,43853.224658109044,45655.422775985404,41675.17542690562
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1992,23155.165079587245,24171.22889073287,21590.472979484675
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1992,45362.08781307614,47166.57976936705,43212.91332540298
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1994,23583.915301286805,24751.030832389148,21868.982016183334
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1994,42177.09052014437,43736.5921689023,40020.87186638703
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1990,847130.0939148639,851304.8344451183,843679.4616428782
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1996,22817.51490557858,23971.46399296773,20916.58323264904
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1996,40415.06141967856,41991.252758287796,38277.82620983019
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1995,23316.918622653626,24474.005555903444,21520.01913161824
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1991,838754.2431591658,842953.5532053916,835322.5219994069
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1995,41200.00002406675,42714.78319338145,39115.2370820651
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1997,21851.38680670145,22902.832246258356,19917.65745269656
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1997,38431.11720336845,39893.76461351664,36563.940029163845
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1992,817879.28329902,822323.6701795633,814445.2414815718
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1993,829601.4246377194,832959.0025710596,826017.7553829808
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1994,819435.1954832637,823393.5950457045,816441.0822976753
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1995,819780.277573949,824088.6552297734,816575.3794106925
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1996,819719.781042201,823668.7212667539,816788.8327899006
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1999,21868.42036242947,23174.99440002496,19740.229372224832
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2000,21764.202933431192,23021.740352294782,19576.920817503185
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1999,36066.593970486596,37481.09384236479,34174.73543287188
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,1998,21471.66840908698,22623.174517186,19481.534691156223
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2000,35870.14829425511,37381.98521518129,33761.59689619205
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,1998,36954.77006835149,38315.39414815616,35152.885478491415
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1997,800269.9300654485,804808.2802955405,796770.1299632423
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2001,21117.695334269712,22435.359877562605,18810.002298967698
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2001,35162.113053442976,36693.739555085274,32987.83651957038
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1998,793752.5196148799,798189.8726323803,790509.3850214514
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2003,23810.86770100411,25363.56921781205,21064.002624086166
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2003,35441.92611563229,37080.65034937404,33286.48859200521
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,1999,788144.2788495283,792340.0411104363,784927.0140690882
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2002,22256.66244056533,23698.47782512562,19723.38550274968
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2002,35212.78095101315,36704.41565066555,32989.27689804625
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2005,24554.69884039692,26063.033890251696,21743.91804717958
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2004,22859.901563526797,24233.44306511509,20271.655718929313
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2005,33848.09743466853,35575.496209950186,31714.77937361561
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2004,34194.39904236458,35859.03031395745,32112.142677346343
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2001,772690.9961985925,777509.9104758167,769732.7299199229
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2000,781221.8717665657,785356.8505272159,778221.737382313
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2006,24800.67941576194,26330.468474634705,21956.31888036661
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2006,33074.30303285947,34780.240007781045,31010.639816969688
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2007,26260.535271747383,28085.37152618111,23242.362810057486
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2007,32226.79678728342,33905.51777974421,30163.6345696988
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2002,784435.8287120943,789053.9617038583,780950.3756859654
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2008,27616.46572773322,29598.98392506932,24301.514982881232
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2008,32727.44710114247,34383.57401696018,30657.565683271718
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2003,794625.9750716657,799311.1277792028,791071.8796552304
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2004,761490.4244771115,766101.0358654433,758210.438817406
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2005,771150.5012051333,776488.9473326132,767637.9468182191
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2006,763990.8342944988,769768.657133831,760042.5842061461
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2009,28408.281676581424,30435.896622040746,25089.273662636795
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2009,33343.111213095144,35177.51790897331,31282.213774002747
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2007,768735.4114190406,773632.2118089711,764770.4483773073
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2010,27392.91333352023,29449.87026036203,24137.655006535413
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2010,34365.042726996246,36377.180707228836,32098.16069464227
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2008,784038.6029409529,789850.0418012347,780010.2296976318
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2013,28556.716734789443,30993.64428997864,25067.69523649887
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2013,36201.704580446145,38429.054129657976,33060.6616510695
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2014,27083.124546725292,29329.156824986527,23857.74524405193
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2014,36687.0615355119,39053.689446563556,33314.54324450556
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2012,27193.638886562305,29406.476585824825,23915.12621590499
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2012,34855.61030411213,37136.9911059151,32306.32737775934
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2011,26701.09598916373,28782.976434452434,23553.03926907885
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2009,793236.4224919857,798748.1811066951,789065.3597333672
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2011,34281.11219813559,36352.40348480807,31918.02516012893
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2010,796214.0235836005,802084.9332216097,791522.7667685768
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2011,791673.2911614774,797789.1436635647,787446.1966237286
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2015,30556.32441183277,33205.076553287785,26824.61338267655
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2015,39433.840720618944,42097.46346946134,35486.91755662484
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2012,808322.1690705478,814465.185548017,803726.2458676273
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2018,33909.29479655504,37447.05690443404,29494.449398718312
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2018,44180.64007740147,47401.307252397506,39293.49211870981
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2017,32217.359897893006,35234.93811857582,28034.208155053802
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2017,42579.88015216706,45472.679540754165,37964.9505422751
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2016,30245.866752599217,32987.02955187554,26424.243124367513
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2016,40749.40114141752,43488.497702421686,36471.51709112197
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2019,43849.724125081455,47319.33605703728,38852.11239637192
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2013,829915.6476044067,836559.9311469868,825351.7454073544
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2014,811108.9418462163,817952.6752444771,806574.312659987
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2015,860112.9938698281,867540.0620739913,854845.0274576625
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2016,847337.7365770304,855353.7230027925,842359.5397896464
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2017,866407.5735358018,875441.1550056037,860824.2406490344
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2018,883531.6671780256,893551.2716728956,877160.6340264761
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2019,31074.148116668635,34430.09715275469,27026.068203821378
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2020,70115.18225230492,75851.4385204459,60215.42717378068
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2020,42305.43911836431,45714.31812833375,37458.55313399265
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2019,870967.6763485138,879890.2551094119,864670.8316598602
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2022,113733.8167687113,122629.70923869679,97694.58844441835
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2022,46559.14284422719,50234.08097010011,41235.08811800828
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2020,880008.0790592381,894692.4701942187,871766.2976862
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2021,103839.22692824373,111175.45485061484,91032.41529153238
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2021,43025.40438204508,46588.39070067629,38143.85740961848
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2021,884027.7044068835,901665.1794116487,874050.5366101543
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,295,"Übertragbare, mütterliche, neonatale und ernährungsbedingte Erkrankungen",1,Anzahl,2023,34264.82694190794,38075.28161952208,29544.893889886564
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,687,Verletzungen,1,Anzahl,2023,54389.849104716865,59008.56333099451,48441.422171063314
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2022,914381.466060761,934810.475781765,901746.837871421
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,3,Beide,22,Alle Altersgruppen,409,Nicht übertragbare Krankheiten,1,Anzahl,2023,933926.1377126887,957056.9871092169,909834.8329458676

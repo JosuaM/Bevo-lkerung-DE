@@ -1,36 +1,5 @@
-# Bevölkerung Deutschlands 1991–2025 (Uni-Projekt)
+# Repository „Bevölkerung Deutschlands“
 
-Statische Visualisierung (kein Build, nur klassische Skripte, läuft auch direkt aus dem Dateisystem).
-
-- `index.html`: Markup, Dashboard-Gerüst und die Projektwerte `const DEFAULTS` (wird vom E-Menü bzw. `serve.py` überschrieben)
-- `css/main.css`: Gestaltung der Folien · `dashboards/explorer.css`: Gestaltung des Dashboards
-- `js/data.js`: Jahreswerte `DATA`, `BASE`, `EVENTS` (Rohdaten in `Data/`)
-- `js/core.js` (Zustand, Hilfsfunktionen, Zeitplaner) · `js/timeline.js` (Zeitstrahl, Ereignisse) · `js/animation.js` (Punkte, Kreis) · `js/scenes.js` (Folien Frage, Differenz, Ergebnis) · `js/sound.js` · `js/settings.js` (Speichern in `DEFAULTS`) · `js/app.js` (Schleife, Folienwechsel, E-Menü, Start)
-- `dashboards/explorer.js` und `dashboards/particle-cloud.js`: das Dashboard
-
-## Dashboard
-
-Es gibt nur ein Dashboard, das aus der früheren Variante „Dashboard 2“ hervorgegangen ist.
-Diagramme: „Mit & ohne Wanderung“ und „Bevölkerungsbilanz“.
-Schriftgrößen über `FS` (Folien) bzw. feste Stufen in `explorer.css`, Farben über `COLORS`; Details in `dashboards/README.md`. Das Dashboard wird proportional zur Fenstergröße skaliert (Referenz 1512 × 860), damit es auf jedem Bildschirm gleich aussieht.
-
-## Steuerung
-
-Obere Navigation startet die gewählte Folie neu. Folie „Differenz“ wartet auf „Weiter“.
-E: Einstellungen (mit „Folie neu starten“, auf der Differenz-Folie zusätzlich Klang der Balken); D: weiter; A: zurück; Leertaste: Pause; Pfeiltasten: Jahr auswählen und pausieren.
-Die Zeitleiste wird nur auf den beiden Animationsfolien angezeigt. Jahresauswahl pausiert Zeit und Punkte.
-Auf den Animationsfolien gibt es oben rechts ein temporäres Dropdown zum Vergleich zweier Varianten: 1 = Punkte faden am Kreisrand aus, Zahlen springen; 2 = harter Schnitt am Kreisrand, Zahlen zählen von Jahr zu Jahr (Standard).
-
-## Gemeinsame Einstellungen
-
-Projekt mit `Starten.command` (macOS) oder `python3 serve.py` starten. Der lokale Server öffnet die Vorschau und speichert sämtliche E-Einstellungen automatisch in `const DEFAULTS` der `index.html`. Nur Python-Standardbibliothek; Schreibzugriff ausschließlich über localhost und Sitzungstoken.
-
-Beim direkten Öffnen als HTML-Datei ist in Chrome/Edge einmal eine Dateifreigabe erforderlich. Es gibt keine lokalen Farb-/Tempo-Overrides mehr. Neue Einstellungen mit Git committen/pushen, damit andere Geräte sie nach dem Pull erhalten.
-
-## Website-Version
-
-Die einzige Version heißt **Original** (`index.html`) und basiert auf der bisherigen Jeremy-Version. Die frühere Adresse `jeremy.html` leitet zur Hauptversion weiter.
-
-## Gestaltungsentscheidung: Dashboard-Partikel
-
-Ein farbiger Lichtschein und anschließend ein weicher, beweglicher Bodenschatten unter den Partikeln wurden ausprobiert. Der Bodenschatten lag mit Abstand unter der Wolke und folgte den einzelnen Partikeln; seine Deckkraft wurde zuletzt reduziert. Auf Wunsch des Nutzers wurde der Schatten wieder entfernt. Aktueller Stand: Partikel ohne Lichtschein oder Bodenschatten. Diese frühere Variante als Kontext für spätere Wünsche berücksichtigen.
+- `Bevoelkerung-DE/` ist die aktuelle Webseite. Alle Änderungen an der Webseite dort vornehmen; die Projektanweisungen stehen in `Bevoelkerung-DE/CLAUDE.md`.
+- `Alte-Versionen/` ist ein Archiv für die Präsentation (frühere Stände dieser Webseite und zwei andere Projekte). Dateien dort nicht ändern; neue Stände nur als neuer, nummerierter Ordner mit `Bilder/` und Eintrag in der jeweiligen `README.md` ergänzen.
+- Texte in der Webseite durchgängig mit „Einwanderung“ und „Auswanderung“ formulieren (nicht „Zuzüge“/„Fortzüge“).

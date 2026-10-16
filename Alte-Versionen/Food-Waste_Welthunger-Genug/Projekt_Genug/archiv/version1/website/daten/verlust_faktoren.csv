@@ -1,0 +1,99 @@
+﻿code,name,source_name,group,loss_1000t,food_1000t,food_million_kcal,effective_kcal_kg,loss_kcal,included,exclusion,flag_loss,flag_food,flag_kcal
+2511,Weizen,Wheat and products,Getreide,26829.0,547309.0,1557692599.65,2846.093522397768,76357843112409.72,True,,E,E,E
+2807,Reis,Rice and products,Getreide,33153.0,638607.0,1493384896.23,2338.503800036642,77528416482614.8,True,,E,E,E
+2513,Barley and products,Barley and products,Getreide,3908.0,9066.0,25163374.44,2775.5762673726013,10846952052892.125,True,,E,E,E
+2514,Mais,Maize and products,Getreide,61772.0,138300.0,421403413.42,3047.023958206797,188220763946350.28,True,,E,E,E
+2515,Rye and products,Rye and products,Getreide,422.0,4439.0,11776048.84,2652.860743410678,1119507233719.3062,True,,E,E,E
+2516,Oats,Oats,Getreide,1035.0,6715.0,13204537.6,1966.4240655249441,2035248907818.3171,True,,E,E,E
+2517,Millet and products,Millet and products,Getreide,2626.0,21462.0,66749793.32,3110.1385388127856,8167223802922.375,True,,E,E,E
+2518,Sorghum and products,Sorghum and products,Getreide,4977.0,32547.0,98513709.54,3026.8138243156054,15064452403618.768,True,,E,E,E
+2520,"Cereals, other","Cereals, other",Getreide,1345.0,12439.0,34990687.01,2812.982314494734,3783461212995.4175,True,,E,E,E
+2532,Maniok,Cassava and products,Wurzeln & Knollen,29660.0,187086.0,200261300.3,1070.4237639374405,31748768838384.484,True,,E,E,E
+2531,Kartoffeln,Potatoes and products,Wurzeln & Knollen,37578.0,264917.0,170245534.92,642.6372596700098,24149022943879.63,True,,E,E,E
+2533,Sweet potatoes,Sweet potatoes,Wurzeln & Knollen,6080.0,50885.0,50197022.47,986.4797576889064,5997796926748.551,True,,E,E,E
+2535,Yams,Yams,Wurzeln & Knollen,9164.0,37394.0,33295789.62,890.4046002032412,8159667756262.503,True,,E,E,E
+2534,"Roots, Other","Roots, Other",Wurzeln & Knollen,4920.0,13865.0,12264250.37,884.5474482509917,4351973445394.879,True,,E,E,E
+2536,Sugar cane,Sugar cane,Zuckerpflanzen,122521.0,41586.0,13748665.28,,,False,Zuckerrohr: zusätzliche Verarbeitung zu Zucker wäre nötig.,E,E,E
+2537,Sugar beet,Sugar beet,Zuckerpflanzen,9115.0,68.0,37863.49,,,False,Zuckerrüben: zusätzliche Verarbeitung zu Zucker wäre nötig.,E,E,E
+2541,Sugar non-centrifugal,Sugar non-centrifugal,Zucker & Honig,0.0,6024.0,23010265.33,3819.765161022576,0.0,True,,E,E,E
+2542,Sugar (Raw Equivalent),Sugar (Raw Equivalent),Zucker & Honig,4.0,155996.0,575655640.02,3690.1948769199207,14760779507.679684,True,,E,E,E
+2543,"Sweeteners, Other","Sweeteners, Other",Zucker & Honig,47.0,45798.0,74742768.38,1632.0094410236254,76704443728.1104,True,,E,E,E
+2745,Honey,Honey,Zucker & Honig,100.0,1801.0,5905641.04,3279.0899722376457,327908997223.7646,True,,E,E,E
+2546,Beans,Beans,Hülsenfrüchte,1585.0,21304.0,67376291.46,3162.6122540368,5012740422648.328,True,,E,E,E
+2547,Peas,Peas,Hülsenfrüchte,615.0,5428.0,17728044.93,3266.0362803979365,2008612312444.731,True,,E,E,E
+2549,"Pulses, Other and products","Pulses, Other and products",Hülsenfrüchte,2992.0,35611.0,117200966.47,3291.1450526522704,9847105997535.594,True,,E,E,E
+2551,Nuts and products,Nuts and products,Nüsse,991.0,29212.0,46780730.15,1601.421681158428,1587008886028.0022,True,,E,E,E
+2555,Soyabeans,Soyabeans,Ölpflanzen,9744.0,14082.0,55620635.8,3949.768200539696,38486541346058.8,True,,E,E,E
+2552,Groundnuts,Groundnuts,Ölpflanzen,3006.0,27778.0,111257883.4,4005.2517603859174,12039786791720.068,True,,E,E,E
+2557,Sunflower seed,Sunflower seed,Ölpflanzen,1945.0,581.0,2682061.57,4616.284974182444,8978674274784.854,True,,E,E,E
+2558,Rape and Mustardseed,Rape and Mustardseed,Ölpflanzen,3912.0,512.0,1163139.88,2271.757578125,8887115645625.0,True,,E,E,E
+2559,Cottonseed,Cottonseed,Ölpflanzen,954.0,6.0,34581.68,,,False,Baumwollsaat: direkte Verzehrbarkeit ungeeignet.,E,E,E
+2560,Coconuts - Incl Copra,Coconuts - Incl Copra,Ölpflanzen,4117.0,24934.0,22196420.14,890.2069519531564,3664982021191.1445,True,,E,E,E
+2561,Sesame seed,Sesame seed,Ölpflanzen,375.0,2396.0,14018650.36,5850.8557429048415,2194070903589.3154,True,,E,E,E
+2562,Palm kernels,Palm kernels,Ölpflanzen,29266.0,0.0,,,,False,Palmkerne: keine positive Food-Menge für einen internen Faktor.,E,E,
+2563,Olives (including preserved),Olives (including preserved),Ölpflanzen,1517.0,6315.0,6184890.63,979.3967743467933,1485744906684.0854,True,,E,E,E
+2570,"Oilcrops, Other","Oilcrops, Other",Ölpflanzen,1020.0,946.0,3845599.47,4065.115718816068,4146418033192.389,True,,E,E,E
+2571,Soyabean Oil,Soyabean Oil,Pflanzenöle,19.0,26073.0,271931626.27,10429.625523338318,198162884943.42804,True,,E,E,E
+2572,Groundnut Oil,Groundnut Oil,Pflanzenöle,0.0,3986.0,36368943.99,9124.170594581034,0.0,True,,E,E,E
+2573,Sunflowerseed Oil,Sunflowerseed Oil,Pflanzenöle,7.0,12230.0,116259950.71,9506.128430907604,66542899016.353226,True,,E,E,E
+2574,Rape and Mustard Oil,Rape and Mustard Oil,Pflanzenöle,0.0,10303.0,98718912.34,9581.569672910802,0.0,True,,E,E,E
+2575,Cottonseed Oil,Cottonseed Oil,Pflanzenöle,0.0,2892.0,28487737.27,9850.531559474412,0.0,True,,E,E,E
+2576,Palmkernel Oil,Palmkernel Oil,Pflanzenöle,24.0,1453.0,14701181.07,10117.812161046111,242827491865.10666,True,,E,E,E
+2577,Palm Oil,Palm Oil,Pflanzenöle,303.0,22006.0,209224581.79,9507.615277197128,2880807428990.73,True,,E,E,E
+2578,Coconut Oil,Coconut Oil,Pflanzenöle,0.0,1334.0,14309439.35,10726.716154422787,0.0,True,,E,E,E
+2579,Sesameseed Oil,Sesameseed Oil,Pflanzenöle,0.0,747.0,6901740.46,9239.277724230255,0.0,True,,E,E,E
+2580,Olive Oil,Olive Oil,Pflanzenöle,0.0,3324.0,29911388.0,8998.612515042118,0.0,True,,E,E,E
+2581,Ricebran Oil,Ricebran Oil,Pflanzenöle,0.0,504.0,5499291.9,10911.293452380953,0.0,True,,E,E,E
+2582,Maize Germ Oil,Maize Germ Oil,Pflanzenöle,1.0,2737.0,25509489.14,9320.237172086227,9320237172.086227,True,,E,E,E
+2586,"Oilcrops Oil, Other","Oilcrops Oil, Other",Pflanzenöle,0.0,7645.0,62967063.65,8236.37196206671,0.0,True,,E,E,E
+2601,Tomaten,Tomatoes and products,Gemüse,17962.0,176964.0,33906319.85,191.60009860762642,3441520971190.1855,True,,E,E,E
+2602,Zwiebeln,Onions,Gemüse,10107.0,100058.0,40145558.23,401.22287303364044,4055159577751.004,True,,E,E,E
+2605,Sonstiges Gemüse,"Vegetables, other",Gemüse,86195.0,902154.0,242842382.86,269.1806308679006,23202024477658.695,True,,E,E,E
+2611,"Oranges, Mandarines","Oranges, Mandarines",Obst,10052.0,112718.0,36120913.84,320.45382139498577,3221201812662.397,True,,E,E,E
+2612,"Lemons, Limes and products","Lemons, Limes and products",Obst,2107.0,21715.0,5830413.11,268.49703476859315,565723252257.4258,True,,E,E,E
+2613,Grapefruit and products,Grapefruit and products,Obst,907.0,8964.0,2136549.34,238.3477621597501,216181420278.89334,True,,E,E,E
+2614,"Citrus, Other","Citrus, Other",Obst,1250.0,11865.0,7363032.69,620.5674412136536,775709301517.067,True,,E,E,E
+2615,Bananen,Bananas,Obst,17674.0,108609.0,72788256.84,670.1862353948568,11844871524368.7,True,,E,E,E
+2616,Plantains,Plantains,Obst,3656.0,36074.0,26817167.92,743.3932449963963,2717845703706.825,True,,E,E,E
+2617,Äpfel,Apples and products,Obst,8174.0,90246.0,41720716.92,462.2999016022871,3778839395697.0947,True,,E,E,E
+2618,Pineapples and products,Pineapples and products,Obst,3220.0,32278.0,7590494.01,235.1599854389987,757215153113.5758,True,,E,E,E
+2619,Dates,Dates,Obst,764.0,7985.0,16262831.36,2036.672681277395,1556017928495.9297,True,,E,E,E
+2620,Grapes and products (excl wine),Grapes and products (excl wine),Obst,3378.0,38315.0,25486282.84,665.1776808038627,2246970205755.448,True,,E,E,E
+2625,Sonstiges Obst,"Fruits, other",Obst,22711.0,224016.0,103675859.19,462.8055995553889,10510777971502.438,True,,E,E,E
+2630,Coffee and products,Coffee and products,"Kaffee, Kakao & Tee",530.0,12274.0,4764694.41,,,False,Kaffee: Getränkezubereitung und Verlustform nicht vergleichbar.,E,E,E
+2633,Cocoa Beans and products,Cocoa Beans and products,"Kaffee, Kakao & Tee",257.0,5492.0,21819233.91,3972.912219592134,1021038440435.1785,True,,E,E,E
+2635,Tea (including mate),Tea (including mate),"Kaffee, Kakao & Tee",544.0,32833.0,1360815.05,,,False,Tee: Getränkezubereitung und Verlustform nicht vergleichbar.,E,E,E
+2640,Pepper,Pepper,Gewürze,42.0,775.0,2324813.17,2999.758929032258,125989875019.35484,True,,E,E,E
+2641,Pimento,Pimento,Gewürze,225.0,4252.0,13588333.4,3195.7510348071496,719043982831.6086,True,,E,E,E
+2642,Cloves,Cloves,Gewürze,18.0,56.0,141712.82,2530.5860714285714,45550549285.71429,True,,E,E,E
+2645,"Spices, Other","Spices, Other",Gewürze,613.0,9332.0,24866927.12,2664.6942906129448,1633457600145.735,True,,E,E,E
+2655,Wine,Wine,Alkohol,28.0,24320.0,19324982.69,,,False,Alkohol zählt hier nicht als Ernährungsration.,E,E,E
+2656,Beer,Beer,Alkohol,45.0,182566.0,80329210.27,,,False,Alkohol zählt hier nicht als Ernährungsration.,E,E,E
+2657,"Beverages, Fermented","Beverages, Fermented",Alkohol,166.0,23826.0,10868678.21,,,False,Alkohol zählt hier nicht als Ernährungsration.,E,E,E
+2658,"Beverages, Alcoholic","Beverages, Alcoholic",Alkohol,,27904.0,78967795.06,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2659,"Alcohol, Non-Food","Alcohol, Non-Food",Alkohol,,5.0,,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,
+2731,Bovine Meat,Bovine Meat,Fleisch,560.0,74215.0,117528558.09,1583.6226920433876,886828707544.297,True,,E,E,E
+2732,Mutton & Goat Meat,Mutton & Goat Meat,Fleisch,167.0,18018.0,33061223.32,1834.899729159729,306428254769.67474,True,,E,E,E
+2733,Pigmeat,Pigmeat,Fleisch,311.0,121698.0,259180834.21,2129.704959900738,662338242529.1294,True,,E,E,E
+2734,Poultry Meat,Poultry Meat,Fleisch,691.0,136253.0,196683985.32,1443.5204018994077,997472597712.4907,True,,E,E,E
+2735,"Meat, Other","Meat, Other",Fleisch,15.0,6306.0,8513610.42,1350.080941960038,20251214129.40057,True,,E,E,E
+2736,"Offals, Edible","Offals, Edible",Innereien,1781.0,19841.0,26208130.12,1320.9077223930246,2352536653581.977,True,,E,E,E
+2740,"Butter, Ghee","Butter, Ghee",Tierische Fette,14.0,12766.0,102654827.06,8041.26798214006,112577751749.96083,True,,E,E,E
+2743,Cream,Cream,Tierische Fette,0.0,3578.0,9334490.64,2608.8570821688095,0.0,True,,E,E,E
+2737,"Fats, Animals, Raw","Fats, Animals, Raw",Tierische Fette,1249.0,10951.0,76671929.03,7001.363257236782,8744702708288.741,True,,E,E,E
+2781,"Fish, Body Oil","Fish, Body Oil",Tierische Fette,,94.0,845357.24,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2782,"Fish, Liver Oil","Fish, Liver Oil",Tierische Fette,,6.0,56275.28,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2744,Eier,Eggs,Eier,4753.0,84272.0,108828070.4,1291.390620846782,6137979620884.755,True,,E,E,E
+2848,Milch,Milk - Excluding Butter,Milch,26541.0,691465.0,492629480.36,712.4431176704534,18908952786091.504,True,,E,E,E
+2761,Freshwater Fish,Freshwater Fish,Fisch & Meeresfrüchte,,65762.0,49733545.8,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2762,Demersal Fish,Demersal Fish,Fisch & Meeresfrüchte,,19981.0,10168572.78,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2763,Pelagic Fish,Pelagic Fish,Fisch & Meeresfrüchte,,23505.0,21638002.91,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2764,"Marine Fish, Other","Marine Fish, Other",Fisch & Meeresfrüchte,,8164.0,6462314.26,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2765,Crustaceans,Crustaceans,Fisch & Meeresfrüchte,,18146.0,8759219.2,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2766,Cephalopods,Cephalopods,Fisch & Meeresfrüchte,,3810.0,2763723.85,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2767,"Molluscs, Other","Molluscs, Other",Fisch & Meeresfrüchte,,20279.0,4442709.93,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2769,"Aquatic Animals, Others","Aquatic Animals, Others",Fisch & Meeresfrüchte,,1625.0,737032.36,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2768,"Meat, Aquatic Mammals","Meat, Aquatic Mammals",Wasserpflanzen & Meeressäuger,,0.0,,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,
+2775,Aquatic Plants,Aquatic Plants,Wasserpflanzen & Meeressäuger,,23977.0,8907131.18,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2680,Infant food,Infant food,Sonstiges,,938.0,2879971.73,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E
+2899,Miscellaneous,Miscellaneous,Sonstiges,,7097.0,7806529.49,,,False,Keine Losses-Zeile vorhanden. Fehlender Wert bleibt unbekannt.,,E,E

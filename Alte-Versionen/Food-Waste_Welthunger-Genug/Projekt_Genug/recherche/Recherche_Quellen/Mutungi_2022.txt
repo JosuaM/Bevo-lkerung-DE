@@ -1,0 +1,1567 @@
+Journal of Stored Products Research 95 (2022) 101918
+Available online 24 December 2021
+0022-474X/© 2021 Elsevier Ltd. All rights reserved.
+Nutritional benefits of improved post-harvest handling practices for maize 
+and common beans in Northern Tanzania: A quantitative 
+farm-level assessment 
+Christopher Mutungi
+*, Judith Tungu, Juma Amri, Audifas Gaspar, Adebayo Abass 
+International Institute of Tropical Agriculture, Dar es Salaam, Tanzania   
+ARTICLE INFO  
+Keywords: 
+Nutritional food loss 
+Calories 
+Protein 
+Micronutrients 
+Sustainable food production 
+ABSTRACT  
+The efficacy of improved post-harvest practices for reducing food losses is often reported, but the nutritional 
+benefits remain much less expounded. Meanwhile, nutrient concentration changes during the post-harvest period 
+can influence potential nutrition gains targeted to benefit households. We analyzed contents of selected nutrients 
+in farmers ’ maize and common bean stocks under ordinary and improved practices at different post-harvest 
+stages and related them to the physical quality. The improved practices comprised drying on tarpaulins, 
+improved threshing, cleaning, and air-tight storage. By calibrating the actual nutrient contents against losses 
+data, we estimated nutrient abundance levels and applied household farm production and nutrient demand data 
+to estimate potential nutritional gains. Post-harvest stage (S), practice (P), and the S*P interaction significantly 
+influenced physical quality, actual nutrient contents, and nutrient abundance. The actual contents of most nu-
+trients increased or decreased monotonically with grain damage. For maize, improved practices begot more 
+calories (4.7%), protein (13.9%), and minerals (4 – 26%) at the mid stage of the post-harvest season and even 
+more calories (40%), protein (34%), and minerals (2 – 105%) at the late stage. The gains were lower for 
+beans– calories 6.5%, protein 8.7%, minerals 1 – 55%. Dry matter loss and nutrient enrichment effects were 
+responsible for variable nutrient concentrations in the maize and beans. The dry matter loss effect mainly 
+influenced macronutrient abundance levels, especially in maize, whereas the enrichment effect mainly influ-
+enced minerals abundance with stronger influence on the beans than maize. Nutrients redeemed by improved 
+practices at the late stage corresponded to 16 – 55 more days of calories and protein sufficiency for households, 
+and significant extra days of minerals sufficiency, including Zn (16– 56), Cu (23– 81), Mg (45– 166), and K (7– 26). 
+The gains have relevance for nutritionally-challenged households.   
+1. Introduction 
+Across East and Southern Africa, maize ( Zea mays L.) and common 
+beans ( Phaseolus vulgaris L.) contribute at least 40% of the calories 
+consumed daily by households (
+FAOSTAT, 2018). The two crops are 
+among the most widely cultivated commodities in small-holder farms, 
+usually as intercrops or mixed-stands. By cultivating these crops 
+together, farm households achieve more efficient use of production re-
+sources, minimize crop failure risks and obtain a balanced nutrition. 
+However, the overall food production in the small farms is often low, to 
+the extent that post-production losses effectively drive households out of 
+food and nutrition security. To this end, reducing food loss is a crucial 
+part of sustainable food production (
+Godfray et al., 2010). Indeed, food 
+loss/waste reduction is one of the elements for consideration in char-
+acterizing sustainable nutrition outcomes of food systems (
+Gustafson 
+et al., 2016 ) and is an integral indicator for measuring productivity 
+within the frame of sustainable agriculture intensification ( Musumba 
+et al., 2017). Post-harvest food loss connotes the measurable reduction 
+in quantity or quality of harvested produce, and is driven mainly by the 
+lack of appropriate technologies for harvesting, processing, storage, 
+distribution, marketing, or preparation (
+Affognon et al., 2015). 
+In Tanzania, the production of maize and beans takes about 30% 
+(maize) and 9% (beans) of the cultivated land area (FAOSTAT, 2018). At 
+least 7.4 million farm producers grow maize, and the national per capita 
+consumption is estimated at 63 kg (
+FAOSTAT, 2018 ), translating to 
+approximately 25% and 26% of the adult recommended daily allowance 
+* Corresponding author. 
+E-mail address: chrismutungi@yahoo.co.uk (C. Mutungi).  
+Contents lists available at ScienceDirect 
+Journal of Stored Products Research 
+journal homepage: www.elsevier.com/locate/jspr 
+https://doi.org/10.1016/j.jspr.2021.101918 
+Received 1 June 2021; Received in revised form 10 December 2021; Accepted 10 December 2021   
+Journal of Stored Products Research 95 (2022) 101918
+2
+(RDA) for calories and protein, respectively. Likewise, about 34% of 
+small-holders cultivate common beans (
+Stahley et al., 2019). The annual 
+per capita consumption was estimated to be 17.4 kg translating to 7.3% 
+and 21% of the calorie and protein RDAs for adults (
+FAOSTAT, 2018). 
+The two commodities complement each other uniquely for nutritional 
+balance. Beans primarily contribute protein, minerals, and B-complex 
+vitamins, whereas maize is principally a calorie source but also provides 
+significant quantities of protein and minerals due to the large amounts 
+consumed in diets. In addition, bean protein contains fair amounts of the 
+amino acids lysine and tryptophan deficient in maize, while it lacks 
+sulfur amino acids (methionine and cysteine) present in maize protein. 
+As reported elsewhere (
+Broughton et al., 2003), maize and beans com-
+plement each other for the recommended amino acid balance if 
+consumed in a ratio of 2:1. 
+There are numerous publications on maize and beans ’ quantitative 
+losses and the associated economic costs (
+Affognon et al., 2015 ). 
+Nutritionally, however, the implications are less understood. In Tanza-
+nia’s maize-farming systems, quantitative losses can reach 40%. The 
+losses of economic importance occur in the field (15%), during pro-
+cessing (13 – 20%), and during storage (15 – 25%) (
+Abass et al., 2014 ). 
+About 2 – 13% of the losses in maize are due to improper harvesting, 
+threshing, and drying techniques ( Abass et al., 2014 ; Mutungi et al., 
+2019). At the same time, up to 5% losses occur during the operations 
+preceding storage of beans and 10– 40% during storage (Stathers et al., 
+2008; Mutungi et al., 2020). The physical damage associated with these 
+losses can exceed 70%. Such damage and losses are quantified mostly on 
+a weight basis relative to a considered baseline. As a result, the nutri-
+tional implications become misrepresented because commodities differ 
+in their specific nutrient compositions, and the concentration of some 
+nutrients may continually change during the post-harvest period. 
+The ability of food systems to provide sufficient energy and the 
+amounts of essential nutrients required for healthy nutrition without 
+upsetting the social, economic, and environmental balances is critical 
+for sustainability. Some works already define metrics that quantify 
+nutrient production at the farm level (e.g., calories, protein, micro-
+nutrients quantities per hectare) as proxies for nutrition as they provide 
+direct information on ’’ potential nutrients sufficiency ’’ of households 
+(
+Musumba et al., 2017; Smith et al., 2017). For correction, such metrics 
+require an understanding of the post-production nutrient flows and 
+balances. In the context of post-harvest food loss, incomplete collection 
+of the harvest, spillage, and extraction of parts during processing 
+translates into a complete loss of the nutrients. Likewise, consumer 
+rejection of products whose quality fails the acceptance thresholds 
+represents nutrients loss. Adding to the complexity of quantifying the 
+nutrient losses is the fact that individual consumers assess quality 
+differently depending on a myriad of factors, including the commodity 
+in question, supply, personal aversion for different kinds of quality 
+damage, et cetera (
+Compton et al., 1998; Langyintuo et al., 2004; Mishili 
+et al., 2011; Kadjo et al., 2016; Bassey et al., 2018; Jones et al., 2018). 
+Moreover, the various food deterioration factors (growth and activities 
+of micro-organisms – bacteria, yeasts, and molds; activities of natural 
+food enzymes; attack by insects and rodent pests; extreme temperatures; 
+excessive moisture and dryness; gas composition, in particular, oxygen; 
+and light) also contribute varying levels of nutritional value changes. 
+Edoh-Ognakossan et al. (2018) found lower levels of protein 
+(13.3%), fat (87.9%), and fatty acids (58 – 85%) in rodent-damaged 
+maize, while Reed et al. (2007) reported fat and carbohydrate loss but 
+protein gain in moldy maize. Insect-infested maize and cowpeas con-
+tained lower carbohydrate, iron, and zinc but higher crude protein 
+(
+Stathers et al., 2020 ). Higher protein contents were also reported in 
+insect-damaged wheat ( Jood and Kapoor, 1993 ; Keskin and Ozkaya, 
+2015) and sorghum (Jood and Kapoor, 1993) as well as maize (Jood and 
+Kapoor, 1993; Tongjura et al., 2010), and cowpea (Bamaiyi et al., 2006). 
+Other researchers, on the contrary, reported decreases in protein con-
+tent, e.g., in sorghum (
+Pant and Susheela, 1977 ), cowpea ( Onayemi 
+et al., 1986; Ojimelukwe et al., 1999 ), and common beans ( Nta et al., 
+2019). Increases in the fat content of cowpea (Stathers et al., 2020) and 
+beans (Nta et al., 2019 ), but decreases on wheat ( Keskin and Ozkaya, 
+2015), sorghum (Pant and Susheela, 1977), and also cowpea (Onayemi 
+et al., 1986 ; Ojimelukwe et al., 1999 ; Bamaiyi et al., 2006 ) were re-
+ported. Variable changes in the concentration of minerals and vitamins 
+(
+Jood et al., 1992; Jood and Kapoor, 1994; Taleon et al., 2017; Stathers 
+et al., 2020), as well as amino acids, were likewise observed (Jood et al., 
+1995; Rehman et al., 2002). 
+To the best of our knowledge, systematic investigations linking these 
+nutritional changes to the potential implications for farm households are 
+limited. A recent controlled laboratory study on the effect of insect 
+infestation concluded that significant nutritional changes do occur on 
+maize and cowpeas, and recommended further on-farm investigations to 
+validate the findings (
+Stathers et al., 2020 ). No matter how carefully 
+collected, data under laboratory conditions have limited scope and use 
+in contextualizing impacts at the farm level where variables (biophysi-
+cal, social, economic, human) are transient and influence each other. For 
+instance, some farmers harvest early because they urgently need to 
+secure the food or the crop residues as fodder for their livestock, create 
+space for intercrops or make room for the next crop. The early harvest is 
+sometimes dried hurriedly, often directly on the ground, and then 
+threshed, at times using rudimentary methods such as hand pickets or 
+poorly calibrated threshers (
+Mutungi et al., 2019). Other farmers harvest 
+late for various reasons, such as lack of labor or equipment. Earlier 
+findings showed that delayed harvesting of maize increased moldy/di-
+seased/discolored grain two-fold, while drying operations of the 
+early-harvested produce increased these defects 2– 3-fold and increased 
+pre-storage insect populations 2– 10-fold, affecting storability (
+Mutungi 
+et al., 2019). In recent years, improved post-harvest techniques– drying 
+on enhanced tarpaulins, motorized threshing, and air-tight storage were 
+promoted to help farmers reduce quality deterioration and quantity 
+losses more inclusively. 
+This study aimed to quantify the nutritional gains of the improved 
+post-harvest practices over ordinary practices by empirically correlating 
+the physical quality and nutrient contents of farmers ’ maize and com-
+mon bean stocks in small-holder settings. A further aim was to generate 
+models for estimating such gains. We make a new contribution to the 
+literature by employing a back-to-back analysis of on-farm samples ’ 
+quality and nutrient contents to understand nutritional content shifts, 
+which we then relate with quantitative losses, and households ’ pro-
+duction and nutrients demand data to provide a contextual interpreta-
+tion. We framed the assessment on two interest levels: nutrient 
+composition and nutrient abundance. The hypotheses were that (a) at 
+the compositional level, grain handled under ordinary practices contain 
+significantly lower nutrient amounts due to deterioration, and (b) the 
+overall abundance of nutrients is significantly diminished because nu-
+trients become extracted from the supply chain following damage by 
+various post-harvest loss agents. Restricting the scope to farmers’ stocks, 
+we evaluated the associations between selected physical quality pa-
+rameters and the macronutrients/mineral concentrations of maize and 
+common beans at the time of loading for storage (loading stage) and the 
+mid and late stages of the post-harvest period. We asked the following 
+research questions: (i) What types and levels of physical defects 
+constitute losses in farmers’ maize and common bean stocks at different 
+post-harvest stages under ordinary and improved practices? (ii) Are 
+there significant changes in the macronutrient and minerals contents of 
+the stocks at the different post-harvest stages? (iii) Are there relation-
+ships between physical quality and nutrient contents? (iv) What are the 
+potential nutritional gains of improved post-harvest practices for 
+households? Answering these questions would provide nutritionally- 
+grounded evidence for engaging farm communities on the value of 
+progressive food loss reduction investments. 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+3
+2. Materials and methods 
+2.1. Study site background information 
+Demonstration trials on improved post-harvest handling and storage 
+of maize and beans were installed with farmer groups in eight (8) rural 
+villages (Buger, Chemchem, Kambi ya Simba, Khainam Rhotia, Chan-
+garawe, Slahhamo, Gyekrum Lambo, and Bashay) in Karatu district 
+(Arusha region) during the 2018/2019 crop season. The farmers were an 
+intervention cohort supported by a non-governmental organization (Iles 
+de Paix) whose activities focused on sustainable family farming. Karatu 
+district lies in the Northern Highlands of Tanzania at 1200– 1800 m.a.s.l 
+and experiences a warm-temperate climate with a bimodal rainfall 
+pattern (
+Fig. 1). The wet season begins in November and ends in May, 
+giving way to a dry season from June to October. Short- and long-rain 
+seasons peak in November/December and March/April, respectively. 
+The annual temperature average is ~20 
+◦C; warmer conditions prevail in 
+the wet season, while cooler conditions prevail during the dry season. 
+The post-harvest season commences around July/August and continues 
+to April/May, lasting 8– 9 months. Some households, particularly those 
+in high-altitude areas, cultivate short-season crops during the short rains 
+to bridge food deficits between the main harvests, but generally, grain 
+stocks in most households decline significantly from February and a lean 
+period continues for at least 2 – 3 months. The majority of farmers are 
+small-holders, practicing mixed– crop farming comprising maize (100% 
+of households), pigeon peas (74%), beans (71%), and sunflower (33%) 
+fruits and vegetables (13%) on 2 – 3 acres of land. On average, house-
+holds cultivate 2 – 3 different crops and keep livestock on a semi- 
+intensive scale (see 
+Fig. 1). About 75% of households keep cattle (me-
+dian number (M) = 3), 60% goats (M = 4), 34% sheep (M = 4), 83% 
+chicken (M = 8), and 36% pigs (M = 2). Maize and beans are the main 
+crops cultivated for domestic consumption. At the time of the study, 
+pigeon peas were cultivated mainly for sale, while sunflower was grown 
+in small quantities to supply oil for domestic consumption. 
+From past findings, post-harvest practices vary widely in Tanzania’s 
+Northern Highlands (
+Mutungi et al., 2019). Maize is harvested early by 
+about two– thirds of farmers. Most farmers in the present study site dried 
+the harvest (cob and pods) on the bare ground, and only a minority used 
+tarpaulins. Crops took a long time to dry because the harvest season 
+coincided with cold weather. Other farmers left the mature crop for 
+Fig. 1. Geographical location of study site (a), weather conditions (b), and food production by households (c).  
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+4
+several weeks in the field to dry, after which they harvested, threshed, 
+and sold right away to waiting buyers in the field or transported to the 
+homestead for storage. About a quarter (24%) of farmers did not dry the 
+maize further after shelling. Before shelling, farmers sorted the cobs to 
+different extents; some sorted based on mold damage (71.7%), rot 
+(46.2%), insect damage (21%), rodent damage (12.3%), maturity 
+(11.2%), color (2.8%), size (2.8%), and sprout damage (1.9%). Most 
+farmers used motorized maize shellers available from service providers, 
+but manual methods were common for small harvests. Farmers har-
+vested beans early only when maturity coincided with wet weather and 
+transported them to the homestead for drying on raised platforms 
+(Kichanja); otherwise, they left them to dry in the field, then gathered 
+them manually into heaps for threshing using hand pickets. Farmers 
+winnowed the threshed produce manually, but some stored together 
+with the fine chaff mostly in woven bags, drums, or traditional 
+mud-plastered baskets (Kihenge). 
+2.2. Experimental details 
+A baseline survey (n = 166) provided households ’ production and 
+demographic data of farmers in the action villages. Two farmer groups in 
+each village received training on a set of improved practices three 
+months before the harvest season. The practices comprised timely har-
+vesting, drying the cobs on mats, improved threshing practices, drying 
+the threshed grain on mats, moisture testing, winnowing/sieving, and 
+storage in air-tight containers. Each group then appointed 3 – 4 farmers 
+to set up the trials. These were identified based on community trust and 
+willingness to volunteer storage structures throughout the post-harvest 
+season in their homesteads. Each farmer prepared and stored part of 
+their maize and beans produce according to the improved practices 
+under the guidance of a field staff and part according to the usual/or-
+dinary practices. There were 111 demonstration units for maize 
+(improved: 77; ordinary: 34) and 24 for common beans (improved: 12, 
+ordinary: 12). The storage structures volunteered by farmers were rooms 
+(separate from their usual grain stores) made of brick or mud walls, 
+earthen or concrete floor, and iron-sheet roofing. Extension officers and 
+field research staff monitored the trials regularly. 
+2.3. Sampling 
+Twenty-four (24) out of the 111 maize demonstration units 
+(improved: 12; ordinary: 12) were randomly chosen for repeated sam-
+pling, in addition to all the 24 units (improved: 12; ordinary: 12) 
+involving common beans. Samples (1 kg) were obtained at the time of 
+loading, after 3.5 months (mid stage), and 7 months (late stage), and 
+transported to IITA’s Food Quality Laboratory (Dar es Salaam, Tanzania) 
+within 3 – 5 days of sampling. Each sample was divided into two sub- 
+samples (ca. 500 g) using the quartering method. One random sub- 
+sample was marked for physical quality assessment, and the other for 
+nutritional analysis. The sub-samples were sealed in zip-lock bags and 
+stored in a cold room (6 – 8 ◦C), awaiting analysis within 14 days. The 
+analysis generated paired data of physical quality and nutritional 
+content. 
+2.4. Determination of physical quality and losses 
+Insect damaged grains (ID), moldy/diseased/discolored grains 
+(MDD), mechanically damaged grains (MD), shriveled grains (SG), total 
+defective grains (TD), and losses (WL) were assessed according to the 
+method described elsewhere (
+Mutungi et al., 2019). Briefly, the method 
+applies a “ count and weigh” approach in which 1000 random grains are 
+picked and manually sorted according to the dominant defect on a 
+sorting board. Further, using technicians conversant with local con-
+sumers’ tolerance limits, the defective grains are separated into 
+consumable and non-consumable lots, imitating consumers ’ accept-
+ance/rejection criteria as closely as possible. 
+2.5. Determination of nutrient contents 
+Proximate composition and mineral contents were determined using 
+standard AOAC methods (
+AOAC, 2000). Entire sub-samples (ca. 500 g) 
+were separately milled into flour using a DFY-400C universal mill 
+(Toption Instrument Co. Ltd, Xi ’an, China). Moisture content was 
+determined by hot-air drying (Method 925.10). Crude protein was 
+determined using the Kjeldahl method for total nitrogen with a con-
+version factor of 6.25 (Method 920.87) — samples were digested in a 
+Tecator™ Digester (FOSS Analytical AB, H¨ogan¨as, Sweden) and distilled 
+using a Kjeltic™ 8200 auto distillation unit (Foss Analytical AB). Crude 
+fat was determined by soxhlet extraction (Method 920.85) on a FOSS 
+Soxtec™ 2043 unit (Foss Analytical AB). The crude fiber was deter-
+mined using hot acid (1.25% hydrochloric acid) followed by hot alkaline 
+(1.25% potassium hydroxide) digestion on Fibertec ™ 1020 
+hot-extraction unit (Foss Analytical AB). Crude ash (total minerals) 
+determination was by incineration in an MR170 muffle furnace (Heraeus 
+GMBH, Hanau, Germany) at 550 
+◦C (Method 923.03). Total carbohy-
+drate content was obtained by difference. Mineral contents (Ca, Zn, Fe, 
+Mg, K, Mn, Cu, and Na) were determined using flame atomic absorption 
+spectrophotometry (210 VGP Atomic Absorption Spectrophotometer, 
+Buck Scientific, Norwalk, CT, USA) as described elsewhere (
+Rybicka and 
+Gliszczy´nska-´Swigło, 2017 ). All determinations were performed in 
+triplicates. 
+2.6. Statistical analysis 
+The physical quality and losses data were expressed as percentages 
+on a weight basis. The nutritional data were expressed as (i) actual 
+nutrient contents (ANC) per unit weight of the analyzed sample, and (ii) 
+loss-adjusted nutrient abundance (LANA) — derived by multiplying the 
+ANC with a corresponding loss factor computed from the losses data as 
+(1 - x) where x is percent loss expressed as a fraction. Further, the 
+calorific values were calculated using standard formulae: maize kcal/ 
+100 g = (4.03 × carbohydrate g/100 g) + (8.37 × fat g/100 g) + (2.73 
+× protein g/100 g); beans: kcal/100 g = (4.07 × carbohydrate g/100 g) 
++ (8.37 × fat g/100 g) + (3.47 × protein g/100 g) (
+FAO, 2003). 
+Data were analyzed using multivariate General Linear Models on 
+IBM SPSS ® Statistics 20 (IBM Corporation, New York, USA). Three 
+separate multivariate analyses of variance (MANOVA) tests explored the 
+main and interaction effects of practice and post-harvest stage on (i) 
+physical quality, (ii) ANC, and (iii) LANA. For physical quality, we 
+considered an experimental matrix consisting of the two independent 
+variables and their levels (practice: improved, ordinary; post-harvest 
+stage: loading, mid, late), and the six dependent variables (ID, MDD, 
+MD, SG, TD, and WL) grouped together. For the ANC and LANA, we 
+considered experimental matrices consisting of the two independent 
+variables and their levels and 13 dependent variables (protein, fat, fiber, 
+carbohydrate, ash, Ca, Zn, Fe, Mg, K, Mn, Cu, and Na) grouped together. 
+For the analyses, we first checked the data sets for the critical assump-
+tions of MANOVA, i.e., normality, multivariate outliers, multi-
+collinearity, variables correlation, and homogeneity of covariance 
+matrices. The data were not normally distributed (Shapiro-Wilk’s test P 
+< 0.05). Therefore, when required, non-parametric methods (Kruskal- 
+Wallis test, Spearman’s rho) were applied to compare treatment means 
+or variables ’ correlations. Multivariate outliers were checked by per-
+forming a multiple linear regression and computing the Mahalanobis 
+distance for each observation case; these values were then compared 
+with the critical chi-square values at P = 0.001, and the outlier cases 
+were eliminated. Multicollinearity was tested by performing collinearity 
+diagnostics and evaluating the Variance Inflation Factors (VIF). The 
+assumption for absence of multicollinearity was considered to be satis-
+fied if the VIF values for all variables remained <4 (
+Hair et al., 2014). 
+The homogeneity of covariance matrices test was part of the MANOVA 
+using Box ’s M test. The data did not meet this last assumption ( P <
+0.001); hence Pillai’s Trace statistic was used for the reporting as it is 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+5
+more robust where the assumptions of multivariate analysis are violated 
+(
+Ates ¸ et al., 2019). 
+The relationships between the various physical and nutritional 
+quality parameters were further explored using Principal Components 
+Analysis. To validate the analysis, data were first tested for sampling 
+adequacy using Kaiser-Meyer-Olkin test (
+Cerny and Kaiser, 1977 ). 
+Additionally, Bartlett’s test of sphericity (Bartlett, 1951) was performed 
+to test the adequacy of correlations between the variables. The analysis 
+extracted components with eigenvalues ≥1. 
+3. Results 
+3.1. Physical quality of maize and beans 
+3.1.1. Physical quality damage 
+Farmers’ maize and beans stocks had various physical defects 
+(
+Fig. 2). The MD included broken or visibly bruised grains from the 
+impact of threshing or winnowing and grains gouged by rodents or other 
+pests. The ID comprised grains with visible weevil or bruchid attacks. 
+The SG included poorly-filled wrinkled grains, whereas MDD comprised 
+grains with visible mold damage or discoloration due to biochemical 
+reactions, overheating, or disease/decay from biological agents (en-
+zymes, bacteria, yeasts). Insect damage was the predominant defect, 
+whereas the other defects— MDD, MD, and SG were low but significant 
+when considered collectively; these ranged between 4.2 – 24% (maize) 
+and 2– 13.8% (beans). Overall, both commodities ’ range and distribu-
+tions of total damage (TD) were similar. The distributions exhibited 
+bimodal patterns (
+Fig. 3a) with density peaks at ~10% and ~80% under 
+ordinary practices and ~5% and ~10% under improved practices. The 
+TD inter-quartile range reached 4.4 – 11.6% (maize) and 3.6 – 11.7% 
+(beans) at loading stage, 7.0 – 15.9% (maize) and 4.1– 16.1% (beans) at 
+the mid stage, and 6.2 – 64.3% (maize) and 15.9 – 66.7% (beans) at the 
+Fig. 2. Post-harvest quality defects of maize and common beans and recommended practices for their prevention.  
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+6
+late stage. Weight losses (WL) followed similar distributions as TD, but 
+the magnitudes were approximately half or less. Cubic models best- 
+described TD and WL relationships in both commodities, as seen in 
+Fig. 3b. The maize WL increased at a decreasing rate in the damage 
+range <40% and then increased at an increasing rate in the damage 
+range >40%. However, for the beans, WL increased rather gently up to 
+~60% TD and then increased steeply. Generally, WL increased more 
+steeply with damage in the maize than the beans. 
+3.1.2. Effects of practice and post-harvest stage on physical grain quality 
+Practice and post-harvest stage significantly influenced the physical 
+quality of maize (practice: Pillai’s Trace = 0.444, F 
+6, 193 = 25.670, P <
+0.001; η p
+2 = 0.444; post-harvest stage: Pillai’s Trace = 0.689, F 12, 388 =
+16.996, P < 0.001; η p
+2 = 0.345) (Fig. 4a). Practice accounted for 44% of 
+the observed variability and the effect was significant on ID, TD, and WL. 
+For these parameters, the levels were lower by factors of 12.2, 3.6, and 
+2.7, respectively, under improved practices. Post-harvest stage accoun-
+ted for 35% of the observed variability with the significant effects being 
+on ID, SG, TD, and WL; the ID, TD, and WL increased steadily over the 
+post-harvest period, while SG increased at the mid stage and then 
+decreased. The interaction effect between practice and post-harvest 
+stage was also significant (Pillai ’s Trace = 0.495, F 
+12, 388 = 10.637, P 
+< 0.001; η p
+2 = 0.248) specifically on ID, RDD, TD, and WL (see Fig. 4a). 
+Physical quality of beans was likewise influenced by practice (Pillai’s 
+Trace = 0.259, F 6, 202 = 11.772, P < 0.001; η p
+2 = 0.259), post-harvest 
+stage (Pillai’s Trace = 0.578, F 12, 406 = 13.757, P < 0.001; η p
+2 = 0.289) 
+Fig. 3. Levels and distributions of total damage (TD) and weight loss (WL) in maize and common beans under ordinary (OP) and improved practices (IP) (a), and the 
+relationships between TD and WL (b). The horizontal lines on (a) show the median (solid lines) and interquartile range (broken lines). 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+7
+Fig. 4. Practice and post-harvest stage effects on physical quality of maize (a) and beans (b). ID: insect damage; MDD: moldy/diseased/discolored grains; MD: mechanically damaged grains; SG: shriveled grain; TD: total 
+damage; WL: weight loss; OP: ordinary practice; IP: improved practice; HS: loading stage; MS: mid stage; LS: late stage. In each pane, the graph to the left (with shaded background) shows the levels at different post- 
+harvest stages under ordinary (red) and improved (green) practices — error bars are the 95% confidence intervals; asterisks indicate significance of interaction effect (*** P < 0.001; **P < 0.01; * < 0.05; ns = not 
+significant). The upper right graph on each pane shows the main effect of practice, and the lower one the main effect of post-harvest stage; asterisks indicate the significance level. Letters on the box plots (post-harvest 
+stage) represent post-hoc analysis results; similar letters indicate a lack of significant difference (Kruskal-Wallis test, P = 0.05). (For interpretation of the references to color in this figure legend, the reader is referred to 
+the Web version of this article.) 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+8
+and the interaction effect of the two factors (Pillai’s Trace = 0.307, F 12, 
+406 = 6.128, P < 0.001; η p
+2 = 0.153) (Fig. 4b). Practice accounted for 
+26% of observed variability, and similar to maize, the effect was sig-
+nificant on ID, TD, and WL; under improved practices, the levels were 
+lower by factors of 5.7, 3.1, and 2.2, respectively, than ordinary prac-
+tices. In contrast, the post-harvest stage effect (29% of observed vari-
+ability) was significant on all the parameters; ID increased steadily, 
+MDD decreased and then increased, MD increased then decreased, while 
+SG decreased steadily, and the TD and WL increased steadily. The 
+interaction effect (15% of observed variability) was significant on ID, 
+TD, and WL— these parameters increased steadily over the post-harvest 
+period, but the increase was more rapid under ordinary than improved 
+practices. 
+3.2. Actual nutrient contents 
+3.2.1. Baseline macronutrient and mineral compositions 
+The contents of crude protein (8.9 ± 1.1%), crude fat (4.1 ± 0.5%), 
+crude fiber (3.6 ± 0.4%), and crude ash (1.3 ± 0.2) of maize at loading 
+stage corresponded well with values reported in the literature (protein: 
+7.2– 12.4%; fiber: 1.6– 3.8%; fat: 3.1– 5.7%; ash: 1.1– 2.1%) 
+(Heuz´e et al., 
+2017). Likewise, the contents of protein (23.1 ± 1.0%), fat (1.6 ± 0.2%), 
+fiber (5.2 ± 0.4%), and ash (3.9 ± 0.3%) of the beans were within 
+literature values (protein: 22.2 – 27.4%; fat: 1.1 – 1.4%; crude fiber: 
+4.3– 7.9%; ash: 4.0– 6.5%) (Heuz´e et al., 2015). The available carbohy-
+drates (maize: 71.7 ± 1.57%; beans 54.46 ± 1.27%) and gross energy 
+(maize: 348.0 ± 5.6 kcal/100 g; beans: 315.5 ± 3.8 kcal/100 g) were 
+slightly lower than the values reported elsewhere for white maize 
+(carbohydrate: 74%; calorific value: 364 kcal/100 g) and regular com-
+mon beans (carbohydrates 60%; calorific value: 333 kcal/100 g) (
+USDA, 
+2019). The mineral contents were within the range reported by others 
+(Heuz´e et al., 2015, 2017 ). Compared to maize, the beans contained 
+higher levels of all the minerals; the contents were higher by factors of 3 
+(total minerals), 21 (Ca), 9 (Mn), 5 (Cu, K), 3 (Fe, Zn), 1.7 (Mg), and 1.2 
+(Na). 
+3.2.2. Effects of practice and post-harvest stage on actual nutrient contents 
+Akin to physical quality, practice and post-harvest stage were 
+significantly associated with the actual nutrient content of maize 
+(practice: P < 0.001, F 
+(13; 168) = 2.821, η p
+2 = 0.18; post-harvest stage: P 
+< 0.001, F (26; 338) = 41.093, η p
+2 = 0.76) and beans (practice: P = 0.004, 
+F (13; 176) = 2.495, η p
+2 = 0.16; post-harvest stage: P < 0.001, F (24; 356) =
+31.031, η p
+2 = 0.69). Post-harvest stage accounted for the bulk of the 
+observed variability (maize: 76%; beans: 69%). For maize, practice ef-
+fect was only significant on crude ash (P = 0.045, F 
+(1; 177) = 4.077), Fe 
+(P = 0.031, F (1; 177) = 4.727) and Mn ( P = 0.002, F (1; 177) = 9.958) 
+where the contents of these minerals were higher under ordinary prac-
+tices by 4.8%, 15% and 12%, respectively. Likewise, for the beans, 
+practice effect was only significant on K (P = 0.015, F 
+(1; 178) = 6.046) 
+and Na (P = 0.016, F (1; 188) = 5.955) — the K content was higher by 
+~8% under ordinary practices while Na content was higher by ~20%. 
+under improved practices. 
+Post-harvest stage was significantly associated with the actual con-
+tents of most nutrients (
+Fig. 5). Crude protein, fat, ash (total minerals), 
+Fe, Zn, Mn, Ca, Mg, and K contents increased in both maize and beans 
+while fiber, carbohydrates, calories, and Cu decreased. On average, the 
+protein, ash, and fat contents of maize (
+Fig. 5a) increased by 7%, 12%, 
+and 2– 17%, respectively, compared to the levels at the loading stage; the 
+highest contents of these three proximate components (protein, fat, ash) 
+were measured at the mid stage, while the fiber and carbohydrates 
+decreased steadily by 9– 12% and 2.3%, respectively. The beans’ protein, 
+fat, and ash contents (
+Fig. 5b) also increased by approximately 7%, 16%, 
+and 19%, respectively, but with highest levels at the late stage, unlike in 
+maize. Further, the change in fiber content of the beans was insignifi-
+cant, whereas the carbohydrates decreased by ~3% at the late stage. 
+Contents of individual minerals increased markedly at the late stage. In 
+maize, the increases occurred on Fe (17 – 206%), Zn (19 – 25%), Mn 
+(39– 143%), Ca (35– 152%), Mg (4– 76%), and K (18– 28%), while in the 
+beans, increases occurred on virtually all the minerals (Fe: 24– 34%; Zn: 
+8– 29%; Mn: 44 – 53%; Ca: 16 – 22%, Mg: 72 – 86%; K: 75 – 76%; Na: 
+102– 152%) except Cu. 
+The interaction effect of practice and post-harvest stage was signif-
+icant (maize: P = 0.030, F 
+(26; 344) = 1.620, η p
+2 = 0.11; beans: P < 0.001, 
+F (26; 354) = 2.932, η p
+2 = 0.18). With maize, the effect was significant on 
+protein (P = 0.091, F (2; 177) = 2.520), Fe (P = 0.014, F (2; 177) = 4.374), 
+and Mn (P = 0.009, F (2; 177) = 4.852); the protein and Fe contents were 
+higher under improved practices at the mid stage, while Fe and Mn 
+concentrations were higher under ordinary practices at the late stage. In 
+beans, the interaction effect was significant on minerals as well (ash: P 
+= 0.034, F 
+(2; 188) = 3.445; K: P = 0.042, F (2; 188) = 3.221; and Ca: P =
+0.030, F (2; 188) = 3.585); the ash/total minerals contents reached higher 
+levels under ordinary than improved practice at the mid stage and vice 
+versa at the late stage. The K and Ca contents exhibited similar patterns, 
+although the Ca levels dropped at the late stage under the ordinary 
+practices. As shown in 
+Fig. 6, there was no difference between improved 
+and ordinary practices regarding calories in both maize and beans at the 
+mid and late stages. With improved practices, however, the maize 
+contained higher protein ( + 7.8%), Fe ( + 11.1%), Cu ( + 25%), Zn 
+(+ 2.7%), and Ca (+ 2%) at the mid stage. By contrast, more Ca (+ 38%), 
+and Na ( + 22%) but less Fe ( /uni2212.texminus 25%), Mn ( /uni2212.texminus 11.2%) and total minerals 
+(/uni2212.texminus 8.4%) were determined at the late stage. The beans under improved 
+practices contained more Na ( + 38%), Fe ( + 23%), Zn ( + 7%), Mn 
+(+ 31%), and Cu ( + 36%) at the mid stage but lower levels of all these 
+nutrients (except Na) at the late stage. 
+3.2.3. Associations between physical quality and actual nutrient contents 
+Table 1 shows the influence of different kinds of damage on the 
+nutritional value of maize and beans. The protein content of the beans, 
+and the fat and ash contents of both maize and beans, correlated posi-
+tively with ID. Conversely, the carbohydrate contents correlated nega-
+tively, while the correlation between calories and ID was not significant. 
+The minerals– Mg and K correlated positively with ID, while Cu corre-
+lated negatively in both commodities. Besides, Fe, Zn, and Mn correlated 
+positively with ID in maize but not in beans. Strikingly also, protein 
+contents correlated negatively with MDD in both maize and beans. Ash 
+and fiber in beans, as well as calories in maize, also correlated negatively 
+with MDD. Mechanical damage (MD) did not correlate with any of the 
+nutrients in maize. However, in beans, fiber content decreased while the 
+ash content increased as MD increased. Shriveled grain (SG) did not 
+correlate significantly with nearly all nutrients in maize, while it 
+correlated negatively with the beans ’ protein, fat, fiber, and minerals 
+(Fe, Mg, K, Na) contents. Overall, TD in maize correlated negatively with 
+protein and calories but positively with crude ash and most minerals (Fe, 
+Mn, Ca, Mg, and K). In contrast, TD in beans correlated positively with 
+protein, fat, ash, and the macro-minerals (Ca, Mg, K, Na) and negatively 
+with carbohydrate but did not correlate significantly with calories or the 
+micro-minerals (Fe, Zn, Mn, Cu). 
+3.3. Loss-adjusted nutrient abundance 
+3.3.1. Effects of practice and post-harvest stage 
+Interaction of practice and post-harvest stage influenced signifi-
+cantly the abundance of nutrients available from maize (Pillai’s Trace =
+0.407, F 
+26, 364 = 3.592; P < 0.001; η p
+2 = 0.20) and beans (Pillai’s Trace 
+= 0.457; F26; 353 = 4.033, P < 0.001; η p
+2 = 0.23) as shown in Fig. 7 
+(maize) and Fig. 8 (beans). The main effects were significant as well 
+(practice: F 13, 181 = 7.275, P < 0.001; η p
+2 = 0.35 (maize), Pillai’s P <
+0.001, F 13, 176 = 3.415, η p
+2 = 0.20 (beans); post-harvest stage: F 26, 364 
+= 32.261, P < 0.001; η p
+2 = 0.74 (maize), P < 0.001, F 26; 354 = 31.592, 
+η p
+2 = 0.71 (beans)). Examining the main effects separately, the effect of 
+post-harvest stage was stronger; it accounted for 71% (beans) and 75% 
+(maize) of the observed variability while practice accounted for 20% 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+9
+Fig. 5. Box plots of actual nutrient contents per 100 g of maize (a) and common beans (b) at the loading stage (magenta), mid post-harvest stage (blue) and late post-harvest stage (orange). Asterisks indicate significance 
+(***P < 0.001; **P < 0.01; * < 0.05; ns = not significant) of post-harvest stage effect. Letters on box plots are the results of post-hoc analysis; same letters indicate a lack of significant difference at P = 0.05. (For 
+interpretation of the references to color in this figure legend, the reader is referred to the Web version of this article.) 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+10
+(beans) and 35% (maize). As evident from Fig. 9 which compares the 
+effect of practice at mid and late stages, the improved practices on maize 
+had remarkable gains in the abundance of protein (mid stage: 13.9%; 
+late stage: 34%) and calories (mid stage: 4.7%; late stage: 40.2%). 
+Similarly, gains in the abundance of individual minerals were excep-
+tionally high at the late stage, e.g., Zn (42%), Ca (105%), Mg (38%), and 
+K (30%). However, improved practices did not result in marked nutrient 
+abundance gains on the beans— protein and calorie gains were not sig-
+nificant at the mid stage and were <10% (protein: 6.5%, calories: 8.7%) 
+at the late stage. There were gains in total minerals (7.2%) and fiber 
+(6.1%) at the late stage, but these were nevertheless lower than those 
+observed on maize. In both maize and beans, abundance gains on Fe and 
+Mn at the mid stage (Mn: 8.3– 26.7%; Fe: 19.7– 23.5%) were significant 
+but not at the late stage. Contrastingly, the abundance gains on Zn at the 
+mid stage (maize: 6.5%; beans: 14.2%) increased further at the late stage 
+(maize: 42.4%; beans: 27.2%). 
+3.3.2. Associations between physical quality and loss-adjusted nutrient 
+abundance 
+Principal Components Analysis (variables: total damage, protein, 
+crude fat, crude fiber, carbohydrate, Fe, Zn, Mn, Cu, Ca, Mg, K, Na) was 
+applied to explore the associations between physical quality and 
+nutrient abundance. The Kaiser-Meyer-Olkin measures of sampling ad-
+equacy were 0.749 (maize) and 0.754 (beans), and exceeded the mini-
+mum threshold of 0.6 for the test. Also, Bartlett’s test of sphericity was 
+highly significant (Maize: 
+χ 2 = 1489.47, df = 78, P < 0.001; Beans: χ 2 =
+1449.76, df = 78, P < 0.001), and therefore there was strong overall 
+correlation between the variables. There were four principal compo-
+nents for the maize accounting for 75% of the total variance and three 
+principal components for the beans accounting for 67% of the total 
+variance in the data set (
+Table 2). The proportion of variability extracted 
+from each variable into the components exceeded 50% for most vari-
+ables. Hence there was generally high communality among the variables 
+in both commodities. Varimax rotation with Kaiser normalization was 
+applied to ease the interpretation of variable loadings (
+Table 2). 
+Fig. 6. Actual nutrient contents (median, units/100 g) at mid stage (MS) and late stage (LS) of the post-harvest season under ordinary practices and improved 
+practices. The percentages (blue font) indicate the relative gains ( + ) or losses (/uni2212.texminus ). (For interpretation of the references to color in this figure legend, the reader is 
+referred to the Web version of this article.) 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+11
+For the maize, protein, fat, fiber, and carbohydrate (macronutrients) 
+loaded into one component (PC1), while the individual minerals loaded 
+to PC2 (Fe, Mn, Ca, Mg), PC3 (Cu, Na), and PC4 (Zn, K) (
+Table 2). The 
+observation scores and variable loadings (visualized in Fig. 10a on the 
+PC1-PC2 plane and Fig. 10 b on the PC2-PC3 plane) show that the 
+macronutrients (PC1) and some minerals (Cu, Na, K, Zn, i.e., PC3 and 
+PC4) correlated negatively with TD. Other minerals: Fe, Mn, Ca, and Mg 
+(PC2) associated positively with TD. The observation scores clustered 
+well by practice at the late stage (
+Fig. 10a), whereby ordinary practices 
+coincided with more Fe, while improved practices coincided with more 
+Mn, Ca, and Mg. It is worth noting that improved practices were asso-
+ciated with some damage and latent infestation at the late stage. The 
+macronutrients’ positive loadings corresponded with the loading stage 
+as well as the mid stage, under improved practices. Thus, PC1 repre-
+sented measurable dry matter removal by agents that attack the grain 
+directly, while PC2 comprised a substrate enrichment effect. The vari-
+ables loading on PC3 (Cu, Na) and PC4 (Zn, K) were negatively associ-
+ated with TD but correlated positively with the macromolecules 
+(protein, fat, fiber, carbohydrate). Heavy PC3 loading was associated 
+with the loading stage, unlike PC4, which matched with improved 
+practice at the late stage (see 
+Fig. 10b). Thus, PC3 reflected minerals lost 
+or removed together with parts of the grain, while PC4 mirrored the 
+combined effect of dry matter removal and substrate enrichment. The 
+grouping of the variables into the four components is evident on the 
+PC2– PC3 plot (
+Fig. 10b). 
+As for the beans, the macronutrients (protein, carbohydrates, fiber) 
+loaded into one component (PC2) while minerals loaded mainly to PC1 
+(Fe, Zn, Mn, Cu, Ca, K), as shown in 
+Table 2. Some minerals (Na, Mg) 
+together with fat loaded on a third component (PC3). The sub-clustering 
+of observation scores by practice and post-harvest stage (
+Fig. 10c and d) 
+was less distinct than in maize. Nonetheless, the macronutrients and TD 
+loadings opposed reach other (see 
+Fig. 10c), indicating negative corre-
+lations while the minerals were generally not correlated to TD. Strik-
+ingly, unlike maize, more macronutrients coincided with the late post- 
+harvest stage (under improved practice) while more minerals coin-
+cided with the mid stage, suggesting enrichment effects on both mac-
+romolecules and minerals but at different stages of the post-harvest 
+period. Thus, PC1 and PC2 reflected variations in minerals and macro-
+molecules abundance, respectively. The positive loadings on PC3 were 
+associated with the late and mid stages (
+Fig. 10d), but the component 
+variables (fat, Na, Mg) did not correlate with TD, suggesting that PC3 
+represented the net result of some combined effects. 
+3.3.3. Nutrient abundance prediction models 
+There were statistically significant monotonic associations between 
+TD and abundance of all the nutrients except Mg, Ca, and Mn in maize, 
+and protein, fiber, carbohydrate, calories, and Cu in beans (see supple-
+mentary material, Table ST1). All the associations were inverse except 
+for Fe (maize). Linear and cubic models fitted the associations well 
+(
+Fig. 11), but generally, cubic models provided better fits. Linear models 
+provided equally good fits for protein, carbohydrate, and calories, while 
+cubic models better explained crude fat, fiber, ash (maize), and min-
+erals. For instance, with maize, fat and K abundance increased with TD 
+up to ~40% damage, then decreased and increased again at damage 
+levels >80%. Fe (maize) and Cu (beans) abundances also increased at 
+higher damage levels. 
+3.4. Improved practices ’ benefits for households’ nutrition 
+Using the nutrient contents at the loading stage and Tanzania ’s na-
+tional per capita daily consumption data, the contribution of maize and 
+beans to the nutritional needs of different consumer groups was 
+computed (
+Table 3). Maize and beans potentially satisfied the recom-
+mended daily allowance (RDA) for protein in children and provided 
+54– 75% of the recommended calorie intake. They also potentially 
+satisfied the RDAs for Cu and Mg and nearly satisfied the recommended 
+intakes for Fe (87 – 125%) and Zn (59 – 99%), while contributing mark-
+edly to the RDAs for Mn (40– 50%), K (28– 35%), fiber (35– 46%) and Ca 
+(9– 13%). Likewise, maize and beans potentially contributed 34 – 44% 
+and 50– 77% of the pre-adult RDAs for calories and protein, respectively, 
+whereas they potentially provided 29 – 38% and 37– 57% of the recom-
+mended calorie and protein intakes for the adult groups. They also 
+contributed >20% of essential minerals ’ RDAs for pre-adult and adult 
+groups (Fe: 22 – 109%; Zn: 27 – 37%; Mn: 23 – 37%; Cu: 49 – 90%; Mg: 
+32– 90%; K: 22%). 
+All households in the study site cultivated and consumed maize 
+regularly, and the majority (90%) reported that their food security 
+would be severely affected if the crop failed. The median annual 
+household maize production was 500 kg (
+Fig. 12a), with an interquartile 
+range (IQR) of 300 – 1200 kg, and median yields below the national 
+average of 1.6 metric tons/ha (Laudien et al., 2020). Close to a quarter 
+(23%) of the households did not sell their maize harvest, while about 
+one-third (30%) sold small quantities. The rest of the households (47%) 
+sold considerable quantities, and 37% reported that their incomes would 
+be severely affected if the crop failed. By contrast, not more than 
+three-quarters (72%) of the households cultivated common beans. The 
+median annual beans production per household was 140 kg (IQR: 
+100– 300 kg), and the median yields were three times below the national 
+average (
+Bucheyeki and Mmbaga, 2013). Half (48%) of the households 
+consumed beans regularly, and a fifth (21%) reported that they would be 
+food insecure if the crop failed. About one in every ten households (12%) 
+cultivated beans solely for consumption while nine in every ten (88%) 
+Table 1 
+Correlations (Spearman’s rho) between actual nutrient contents and grain damage.   
+Maize (n = 204) Beans (n = 213)  
+ID MDD MD SG TD ID MDD MD SG TD 
+Protein ns -.331** ns ns -.148* .298** -.224** ns -.186** .196** 
+Fat .283** -.153* ns ns ns .217** .182** ns -.204** .246** 
+Ash .294** Ns ns ns .242** .506** -.240** .161* ns .514** 
+Fiber -.139* Ns ns ns ns ns -.162* -.421** -.196** ns 
+CHO -.205** Ns ns -.146* ns -.272** ns ns -.186** -.170* 
+Calories ns -.220** ns ns -.206** ns ns ns ns ns 
+Fe .200** Ns ns ns .301** ns ns ns -.216** ns 
+Zn .145* Ns ns .250** ns ns ns .173* ns ns 
+Mn .305** Ns ns ns .355** ns ns ns ns ns 
+Cu -.194** -.168* ns ns -.227** -.181** .188** ns ns ns 
+Ca ns Ns ns ns .158* ns ns ns ns .193** 
+Mg .246** Ns ns ns .317** .236** ns ns -.310** .222** 
+K .149* .171* ns .165* .279** .234** ns ns -.170* .212** 
+Na -.303** Ns ns ns -.230** .277** ns ns -.162* .176* 
+CHO: Carbohydrate; TD: total damage; ID: insect damage; MDD: moldy/diseased/discolored grains; MD: mechanical damage; SG: shriveled grain; **P < 0.01; *. P <
+0.05; ns = not significant (P ≥ 0.05). 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+12
+sold part of the harvest; two-fifths (39%) of the households sold a small 
+fraction; a third (34%) sold modest quantities (beans formed a consid-
+erable share of income), and a fifth (19%) significant quantities (re-
+ported that their revenue would be profoundly affected if the crop 
+failed). Results of further participatory exercises revealed households 
+that sold small quantities retained about 70%, those who sold modest 
+quantities about 50%, and those whose incomes would be severely 
+affected if the crop failed retained only 20% of their harvest for 
+consumption. 
+Fig. 12b shows the absolute amounts of each nutrient potentially 
+reclaimed by improved practices at the late stage, based on production 
+and proportions of maize and beans retained for consumption by the 
+households (see Supplementary Material, Table ST2 for the amounts of 
+nutrients potentially reclaimed per kg of maize and beans at the mid and 
+late stages). Without the improved practices, 25 – 75% of households 
+would lose 180 – 700 megacalories in nutritional energy, 5 – 16 kg of 
+protein, and 900– 3300 mg of Zn among other nutrients (2– 7 g of fiber, 
+105– 415 mg of Cu, 21– 79 g of Ca, 85– 304 g of Mg, and 188– 709 g of K). 
+Fig. 7. Loss-adjusted nutrient abundance estimates for maize. In each pane, the graph to the left (with shaded background) represents the nutrient abundance levels 
+at various post-harvest stages under ordinary (red) or improved (green) practices, i.e., interaction effect. Error bars represent the 95% confidence intervals. The upper 
+right graph shows the main effect of practice; OP: ordinary practices, IP: improved practices, and the graph below shows the main effect of post-harvest stage; HS: 
+loading-stage; MS: mid stage; LS: late stage. Asterisks on each graph indicate level of significance (***P < 0.001; **P < 0.01; * < 0.05; ns = not significant). Letters on 
+the post-harvest stage box plots represent post-hoc analysis results; similar letters indicate a lack of significant difference (Kruskal Wallis test, P = 0.05). (For 
+interpretation of the references to color in this figure legend, the reader is referred to the Web version of this article.) 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+13
+Fig. 12c shows the average household ’s requirements for the various 
+nutrients based on household composition and RDA data (The average 
+household size was 6.2 persons (range: 2– 11) with 2.6 (range: 0– 6) and 
+3.6 (range: 0 – 9) aged <18 and >18 years, respectively). Considering 
+that grain stocks for most households declined significantly from the 
+seventh month after harvest, the amounts of nutrients reclaimed at the 
+late stage would translate to significant additional days of nutrient 
+availability (
+Fig. 12d), which correspond to 29 (IQR: 16– 57) more days 
+of calories availability besides additional availability days for protein; 
+31 (15 – 54), Zn: 36 (18 – 61), and other minerals including Mg: 91 
+(45– 166); Cu: 45 (23– 81); K: 15 (7– 26); and Ca 6 (3– 12). 
+4. Discussion 
+Physical grain quality includes several external features: shape, size, 
+color, and general appearance — shriveled, discolored, rotten, moldy, 
+diseased, broken, and pest-damaged grains are associated with poor 
+quality. The combined effect of practice and post-harvest stage was 
+Fig. 8. Loss-adjusted nutrient abundance estimates for beans. In each pane, the graph to the left (with shaded background) represents the nutrient abundance levels 
+at various post-harvest stages under ordinary (red) or improved (green) practices i.e., interaction effect. Error bars represent the 95% confidence intervals. The upper 
+right graph shows the main effect of practice; OP: ordinary practices, IP: improved practices and the graph below shows the main effect of post-harvest stage; HS: 
+loading-stage; MS: mid-stage; LS: late stage. Asterisks on each graph indicate level of significance (***P < 0.001; **P < 0.01; * < 0.05; ns = not significant). Letters 
+on the post-harvest stage box plots represent post-hoc analysis results; similar letters indicate a lack of significant difference (Kruskal Wallis test, P = 0.05). (For 
+interpretation of the references to color in this figure legend, the reader is referred to the Web version of this article.) 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+14
+responsible for grain damage levels. Damage by molds, pests (insects 
+and rodents) and discoloration, may continue in the post-harvest period, 
+especially if the grain is poorly dried, handled, or stored. Of the damage 
+types investigated, insect damage progressed more resolutely. While 
+improved practices prevented heavy insect damage, conspicuous dam-
+age levels persisted, particularly on the beans, at the late stage. Our 
+earlier findings showed that insect damage of beans increased with time 
+in air-tight bags because susceptible varieties allowed hidden in-
+festations right from the field, which slowly developed and damaged the 
+bags weakening their effectiveness (
+Mutungi et al., 2020). On average, 
+improved practices decreased grain damage and losses 2 – 4-fold. How-
+ever, the curvilinear relationship between damage and losses suggested 
+that a simple attribution of losses to damage is difficult to conclude. 
+Frequently, physical damage causes weight loss, but weight gain or 
+minimal weight change also occurs if the damage involves moisture 
+gain, fungal infection, pests that burrow into and fail to exit the grain, or 
+biochemical changes such as on the seed coat causing discoloration. In 
+addition, consumers do not always reject physically defective grains, as 
+considered in the losses assessment method applied for this study. These 
+dynamics might explain the non-linear component of the association 
+between damage and the measured loss magnitudes. 
+Insects caused about three-quarters of the damage determined on 
+maize and beans. It was of interest that insect damage correlated 
+significantly with the contents of most of the nutrients— positively with 
+protein (beans), fat, and total minerals but negatively with fiber (maize) 
+and carbohydrates. Other authors found higher protein content in 
+infested maize and attributed the observation to the disproportionate 
+reduction of the starchy components by the feeding bugs, which 
+concentrated the nitrogen-containing molecules (
+Stathers et al., 2020). 
+The association between insect damage and protein content of maize 
+was not significant, although an increase occurred at the mid 
+post-harvest stage. Different insect pests alter the nutrient concentra-
+tions in their substrates differently due to differences in their coloniza-
+tion habits and feeding behaviors. In the present study, a pest complex 
+Fig. 9. Nutrient abundance (median, units/100 g) at mid stage (MS) and late stage (LS) of the post-harvest season under ordinary practices and improved practices. 
+The percentages (blue font) indicate the relative gains (+ ) or losses (/uni2212.texminus ). (For interpretation of the references to color in this figure legend, the reader is referred to the 
+Web version of this article.) 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+15
+comprising Sitophilus zeamais Motschulsky (Coleoptera: Curculionidae), 
+Rhyzopertha dominica (F.) (Coleoptera: Bostrichidae), and Prostephanus 
+truncatus (Horn) (Coleoptera: Bostrichidae) infested the maize with 
+incidence rates of 78%, 14%, and 8%, respectively. S. zeamais prefer-
+entially feeds on the carbohydrate-rich endosperm, whereas the 
+P. truncatus and R. dominica feed on both the endosperm and the protein- 
+and fat-rich germ, reducing the grain to its pericarp if the damage is 
+extensive (
+Boxall, 2002; Edde, 2012). Thus, heavy damage by S. zeamais 
+would concentrate the protein, fat, and minerals found predominantly in 
+the germ, while P. truncatus and R. dominica would diminish the car-
+bohydrate, protein, and fat levels. However, developing larvae buried 
+inside the grain can alter the nutritional profile of grains (
+Rumpold and 
+Schlüter, 2013). Moreover, some studies reported an age-related feeding 
+behavior such as that of P. truncatus changing from the endosperm in 
+early larval instars to the germ in later instars (Vowotor et al., 1998). 
+The positive association between insect damage and the protein 
+content of beans observed in the present study contradicted other 
+findings that reported lower protein content in bruchid-infested beans 
+than wholesome ones (
+Nta et al., 2019 ). Protein and carbohydrate in 
+bean cotyledons are evenly distributed. For this reason, the extraction of 
+parts by feeding bruchids may not change the concentrations of these 
+nutrients imposingly as in maize. The monotonic increase in protein 
+content of beans in our case may have been due to a combination of 
+factors, including the presence of insect forms or tissue fragments and 
+by-products of nitrogen metabolism. Feeding insects convert host sub-
+strates into protein- and fat-rich deposits. Indeed, some authors (
+Rum-
+bos et al., 2020 ) reported rich protein, fat, and mineral profiles in 
+stored-products insect pests. Unlike maize weevils that exit the grain 
+immediately, bruchids can hibernate for a while inside the bean seeds 
+when the external conditions are unfavorable. Thus, multiple larvae, 
+pupae, or adults trapped inside the bean seeds would increase protein 
+and fat content. This argument seems plausible since there was no 
+deliberate action to remove insect forms buried inside the grains before 
+nutritional analysis. Moreover, protein contents were determined based 
+on total nitrogen. The total nitrogen probably also included non– protein 
+nitrogen and by-products of protein metabolism such as uric acid. 
+Jood 
+and Kapoor (1993) concluded that highly infested wheat, maize, and 
+sorghum seeds exhibited higher protein content due to increased 
+non-protein nitrogen, while insect feeding, in reality, decreased the true 
+protein content. 
+The progressive decrease of carbohydrate and fiber (maize) contents 
+with insect damage concurred with the finding of others. 
+Jood et al. 
+(1993) observed 8– 64% starch loss in maize, whereas Nta et al. (2019) 
+reported 28 – 31% carbohydrate loss in beans. The decreases in 
+carbohydrate contents were due to endosperm/cotyledon extraction as 
+the insects need energy for growth, reproduction, and other processes. In 
+addition, an increase in fat and nitrogen-containing constituents 
+potentially diluted carbohydrate and fiber contents. Insects buried in-
+side the grains can contribute to fiber as chitin contained in their tissues 
+is quantified together with fiber (
+Kaya et al., 2015). In the present case, 
+the fiber contents of beans did not change, implying a balance between 
+component extraction and the possible bio-enrichment from the indi-
+gestible insect constituent. 
+Positive correlations of Fe, Zn, Mn, Ca, Mg, and K contents in maize 
+with insect damage contradicted the findings reported by others. 
+Jood 
+et al. (1992) reported decreases in Ca (4 – 42%), Fe (2 – 39%), Zn 
+(2– 18%), Cu (1– 23%), and Mn (2– 16%) in Trogoderma granarium Everts 
+(Coleoptera: Dermestidae) (germ feeder) and R. dominica (endo-
+sperm/germ feeder) infested grains under laboratory conditions. Simi-
+larly, our results opposed the findings by 
+Stathers et al. (2020), which 
+indicated lower Zn and Fe in maize infested with S. zeamais and 
+P. truncatus under laboratory conditions. More than 80% of the minerals 
+in maize grains are contained in the germ, and the rest are in the peri-
+carp (Fe, Zn) and aleurone layer (
+FAO, 1992 ). Severe endosperm 
+extraction by endosperm feeders (e.g., S. zeamais ) would therefore 
+concentrate the minerals contained in the germ, whereas heavy reduc-
+tion of the endosperm and germ by the dual feeders (e.g., P. truncatus 
+and R. dominica) would concentrate the minerals found in the pericarp, 
+e.g., Fe and Zn. The increase in mineral contents of maize suggests a 
+concentration effect arising from endosperm extraction. This effect ap-
+pears to have occurred in the beans as the Mg, K, and Na concentrations 
+also increased monotonically with insect damage. However, the con-
+centration of other minerals (Fe, Ca, Mn, Zn) did not change; hence the 
+concentration effects did not apply to all minerals. Similar increases in K 
+(and also Zn and Cu) but decreases in Mg and Na (alongside Ca, Fe, and 
+Mn on naturally infested beans were reported (
+Nta et al., 2019 ). Min-
+erals in beans are evenly distributed in the germ (4.5%), endosperm 
+(3.6%), and seed coat (4.0%), although the germ is only 1% of the bean 
+seed compared to the endosperm (90%) and seed coat (9%). Accord-
+ingly, the concentration effects arising from removing parts of the cot-
+yledons on total minerals would be less pronounced. Genotype and 
+environment also influence the accumulation of specific minerals in the 
+various parts of the bean seed (
+Ribeiro et al., 2012 ). Interactions 
+involving infestation level and these factors might explain our results ’ 
+contradiction from those of others. 
+Besides insect damage, other physical quality defects contributed 
+substantially to the overall damage determined on maize and beans (up 
+to 14– 24%). The negative correlation between MDD and protein content 
+Table 2 
+Rotated
+a principal component factor loadings for loss-adjusted nutrient abundance.   
+Maize Beans  
+Component matrix Communality Component matrix Communality 
+PC1 PC2 PC3 PC4 PC1 PC2 PC3 
+Crude protein 0.76 † /uni2212.texminus 0.07 0.36 0.21 64.2 0.17 0.70 † 0.41 68.3 
+Crude Fat 0.80 † 0.16 /uni2212.texminus 0.23 0.26 73.4 /uni2212.texminus 0.12 0.19 0.58 † 39.1 
+Crude Fiber 0.75 † 0.00 0.61 /uni2212.texminus 0.10 59.1 /uni2212.texminus 0.05 0.82 † 0.14 69.0 
+CHOb 0.74† /uni2212.texminus 0.19 0.39 0.29 81.2 0.00 0.88 † /uni2212.texminus 0.08 77.4 
+Fe /uni2212.texminus 0.37 0.70 † /uni2212.texminus 0.10 0.04 63.9 0.66 † 0.06 0.40 60.5 
+Zn 0.15 0.05 0.08 0.87 † 79.6 0.90 † 0.07 /uni2212.texminus 0.04 82.2 
+Mn /uni2212.texminus 0.11 0.88 † 0.13 0.25 86.4 0.93 † /uni2212.texminus 0.07 0.01 86.3 
+Cu 0.16 0.18 0.81 † 0.19 75.4 0.82 † 0.26 /uni2212.texminus 0.10 74.4 
+Ca 0.14 0.83 † 0.19 /uni2212.texminus 0.15 76.8 0.61 † 0.07 0.39 52.3 
+Mg 0.14 0.81 † 0.13 0.33 77.7 0.53 /uni2212.texminus 0.13 0.64 † 70.8 
+K 0.23 0.37 0.08 0.71 † 69.6 0.67 † /uni2212.texminus 0.11 0.50 71.0 
+Na 0.15 0.04 0.89 † /uni2212.texminus 0.03 81.3 0.13 0.01 0.66 † 44.7 
+Total damage /uni2212.texminus 0.78† 0.14 /uni2212.texminus 0.41 /uni2212.texminus 0.23 87.6 /uni2212.texminus 0.11 /uni2212.texminus 0.87† 0.08 77.7 
+% total variance 32.5 23.6 10.9 8.0 75.1 35.2 21.2 11.0 67.2 
+† Main variables loading on the particular principal component. 
+a Rotation Method: Varimax with Kaiser Normalization. 
+b CHO = carbohydrates. 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+16
+was particularly striking. MDD also correlated negatively with ash and 
+fiber content (beans) and fat content (maize). Moldy/diseased/dis-
+colored grains connote bio-degradation, whereby fungi and bacteria 
+release enzymes that break down organic matter. Grains colonized by 
+fungi contain less dry matter. Under controlled conditions, 
+Reed et al. 
+(2007) found less starch and fat in moldy maize but higher protein 
+content. The authors also found more fat loss than carbohydrate loss in 
+the wetter grain. In the present study, carbohydrate contents did not 
+vary with MDD, but the fat content in the maize decreased mono-
+tonically with increasing MDD, while the fat content of the beans 
+increased. The contradictions, i.e., decrease in protein and increase in fat 
+on the beans, were potentially due to the confounding effects of other 
+forms of damage on the grains classified as MDD. 
+Mechanical damage (MD) did not alter the nutrient contents of 
+maize. However, as expected, MD correlated negatively with the crude 
+fiber content of the beans. In addition, MD in beans correlated positively 
+with ash content, possibly due to dust and molds that contaminated the 
+open cotyledons considering that beans were mostly threshed manually 
+on earthen floors. In both maize and beans, the SG correlated negatively 
+with carbohydrate content. This observation would be because shriveled 
+grains are likely to have been immature and poorly filled at harvest time. 
+On a dry matter basis, maize grains’ starch and fat contents increase as 
+the kernel matures while the crude protein, fiber, and total minerals 
+decrease (
+FAO, 1992). Some field fungi, e.g., genera Alternaria, Fusa-
+rium, and Colletotrichum, are also associated with shriveling as they 
+cause diseases that retard grain development and filling ( Williams and 
+McDonald, 1983). The effects of shriveling were more profound in the 
+beans judging from the negative correlations of SG with protein, fat, 
+carbohydrate, fiber, and minerals – Fe, K, Mg, and Na. Protein, fat, and 
+carbohydrate in legume seeds increase as the seeds mature, whereas the 
+contents of crude fiber, ash, and individual minerals may vary with 
+variety (
+Geervani and Devi, 1989; Lisiewska et al., 2003). Some minerals 
+associate with specific seed components, and the accumulation may vary 
+according to maturity (e.g., see 
+Ribeiro et al. (2012) ; Moraghan and 
+Grafton (2001)) A further striking observation on the beans was the 
+contrasting pattern of the correlations of ID and SG with major nutrients 
+(fat, protein, Mg, K, and Na). This result suggests that the shriveled 
+grains were less preferred by bruchids as hosts and suffered less damage 
+Fig. 10. Biplots showing observation scores and variable loadings of maize (a, b) and beans’(c, d) nutrient abundance. The observation scores are labeled by practice 
+(IP: improved practices; OP ordinary practices) and grouped by post-harvest stage (HS: loading stage; MS: mid stage; LS: late stage); ellipses mark the 95% confidence 
+interval boundaries. 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+17
+from them. 
+A significant determinant of nutritional security is access to adequate 
+food, i.e., food that is not spoiled or contaminated and is sufficient in 
+quantity and nutritional content to meet individuals ’ daily nutrients 
+requirements. Households utilize maize and beans conjunctively in some 
+parts of East and Southern Africa. As computed in this study, loss- 
+adjusted nutrient abundance provided a measure of the nutrient 
+amounts that may be accessible at different post-harvest stages, taking 
+into account practical features of maize and beans’ post-harvest losses. 
+There were marked differences in the nutritional value of maize and 
+beans under improved and ordinary practices. Considering the beans, 
+the abundance gains on Fe (24%), Zn (12%), Mn (27%), and Cu (34%) at 
+the mid stage of the post-harvest season with no gains on protein or 
+calories (see 
+Fig. 9 ) point to only a minimal influence of improved 
+practices on the physical quality of the beans in the short-term. Loss- 
+causing damage on harvested grain is unlikely to occur in the first 3 – 4 
+months after harvest (
+Henckes, 1994; Stathers et al., 2008 ), although 
+hidden infestations and intrinsic biochemical changes affecting nutrient 
+contents can take place. Conversely, the significant abundance gains on 
+all the nutrients at the late stage were due to comparatively lower visible 
+damage and removal of dry matter by loss agents under the improved 
+practices. For the maize, however, improved practices resulted in more 
+gains on protein (mid stage: 13.9%; late stage: 34%), calories (mid stage: 
+4.7%; late stage: 40.2%), and minerals (e.g., Zn: 42%, Ca: 105%, Mg: 
+38%, and K: 30%), particularly at the late stage. 
+The differences in nutritional gains associated with improved post- 
+harvest practices on maize and beans show that structure and nutrient 
+distribution differences alongside dissimilarities in the kinds of damage 
+inflicted by various physical and biological agents have different im-
+pacts on different commodities. Hence this study demonstrated the dy-
+namic nature of nutritional food loss. Common beans have a more 
+homogenous distribution of nutrients than maize (
+FAO, 1992; Stathers 
+et al., 2020 ), and multiple infesting bruchids tend to lodge inside the 
+seeds, unlike maize weevils/borers that exit the grain shortly after 
+molting to search for new hosts and mates. Beans also continue to un-
+dergo biochemical changes that affect nutrient concentration and 
+Fig. 11. Regression models for nutrient abundance. Only nutrients exhibiting significant monotonic associations with grain damage are represented.  
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+18
+acceptability attributes (Mutungi et al., 2020). These differences influ-
+enced nutrient content patterns and the evolution and classification of 
+quality and losses in the two commodities, hence the different patterns 
+and degrees of association between grain damage and loss-adjusted 
+nutrient abundance. 
+Our findings showed that significant nutrient amounts are lost where 
+improved post-harvest practices are not applied. Based on Tanzania ’s 
+national per capita consumption data, maize and beans do not satisfy the 
+RDAs for calories, protein, and important minerals (e.g., zinc and iron), 
+particularly for the adult and pre-adult household members. On average, 
+they contribute 52%, 36%, and 8 – 75% of the protein, calories, and 
+essential minerals RDAs, respectively. The gaps would, at best, be closed 
+from the consumption of other food sources produced on family farms 
+(see 
+Fig. 1). However, a host of natural, social, human, and economic 
+constraints limit rural farmers ’ capacity to diversify farm production 
+(Kissoly et al., 2020). The avoided nutrient losses corresponded to 21 g 
+and 15.4 g of protein for every kg of harvested maize and beans, 
+respectively, with improved post-harvest practices. In terms of calories, 
+the avoided losses equated to 932 kcal per kg of maize and 256 kcal per 
+kg of beans at the late stage of the post-harvest season. The nutrient 
+savings would be significant considering the households ’ low farm 
+production levels and narrow crop diversity. 
+The extra days of nutrient sufficiency contextualized in the present 
+study are significant for grain-deficit households. During the lean sea-
+son, food stocks dwindle, and low-income families skip meals, which can 
+have serious long-term consequences, particularly for vulnerable 
+groups, including children, women, and the elderly. One in every three 
+under-five-year-old children in Tanzania suffers from one or multiple 
+forms of anthropometric failure (
+Khamis et al., 2020 ), while micro-
+nutrient deficiencies are rampant across various population groups 
+(
+Ritchie and Roser, 2017 ). The estimated equivalent days of extra cal-
+ories and protein (IQR: 15– 55 days; median: 29– 31 days) from improved 
+post-harvest practices signify the potential for alleviating protein/e-
+nergy malnutrition associated with poor weight gain and slow linear 
+growth in children. Likewise, the equivalent days of extra minerals, 
+including Zn (median: 36; IQR: 16– 66), Mg (median: 91; IQR: 45– 166), 
+Cu (median: 45; IQR: 23– 81), and K (median: 15; IQR: 7– 26), connote a 
+potential for reducing deficiencies and the attendant effects associated 
+with these micronutrients. Zn deficiency is especially a leading risk to 
+human health in sub-Saharan Africa and is essential for body immunity, 
+cell division, and proper growth. Mg is vital for normal nerve and muscle 
+function and supports a healthy immune system; K regulates cellular 
+fluid balance and supports muscle and nervous system function; while 
+Cu is a structural part of many enzymes, supports iron and protein 
+metabolism, and is essential for tissue repair, proper functioning of or-
+gans, and immune response (
+Gharibzahedi and Jafari, 2017). 
+One strength of our study is that it examined paired data of physical 
+quality and nutrient contents. As applied elsewhere (Spiker et al., 2017; 
+Garcia-Herrero et al., 2019), nutritional data from food databases would 
+have been used to estimate the nutritional loss associated with the 
+post-harvest losses of maize and beans at the farm level. The risk is 
+misestimation, as such data do not consider gradual changes in nutrient 
+concentrations and the nutritional features associated with food loss 
+(
+Spiker et al., 2017). Our approach enabled a practical estimation of the 
+potential nutritional shifts, considering that the effectiveness of food loss 
+interventions exists on a continuum of possibilities because of the het-
+erogeneous nature of the socio-economic and biophysical environments 
+of the farmers using them. A limitation of the study is that it relied on 
+potential gains of nutrient abundance as a proxy for nutritional im-
+provements without confirming the impacts on the nutrition status of 
+individuals or households. To understand such impact, observations or 
+measurements of consumption and bioavailability of nutrients (pro-
+portion of nutrients absorbed/metabolized for the physiological benefit 
+of the body) would be necessary. Several factors affect nutrient 
+bioavailability, including the chemical form, nutrition and health con-
+dition of the individuals, and nutrient– nutrient interactions (
+Hambidge, 
+2010; Gharibzahedi and Jafari, 2017 ). Processing, preparation, and 
+cooking methods may also affect nutrient abundance and availability 
+(
+Oghbaei and Prakash, 2016). It is also worth noting that producers face 
+constraints that limit the choice to apply best practices. Economic 
+benefits are, in particular, key as producers need enhanced returns to 
+pay for the cost of implementing those practices. Our findings suggest 
+Table 3 
+Maize and beans’ contribution to different consumer groups’ nutrition based on Tanzania’s per capita daily consumption (PDC
+1): maize 173 g; beans 48 g.   
+Intake based on 
+PDC 
+RDA
+2 and (TI as % of RDA)     
+Children Pre-adults Adults  
+Maize Beans Total intake 
+(TI) 
+1– 3 4 – 8 9-13 (m/ 
+f) 
+14-18 
+(f) 
+14-18 
+(m) 
+19-50 
+(f) 
+19-50 
+(m) 
+Pregnant 
+women 
+Breast-feeding 
+mothers 
+Protein (g) 15 11 26 13 19 34 46 52 46 56 71 71     
+(200) (137) (77) (57) (50) (57) (47) (37) (37) 
+Calories 
+(Kcal) 
+601.2 150.6 751.7 1000 1400 1700 1800 2200 2000 2400 2200 2600     
+(75) (54) (44) (42) (34) (38) (31) (34) (29) 
+Fibre (g) 6.2 2.5 8.7 19 25 26 26 38 25 38 28 29     
+(46) (35) (33) (33) (23) (35) (23) (31) (30) 
+Fe (mg) 4.6 4.2 8.7 7 10 8 15 11 15 8 27 10     
+(125) (87) (109) (58) (79) (58) (109) (22) (87) 
+Zn (mg) 1.7 1.3 3 3 5 8 9 11 9 8 11 12     
+(99) (59) (47) (33) (27) (33) (37) (27) (25) 
+Mn (mg) 0.2 0.4 0.6 1.2 1.5 1.9 1.6 2.2 1.6 1.8 2 2.6     
+(50) (40) (31) (38) (27) (37) (33) (30) (23) 
+Cu (mg) 0.3 0.4 0.6 0.34 0.44 0.7 0.9 0.9 0.9 0.9 1 1.3     
+(186) (144) (90) (70) (70) (70) (70) (63) (49) 
+Ca (mg) 13.8 76.9 90.7 700 1000 1300 1300 1300 1000 1000 1000 1000     
+(13) (9) (7) (7) (7) (9) (9) (9) (9) 
+Mg (mg) 148.8 67.9 216.7 80 130 240 360 410 320 420 360 320     
+(271) (167) (90) (60) (53) (68) (52) (60) (68) 
+K (mg) 455.5 595.5 1050.9 3000 3800 4500 4700 4700 4700 4700 4700 5100     
+(35) (28) (23) (22) (22) (22) (22) (22) (21) 
+Na (mg) 10.6 3.3 13.8 1500 1900 2300 2300 2300 2300 2300 2300 2300     
+(0.9) (0.7) (0.6) (0.6) (0.6) (0.6) (0.6) (0.6) (0.6) 
+1 Source: FAOSTAT (2018); 2 Recommended Daily Allowance (Source: US Department of Health and Human Services/National Institute of Health, https://ods.od.nih. 
+gov/HealthInformation/Dietary_Reference_Intakes.aspx); f: female; m: male. 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+19
+Fig. 12. Contribution of improved post-harvest practices of maize and beans to nutritional security of households at the late stage of the post-harvest season: (a) households’ maize and bean production levels and yields; 
+(b) nutrient amounts reclaimed by households using the improved practices; (c) daily nutrient needs of households based on the recommended daily allowances and the household size/composition; (d) potential 
+equivalent additional days of household nutrient-sufficiency from the use of improved practices. 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+20
+that the benefits of improved post-harvest practices may be higher than 
+previously estimated when the nutritional gains and the quantity effects 
+are taken into account. Education/training and incentives (e.g., 
+market-related ones) that enable targeted users to realize these benefits 
+would be essential. 
+In conclusion, the prevention of nutrient loss post-production is 
+especially valuable where food production and diversity to satisfy the 
+energy and essential nutrients requirements for healthy sustenance are 
+limited. Our results show that nutritional loss is complex and dynamic in 
+the face of the many agents that lead to quantitative losses. There are 
+varying association patterns between physical quality and the actual 
+contents of individual nutrients. Consequently, physically damaged 
+maize or beans are not always inferior in nutrient content at the 
+compositional level. Improved post-harvest practices generally increase 
+the overall quantity of nutrients available for households. The abun-
+dance of protein and calories decreases with physical quality loss in both 
+maize and beans, and the decrease can be predicted directly from the 
+grain damage data using linear models. For the minerals, there are 
+mixed trends and more complex interactions. Considering the low farm- 
+level production and unmet nutrient demands of households, the avoi-
+ded nutrient losses when improved post-harvest practices are used 
+amount to significant gains in calories, protein, and minerals (Zn, Mg, 
+Cu, and K) in the late post-harvest stage. The benefits are equivalent to at 
+least 29– 31 more days of calories and protein sufficiency in every one of 
+two households and >55 days for one in four households. Such gains 
+have relevance for alleviating under-nutrition at household and com-
+munity levels. 
+Credit author statement 
+Christopher Mutungi: Conceptualization, Methodology, Investiga-
+tion, Formal analysis, Visualization, Writing – Original draft prepara-
+tion, Writing – review and editing; Judith Tungu: Investigation 
+(laboratory analysis); Amri Juma: Investigation (laboratory analysis); 
+Audifas Gaspar: Investigation (field management); Adebayo Abass: 
+Validation, Project administration. 
+Declaration of competing interest 
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper. 
+Acknowledgements 
+This study was undertaken under the Africa Research in Sustainable 
+Intensification for the Next Generation (Africa RISING) program with 
+financial support from the United States Agency for International 
+Development (Contract number: AID-BFS-G-11-00002), as part of the US 
+Government’s Feed the Future Initiative. The authors are grateful for the 
+financial support. The authors thank all the farmers who participated in 
+the research, Kilimo Endelevu Program, and Ilex de Paix Tanzania for a 
+fruitful collaboration that enabled data collection. We thank Kilimo 
+Endelevu especially for providing farmers ’ production and socio- 
+economic data. 
+Appendix A. Supplementary data 
+Supplementary data to this article can be found online at 
+https://doi. 
+org/10.1016/j.jspr.2021.101918. 
+References 
+Abass, A.B., Ndunguru, G., Mamiro, P., Alenkhe, B., Mlingi, N., Bekunda, M., 2014. Post- 
+harvest food losses in a maize-based farming system of semi-arid savannah area of 
+Tanzania. J. Stored Prod. Res. 57, 49 – 57. 
+https://doi.org/10.1016/j. 
+jspr.2013.12.004. 
+Affognon, H., Mutungi, C., Sanginga, P., Borgemeister, C., 2015. Unpacking postharvest 
+losses in sub-Saharan Africa: a meta-analysis. World Dev. 66, 49– 68. https://doi.org/ 
+10.1016/j.worlddev.2014.08.002. 
+AOAC, 2000. Official Methods of Analysis, 17 ed. The Association of Official Analytical 
+Chemists, Gaithersburg, MD, USA.  
+Ates ¸, C., Kaymaz, ¨O., Kale, H.E., Tekindal, M.A., 2019. Comparison of test statistics of 
+nonnormal and unbalanced samples for multivariate analysis of variance in terms of 
+type-I error rates. Comput Math Methods Med 2173638. 
+https://doi.org/10.1155/ 
+2019/2173638, 2019.  
+Bamaiyi, L.J., Onu, I., Amatobi, C.I., Dike, M.C., 2006. Effect of Callosobruchus maculatus 
+infestation on nutritional loss on stored cowpea grains. Arch. Phytopathol. Plant 
+Protect. 39, 119– 127. 
+https://doi.org/10.1080/03235400500180743. 
+Bartlett, M.S., 1951. The effect of standardization on a Chi-square approximation in 
+factor analysis. Biometrika 38, 337 – 344. https://doi.org/10.1093/biomet/38.3- 
+4.337. 
+Bassey, N.E., Kuhn, A., Storm, H., 2018. Are maize marketers averse to quality loss in 
+supplies? A case study from Ghana. Agric. Econ. 49, 649 – 658. https://doi.org/ 
+10.1111/agec.12449. 
+Boxall, R.A., 2002. Damage and loss caused by the larger grain borer Prostephanus 
+truncatus. Integrated Pest Manag. Rev. 7, 105 – 121. https://doi.org/10.1023/a: 
+1026397115946. 
+Broughton, W.J., Hern´andez, G., Blair, M., Beebe, S., Gepts, P., Vanderleyden, J., 2003. 
+Beans (Phaseolus spp.) – model food legumes. Plant Soil 252, 55 – 128. https://doi. 
+org/10.1023/a:1024146710611. 
+Bucheyeki, T.L., Mmbaga, T.E., 2013. On-farm evaluation of beans varieties for 
+adaptation and adoption in Kigoma region in Tanzania. ISRN Agronomy 436064. 
+https://doi.org/10.1155/2013/436064, 2013.  
+Cerny, B.A., Kaiser, H.F., 1977. A study of a measure of sampling adequacy for factor- 
+analytic correlation matrices. Multivariate Behav. Res. 12, 43 – 47. https://doi.org/ 
+10.1207/s15327906mbr1201_3. 
+Compton, J.A.F., Floyd, S., Magrath, P.A., Addo, S., Gbedevi, S.R., Agbo, B., Bokor, G., 
+Amekupe, S., Motey, Z., Penni, H., Kumi, S., 1998. Involving grain traders in 
+determining the effect of post-harvest insect damage on the price of maize in African 
+markets. Crop Protect. 17, 483 – 489. 
+https://doi.org/10.1016/S0261-2194(98) 
+00041-6. 
+Edde, P.A., 2012. A review of the biology and control of Rhyzopertha dominica (F.) the 
+lesser grain borer. J. Stored Prod. Res. 48, 1 – 18. https://doi.org/10.1016/j. 
+jspr.2011.08.007. 
+Edoh Ognakossan, K., Mutungi, C.M., Otieno, T.O., Affognon, H.D., Sila, D.N., Owino, W. 
+O., 2018. Quantitative and quality losses caused by rodents in on-farm stored maize: 
+a case study in the low land tropical zone of Kenya. Food Secur. 10, 1525 – 1537. 
+https://doi.org/10.1007/s12571-018-0861-9. 
+FAO, 1992. Maize in Human Nutrition, FAO Food and Nutrition Series. No. 25, Rome, 
+Italy.  
+FAO, 2003. Food Energy - Methods of Analysis and Conversion Factors. Report of a 
+Technical Workshop Rome, 3-6 December 2002. FAO Food and Nutrition Paper - 77. 
+Rome, Italy
+.  
+FAOSTAT, 2018. Statistical Database. Statistical Division of the UN Food and Agriculture 
+Organization (FAO). 
+Garcia-Herrero, I., Margallo, M., Laso, J., Batlle-Bayer, L., Bala, A., Fullana-i-Palmer, P., 
+Vazquez-Rowe, I., Gonzalez, M.J., Amo-Setien, F., Dur´a, M.J., Sarabia, C., Abajas, R., 
+Qui˜nones, A., Irabien, A., Aldaco, R., 2019. Nutritional data management of food 
+losses and waste under a life cycle approach: case study of the Spanish agri-food 
+system. J. Food Compos. Anal. 82, 103223. 
+https://doi.org/10.1016/j. 
+jfca.2019.05.006. 
+Geervani, P., Devi, U., 1989. Effect of maturation on nutrient composition of selected 
+vegetable legumes. J. Sci. Food Agric. 46, 243 – 248. https://doi.org/10.1002/ 
+jsfa.2740460212. 
+Gharibzahedi, S.M.T., Jafari, S.M., 2017. The importance of minerals in human nutrition: 
+bioavailability, food fortification, processing effects and nanoencapsulation. Trends 
+Food Sci. Technol. 62, 119 – 132. 
+https://doi.org/10.1016/j.tifs.2017.02.017. 
+Godfray, H.C.J., Beddington, J.R., Crute, I.R., Haddad, L., Lawrence, D., Muir, J.F., 
+Pretty, J., Robinson, S., Thomas, S.M., Toulmin, C., 2010. Food Security: the 
+Challenge of feeding 9 billion people. Science 327, 812. 
+https://doi.org/10.1126/ 
+science.1185383. 
+Gustafson, D., Gutman, A., Do, W., Drewnowski, A., Fanzo, J., Ingram, J., 2016. Seven 
+food system metrics of sustainable nutrition security. Sustainability 8, 196. https:// 
+doi.org/10.3390/su8030196. 
+Hair, J.F., Black, W.C., Babin, B.J., Anderson, R.E., 2014. Multivariate Data Analysis, 
+seventh ed. ed. Pearson Education Limited, Harlow, Essex .  
+Hambidge, K.M., 2010. Micronutrient bioavailability: dietary reference intakes and a 
+future perspective. Am. J. Clin. Nutr. 91, 1430S – 1432S. https://doi.org/10.3945/ 
+ajcn.2010.28674B. 
+Henckes, C., 1994. Dividing the harvest: an approach to integrated pest management in 
+family stores in Africa. In: Highley, E., Wright, E.J., Banks, H.J., Champ, B.R. (Eds.), 
+Proceedings of the 6th International Working Conference on Stored Product 
+Protection. CAB International, Canberra, Australia, pp. 925 – 928
+. 
+Heuz´e, V., Tran, G., Lebas, F., 2017. Maize grain. In: Feedipedia, a programme by INRA, 
+CIRAD, AFZ and FAO. Last updated on September 7, 2017, 14:29. https://www.feed 
+ipedia.org/node/556. 
+Heuz´e, V., Tran, G., Nozi`ere, P., Lebas, F., 2015. Common bean (Phaseolus vulgaris). In: 
+Feedipedia, a programme by INRA, CIRAD, AFZ and FAO. Last updated on October 
+20, 2015, 14:50. 
+https://www.feedipedia.org/node/266. 
+Jones, M.S., Alexander, C.E., Smith, B., 2018. Economic consequences of post-harvest 
+insect damage in Rwandan common bean markets. Crop Protect. 104, 92 – 100. 
+https://doi.org/10.1016/j.cropro.2017.10.015. 
+C. Mutungi et al.                                                                                                                                                                                                                                
+Journal of Stored Products Research 95 (2022) 101918
+21
+Jood, S., Kapoor, A.C., 1993. Protein and uric acid contents of cereal grains as affected by 
+insect infestation. Food Chem. 46, 143 – 146. https://doi.org/10.1016/0308-8146 
+(93)90027-D. 
+Jood, S., Kapoor, A.C., 1994. Vitamin contents of cereal grains as affected by storage and 
+insect infestation. Plant Foods Hum. Nutr. 46, 237 – 243. https://doi.org/10.1007/ 
+bf01088996. 
+Jood, S., Kapoor, A.C., Singh, R., 1992. Mineral contents of cereal grains as affected by 
+storage and insect infestation. J. Stored Prod. Res. 28, 147 – 151. https://doi.org/ 
+10.1016/0022-474X(92)90033-M. 
+Jood, S., Kapoor, A.C., Singh, R., 1993. Available carbohydrates of cereal grains as 
+affected by storage and insect infestation. Plant Foods Hum. Nutr. 43, 45 – 54. 
+https://doi.org/10.1007/bf01088095. 
+Jood, S., Kapoor, A.C., Singh, R., 1995. Amino acid composition and chemical evaluation 
+of protein quality of cereals as affected by insect infestation. Plant Foods Hum. Nutr. 
+48, 159– 167. 
+https://doi.org/10.1007/bf01088312. 
+Kadjo, D., Ricker-Gilbert, J., Alexander, C., 2016. Estimating price discounts for low- 
+quality maize in sub-Saharan Africa: evidence from Benin. World Dev. 77, 115– 128. 
+https://doi.org/10.1016/j.worlddev.2015.08.004. 
+Kaya, M., Baran, T., Asan-Ozusaglam, M., Cakmak, Y.S., Tozak, K.O., Mol, A., Mentes, A., 
+Sezen, G., 2015. Extraction and characterization of chitin and chitosan with 
+antimicrobial and antioxidant activities from cosmopolitan Orthoptera species 
+(Insecta). Biotechnol. Bioproc. Eng.: Biotechnol. Bioproc. Eng. 20, 168. 
+https://doi. 
+org/10.1007/s12257-014-0391-z. 
+Keskin, S., Ozkaya, H., 2015. Effect of storage and insect infestation on the technological 
+properties of wheat. CyTA - J. Food 13, 134 – 139. https://doi.org/10.1080/ 
+19476337.2014.919962. 
+Khamis, A.G., Mwanri, A.W., Kreppel, K., Kwesigabo, G., 2020. The burden and 
+correlates of childhood undernutrition in Tanzania according to composite index of 
+anthropometric failure. BMC Nutrition 6, 39. 
+https://doi.org/10.1186/s40795-020- 
+00366-3. 
+Kissoly, L.D., Karki, S.K., Grote, U., 2020. Diversity in farm production and household 
+diets: comparing evidence from smallholders in Kenya and Tanzania. Front. Sustain. 
+Food Sys. 4 
+https://doi.org/10.3389/fsufs.2020.00077. 
+Langyintuo, A.S., Ntoukam, G., Murdock, L., Lowenberg-DeBoer, J., Miller, D.J., 2004. 
+Consumer preferences for cowpea in Cameroon and Ghana. Agric. Econ. 30, 
+203– 213. 
+https://doi.org/10.1016/j.agecon.2002.12.001. 
+Laudien, R., Schauberger, B., Makowski, D., Gornott, C., 2020. Robustly forecasting 
+maize yields in Tanzania based on climatic predictors. Sci. Rep. 10, 19650. https:// 
+doi.org/10.1038/s41598-020-76315-8. 
+Lisiewska, Z., Korus, A., Kmiecik, W., 2003. Changes in chemical composition during 
+development of grass pea ( Lathyrus sativus L.) seeds. FoodNahrung 47, 391 – 396. 
+https://doi.org/10.1002/food.200390088. 
+Mishili, F.J., Temu, A., Fulton, J., Lowenberg-DeBoer, J., 2011. Consumer preferences as 
+drivers of the common bean trade in Tanzania: a marketing perspective. J. Int. Food 
+& Agribus. Mark. 23, 110 – 127. 
+https://doi.org/10.1080/08974438.2011.558761. 
+Moraghan, J.T., Grafton, K., 2001. Genetic diversity and mineral composition of common 
+bean seed. J. Sci. Food Agric. 81, 404 – 408. https://doi.org/10.1002/1097-0010 
+(200103)81:4<404::AID-JSFA822>3.0.CO;2-H. 
+Musumba, M., Grabowski, P., Palm, C., Snapp, S., 2017. Sustainable Intensification 
+Assessment Methods Manual (Working Draft). Kansas State University, Kansas, USA, 
+p. 180
+. 
+Mutungi, C., Chamwilambo, M., Masanja, S., Massam, C., Wayda, P., Tungu, J., 
+Gaspar, A., Bekunda, M., Abass, A., 2020. Quality and storability of common beans 
+in small-holders farm stores in Northern Tanzania: a multivariate analysis of agro- 
+location, variety, and storage method effects. J. Stored Prod. Res. 89, 101723. 
+https://doi.org/10.1016/j.jspr.2020.101723. 
+Mutungi, C., Muthoni, F., Bekunda, M., Gaspar, A., Kabula, E., Abass, A., 2019. Physical 
+quality of maize grain harvested and stored by smallholder farmers in the Northern 
+Highlands of Tanzania: effects of harvesting and pre-storage handling practices in 
+two marginally contrasting agro-locations. J. Stored Prod. Res. 84, 101517. 
+https:// 
+doi.org/10.1016/j.jspr.2019.101517. 
+Nta, A.I., Mofunanya, A.J., Ogar, V.B., Omara-Achong, T., Azuike, P.A., 2019. 
+Comparative effect of Acanthoscelides obtectus (Say) infestation on nutrients of 
+Phaseolus vulgaris (linn.) and Phaseolus acutifolius (Gray). Pakistan J. Biol. Sci.: PJBS 
+22 10, 494– 501. https://doi.org/10.3923/pjbs.2019.494.501. 
+Oghbaei, M., Prakash, J., 2016. Effect of primary processing of cereals and legumes on its 
+nutritional quality: a comprehensive review. Cogent Food Agric. 2, 1136015. 
+https://doi.org/10.1080/23311932.2015.1136015. 
+Ojimelukwe, P.C., Onweluzo, J.C., Okechukwu, E., 1999. Effects of infestation on the 
+nutrient content and physicochemical properties of two cowpea ( Vigna unguiculata) 
+varieties. Plant Foods Hum. Nutr. 53, 321 – 332. https://doi.org/10.1023/a: 
+1008039411269. 
+Onayemi, O., Osibogun, O.A., Obembe, O., 1986. Effect of different storage and cooking 
+methods on some biochemical, nutritional and sensory characteristics of cowpea 
+(Vigna unguiculata L. Walp). J. Food Sci. 51, 153 – 156. 
+https://doi.org/10.1111/ 
+j.1365-2621.1986.tb10858.x. 
+Pant, K.C., Susheela, T.P., 1977. Effect of storage and insect infestation on the chemical 
+composition and nutritive value of grain sorghums. J. Sci. Food Agric. 28, 963– 970. 
+https://doi.org/10.1002/jsfa.2740281103. 
+Reed, C., Doyungan, S., Ioerger, B., Getchell, A., 2007. Response of storage molds to 
+different initial moisture contents of maize (corn) stored at 25 ◦C, and effect on 
+respiration rate and nutrient composition. J. Stored Prod. Res. 43, 443– 458. https:// 
+doi.org/10.1016/j.jspr.2006.12.006. 
+Rehman, Z.-U., Habib, F., Zafar, S.I., 2002. Nutritional changes in maize ( Zea mays) 
+during storage at three temperatures. Food Chem. 77, 197 – 201. https://doi.org/ 
+10.1016/S0308-8146(01)00337-5. 
+Ribeiro, N.D., Maziero, S.M., Prigol, M., Nogueira, C.W., Rosa, D.P., Possobom, M.T.D.F., 
+2012. Mineral concentrations in the embryo and seed coat of common bean 
+cultivars. J. Food Compos. Anal. 26, 89 – 95. 
+https://doi.org/10.1016/j. 
+jfca.2012.03.003. 
+Ritchie, H., Roser, M., 2017. Micronutrient Deficiency. Our World in Data. https://ourwo 
+rldindata.org/micronutrient-deficiency. 
+Rumbos, C.I., Karapanagiotidis, I.T., Mente, E., Psofakis, P., Athanassiou, C.G., 2020. 
+Evaluation of various commodities for the development of the yellow mealworm, 
+Tenebrio molitor. Sci. Rep. 10, 11224. 
+https://doi.org/10.1038/s41598-020-67363-1. 
+Rumpold, B.A., Schlüter, O.K., 2013. Nutritional composition and safety aspects of edible 
+insects. Mol. Nutr. Food Res. 57, 802 – 823. https://doi.org/10.1002/ 
+mnfr.201200735. 
+Rybicka, I., Gliszczy ´nska-´Swigło, A., 2017. Minerals in grain gluten-free products. The 
+content of calcium, potassium, magnesium, sodium, copper, iron, manganese, and 
+zinc. J. Food Compos. Anal. 59, 61– 67. 
+https://doi.org/10.1016/j.jfca.2017.02.006. 
+Smith, A., Snapp, S., Chikowo, R., Thorne, P., Bekunda, M., Glover, J., 2017. Measuring 
+sustainable intensification in smallholder agroecosystems: a review. Global Food 
+Secur. 12, 127– 138. 
+https://doi.org/10.1016/j.gfs.2016.11.002. 
+Spiker, M.L., Hiza, H.A.B., Siddiqi, S.M., Neff, R.A., 2017. Wasted food, wasted nutrients: 
+nutrient loss from wasted food in the United States and comparison to gaps in dietary 
+intake. J. Acad. Nutr. Diet. 117, 1031 – 1040. 
+https://doi.org/10.1016/j. 
+jand.2017.03.015 e1022.  
+Stahley, K., Slakie, E., Derksen-Schrock, K., Gugerty, M.K., Anderson, C.L., 2019. 
+Tanzania national panel survey LSMS-ISA: legumes [version 1; not peer reviewed] 
+(document). Gates Open Res 3, 205. 
+https://doi.org/10.21955/ 
+gatesopenres.1115020.1. 
+Stathers, T.E., Arnold, S.E.J., Rumney, C.J., Hopson, C., 2020. Measuring the nutritional 
+cost of insect infestation of stored maize and cowpea. Food Secur. 12, 285 – 308. 
+https://doi.org/10.1007/s12571-019-00997-w. 
+Stathers, T.E., Riwa, W., Mvumi, B.M., Mosha, R., Kitandu, L., Mngara, K., Kaoneka, B., 
+Morris, M., 2008. Do diatomaceous earths have potential as grain protectants for 
+small-holder farmers in sub-Saharan Africa? The case of Tanzania. Crop Protect. 27, 
+44– 70. 
+https://doi.org/10.1016/j.cropro.2007.04.020. 
+Taleon, V., Mugode, L., Cabrera-Soto, L., Palacios-Rojas, N., 2017. Carotenoid retention 
+in biofortified maize using different post-harvest storage and packaging methods. 
+Food Chem. 232, 60 – 66. 
+https://doi.org/10.1016/j.foodchem.2017.03.158. 
+Tongjura, J.D.C., Amuga, G.A., Mafuyai, H., 2010. Laboratory assessment of the 
+susceptibility of some varieties of Zea mays infested with Sitophilus zeamais , Motsch. 
+(Coleoptera, Curculionidae) in Jos, Plateau State, Nigeria. Sci. World J. 5, 55 – 57. 
+https://doi.org/10.4314/swj.v5i2.61514. 
+USDA, 2019. U.S. Department of Agriculture, Agricultural Research Service. FoodData 
+Central. https://fdc.nal.usda.gov/. 
+Vowotor, K.A., Meikle, W.G., Ayertey, J.N., Borgemeister, C., Markham, R.H., 1998. 
+Intraspecific competition in larvae of the larger grain borer, Prostephanus truncatus 
+(Horn) within maize grains. Insect Sci. Appl. 18, 171– 175. https://doi.org/10.1017/ 
+s1742758400023365. 
+Williams, R.J., McDonald, D., 1983. Grain molds in the tropics: problems and 
+importance. Annu. Rev. Phytopathol. 21, 153 – 178. https://doi.org/10.1146/ 
+annurev.py.21.090183.001101. 
+C. Mutungi et al.                                                                                                                                                                                                                                

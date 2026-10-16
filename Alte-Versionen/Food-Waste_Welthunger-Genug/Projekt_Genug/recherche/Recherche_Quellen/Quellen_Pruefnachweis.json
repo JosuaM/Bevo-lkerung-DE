@@ -1,0 +1,62 @@
+{
+  "checked_on": "2026-10-05",
+  "evidence_rows": 22,
+  "files": [
+    {
+      "file": "FAO_FBS_Guidelines.pdf",
+      "bytes": 2582012,
+      "sha256": "be97d991c481554e8297500c53859f05e59c246a14425c47dabd36678f19058d",
+      "valid_signature": true
+    },
+    {
+      "file": "Friedman_Heiman_2024.pdf",
+      "bytes": 2091419,
+      "sha256": "9ed22edff27bb14c09653615909d5f3aa29d96d5145323da150129924e084875",
+      "valid_signature": true
+    },
+    {
+      "file": "Gatto_Chepeliev_Datensatz_Metadaten.json",
+      "bytes": 5143,
+      "sha256": "6b3633fa5d1b9cb01b64194852ef8c5b4e12ab3b103b790d14d7789ddb94a7c0",
+      "valid_signature": true
+    },
+    {
+      "file": "Gatto_Chepeliev_Supplementary_info_database.xlsx",
+      "bytes": 20720197,
+      "sha256": "4039bd96642f281cd41ca7802d33b1431ff844b5f17e23d737bd680fdb33b929",
+      "valid_signature": true
+    },
+    {
+      "file": "REFOWAS_2021.pdf",
+      "bytes": 502891,
+      "sha256": "9e9e48da357d1d507e19538bddf88ae2fd0bd1fc1eb634d2564fd6c0263eeac5",
+      "valid_signature": true
+    },
+    {
+      "file": "UNEP_FWI_2024.pdf",
+      "bytes": 4345007,
+      "sha256": "eefb90a966be23aa94c164b70b722d61a7bd6663d39837f6a4d44fb4f52909b8",
+      "valid_signature": true
+    },
+    {
+      "file": "WRAP_Households_2022_2025.pdf",
+      "bytes": 2542042,
+      "sha256": "5a075a8aeac1e5b566380f7060334e319b0a11451b70abdf941c1da3ac2f9344",
+      "valid_signature": true
+    },
+    {
+      "file": "WRAP_Methods_2022_2025.pdf",
+      "bytes": 1604656,
+      "sha256": "4d654c7d190a0f21b5421fe0f8dc0f71537c0ca6fc87199074d735a02862d2a8",
+      "valid_signature": true
+    }
+  ],
+  "gatto_years_checked": [
+    2004,
+    2007,
+    2011,
+    2014
+  ],
+  "gatto_md5_matches": true,
+  "unep_pdf_download": "https://capacity4dev.europa.eu/system/files/documents/2024-03/food_waste_index_report_2024%20%281%29_0.pdf"
+}

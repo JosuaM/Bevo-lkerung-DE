@@ -1,0 +1,529 @@
+population_group_id,population_group_name,measure_id,measure_name,location_id,location_name,sex_id,sex_name,age_id,age_name,cause_id,cause_name,metric_id,metric_name,year,val,upper,lower
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1980,1991792.4076259208,2152329.549942433,1834429.5675085795
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1980,1408307.5434060113,1552234.6627540053,1258504.5115328445
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1980,0.271157148889469,0.2934654449336982,0.2498694605591707
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1980,0.21514819690686182,0.23675827454966403,0.19355474107635365
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1980,2564.473748084874,4136.42234805739,1634.5080810310767
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1980,0.00379240741998703,0.006148807229656272,0.0024147225353282438
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1980,3102.9822286338185,3448.914288396222,2946.244142829291
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1980,2331.381492743622,2595.8336950323655,2143.4562126060064
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1980,0.4217138076502699,0.4689859234754625,0.40263862841683834
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1980,0.4326982914780384,0.47937733442688885,0.39919064377059843
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1980,1.1125610504218333,1.2275253094456993,1.0322815918872714
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1980,0.00010215767922233853,0.00011196033726564463,9.501093049449683e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1982,1966841.491192468,2117006.436979449,1821958.6527351243
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1982,1386971.9870113875,1531605.2982178992,1252807.0102644728
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1982,0.27682825138763906,0.29784874973930997,0.25809551096343125
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1982,0.22051386418309457,0.24372798243616717,0.199219697414752
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1982,2469.064051124696,4012.319482745516,1583.1417893698754
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1982,0.003678627012174411,0.005970252539068593,0.0023685575612510607
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1982,2556.5286828708327,2850.8918888279327,2439.814441924318
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1982,1952.2501966466048,2210.240726275063,1787.5463239126334
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1982,0.3918680447987299,0.4360942366985567,0.3747225280095965
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1982,0.4059889821858797,0.45675110528730695,0.3724825989088344
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1982,0.9019572766480767,0.9877958066632845,0.827230917428817
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1982,8.793586270907172e-05,9.632030731772154e-05,8.053966651566537e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1995,956.9321976523594,1046.8572625740323,899.9318528654939
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1995,730.9105437949862,809.9635460872139,645.0908763413865
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1995,0.32942771894284584,0.36148179508976397,0.31100598079927544
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1995,0.33405721883808853,0.36898482256755366,0.2963837885796094
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1995,0.45743535220670445,0.4905616119966196,0.42000260150789054
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1995,5.176083015576257e-05,5.556161173865053e-05,4.750692228022081e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1983,1969124.8092857671,2114659.7581427633,1827806.2857481707
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1983,1387376.8880746183,1515886.0309936902,1269333.3701140217
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1983,0.27627092939168857,0.2972037831116187,0.25640299762749774
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1983,0.2205429463625822,0.24135566407333053,0.20045932434837035
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1983,2430.4595831917177,4066.680778185862,1526.714525050292
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1983,0.003620731657038036,0.006076229037057813,0.0022981905132287614
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1990,1830472.4789654997,1997803.928251764,1665388.507584685
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1990,1314864.984853103,1413200.420001733,1206679.0485744686
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1990,0.29350837321150586,0.3180718046797381,0.26704948239004195
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1990,0.24412848620695604,0.2637113305059423,0.22393342417017206
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1990,2143.370809846504,3700.52732248848,1370.9646621311863
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1990,0.0031440932417823,0.005233063345180161,0.0020148212684293967
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1981,1973844.294579441,2119541.1015605736,1822203.8936335396
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1981,1393290.1316155663,1536890.102554339,1244548.5952816606
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1981,0.27387872363923854,0.29504058318230064,0.2541532946018915
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1981,0.21776463937998028,0.23972248895452725,0.19516356006720773
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1981,2514.7599538130667,3990.409144543563,1631.152208259218
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1981,0.003730781415071187,0.005985129771011599,0.0024120825112326186
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1983,2238.8842183630186,2496.446554421502,2128.10638856154
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1983,1734.9363323059251,1962.236565072574,1590.7346793315428
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1983,0.3757303810132749,0.4205577902742065,0.3592470507628636
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1983,0.39250296146705604,0.4414972698263003,0.3611059650922374
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1983,0.7441762650885589,0.816442997559942,0.6775854909277065
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1983,7.748822781444465e-05,8.50783605590705e-05,7.103609415626501e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1981,2852.506508806644,3197.82200362789,2717.5927092687625
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1981,2165.9446070299173,2432.6276229577766,1985.5639224774116
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1981,0.4076747882712657,0.4529457486813862,0.3901986586728029
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1981,0.4209031894454079,0.4719609784929835,0.3878196170726629
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1981,1.0243982299182859,1.1185944558962342,0.9408786734159821
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1981,9.641127264385741e-05,0.00010514540266518846,8.862041731437583e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1994,1728799.5388011495,1878987.5160832268,1594244.0255577017
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1994,1244951.4680852285,1347987.6064039825,1154318.2206422507
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1994,0.30020792475468455,0.32428234293816927,0.27727887661406686
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1994,0.2533646596107048,0.27339537435414857,0.23224729086519091
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1994,2066.147988275759,3455.4060099476405,1264.01061278944
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1994,0.003025699546561544,0.005078552687088811,0.0018622867338882968
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1986,1929792.3403422828,2072782.7380782382,1784361.7571937
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1986,1369737.189724344,1487904.2098339845,1264275.9915748967
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1986,0.2824510641397519,0.30450987864716794,0.25966568844554083
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1986,0.22694707062514446,0.2468721194081697,0.20923704906732804
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1986,2288.8742692271476,4207.980205194968,1410.6421122420293
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1986,0.0034651946800256894,0.006433391150020435,0.0021697470691387334
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1992,1775533.5390397597,1927116.942133265,1616281.8267382483
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1992,1281113.0656680665,1387308.243393352,1177928.1035388068
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1992,0.29871298772658783,0.32328135127069685,0.2731631753079372
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1992,0.25034698593796506,0.2701200724352297,0.22802146487415015
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1992,2089.3325444394113,3392.2990215925633,1328.3056756026754
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1992,0.0030668252420804703,0.005019965253813414,0.0019587412669060658
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1984,1967790.1012460187,2126414.223914875,1824006.827665249
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1984,1386934.9986453173,1506630.5375453003,1279214.3493212601
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1984,0.2761625799749239,0.29710523256665117,0.2563745033271159
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1984,0.22077699356739347,0.2395547467603032,0.2017879951691909
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1984,2384.854453939725,4028.4651189622405,1473.77636509063
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1984,0.0035688098161366665,0.005836252968668134,0.0022349794391409643
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1993,1753651.8632354292,1894394.3349289123,1610452.7411209964
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1993,1263821.1399611633,1364724.685315638,1169549.638256511
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1993,0.3005715616747577,0.32600251041526235,0.27642731873385334
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1993,0.25322878216646183,0.2733265469613757,0.23248709193190614
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1993,2064.788515080405,3397.4667280317503,1281.4350920787983
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1993,0.0030255000131830675,0.004939193939941105,0.0018969840721213276
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1991,1803522.0622298592,1954288.9693829585,1634576.2275800023
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1991,1298695.6818066784,1403286.2281159728,1192813.882022798
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1991,0.2943516897689734,0.3191518044322121,0.26776597677214414
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1991,0.2457615991559029,0.26550771839571424,0.2255944002916668
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1991,2118.9292111720083,3419.40190440051,1352.8781084161028
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1991,0.0031024491503643067,0.005067717773487565,0.001972047978108073
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1995,1698766.9206452628,1837767.1253493617,1574818.5995054322
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1995,1225966.564146259,1317525.3254050564,1136948.2311262276
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1995,0.30107319773291524,0.3247962989511235,0.2796479489129886
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1995,0.25270293367925917,0.27187577103889865,0.2343783146324007
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1995,2036.1970440543203,3405.5076966311303,1268.7289079497743
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1995,0.0030194450525916476,0.005088226788015178,0.0018903915054528113
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1999,1553967.0814119815,1659416.0290248028,1447646.7751953623
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1999,1120906.0151090166,1196281.1549847093,1051853.5409201884
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1999,0.30967195881601806,0.33133662699598926,0.2887521098658121
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1999,0.2589235964922732,0.2763704734491092,0.24228260714667843
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1999,1852.028701566573,2934.225525945063,1123.5183165140354
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1999,0.002559330832896954,0.0040526952923755554,0.0015738820417175996
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2000,1517840.5932298426,1625567.1184930184,1415067.8620715528
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2000,1092588.9802140228,1163486.7402711185,1019240.8346974032
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2000,0.3130828734178636,0.3363125337318859,0.2929209515996947
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2000,0.261942469059185,0.2795600573797362,0.24493944330404455
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2000,1805.3292140246554,2830.4278395241236,1092.7443495482028
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2000,0.002428822138048688,0.003817236784855547,0.0015006946607694835
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1998,1590587.9040041869,1698863.2826347768,1481104.1095532584
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1998,1149019.5482598504,1225970.8386842096,1067258.5783839668
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1998,0.3064416465038582,0.3276760022937567,0.2858018614493987
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1998,0.25569292825945306,0.2737732062227603,0.23775597769238604
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1998,1915.91534538124,3013.6557753867414,1156.719075053387
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1998,0.002738401528651336,0.004330638593584345,0.0016657576121252373
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1997,1625292.5158512658,1736723.402197461,1518483.9662543233
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1997,1175172.629700857,1259942.8721835448,1090290.1429507306
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1997,0.3047853609571129,0.3265565564840303,0.2845519509928727
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1997,0.2540449903828821,0.27273251917258934,0.2359424925070318
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1997,1959.3353758034386,3158.130340965157,1191.888200569094
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1997,0.0028567729127877525,0.00458284542830146,0.0017263246968350747
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1996,1663611.292760984,1785340.472109886,1550107.4980910616
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1996,1202796.927185676,1290834.4601619616,1119083.4383852265
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1996,0.3023500261124536,0.3239340642239115,0.28194125835463035
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1996,0.2523509825022725,0.270686834621796,0.23416469431690023
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1996,1999.493897910644,3292.4554586990394,1243.8006281740334
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1996,0.002960838294398833,0.004843946142699178,0.0018419563254082356
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1992,1172.7030865294037,1300.7805779713765,1097.220800521073
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1992,885.699249446596,992.2624167887346,803.2531848911336
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1992,0.3211064978200263,0.35886125585645645,0.30207209618135955
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1992,0.3242984062589092,0.36353387754978256,0.29445108216841676
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1992,0.5649118300541494,0.6070760155881573,0.5188515816344739
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1992,5.470466272200664e-05,5.8721247318297476e-05,5.0245084747349665e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1991,1315.8108256029027,1457.3360691381974,1238.6044127013324
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1991,977.0657332405854,1092.2041173493717,889.980844235167
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1991,0.3260281251811316,0.3631800214711601,0.30755033522902586
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1991,0.3284136907918348,0.3663454327154762,0.2987877729389528
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1991,0.5940249649228979,0.6389839359811156,0.5475966611716677
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1991,5.53883326043656e-05,5.9432463959947375e-05,5.09766960133436e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2002,1452814.243430711,1556024.4319855128,1354571.589378642
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2002,1040489.5732359164,1102465.9940810567,963633.2080342736
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2002,0.31885296742058306,0.3421516164257973,0.29875489394830623
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2002,0.2663562283140799,0.28363922496288296,0.24687824320850252
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2002,1785.574125690744,2937.106795670646,1133.0259677414967
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2002,0.0022612929190763196,0.003759185925321017,0.0014570451882812568
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2004,1396224.5792853134,1487166.105584775,1305788.82919002
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2004,991581.9772639301,1058404.1645803107,923406.6563034918
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2004,0.3229158989130767,0.3446188166860504,0.30368720615386274
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2004,0.26932580563561326,0.28590582804743947,0.25073368489941217
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2004,1836.1763418013752,3117.3163847370943,1220.5273491279097
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2004,0.0022321242932118067,0.003757147579181675,0.0014685957151280044
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2001,1481890.0740187918,1587650.3187558718,1378954.9644342023
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2001,1064504.3518683536,1131900.1330384503,986513.8359189082
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2001,0.3157232120850121,0.3392895233101357,0.2949913513832642
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2001,0.2640652504792722,0.28120079661613095,0.24453087870969994
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2001,1786.5675819056203,2863.0531332483615,1127.7080536681128
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2001,0.0023170486406374376,0.0036954680044589535,0.0014692554402186305
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1987,1902021.8711663345,2052540.1528888026,1742718.0997609147
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1987,1355859.5627543272,1480385.3030049,1248344.5536923937
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1987,0.2836693612692812,0.30492135261172865,0.2607615487729877
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1987,0.22981979879807854,0.2511985311042178,0.2112677104655055
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1987,2252.042080247796,4173.785721402134,1431.6656315455682
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1987,0.003384060303699838,0.006372148434721702,0.0021484445907110684
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1994,1000.8250563473925,1093.1932451855841,948.5972520113256
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1994,753.4410428873093,840.2733870084141,673.4906101911301
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1994,0.324618437736701,0.3595146220200323,0.30585478297708574
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1994,0.3241742784660467,0.36110624023781823,0.29221279154671187
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1994,0.4994710197412688,0.536122008791407,0.458943483650982
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1994,5.103686137301396e-05,5.468190772624034e-05,4.674136704822276e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2017,777.5724168892053,828.142039642227,680.918587058169
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2017,582.9787019134607,642.1769151286792,473.2800229725888
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2017,0.4772327840264706,0.5040817767792419,0.42933725009402735
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2017,0.4400305406459875,0.4793217644494916,0.3608422049252054
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2017,0.40254374095260487,0.4349242459219241,0.3726485256712305
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2017,4.904869605348834e-05,5.2917863119733246e-05,4.541498963157815e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2018,1086147.1509130574,1172461.5311475794,1004742.9392016664
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2018,780266.027023521,839647.0639112924,723882.6361160391
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2018,0.37651337832919146,0.40530109856149055,0.3490569863546813
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2018,0.3300814806021636,0.354302768358933,0.30439902950457676
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2018,1634.4157184024023,2612.9425530172853,917.9474475782189
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2018,0.001782556519447953,0.002860008641239015,0.0009859141143755876
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2018,765.4799852797478,811.2572368196369,676.051069871465
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2018,575.1143279158517,632.6147887689931,464.9053359865346
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2018,0.4766565959167199,0.5024475533959768,0.42605535613197615
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2018,0.4350568630595013,0.474426552746685,0.35386341484373474
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2018,0.37238101692130393,0.40344629300762863,0.3421313722353738
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2018,4.6213752383802185e-05,4.992309030815983e-05,4.27570067000735e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2005,1371413.008419762,1458150.9627181978,1283366.8369224546
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2005,969117.5072256502,1030253.0646728256,900372.3478791995
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2005,0.3290562281102157,0.35135136483819107,0.3082760705633687
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2005,0.27404365190256036,0.29245147627487916,0.2549626410420823
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2005,1822.4087848011575,3012.111164413577,1207.0275632078944
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2005,0.002201940486046134,0.0036287689761810237,0.00142875798832414
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2003,1425622.1490609702,1527331.4152844364,1337925.8240080143
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2003,1017118.1717984691,1087342.4275866032,942882.6955058159
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2003,0.32203590423700956,0.34351970688689926,0.30172215906588656
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2003,0.26883663932619123,0.28733731484777647,0.24958276056547282
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2003,1796.8776909220828,3029.1422382289174,1173.5301933156934
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2003,0.0022234799893076805,0.0037561385620343626,0.0014706228140114056
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2007,1348726.213791905,1434299.8555187173,1267584.6121354997
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2007,941264.5268765952,1004455.0265303963,874488.7923846184
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2007,0.3438555900462567,0.3640924557108823,0.3228954670709502
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2007,0.28346891349347786,0.3007937812067326,0.2625438612950678
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2007,1782.1844617198417,2780.1418131661535,1136.9836648166327
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2007,0.0021682258344590637,0.0033567766047245522,0.001388584042835474
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1985,1954558.7971474095,2115645.289844325,1813036.8497394552
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1985,1381365.9297303814,1503538.0272471036,1272305.6200948383
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1985,0.2802159165516447,0.3025122895050211,0.26069514992683906
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1985,0.22431511714777155,0.24549545025622532,0.20725251534508818
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1985,2330.403889183311,4166.990983108978,1445.647868742228
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1985,0.003515582543108161,0.006248576320473984,0.00220499405181916
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2019,730.080274276642,773.4338116357305,643.9825782948775
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2019,553.6365196229103,610.4609592860747,442.7887599620848
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2019,0.47156985882240865,0.4951592154887105,0.41635547235572595
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2019,0.42741298841670344,0.46799824724278677,0.34389524748273886
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2019,0.32880450352288004,0.35714941566283215,0.30321355791524
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2019,4.301600345478713e-05,4.682748882766687e-05,3.973980716033938e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2020,704.312191235923,739.7327225934721,622.2967937766666
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2020,548.0782951755934,602.0916331650701,437.5876383404447
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2020,0.4654506224744546,0.490405132812226,0.4060832334175576
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2020,0.42552336736682594,0.465975668874373,0.3403931093245478
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2020,0.2929556930862331,0.31921871717706235,0.26842907221094137
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2020,3.9961214457872345e-05,4.350294400561245e-05,3.6761691739944875e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2021,987710.222067828,1079999.2076552797,909025.9791646652
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2021,718142.2813002871,780211.1334309153,656987.8358736198
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2021,0.3764334696263767,0.4099809117946935,0.3480873132261281
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2021,0.3360785139603545,0.3637827811039985,0.31003681759904794
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2021,1491.3881113831412,2344.639827683621,900.425316166971
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2021,0.0012936799742149776,0.0020462528744323175,0.0007823778163684837
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2023,949084.0795487742,1054919.1294334747,858316.6112381004
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2023,678877.6533966099,748312.6938477951,618215.8399966144
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2023,0.3675437404407687,0.4065960965312235,0.33619543922398404
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2023,0.32560903471591707,0.3564242038467211,0.29795087359897543
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2023,1408.7689968736565,2338.688689249151,819.6355733339572
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2023,0.0014477791679763637,0.0023183654961549615,0.0008518764121063106
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1985,1845.407451329822,2059.405410823016,1743.0711339613956
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1985,1421.2368704372846,1606.6048604441617,1312.9089159880239
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1985,0.3535573942886284,0.3932819908977049,0.3355357898193114
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1985,0.36513333389833996,0.4122169896128833,0.33743976327932057
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1985,0.6216625765211197,0.6728314518825326,0.5776641106871937
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1985,6.732716057875463e-05,7.285888204697909e-05,6.261908670225031e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2002,879.6718562506799,925.9236804511218,819.8406466068349
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2002,647.9285619977093,704.5523365794107,546.7373603925015
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2002,0.414579223478933,0.43376169158356503,0.38414805371954713
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2002,0.3884225945450831,0.41712708757282835,0.3310778369123519
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2002,0.37164146265266296,0.4054916274357259,0.34202421101511926
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2002,4.587242855318001e-05,5.013033328529455e-05,4.221221547461538e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1998,932.2649354554221,990.9903427485209,878.296786097867
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1998,714.0156331064061,777.5526384550989,618.9821678310126
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1998,0.3614352431977606,0.3812542178739154,0.34217241807004384
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1998,0.3651788677023046,0.3945720419260098,0.31687146582192904
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1998,0.45874385183430466,0.5002415214547953,0.42316802296168243
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1998,6.405846506739637e-05,6.988013681990499e-05,5.9142547328594045e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1984,1997.4829127062362,2240.364195173527,1899.3106956039283
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1984,1550.6138301532694,1752.146024803599,1431.1856415195173
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1984,0.3639273611601174,0.40554407609356297,0.34552380677610045
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1984,0.3781881957802659,0.42505181954572757,0.35028542157998477
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1984,0.6815451328441329,0.749253545658004,0.6250388591417857
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1984,7.321549055580237e-05,8.037916646985869e-05,6.74682615384504e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1997,932.3189759572957,1001.6890160061965,874.0703877269776
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1997,716.6705057540962,786.2361043049625,625.6747999788375
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1997,0.34399633809695235,0.3692482074078594,0.3251704864129307
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1997,0.3495774075583432,0.3819555912603886,0.303666381564661
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1997,0.44002866047037675,0.4793063688012148,0.404930746855129
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1997,5.8090210300455043e-05,6.30968439187078e-05,5.366151610097127e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2006,1357755.8207188149,1447321.0620552967,1270333.858155398
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2006,952814.5643954211,1015461.6336554183,882420.5416137242
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2006,0.33642963218180627,0.3578623430907492,0.31493850511213034
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2006,0.27880943777676237,0.2972522218269443,0.25811683176892386
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2006,1798.3892396193703,2849.7076473979696,1165.257890664852
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2006,0.0021846496143217145,0.003417576648801087,0.0014102774887797575
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2009,1320808.6664941483,1392309.8809167373,1236450.34407537
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2009,917537.3787685313,976856.3406410442,855524.5863782285
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2009,0.35639258809034685,0.37627022482954287,0.3342216884760789
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2009,0.29287387917036606,0.3125515733054474,0.2729597197767966
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2009,1766.3328914631554,2712.8248357508332,1169.1978742062727
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2009,0.0021617575207843348,0.0033249588556171117,0.0014297424870491737
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2008,1336954.0336532304,1418257.631943729,1256746.8984819748
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2008,930486.1379644872,991720.835531739,866822.4027872264
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2008,0.348784926919956,0.3683448082086609,0.32826996940654385
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2008,0.2866195458715063,0.30423712390528085,0.26592541201283587
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2008,1775.2846830086592,2754.4693468248684,1147.948605380328
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2008,0.0021548134111017987,0.0032830406372546723,0.0014061284359431054
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1986,1776.783588129953,1974.2612001606537,1678.0924402618095
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1986,1333.917183923426,1511.1604019349863,1228.5013773346182
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1986,0.3469621181322207,0.3835507892612714,0.3296429634573473
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1986,0.3542021856824751,0.3981784520438493,0.3276016222601808
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1986,0.640572211037871,0.6919301517313639,0.5958503267751553
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1986,6.900516687199327e-05,7.4208000779032e-05,6.399619798357051e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2023,666.339148970759,741.1227714814507,558.2750769743095
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2023,534.562332347811,613.0350855131728,417.19728268207143
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2023,0.44108699886583375,0.4767078460329363,0.38432436662803243
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2023,0.4200313491111059,0.46932572262988775,0.3251050178503895
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2023,0.15251744626450592,0.178339173248383,0.131134578891073
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2023,2.3005494240309138e-05,2.6367184496802293e-05,2.0537594921255878e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2000,902.3684425126106,955.8865990516991,850.0230333507162
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2000,683.1011755972046,731.4467773490073,587.8379547077955
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2000,0.385272347396546,0.40468255605879183,0.3605820110658226
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2000,0.38179679084225615,0.4067736608456703,0.32762919169045696
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2000,0.4205059126079858,0.46605935314304453,0.3883842916083589
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2000,5.6412822141862836e-05,6.240612986744742e-05,5.217864865276968e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2008,735.7764522728696,775.8509102528302,670.820201775673
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2008,541.4962827910326,593.8505892368031,446.73686056653173
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2008,0.4354205267026891,0.45622465136518553,0.4003257362779447
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2008,0.416656504731494,0.4508667418457143,0.3470470271318397
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2008,0.459110501483015,0.49343481928894645,0.42375442047910805
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2008,5.692628624628882e-05,6.093331878595918e-05,5.251006691267804e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2012,1248320.8617106392,1329203.3571785192,1164681.0677255476
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2012,866943.6258650295,920994.7600764079,809818.4221128367
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2012,0.36758214368032927,0.39169700727319273,0.34098875580004234
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2012,0.30507955162908024,0.3236567613222241,0.28551439180561744
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2012,1761.5737246238,3000.988109748471,1137.024844372547
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2012,0.002119989140095267,0.0036729244030726587,0.001386902186317015
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2011,1267945.1141478056,1345476.9086536174,1178097.5169161991
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2011,880095.1322789975,936483.660479005,822767.5743599626
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2011,0.36059815795715233,0.38339278235450025,0.3345842400959986
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2011,0.2973332698828836,0.3158228836181726,0.27829384048874967
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2011,1747.990843871153,2846.481919911292,1160.9117966224585
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2011,0.0021225689301603225,0.003501133939788785,0.0014322891513890393
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2013,1232544.8355238035,1311562.3713407083,1146247.2062657813
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2013,855604.1382939583,909075.5319124794,800283.6735065164
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2013,0.3724052749830775,0.3970634457346654,0.34513050073481444
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2013,0.3109047693177829,0.3297561726201429,0.29167052293627865
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2013,1797.1303268306888,3180.2212043984905,1197.3216165893982
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2013,0.0021075059031467913,0.0037390960392782945,0.0014025080685243733
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2001,892.93117742546,935.6694551369696,832.95030150013
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2001,655.5993915228614,705.3252676077806,553.3765140100481
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2001,0.4022896821682809,0.42023404253158525,0.37580021004316855
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2001,0.38191498996092005,0.4076635484660537,0.3246696475815857
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2001,0.3244925762645408,0.357197325747838,0.30021629180828646
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2001,4.152525813175352e-05,4.5603558312126894e-05,3.8504558964905784e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2004,829.2810247474599,872.5866280380197,766.3696008908333
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2004,628.990232598411,679.4420673882212,530.8842757875433
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2004,0.42454956793995474,0.44421685092500207,0.39474491131815537
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2004,0.40941910382709296,0.44082520210264803,0.3463806443348539
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2004,0.3967362746287671,0.4249476190060452,0.3676959644402848
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2004,4.920985098732535e-05,5.2740902204892954e-05,4.5729494405444775e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2010,1294496.6672772965,1373355.579855182,1207020.1979044967
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2010,898609.9200709803,953312.5745347778,835365.6895481303
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2010,0.3560925494239273,0.37761403677817995,0.33237383360099526
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2010,0.2924216191542208,0.309836768580767,0.272734157027306
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2010,1743.0958268329769,2763.3656084269905,1149.346547681253
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2010,0.002111336438910611,0.003355104026405249,0.0013923176161571497
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1988,1875912.2039292268,2026733.7332600954,1706026.1876749583
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1988,1341903.2425353539,1460547.8500882208,1241133.7671045905
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1988,0.28594511042155607,0.30905386304477245,0.26155928776358
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1988,0.23406703998249964,0.25521111695009124,0.21600684130844075
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1988,2224.019204888001,4109.594781393724,1415.7725323815314
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1988,0.0033078460843990625,0.006037279609837989,0.0021180465372011145
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2005,794.4690615372004,837.9642851307246,740.8782061924593
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2005,598.5251484087989,651.1280316818919,501.80515397955025
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2005,0.42641941403016204,0.4449713140413962,0.3979178696819524
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2005,0.4124230738449741,0.44359384961650666,0.3471478892958219
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2005,0.34901342033516297,0.3740539597267581,0.32130299009359076
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2005,4.368402141158819e-05,4.656946186931268e-05,4.0532600520673286e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1987,1713.5888340680553,1893.6435029161162,1616.8842570590114
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1987,1265.7420785795537,1427.7329960784414,1175.7196753155897
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1987,0.3402425322028906,0.37663329608432533,0.3222493136658045
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1987,0.3476769270524136,0.39055342723349823,0.32221041591106164
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1987,0.5905584629118554,0.6333486513521169,0.5446524279036328
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1987,6.222614034328477e-05,6.695313388994623e-05,5.751843087004764e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2007,778.8626234551671,821.6642771064691,710.7002246989243
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2007,568.9077915115736,624.4379936803687,471.669791476104
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2007,0.44338292245018396,0.46393205222879774,0.40855943247368004
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2007,0.42109514241649093,0.4547437147671113,0.3523636264671385
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2007,0.39233567681852743,0.4203177892279854,0.3626545362055897
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2007,4.9269300636519225e-05,5.2740553178823935e-05,4.5590842518777863e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2003,848.8592030632294,894.1957959386625,784.0270089237944
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2003,644.103672404114,694.8841075546876,545.0750872125293
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2003,0.41561205671353274,0.43700172561350253,0.3861804670706331
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2003,0.39923196996847987,0.4295445689009073,0.3398321958678503
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2003,0.37101099957316613,0.4002471756901967,0.34209714899770544
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2003,4.518116863229111e-05,4.8905633300010266e-05,4.1835235117751476e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2016,1155828.4342176195,1232963.5362360785,1076327.5876781228
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2016,818081.9522709018,873617.4983216285,757213.8993908189
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2016,0.3766142010188981,0.40113078337249664,0.3506938232472138
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2016,0.3238352369348049,0.34347845254242987,0.30044782734815717
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2016,1779.6738628289056,2774.479694673913,1064.346957053017
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2016,0.0019156403722444724,0.0029572882207251276,0.0011132335378780014
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2015,1185883.1994912564,1261622.5085692436,1107167.2958662822
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2015,832584.1733584364,884967.6977719847,775508.9697434837
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2015,0.3757133271989156,0.39894855336904034,0.34989159064283865
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2015,0.31940586915058977,0.33868462286091927,0.29741621797663487
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2015,1799.844225440383,2911.9807843668264,1111.073159339846
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2015,0.001968461901329547,0.0031544130596176294,0.0012057118122592808
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2019,1048121.5681544512,1139711.0857167498,971782.0274482456
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2019,756597.0237890374,814616.7044261547,699157.9890519526
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2019,0.3758261187105814,0.4059964792192656,0.34898624330916933
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2019,0.33151668017205027,0.3563650600314202,0.30587803337770575
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2019,1598.1962539255599,2570.4786371013492,901.9706215284692
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2019,0.001771993001692748,0.00286283532773046,0.0010027669643785768
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2020,1022927.5961771967,1115813.3667117439,942490.0505838132
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2020,740929.0749526435,803050.4923982878,682092.0901114058
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2020,0.3783660259017302,0.4114509388963251,0.35018027675757285
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2020,0.33578209871556125,0.3627730041313937,0.3111773863866981
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2020,1532.5834575963395,2495.4576514998334,885.1049199442589
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2020,0.0015446024303165406,0.0024889370825426386,0.0009032566305610037
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2015,721.3931964457711,759.8520454665864,637.2127843050517
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2015,561.493609990066,614.8124767953688,459.6619778905987
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2015,0.45835516781898683,0.4832726590539518,0.4107307464697209
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2015,0.43638006839595855,0.47508343742570597,0.3593831969656083
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2015,0.38996643692399036,0.4200208041441728,0.3598900322112426
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2015,4.562292450240683e-05,4.907862467695721e-05,4.229178914618075e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2017,1122153.4247467085,1203093.555553357,1043536.0347137194
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2017,800384.330730297,856257.9512648663,741522.0234533033
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2017,0.3765150565675205,0.40288972875590445,0.3497320391240057
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2017,0.3270780947826706,0.34761902599418826,0.3024951588105642
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2017,1738.7723042212583,2679.429869968699,1012.8712357239319
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2017,0.0018755211737093193,0.0028923262117434424,0.0010713230924108098
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2010,683.22398380521,722.4690530057287,630.9265259789751
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2010,512.1931310771377,564.5390634411759,416.9630296671266
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2010,0.4326887633052965,0.4532557722433916,0.3944971188463504
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2010,0.4152863205999263,0.4522196331218446,0.3415025122137182
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2010,0.4545242254959538,0.49320079294773267,0.4181374675221004
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2010,5.511565985633755e-05,5.911567017180261e-05,5.097656385364629e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2013,659.3868822460714,698.2379796997176,581.315983828824
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2013,512.3805106992977,565.9322453878511,420.841067662986
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2013,0.43739000047793725,0.4568940283603683,0.3924072386757899
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2013,0.42399767405744015,0.4619567577958359,0.3503801992179865
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2013,0.5327754675002282,0.5715241293022231,0.4908533921089125
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2013,6.203613308032378e-05,6.667279558276783e-05,5.7142863871208355e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2022,969716.7021813536,1069162.6966340693,892611.0253814394
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2022,695521.5460286863,758781.4255561847,635974.1649219192
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2022,0.37284297263085053,0.4094348353336833,0.3454301058550537
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2022,0.32967646418913127,0.358675426884023,0.30267837750440546
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2022,1465.8796381200443,2390.897669162656,863.0735452413719
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2022,0.001492081133528818,0.002382183981583958,0.0008811139033433541
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1990,1477.75052643734,1634.853137051661,1396.2853943108519
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1990,1075.7333946478248,1204.7217046604012,981.2941480981799
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1990,0.3320949426016067,0.3690178057458975,0.3143498541704762
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1990,0.33320383506007617,0.37139360248468384,0.3052839439031984
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1990,0.622588146214717,0.6682045566079369,0.5735772714849908
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1990,5.880789904100344e-05,6.32834340061009e-05,5.4509297227024666e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2016,765.9526467879045,809.9663957705667,672.8753997233812
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2016,586.0592858914924,641.753296297559,478.4660930851581
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2016,0.47146231058393806,0.4975145505502562,0.4244584440120332
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2016,0.4428206599707794,0.48242914590698893,0.3652188090106565
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2016,0.4018353056384979,0.43399080920987204,0.3698623210642946
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2016,4.7619175322078543e-05,5.137817784648553e-05,4.4045791288380796e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2014,1212121.339306692,1289444.1942866098,1128302.8171569176
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2014,844337.4743906271,897697.7990874806,788414.5449462797
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2014,0.37529709333447697,0.3983179358531486,0.3488232784448968
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2014,0.31577000060064814,0.3347080507167309,0.2948893121889159
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2014,1789.590623860455,3056.4729765425304,1136.78733331218
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2014,0.0020215514650332492,0.003443832215480044,0.0012836745843595489
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2011,658.2635526237136,695.9239460298584,604.3828507012377
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2011,509.34091537742825,560.334645361716,415.8978318840149
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2011,0.43124637167747915,0.45194528159235614,0.3946642187771666
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2011,0.4221052796140304,0.4594769296316533,0.34884288204855185
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2011,0.40024969434507857,0.43077383073618314,0.3716324059277989
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2011,4.7785366761242305e-05,5.1283332182131374e-05,4.3990258556798886e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1988,1640.998278519417,1823.7267807484893,1545.0468997194225
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1988,1196.5979459474306,1348.1028996565356,1113.9678629292996
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1988,0.33436541789072416,0.37029551232437263,0.3147582674910016
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1988,0.34067619009462147,0.3820734325748698,0.3168160391540836
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1988,0.6152283586801419,0.6642673950513336,0.5693289437530233
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1988,6.143246954700505e-05,6.62155127459269e-05,5.70625804997237e-05
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1989,1854375.1153735663,2019494.3001313792,1693891.5148170148
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1989,1329754.3572100615,1433360.5328347043,1220708.2239230545
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1989,0.2900620383594152,0.3143696344735965,0.26491122871713924
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1989,0.2397688200085861,0.25941472745460353,0.21984093461330145
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1989,2194.0540238223125,3941.7549857832937,1429.630658277118
+1,Gesamtbevölkerung,1,Todesfälle,1,Global,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1989,0.0032374742930550535,0.00561743753886793,0.0021004110574306383
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2014,685.0024807106677,724.5103890504215,608.3542542653573
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2014,527.0728781741568,578.2596498210922,432.37875625779486
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2014,0.45011577007182263,0.4731700513404063,0.4023527136960754
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2014,0.4267649064007799,0.4643922621279789,0.3504525981348465
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2014,0.4342175800269829,0.46633654061429747,0.40123887916862583
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2014,5.103201890335354e-05,5.4781836252634186e-05,4.712317490799682e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1989,1585.96536453854,1749.6325908192848,1503.3361057384589
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1989,1146.0554349647796,1291.622017988077,1052.9247940915584
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1989,0.33576916563072867,0.3716601072672127,0.31641579202690284
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1989,0.33824271162700337,0.3780546078082113,0.31220005997915495
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1989,0.5872015429829577,0.6358305860792127,0.5396937171989848
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1989,5.7010617235908365e-05,6.148725471837542e-05,5.2936201453616487e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2009,698.8951411170566,737.6652814487071,644.476928259134
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2009,517.9788550004381,568.3832267552378,424.093432303444
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2009,0.42914175137805965,0.44938598643486516,0.39202814138716857
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2009,0.41229759289639223,0.448419837190894,0.33976710292617024
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2009,0.4793097561398205,0.5157681264731231,0.44081791329549275
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2009,5.8957186266277716e-05,6.342937730302134e-05,5.4578662796553445e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2021,704.1964889832457,747.8528510239001,610.1432367694053
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2021,532.2709540564111,587.8256404096735,420.00533922715385
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2021,0.4598684288809409,0.48482682068061755,0.40046904548713413
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2021,0.4197260124758178,0.461155946899519,0.3300818901065565
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2021,0.2641834193015146,0.287379816355461,0.2413285746431267
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2021,3.5636629573532734e-05,3.876291966939123e-05,3.254311664095412e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2022,690.8014305211951,742.1234479024301,618.5336837399668
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2022,537.5251235518214,607.5924760963663,417.4680363001949
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2022,0.45245000376456557,0.4802313134179389,0.3986628250809969
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2022,0.4210919095774717,0.470199533568408,0.33183169127272477
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2022,0.18271008274115372,0.20056884283133788,0.16593037362599078
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2022,2.6025908162943717e-05,2.8413041237629224e-05,2.377748662648661e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1993,1068.663235774509,1179.105734169906,1008.1441262355914
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1993,811.7450642146378,911.4285535341382,729.8070386967045
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1993,0.3184159916472731,0.35316328870408953,0.3006341919609856
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1993,0.3222235095408937,0.3600969943248534,0.29191074656185345
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1993,0.4663508210212023,0.50581315483476,0.4262356023017141
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1993,4.5748118255963e-05,4.9378922670861034e-05,4.1938016149157794e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2012,652.1840626867285,692.6092201279737,589.9278115709456
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2012,512.3014625652636,566.6174681930592,422.53698024564585
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2012,0.43487498102304395,0.45546698583879963,0.3942111001677841
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2012,0.42763155897709604,0.4667292207099399,0.35411113067370237
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2012,0.4551353090287079,0.4868037403255234,0.419211341556868
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2012,5.4270274341064304e-05,5.826723370317903e-05,4.976896375633067e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1996,934.1617247134371,1022.2251119697048,875.772144379585
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1996,725.4992639409446,802.9751032967176,638.3145835565945
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1996,0.3311484139349788,0.3612333834923826,0.31271702409424823
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1996,0.341259266747077,0.37627776186845874,0.2991939586254509
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1996,0.4786830892485698,0.5169189047404049,0.440815636934778
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1996,5.957764565963467e-05,6.413518983083764e-05,5.505340500420696e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1999,932.8600148192836,989.703498908064,874.0626277548054
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1999,703.86517599006,758.0806355913253,604.4804004773326
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1999,0.37847103594119547,0.3973719159219991,0.3587746188476142
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1999,0.3758954385038477,0.40349964149475454,0.32408959983457974
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,1999,0.3912901782924914,0.4290389953320104,0.3608067273068758
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,1999,5.548141916018589e-05,6.079042798734394e-05,5.15356398485713e-05
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2006,780.1036944194618,822.7511824837412,718.8072891026164
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2006,580.7449938237555,634.3134509580085,485.5162075403585
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,1,Männlich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2006,0.4334680304671758,0.4545214223920903,0.3998921169941364
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,1,Unter 5 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2006,0.41754124157262146,0.45043135048587196,0.3510766929285215
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,1,Anzahl,2006,0.4125425379125194,0.4418831953960175,0.38037064638731943
+1,Gesamtbevölkerung,1,Todesfälle,81,Deutschland,2,Weiblich,15,50-54 Jahre,962,Störungen bei Müttern und Neugeborenen,2,Prozent,2006,5.197080003905036e-05,5.526928382707328e-05,4.7982319457886734e-05

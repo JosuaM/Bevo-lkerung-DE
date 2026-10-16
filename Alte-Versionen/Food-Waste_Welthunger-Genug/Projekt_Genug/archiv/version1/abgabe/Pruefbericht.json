@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-05",
+  "original_copy_hash_checks": [
+    {
+      "path": "originaldaten\\FoodBalanceSheets\\FoodBalanceSheets_E_All_Data_(Normalized).csv",
+      "sha256": "2834e1012daaebf4e4f8195fa86ce9063d1c81fdd9d7c04cbf0aba758ccfa020",
+      "equal_to_input_snapshot": true
+    },
+    {
+      "path": "originaldaten\\Food_Security_Data\\Food_Security_Data_E_All_Data_(Normalized).csv",
+      "sha256": "abf2baa282e104e02b7c42ec2224c0b0909f391a3b50ae4a7da51cc3ef6bbe36",
+      "equal_to_input_snapshot": true
+    }
+  ],
+  "decimal_energy_kcal": "671252143450915.8848741718400835378275524",
+  "relative_error_float_vs_decimal": 0.0,
+  "presentation": {
+    "file": "abgabe/Genug_Praesentation_final.pptx",
+    "sha256": "c54be9ea5d4f42eaea7ca83f1abc6f9c391523cfff2988a8771e4fc80578ab61",
+    "slides": 9,
+    "native_charts": 3,
+    "structure_pass": true,
+    "visually_reviewed_slides": 9,
+    "native_powerpoint_opening_verified": false
+  },
+  "video": {
+    "file": "abgabe/Genug_Animatic_final.mp4",
+    "duration_seconds": 96,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "fully_decoded": true,
+    "reviewed_frame_seconds": [
+      3,
+      16,
+      30,
+      54,
+      72,
+      90
+    ],
+    "audio": false
+  },
+  "browser": {
+    "desktop": true,
+    "mobile_frame_width_px": 390,
+    "mobile_content_width_px": 375,
+    "horizontal_overflow": false,
+    "javascript_errors_observed": 0,
+    "file_protocol_test": "Blocked by in-app browser URL policy. No bypass attempted.",
+    "tests": [
+      "mass_to_energy",
+      "product_selection",
+      "unknown_loss_values",
+      "zero_rescue",
+      "full_rescue",
+      "high_daily_requirement",
+      "reset",
+      "mobile_full_rescue"
+    ]
+  },
+  "open_items": [
+    "Student names intentionally open per user request",
+    "Actual team photo with names absent"
+  ]
+}

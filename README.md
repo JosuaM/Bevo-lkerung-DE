@@ -1,35 +1,17 @@
-# Bevölkerung Deutschlands · 1991–2025
+# Bevölkerung Deutschlands 1991–2025
 
-Interaktive Animationen und Dashboard mit Daten zu Bevölkerung, Geburten, Sterbefällen und Wanderung.
+Uni-Projekt: Konnte die Ein- und Auswanderung Deutschlands Geburtendefizit ausgleichen? Eine animierte Webseite mit Punkten, einer Differenz-Folie, einem Ergebnis und einem interaktiven Dashboard.
 
-## Starten und Einstellungen automatisch speichern
+## Ordnerstruktur
 
-Python 3 wird benötigt; zusätzliche Python-Pakete sind nicht erforderlich.
+| Ordner | Inhalt |
+|---|---|
+| [`Bevoelkerung-DE`](Bevoelkerung-DE) | **Die aktuelle, finale Webseite** mit Rohdaten (`Data/`), Starter und Anleitung |
+| [`Alte-Versionen`](Alte-Versionen) | Frühere Stände für die Präsentation „Wie sind wir hierher gekommen?“ |
+| &nbsp;&nbsp;↳ [`Bevoelkerung`](Alte-Versionen/Bevoelkerung) | Vier Entwicklungsstufen dieser Webseite, mit Bildern jeder Folie |
+| &nbsp;&nbsp;↳ [`Todesursachen-Krankheiten`](Alte-Versionen/Todesursachen-Krankheiten) | Anderes Projekt: Todesursachen weltweit und in Deutschland, 1980–2023 |
+| &nbsp;&nbsp;↳ [`Food-Waste_Welthunger-Genug`](Alte-Versionen/Food-Waste_Welthunger-Genug) | Anderes Projekt „Genug?“: Food Waste und Welthunger |
 
-- **macOS:** `Starten.command` doppelklicken.
-- **Andere Systeme / Terminal:** `python3 serve.py` ausführen (unter Windows gegebenenfalls `python serve.py`).
+## Starten
 
-Die lokale Vorschau öffnet sich im Browser. Das Terminal während der Nutzung geöffnet lassen; mit Strg+C beenden.
-
-Alle Änderungen im **E-Menü** werden automatisch in die `index.html` geschrieben: Farben, Hintergrund je Folie, Punktgrößen, Personen pro Punkt, Zeitstrahltempo und der Klang der Balken. Es gibt keine gerätespezifischen Einstellungs-Overrides mehr. Der Speicherstatus steht im E-Menü.
-
-Damit andere Geräte die neuen Werte erhalten: die geänderte `index.html` **committen und pushen**, auf dem anderen Gerät **pullen** und die Vorschau neu laden. Das Programm führt selbst keine Git-Aktionen aus.
-
-Beim direkten Öffnen der HTML-Datei ist automatisches Speichern alternativ in Chrome/Edge nach einmaliger Dateifreigabe möglich. Bei einer gehosteten statischen Vorschau lässt sich das GitHub-Repository nicht direkt aus dem Browser überschreiben; dafür den lokalen Projektstarter verwenden.
-
-## Bedienung
-
-Obere Navigation: Folie neu starten. **E:** Einstellungen (inkl. „Folie neu starten“; auf der Differenzfolie zusätzlich die Auswahl des Balken-Klangs). **Leertaste:** Play/Pause. **A / D:** zurück / weiter. **← / →:** Jahr auswählen und pausieren. Die Differenzfolie wartet auf „Weiter“.
-
-Rohdaten und Quellen: `Data/`. Dashboard: `dashboards/`.
-
-## Aufbau
-
-- `index.html` – Markup und `DEFAULTS` (Projektwerte)
-- `css/main.css`, `dashboards/explorer.css` – Gestaltung
-- `js/` – Daten, Zustand, Animation, Folien, Einstellungen, Start
-- `dashboards/explorer.js`, `dashboards/particle-cloud.js` – Dashboard
-
-## Website-Version
-
-Die einzige Version heißt **Original** (`index.html`, `dashboards/explorer.js`) und basiert auf der bisherigen Jeremy-Version. Die frühere Adresse `jeremy.html` leitet zur Hauptversion weiter.
+Im Ordner `Bevoelkerung-DE` auf dem Mac `Starten.command` doppelklicken oder im Terminal `python3 serve.py` ausführen. Details und Bedienung stehen in [`Bevoelkerung-DE/README.md`](Bevoelkerung-DE/README.md).

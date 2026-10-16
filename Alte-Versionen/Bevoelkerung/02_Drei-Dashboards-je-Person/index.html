@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bevölkerung Deutschlands 1991–2023</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121212; --bg90:rgba(18,18,18,.9); --bg80:rgba(18,18,18,.8); --ev:#ffd24a; --ink:#f2f4f8; --mute:#7d879b; --pad:40px; --lw:2px;
+    --fs-l:44px; --fs-m:26px; --fs-s:18px;      /* drei Schriftgrößen: groß · mittel · klein (werden per JS an die Fenstergröße angepasst) */
+    --font:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;overflow:hidden}
+  #stage{position:fixed;inset:0;background:var(--bg);transition:background .6s}
+  canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  button{font:inherit;font-size:var(--fs-s);cursor:pointer;color:var(--ink)}
+
+  /* Steuerung unten */
+  .controls{position:absolute;left:0;right:0;bottom:0;padding:10px var(--pad) 14px;display:flex;gap:18px;align-items:flex-start;
+    background:linear-gradient(transparent,var(--bg90) 55%)}
+  #play{width:30px;height:30px;margin-top:22px;padding:0;background:transparent;border:0;display:grid;place-items:center}
+  #play svg{width:20px;height:20px;fill:#fff}
+  #play:hover svg{opacity:.7}
+  #track{position:relative;flex:1;height:72px;margin:0 6px 0 0;cursor:pointer;touch-action:none;outline:none;user-select:none}
+  #rail,#fill{position:absolute;left:0;top:32px;height:var(--lw)}
+  #rail{right:0;background:#3a4252}
+  #fill{width:0;background:#fff}
+  .tick{position:absolute;top:42px;width:var(--lw);height:7px;background:#3a4252;transform:translateX(-1px)}
+  .tick.major{height:11px;background:#7d879b}
+  .tlab{position:absolute;top:57px;transform:translateX(-50%);font-size:var(--fs-s);font-size:calc(var(--fs-s)*.7);color:var(--mute);font-variant-numeric:tabular-nums}
+  #head{position:absolute;top:0;left:0;width:0;height:100%;pointer-events:none}
+  #head .lbl{position:absolute;left:0;top:-18px;transform:translateX(-50%);font-size:var(--fs-m);line-height:1;font-weight:400;color:#fff;font-variant-numeric:tabular-nums}
+  #head .stem{position:absolute;left:-2px;top:14px;width:4px;height:38px;background:#fff}
+
+  /* Ereignisse am Zeitstrahl (Animation 2) */
+  .mk{position:absolute;top:16px;width:var(--lw);height:16px;margin-left:calc(var(--lw)/-2);background:var(--ev);display:none;cursor:pointer;
+    opacity:0;transform:scaleY(0);transform-origin:50% 100%;
+    transition:opacity .7s,transform .7s cubic-bezier(.2,.9,.3,1.25),box-shadow .6s}
+  .mk::after{content:"";position:absolute;left:-9px;right:-9px;top:-12px;bottom:-6px}
+  .mk.seen{opacity:.5;transform:scaleY(1)}
+  .mk.act,.mk:hover{opacity:1;transform:scaleY(1.9);box-shadow:0 0 12px var(--ev)}
+  #track.ev .mk{display:block}
+  #event{position:absolute;left:50%;bottom:122px;transform:translateX(-50%) translateY(8px);max-width:min(860px,calc(100% - 80px));text-align:center;
+    font-size:var(--fs-m);font-weight:300;line-height:1.3;color:#fff;padding:10px 20px;background:var(--bg80);border-bottom:var(--lw) solid var(--ev);
+    opacity:0;transition:opacity .7s,transform .7s;pointer-events:none;z-index:40}
+  #event.on{opacity:1;transform:translateX(-50%)}
+  #event .ey{color:var(--ev);font-weight:500;margin-right:.55em;font-variant-numeric:tabular-nums}
+  #event .ed{display:none;margin-top:8px;font-size:var(--fs-s);line-height:1.45;color:#c9d0dc}
+  #event.pin .ed{display:block}
+  /* Fragen-/Zwischenbildschirme */
+  #qs{position:fixed;inset:0;z-index:50;background:var(--bg);color:#fff;opacity:0;pointer-events:none;transition:opacity .7s,background .9s;cursor:pointer}
+  #qs.on{opacity:1;pointer-events:auto}
+  #qs.docked,#qs.docked2{opacity:1;background:transparent;pointer-events:none}
+  #qtext,#btext{font-weight:300;line-height:1.25;color:#fff;white-space:pre;text-align:left;font-size:var(--fs-l)}
+  #qtext{position:absolute;left:var(--qleft,var(--pad));top:50%;transform:translateY(-50%);height:2.5em;
+    transition:opacity .45s,left 1s cubic-bezier(.65,0,.25,1),top 1s cubic-bezier(.65,0,.25,1),transform 1s cubic-bezier(.65,0,.25,1),font-size 1s cubic-bezier(.65,0,.25,1)}
+  #qs.docked #qtext{left:var(--pad);top:28px;transform:translateY(0);font-size:var(--fs-m)}
+  .g{transition:color 1.3s ease}
+  .hl .g{color:#5d667a}
+  .caret{display:inline-block;width:.07em;height:.95em;margin-left:.06em;background:#fff;vertical-align:-.12em;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  #bl,#br{position:absolute;display:none}
+  #bl{left:14vw;top:12vh}
+  #br{right:8vw;bottom:36vh;width:max-content}
+  #bc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
+  #qs.bridge.on #bc{display:block}
+  #bl{transition:opacity .8s}
+  #qs.docked2 #bl{opacity:0}
+  #qs.docked2 #bnext{opacity:0 !important;pointer-events:none}
+  #qs.bridge #bl,#qs.bridge #br{display:block}
+  #qs.bridge #qtext{display:none}
+  #qs.bridge{transition-duration:.9s,.9s}
+  #bl .l1,#bl .l2{opacity:0;transform:translateY(10px);transition:opacity .9s,transform .9s}
+  #bl .in{opacity:1 !important;transform:none !important}
+  #bl .l1{font-size:var(--fs-s);color:var(--mute)}
+  #bl .l2{font-size:var(--fs-l);font-weight:300;color:var(--c-death);line-height:1.2;margin-top:6px;font-variant-numeric:tabular-nums}
+  #bnext{margin-top:22px;opacity:0;transition:opacity .5s;background:transparent;border:var(--lw) solid #fff;border-radius:0;padding:8px 16px}
+  #bnext.on{opacity:1}
+
+  /* Ergebnis-Bildschirm */
+  #fin{position:fixed;inset:0;z-index:60;background:var(--bg);color:#fff;opacity:0;pointer-events:none;transition:opacity 1.4s}
+  #fin.on{opacity:1;pointer-events:auto}
+  #fin .ftitle{position:absolute;left:var(--pad);top:28px;font-size:var(--fs-m);font-weight:400;color:#5d667a}
+  #fin .fblob{position:absolute;border-radius:50%;opacity:0;transition:opacity 1s;transform:translate(-50%,-50%)}
+  #fin .fside{position:absolute;transform:translateX(-50%);width:42vw;text-align:center;opacity:0;transition:opacity 1s}
+  #fin .in{opacity:1 !important}
+  #fin .fl1{font-size:var(--fs-s);color:var(--mute)}
+  #fin .fl2{font-size:var(--fs-l);font-weight:300;line-height:1.15;font-variant-numeric:tabular-nums}
+  #fin .fl3{font-size:var(--fs-s);color:#a4adbd;margin-top:4px;font-variant-numeric:tabular-nums}
+  #fcap{position:absolute;left:50%;transform:translateX(-50%);bottom:84px;width:min(900px,calc(100% - 80px));text-align:center;
+    font-size:var(--fs-m);font-weight:300;line-height:1.35;opacity:0;transition:opacity 1s}
+  #fcap b{font-weight:500}
+  #fbtn{position:absolute;left:0;right:0;bottom:24px;display:flex;gap:12px;justify-content:center;opacity:0;transition:opacity .8s;pointer-events:none}
+  #fbtn.in{pointer-events:auto}
+  #fbtn button{background:transparent;border:var(--lw) solid #fff;border-radius:0;padding:8px 16px}
+
+  /* E-Menü */
+  #panel{position:fixed;right:24px;bottom:116px;z-index:100;width:340px;padding:18px 20px;background:rgba(10,12,16,.94);border:var(--lw) solid #fff;
+    display:none;font-size:var(--fs-s);font-size:15px}
+  #panel.open{display:block}
+  #panel h3{margin:0 0 8px;font-size:13px;font-weight:500;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
+  #panel .sec{margin-bottom:18px}
+  #panel input[type=range]{width:100%;accent-color:#fff}
+  #panel .dotlbl{font-variant-numeric:tabular-nums;margin-bottom:6px}
+  #panel .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+  #panel .cols label{display:flex;align-items:center;gap:10px;font-size:14px}
+  #panel input[type=color]{width:34px;height:26px;padding:0;border:var(--lw) solid #fff;background:none;cursor:pointer}
+  #scenes{display:flex;flex-direction:column;gap:0;border-left:var(--lw) solid #3a4252;margin-left:5px}
+  #scenes button{position:relative;text-align:left;background:none;border:0;padding:6px 0 6px 18px;font-size:15px;color:var(--mute)}
+  #scenes button::before{content:"";position:absolute;left:calc(var(--lw)/-2 - 1px);top:50%;width:12px;height:var(--lw);background:#3a4252;transform:translateX(-100%) translateX(12px)}
+  #scenes button.on{color:#fff}
+  #scenes button.on::before{background:#fff}
+  #scenes button:hover{color:#fff}
+  #panel .hint{font-size:12.5px;color:var(--mute);line-height:1.5}
+  #dtabs{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:100;display:none;gap:0;border:var(--lw) solid #fff;background:var(--bg)}
+  #dtabs.open{display:flex}
+  #dtabs button{background:none;border:0;padding:8px 18px;color:var(--mute);font-size:15px}
+  #dtabs button.on{background:#fff;color:#000}
+  #savefile{margin-top:10px;background:none;border:1px solid #fff;color:#fff;font-size:12.5px;padding:5px 10px}
+  #copyset{margin-top:10px;background:none;border:1px solid #3a4252;color:var(--mute);font-size:12.5px;padding:5px 10px}
+  #resetset{margin-top:10px;background:none;border:1px solid #3a4252;color:var(--mute);font-size:12.5px;padding:5px 10px}
+  :root{--ev:var(--c-in,#38e0ff)}
+  #event{border-bottom:0;pointer-events:none;padding:12px 22px 10px}
+  #event.on{pointer-events:auto;cursor:pointer}
+  @keyframes evIn{from{opacity:0;transform:translateY(12px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+  @keyframes evLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  #event .et{animation:evIn .8s cubic-bezier(.2,.8,.2,1) both}
+  #event .es{margin-top:6px;font-size:var(--fs-s);font-weight:400;line-height:1.4;color:#c9d0dc;animation:evIn .8s .28s cubic-bezier(.2,.8,.2,1) both}
+  #event .ed{margin-top:8px;color:#a4adbd;animation:evIn .6s both}
+  #event .eline{height:var(--lw);background:var(--ev);margin-top:12px;transform-origin:left;animation:evLine .9s .1s cubic-bezier(.65,0,.25,1) both}
+  /* E-Menü kompakt (Laptops) */
+  #panel{width:min(250px,calc(100vw - 32px));max-height:calc(100vh - 150px);overflow-y:auto;padding:10px 12px;right:16px;bottom:100px;font-size:12px}
+  #panel h3{font-size:10.5px;margin:0 0 5px}
+  #panel .sec{margin-bottom:10px}
+  #panel .dotlbl{font-size:12px;margin-bottom:3px}
+  #panel .cols{gap:6px 10px}
+  #panel .cols label{font-size:12px;gap:6px}
+  #panel input[type=color]{width:24px;height:20px}
+  #scenes button{font-size:12px;padding:3px 0 3px 14px}
+  #panel .hint{font-size:10.5px;line-height:1.35}
+  #panel button{font-size:11px !important;padding:3px 8px !important;margin-top:6px !important}
+  #dtabs button{font-size:12px;padding:5px 12px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="event"></div>
+  <div id="qs">
+    <div id="qtext"></div>
+    <canvas id="bc"></canvas>
+    <div id="bl"><div class="l1">Geburtendefizit seit 1991</div><div class="l2" id="bdef"></div></div>
+    <div id="br"><div id="btext"></div><button id="bnext">Weiter →</button></div>
+  </div>
+  <div id="fin">
+    <div class="ftitle">Geburtendefizit gegen Wanderungssaldo · 1991–2023</div>
+    <div class="fblob" id="fbL"></div><div class="fblob" id="fbR"></div>
+    <div class="fside" id="fsL"><div class="fl1">Geburtendefizit</div><div class="fl2" id="fvL"></div><div class="fl3" id="fnL"></div></div>
+    <div class="fside" id="fsR"><div class="fl1" id="flR">Wanderungssaldo</div><div class="fl2" id="fvR"></div><div class="fl3" id="fnR"></div></div>
+    <div id="fcap"></div>
+    <div id="fbtn"><button id="fNext">Weiter zum Dashboard</button><button id="fAgain">Nochmal ansehen</button><button id="fRestart">Von vorn beginnen</button></div>
+  </div>
+  <div class="controls">
+    <button id="play" aria-label="Pause"></button>
+    <div id="track" tabindex="0" role="slider" aria-label="Jahr" aria-valuemin="1991" aria-valuemax="2023">
+      <div id="rail"></div><div id="fill"></div>
+      <div id="head"><div class="stem"></div><div class="lbl" id="headlbl">1991</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="dtabs"></div>
+<div id="panel">
+  <div class="sec"><h3>Punktgröße</h3>
+    <div class="dotlbl" id="dotlbl"></div>
+    <input type="range" id="dotrng" min="0" max="100" step="0.5">
+  </div>
+  <div class="sec"><h3>Punktdicke</h3>
+    <div class="dotlbl" id="szminlbl"></div>
+    <input type="range" id="szmin" min="0.3" max="6" step="0.1">
+    <div class="dotlbl" id="szmaxlbl" style="margin-top:10px"></div>
+    <input type="range" id="szmax" min="0.5" max="14" step="0.1">
+  </div>
+  <div class="sec"><h3>Farben</h3>
+    <div class="cols">
+      <label><input type="color" id="c-birth"> Geburten</label>
+      <label><input type="color" id="c-death"> Tode</label>
+      <label><input type="color" id="c-in"> Einwanderung</label>
+      <label><input type="color" id="c-out"> Auswanderung</label>
+      <label><input type="color" id="c-bg"> Hintergrund</label>
+    </div>
+  </div>
+  <div class="sec"><h3>Folien</h3><div id="scenes"></div></div>
+  <div class="hint">Die Farben gelten für alle Folien, der Hintergrund nur für die aktuelle. Einstellungen bleiben in diesem Browser gespeichert.<br>E Menü · Leertaste Pause · D weiter · A zurück · ← → Jahr</div>
+  <button id="resetset">Einstellungen zurücksetzen</button> <button id="copyset">Einstellungen kopieren</button>
+  <button id="savefile" title="Schreibt deine aktuellen Einstellungen fest in die index.html">Fest in index.html speichern</button>
+</div>
+
+<script>window.DASHBOARDS = []; window.registerDashboard = d => DASHBOARDS.push(d);</script>
+<script src="dashboards/josua.js"></script>
+<script src="dashboards/jeremy.js"></script>
+<script src="dashboards/philipp.js"></script>
+<script>
+const DATA = [{"y":1991,"zu":1198978,"fort":596455,"wb":830019,"wd":911245,"wp":80274564},{"y":1992,"zu":1502198,"fort":720127,"wb":809114,"wd":885443,"wp":80974632},{"y":1993,"zu":1277408,"fort":815312,"wb":798447,"wd":897270,"wp":81338093},{"y":1994,"zu":1082553,"fort":767555,"wb":769603,"wd":884661,"wp":81538603},{"y":1995,"zu":1096048,"fort":698113,"wb":765221,"wd":884588,"wp":81817499},{"y":1996,"zu":959691,"fort":677494,"wb":796013,"wd":882843,"wp":82012162},{"y":1997,"zu":840633,"fort":746969,"wb":812173,"wd":860389,"wp":82057379},{"y":1998,"zu":802456,"fort":755358,"wb":785034,"wd":852382,"wp":82037011},{"y":1999,"zu":874023,"fort":672048,"wb":770744,"wd":846330,"wp":82163475},{"y":2000,"zu":841158,"fort":674038,"wb":766999,"wd":838797,"wp":82259540},{"y":2001,"zu":879217,"fort":606494,"wb":734475,"wd":828541,"wp":82440309},{"y":2002,"zu":842543,"fort":623255,"wb":719250,"wd":841686,"wp":82536680},{"y":2003,"zu":768975,"fort":626330,"wb":706721,"wd":853946,"wp":82531671},{"y":2004,"zu":780175,"fort":697633,"wb":705622,"wd":818271,"wp":82500849},{"y":2005,"zu":707352,"fort":628399,"wb":685795,"wd":830227,"wp":82437995},{"y":2006,"zu":661855,"fort":639064,"wb":672724,"wd":821627,"wp":82314906},{"y":2007,"zu":680766,"fort":636854,"wb":684862,"wd":827155,"wp":82217837},{"y":2008,"zu":682146,"fort":737889,"wb":682514,"wd":844439,"wp":82002356},{"y":2009,"zu":721014,"fort":733796,"wb":665126,"wd":854544,"wp":81802257},{"y":2010,"zu":798282,"fort":670605,"wb":677947,"wd":858768,"wp":81751602},{"y":2011,"zu":958299,"fort":678969,"wb":662685,"wd":852328,"wp":80327900},{"y":2012,"zu":1080936,"fort":711991,"wb":673544,"wd":869582,"wp":80523746},{"y":2013,"zu":1226493,"fort":797886,"wb":682069,"wd":893825,"wp":80767463},{"y":2014,"zu":1464724,"fort":914241,"wb":714927,"wd":868356,"wp":81197537},{"y":2015,"zu":2136954,"fort":997552,"wb":737575,"wd":925200,"wp":82175684},{"y":2016,"zu":1865122,"fort":1365178,"wb":792141,"wd":910902,"wp":82521653},{"y":2017,"zu":1550721,"fort":1134641,"wb":784901,"wd":932272,"wp":82792351},{"y":2018,"zu":1585112,"fort":1185432,"wb":787523,"wd":954874,"wp":83019213},{"y":2019,"zu":1558612,"fort":1231552,"wb":778090,"wd":939520,"wp":83166711},{"y":2020,"zu":1186702,"fort":966451,"wb":773144,"wd":985572,"wp":83155031},{"y":2021,"zu":1323466,"fort":994303,"wb":795492,"wd":1023687,"wp":83237124},{"y":2022,"zu":2665772,"fort":1203683,"wb":738819,"wd":1066341,"wp":83118501},{"y":2023,"zu":1932509,"fort":1269545,"wb":692989,"wd":1028206,"wp":83456045}];                            // y, zu, fort (Zu-/Fortzüge), wb (Lebendgeborene), wd (Gestorbene), wp (Bevölkerung 31.12.)
+const BASE = 79753227;                            // Bevölkerung Deutschlands am 31.12.1990
+const FIRST = 1991, LAST = 2023, END = LAST + 0.999;
+let SZMIN = 2, SZMAX = 10;                      // Punktradius (px): kleinster / größter Punkt, per E-Menü
+let DOT = 3000;                                  // Personen pro Punkt (per Regler im E-Menü änderbar)
+const SEC_PER_YEAR = 0.7;
+let ypsCur = 1.0;                                  // Animation 2: ruhiges Tempo, in Ereignisjahren deutlich langsamer
+function yps(){
+  if (scene === 3) return ypsCur;                                   // Jahre pro Sekunde: Animation 1 beschleunigt langsam
+  if (scene === 1){                                 // bis ca. 1999 langsam anlaufend, ab 2000 dasselbe Tempo wie Animation 2
+    const k = clamp((t - FIRST) / 9, 0, 1);
+    return lerp(0.45, 1 / SEC_PER_YEAR, k * k * (3 - 2 * k));
+  }
+  return 1 / SEC_PER_YEAR;
+}
+const SPEED = 380;                                // Punkte-Geschwindigkeit (virtuelle px/s)
+const COLORS = {birth:'#4ade9a', death:'#ff7a7a', in:'#38e0ff', out:'#ffb454'};
+const BGS = ['#121212','#121212','#121212','#121212','#121212','#121212'];   // Hintergrund je Folie
+// Feste Standardwerte (per „Einstellungen kopieren“ im E-Menü erzeugen und hier einfügen). Gespeicherte Browser-Einstellungen überschreiben sie lokal.
+const DEFAULTS = {dot: 3000, szmin: 2, szmax: 10, colors: {}, bgs: []};
+let SAVED = {};
+try { SAVED = JSON.parse(localStorage.getItem('bev-einstellungen-v3') || '{}') || {}; } catch (e) {}
+if (DEFAULTS.colors) for (const k in COLORS) if (/^#[0-9a-f]{6}$/i.test(DEFAULTS.colors[k] || '')) COLORS[k] = DEFAULTS.colors[k];
+if (DEFAULTS.bgs) DEFAULTS.bgs.forEach((c, i) => { if (i < BGS.length && /^#[0-9a-f]{6}$/i.test(c)) BGS[i] = c; });
+if (DEFAULTS.dot > 0) DOT = DEFAULTS.dot; if (DEFAULTS.szmin > 0) SZMIN = DEFAULTS.szmin; if (DEFAULTS.szmax > 0) SZMAX = DEFAULTS.szmax;
+if (SAVED.colors) for (const k in COLORS) if (/^#[0-9a-f]{6}$/i.test(SAVED.colors[k] || '')) COLORS[k] = SAVED.colors[k];
+if (SAVED.bgs) SAVED.bgs.forEach((c, i) => { if (i < BGS.length && /^#[0-9a-f]{6}$/i.test(c)) BGS[i] = c; });
+if (SAVED.dot > 0) DOT = SAVED.dot;
+if (SAVED.szmin > 0) SZMIN = SAVED.szmin;
+if (SAVED.szmax > 0) SZMAX = SAVED.szmax;
+function saveSettings(){ try { localStorage.setItem('bev-einstellungen-v3', JSON.stringify({colors: COLORS, bgs: BGS, dot: DOT, szmin: SZMIN, szmax: SZMAX})); } catch (e) {} }
+const mouse = {x: -1, y: -1};
+addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+const byYear = {}; DATA.forEach(d => byYear[d.y] = d);
+
+const cumN = {[FIRST-1]: 0}, cumB = {[FIRST-1]: 0}, cumD = {[FIRST-1]: 0}, cumZ = {[FIRST-1]: 0}, cumF = {[FIRST-1]: 0};
+DATA.forEach(d => {
+  cumB[d.y] = cumB[d.y-1] + d.wb; cumD[d.y] = cumD[d.y-1] + d.wd; cumN[d.y] = cumB[d.y] - cumD[d.y];
+  cumZ[d.y] = cumZ[d.y-1] + d.zu; cumF[d.y] = cumF[d.y-1] + d.fort;
+});
+const fmt = n => Math.round(n).toLocaleString('de-DE');
+const sgn = n => (Math.round(n) >= 0 ? '+' : '−') + Math.abs(Math.round(n)).toLocaleString('de-DE');
+const clamp = (x,a,b) => Math.max(a, Math.min(b, x)), lerp = (a,b,x) => a + (b-a)*x;
+const $ = id => document.getElementById(id);
+function hexA(h, a){ const n = parseInt(h.slice(1), 16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; }
+
+const PHASES = [
+  { label:'ohne Zu- und Abwanderung', up:{key:'wb', ck:'birth', name:'Lebendgeborene'}, down:{key:'wd', ck:'death', name:'Gestorbene'} },
+  { label:'tatsächliche Bevölkerung', up:{key:'zu', ck:'in', name:'Einwanderung'}, down:{key:'fort', ck:'out', name:'Auswanderung'} },
+];
+let phase = 0;
+
+/* ---- Schriftgrößen: genau drei Stufen ---- */
+const FS = {l:44, m:26, s:18};
+function calcFS(){
+  FS.l = clamp(Math.min(innerWidth * 0.034, innerHeight * 0.062), 26, 54);
+  FS.m = FS.l * 0.58; FS.s = FS.l * 0.4;
+  const r = document.documentElement.style;
+  r.setProperty('--fs-l', FS.l + 'px'); r.setProperty('--fs-m', FS.m + 'px'); r.setProperty('--fs-s', FS.s + 'px');
+}
+function applyColorVars(){
+  const r = document.documentElement.style;
+  for (const k in COLORS) r.setProperty('--c-' + k, COLORS[k]);
+}
+
+/* ---- Canvas (virtuelles Koordinatensystem, mind. 1280 x 720) ---- */
+const cv = $('c'), ctx = cv.getContext('2d');
+let W = 1280, H = 720, SC = 1, HB = 100, DPR = 1;
+function resize(){
+  calcFS();
+  const dpr = DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const rw = cv.clientWidth, rh = cv.clientHeight;
+  if (!rw || !rh) return;
+  SC = Math.min(rw / 1280, rh / 720);
+  W = rw / SC; H = rh / SC;
+  cv.width = rw * dpr; cv.height = rh * dpr; ctx.setTransform(dpr*SC, 0, 0, dpr*SC, 0, 0);
+  HB = (28 + 2.5 * FS.m + 16) / SC;                // Platz oben für die angedockte Frage
+}
+addEventListener('resize', resize); resize(); applyColorVars();
+
+/* ---- Zeit & Planer (läuft nur, solange nicht pausiert) ---- */
+let vt = 0, paused = false, panelOpen = false;
+const timers = [], ticks = [];
+function later(ms, fn){ const o = {at: vt + ms, fn}; timers.push(o); return o; }
+function runTimers(){
+  for (;;){
+    let k = -1;
+    for (let i = 0; i < timers.length; i++) if (timers[i].at <= vt && (k < 0 || timers[i].at < timers[k].at)) k = i;
+    if (k < 0) break;
+    const o = timers.splice(k, 1)[0]; o.fn();
+  }
+  for (let i = ticks.length - 1; i >= 0; i--) if (ticks[i]() === true) ticks.splice(i, 1);
+}
+const sleep = ms => new Promise(r => later(ms, r));
+function cancelSeq(){ timers.length = 0; ticks.length = 0; typing = null; }
+
+/* ---- Zustand ---- */
+let t = FIRST, scene = 0;                         // Folien: 0 Frage · 1 Animation 1 · 2 Differenz · 3 Animation 2 · 4 Ergebnis · 5 Dashboard
+const SCENES = ['Frage', 'Animation 1', 'Differenz', 'Animation 2', 'Ergebnis', 'Dashboard'];
+const isAnim = () => scene === 1 || scene === 3;
+const isDash = () => scene === 5;
+const playBtn = $('play');
+const ICON_PLAY = '<svg viewBox="0 0 20 20"><path d="M4 2 L17 10 L4 18 Z"/></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 20 20"><path d="M4 2h4v16H4zM12 2h4v16h-4z"/></svg>';
+function setPaused(p){ paused = p; playBtn.innerHTML = p ? ICON_PLAY : ICON_PAUSE; playBtn.setAttribute('aria-label', p ? 'Abspielen' : 'Pause'); }
+setPaused(false);
+playBtn.onclick = () => {
+  if ((isAnim() || isDash()) && t >= LAST && !paused && false) return;
+  if (isDash() && t >= LAST){ t = FIRST; setPaused(false); return; }
+  setPaused(!paused);
+};
+function restart(){ t = FIRST; prefill(); }
+
+function setPhase(i){ phase = i; restart(); }
+
+/* ---- Zeitstrahl ---- */
+const track = $('track'), rail = $('rail'), fillEl = $('fill'), headEl = $('head'), headLbl = $('headlbl');
+const posPct = y => (y - FIRST) / (LAST - FIRST) * 100;
+for (let y = FIRST; y <= LAST; y++){
+  const major = y % 5 === 0 || y === FIRST || y === LAST;
+  const tk = document.createElement('div'); tk.className = 'tick' + (major ? ' major' : ''); tk.style.left = posPct(y) + '%';
+  track.appendChild(tk);
+  if (major && y !== 2020){
+    const l = document.createElement('div'); l.className = 'tlab'; l.textContent = y; l.style.left = posPct(y) + '%'; track.appendChild(l);
+  }
+}
+const EVENTS = {
+  1992: {t: 'Jugoslawienkriege', s: 'Über 400.000 Menschen stellen einen Asylantrag – ein Höchststand.',
+         d: 'Bürgerkriege im früheren Jugoslawien und die Öffnung Osteuropas lassen die Zuzüge auf 1,5 Millionen steigen.'},
+  1993: {t: 'Asylkompromiss', s: 'Das Asylrecht wird eingeschränkt, die Zuzüge sinken.',
+         d: 'Wer aus einem sicheren Drittstaat einreist, kann an der Grenze zurückgewiesen werden. Die Asylanträge fallen in den Folgejahren stark.'},
+  2011: {t: 'Arbeitnehmerfreizügigkeit', s: 'Menschen aus Osteuropa dürfen ohne Erlaubnis in Deutschland arbeiten.',
+         d: 'Seit Mai 2011 gilt die volle Freizügigkeit für die 2004 beigetretenen EU-Staaten. Zugleich korrigiert der Zensus die Bevölkerungszahl um rund 1,4 Millionen nach unten.'},
+  2012: {t: 'Eurokrise', s: 'Wegen der Wirtschaftskrise suchen Menschen aus Südeuropa Arbeit in Deutschland.',
+         d: 'In Spanien, Italien und Griechenland ist die Arbeitslosigkeit hoch – die Zuzüge steigen von 2010 bis 2013 jedes Jahr.'},
+  2014: {t: 'Freizügigkeit für Bulgarien und Rumänien', s: 'Bulgaren und Rumänen dürfen frei in Deutschland arbeiten.',
+         d: 'Seit Januar 2014 entfallen die letzten Beschränkungen, der Zuzug aus beiden Ländern nimmt deutlich zu.'},
+  2015: {t: 'Fluchtbewegung aus Syrien', s: 'Fast 900.000 Schutzsuchende erreichen Deutschland.',
+         d: 'Der Krieg in Syrien sowie Konflikte in Afghanistan und im Irak lassen die Zuzüge 2015 auf 2,1 Millionen steigen.'},
+  2020: {t: 'Corona-Pandemie', s: 'Grenzen sind geschlossen, die Zuzüge brechen ein.',
+         d: 'Die Zuzüge sinken von 1,56 Millionen (2019) auf 1,19 Millionen.'},
+  2022: {t: 'Krieg in der Ukraine', s: 'Rund eine Million Menschen fliehen aus der Ukraine nach Deutschland.',
+         d: 'Mit 2,67 Millionen Zuzügen ist 2022 der höchste Wert seit 1991.'},
+};
+const evEl = $('event');
+let evHideAt = 0, evHover = false, evPinned = null, evYear = null;
+const mks = {};
+function showEvent(y, pin){
+  if (evYear === y && evEl.classList.contains('on')){        // schon sichtbar: nur Details ein-/ausklappen
+    evEl.classList.toggle('pin', !!pin); evHideAt = vt + 4000; return;
+  }
+  const e = EVENTS[y];
+  evEl.innerHTML = '<div class="et"><span class="ey">' + y + '</span>' + e.t + '</div><div class="es">' + e.s + '</div><div class="ed">' + e.d + '</div><div class="eline"></div>';
+  evEl.classList.toggle('pin', !!pin); evEl.classList.add('on');
+  evHideAt = vt + 4000; evYear = y;                    // höchstens 4 Sekunden
+}
+function hideEvent(){ evEl.classList.remove('on', 'pin'); evHover = false; evPinned = null; evYear = null; }
+for (const y in EVENTS){
+  const m = document.createElement('div'); m.className = 'mk'; m.style.left = posPct(+y) + '%';
+  m.addEventListener('pointerdown', e => e.stopPropagation());
+  m.addEventListener('pointerenter', () => { if (evPinned === null){ showEvent(+y); evHover = true; } });
+  m.addEventListener('pointerleave', () => { evHover = false; evHideAt = vt + 1200; });
+  m.addEventListener('click', e => {
+    e.stopPropagation();
+    if (evPinned === +y){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1200; }
+    else { evPinned = +y; showEvent(+y, true); }
+  });
+  track.appendChild(m); mks[y] = m;
+}
+evEl.addEventListener('pointerenter', () => { evHover = true; });
+evEl.addEventListener('pointerleave', () => { evHover = false; if (evPinned === null) evHideAt = vt + 1500; });
+evEl.addEventListener('click', () => {
+  if (evYear === null) return;
+  if (evPinned === evYear){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1500; }
+  else { evPinned = evYear; evEl.classList.add('pin'); }
+});
+let dragging = false;
+function seek(e){
+  const r = rail.getBoundingClientRect();
+  t = FIRST + clamp((e.clientX - r.left) / r.width, 0, 1) * (LAST - FIRST);
+  prefill();
+}
+track.addEventListener('pointerdown', e => { if (evPinned !== null){ evPinned = null; evEl.classList.remove('pin'); evHideAt = vt + 1200; } dragging = true; track.setPointerCapture(e.pointerId); seek(e); });
+track.addEventListener('pointermove', e => { if (dragging) seek(e); });
+track.addEventListener('pointerup', () => { dragging = false; });
+track.addEventListener('pointercancel', () => { dragging = false; });
+
+function state(t){
+  const y = clamp(Math.floor(t), FIRST, LAST), f = clamp(t - y, 0, 1), d = byYear[y];
+  const prevWp = y === FIRST ? BASE : byYear[y-1].wp;
+  const pop = phase === 0 ? BASE + cumN[y-1] + f * (d.wb - d.wd) : lerp(prevWp, d.wp, f);
+  return { y, f, d, pop };
+}
+
+/* ---- Layout: statisch, nur der Kreisradius ändert sich ---- */
+const REF_POP = 84e6;
+let R_MAX = 190, CX = 640, CY = 360;
+function layout(){
+  const free = H - HB - 112 / SC;
+  R_MAX = clamp(free / 2 - 34, 90, 200);
+  CX = W / 2; CY = HB + free / 2;
+}
+const BAND = () => R_MAX * 0.6;                    // beide Strahlen gleich breit
+
+/* ---- Punkte ---- */
+const particles = [], acc = {up:0, down:0}, MAXP = 16000;
+function spawn(inflow, ck, age){
+  if (particles.length > MAXP) return;
+  const len = inflow ? CX + 14 : W - CX + 20;
+  const sp = 0.65 + Math.random() * 0.7;             // jedes Teilchen hat sein eigenes Tempo
+  const g = (Math.random() + Math.random() + Math.random()) / 1.5 - 1;      // eher mittig, aber breit gestreut
+  const p = {inflow, ck, u: Math.random() < 0.35 ? Math.random() * 2 - 1 : g,
+    wob: Math.random() * 6.28, wf: 4 + Math.random() * 7, wa: 2 + Math.random() * 12,
+    r: Math.pow(Math.random(), 1.7),   // viele kleine, wenige große
+    alpha: 0.55 + Math.random() * 0.45, len, life: Math.max(0.6, len / (SPEED * sp)), age: 0};
+  if (age) p.age = Math.random() * p.life;
+  particles.push(p);
+}
+function emit(dt, key, rate, inflow, ck){
+  acc[key] += rate * dt;
+  while (acc[key] >= 1){ acc[key] -= 1; spawn(inflow, ck); }
+}
+function stepParticles(dt){
+  for (let i = particles.length - 1; i >= 0; i--){
+    const p = particles[i]; p.age += dt;
+    if (p.age >= p.life) particles.splice(i, 1);
+  }
+}
+function prefill(){                                // Strahlen sofort gefüllt darstellen (z. B. nach dem Springen im Zeitstrahl)
+  particles.length = 0; acc.up = acc.down = 0;
+  if (phase > 1 || isDash()) return;
+  const P = PHASES[phase], d = byYear[clamp(Math.floor(t), FIRST, LAST)], k = yps();
+  for (const [key, ck, inflow] of [[P.up.key, P.up.ck, true], [P.down.key, P.down.ck, false]]){
+    const len = inflow ? CX + 14 : W - CX + 20, n = d[key] / DOT * k * (len / SPEED);
+    for (let i = 0; i < n; i++) spawn(inflow, ck, true);
+  }
+}
+function drawParticles(rNow){
+  const rEx = rNow - 16 / SC, fade = 46 / SC, band = BAND();
+  for (const p of particles){
+    const q = clamp(p.age / p.life, 0, 1);
+    const x = p.inflow ? lerp(-14, CX, q) : lerp(CX, W + 20, q);
+    const dist = Math.abs(x - CX) / Math.max(CX, 1);                  // 0 am Kreis, 1 am Rand (links und rechts gleich)
+    const env = band * (0.8 + 0.45 * dist + 0.12 * Math.sin(dist * 7 + 1.3));   // atmende, trichterförmige Breite
+    const y = CY + p.u * env + Math.sin(q * p.wf + p.wob) * p.wa / SC * (0.3 + dist);
+    let a = clamp((Math.hypot(x - CX, y - CY) - rEx) / fade, 0, 1);
+    a = a * a * (3 - 2 * a);                                           // weicher Übergang in den Kreis
+    a *= clamp((H - 104 / SC - y) / 30, 0, 1);
+    if (a <= 0.01) continue;
+    ctx.globalAlpha = a * p.alpha; ctx.fillStyle = COLORS[p.ck];
+    ctx.beginPath(); ctx.arc(x, y, lerp(SZMIN, SZMAX, p.r) / SC, 0, 6.2832); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+/* ---- Zeichnen ---- */
+const FONT = '"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif';
+function text(str, x, y, css, color, weight, align){
+  ctx.font = `${weight || 400} ${css / SC}px ${FONT}`;
+  ctx.fillStyle = color || '#f2f4f8'; ctx.textAlign = align || 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(str, x, y);
+}
+function drawAnim(s){
+  const P = PHASES[phase], u = 1 / SC;
+  const r = R_MAX * Math.sqrt(Math.max(s.pop, 1) / REF_POP);
+  ctx.lineWidth = 2 * u; ctx.strokeStyle = '#fff';
+  ctx.beginPath(); ctx.arc(CX, CY, r, 0, 6.2832); ctx.stroke();
+  drawParticles(r);
+
+  // Kreis-Beschriftung (fest, nur der Kreis wächst/schrumpft)
+  text('Bevölkerungsstand', CX, CY - (FS.l * 0.78 + FS.m * 0.75) * u, FS.m * 1.1, '#a4adbd', 400);
+  text(fmt(s.pop), CX, CY, FS.l, '#fff', 300);
+  text(P.label, CX, CY + (FS.l * 0.78 + FS.s * 1.0) * u, FS.s * 1.1, '#7d879b', 400);
+
+  // Jahreswerte links / rechts, gleiche Höhe, mittig zwischen Kreis und Rand
+  const numY = CY - BAND() - (18 + FS.l * 0.5) * u, labY = numY - (FS.l * 0.5 + FS.m * 0.8 + 6) * u;
+  const lx = (CX - R_MAX) / 2, rx = (CX + R_MAX + W) / 2, d = s.d;
+  text(P.up.name, lx, labY, FS.m, '#a4adbd', 400);
+  text(fmt(d[P.up.key]), lx, numY, FS.l, COLORS[P.up.ck], 300);
+  text(P.down.name, rx, labY, FS.m, '#a4adbd', 400);
+  text(fmt(d[P.down.key]), rx, numY, FS.l, COLORS[P.down.ck], 300);
+}
+
+/* ---- Dashboards (E im Dashboard wechselt zwischen den drei Varianten) ---- */
+const DASH = DASHBOARDS.map(d => d.name);   // kommen aus dashboards/*.js
+let dash = 0;
+let dashGeo = null;
+function drawDash(s){
+  const w = cv.clientWidth, h = cv.clientHeight;
+  const yr = clamp(Math.floor(t), FIRST, LAST), d = byYear[yr], f = (t - yr) > 0 ? clamp(t - yr, 0, 1) : 1;
+  const api = {
+    ctx, w, h, t, year: yr, frac: f, d, FIRST, LAST, BASE, DATA, byYear, cumN, cumB, cumD, cumZ, cumF,
+    COLORS, FS, FONT, bg: BGS[scene] || '#121212', mouse, fmt, sgn, clamp, lerp,
+    popNow: lerp(yr === FIRST ? BASE : byYear[yr-1].wp, d.wp, f),
+    popWithoutMigration: BASE + cumN[yr-1] + f * (d.wb - d.wd),
+    setClickArea: g => { dashGeo = g; },            // Bereich, in dem ein Klick das Jahr wählt: {x0, x1, y0, y1}
+  };
+  const dashDef = DASHBOARDS[dash];
+  if (!dashDef){ return; }
+  try { dashDef.draw(api); }
+  catch (e){                                        // Fehler im Dashboard eines Kollegen sollen die Seite nicht anhalten
+    console.error('Dashboard ' + dashDef.id, e);
+    ctx.font = `400 ${FS.s}px ${FONT}`; ctx.fillStyle = '#ff7a7a'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillText('Fehler in dashboards/' + dashDef.id + '.js: ' + e.message, 40, 40);
+  }
+}
+
+function draw(s){
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
+  if (isDash()) drawDash(s);
+  else { ctx.setTransform(DPR * SC, 0, 0, DPR * SC, 0, 0); drawAnim(s); }
+}
+
+/* ---- Differenz-Bildschirm: Balken pro Jahr (Geburten − Gestorbene) ---- */
+const bc = $('bc'), bctx = bc.getContext('2d');
+let bcClear = true;
+function niceStep(raw){
+  const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+  return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+}
+function drawBridge(){
+  if (scene !== 2){ if (!bcClear){ bctx.setTransform(1,0,0,1,0,0); bctx.clearRect(0, 0, bc.width, bc.height); bcClear = true; } return; }
+  bcClear = false;
+  const w = bc.clientWidth, h = bc.clientHeight;
+  if (!w || !h) return;
+  if (bc.width !== Math.round(w * DPR) || bc.height !== Math.round(h * DPR)){ bc.width = Math.round(w * DPR); bc.height = Math.round(h * DPR); }
+  const c = bctx; c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, w, h);
+  const el = bridgeFull ? 1e9 : vt - bridgeT0;
+  const axisA = clamp((el - 200) / 600, 0, 1);               // erst die Zeitlinie ...
+  if (axisA <= 0) return;
+  const prog = clamp((el - 700) / 2800, 0, 1) * (LAST - FIRST + 1);   // ... dann die Balken nach und nach
+  const x0 = 130, x1 = w - 60, top = h * 0.74, bot = h - 62, n = LAST - FIRST + 1;
+  let lo = 0, hi = 0;
+  DATA.forEach(d => { const v = d.wb - d.wd; lo = Math.min(lo, v); hi = Math.max(hi, v); });
+  hi = Math.max(hi, -lo * 0.12);
+  const zero = top + (hi / (hi - lo)) * (bot - top), Yv = v => zero - v / (hi - lo) * (bot - top);
+  const slot = (x1 - x0) / n, bw = slot * 0.56;
+  let hov = -1;
+  if (mouse.x >= x0 && mouse.x < x1 && mouse.y > top - 26 && mouse.y < bot + 36){
+    const i = Math.floor((mouse.x - x0) / slot);
+    if (i >= 0 && i < n && prog > i + 0.4) hov = i;
+  }
+  const ty = top - FS.l * 0.95;
+  c.globalAlpha = axisA; c.textBaseline = 'middle';
+  c.font = `300 ${FS.l}px ${FONT}`; c.fillStyle = '#fff'; c.textAlign = 'left';
+  c.fillText('Geburtendefizit pro Jahr', x0, ty);
+  // Y-Achse mit Skala
+  const step = niceStep((hi - lo) / 4);
+  c.font = `400 ${FS.s * 0.8}px ${FONT}`; c.textAlign = 'right';
+  for (let v = Math.ceil(lo / step) * step; v <= hi + 1; v += step){
+    const yy = Yv(v);
+    c.fillStyle = '#262c38'; c.fillRect(x0, yy - 0.5, x1 - x0, 1);
+    c.fillStyle = '#7d879b'; c.fillText(Math.abs(v) < 1 ? '0' : sgn(v).replace('+', ''), x0 - 12, yy);
+  }
+  c.fillStyle = '#4a5366'; c.fillRect(x0 - 1, top, 2, bot - top);
+  c.fillStyle = '#fff'; c.fillRect(x0, zero - 1, (x1 - x0) * axisA, 2);
+  c.textAlign = 'center'; c.fillStyle = '#7d879b';
+  for (let y = FIRST; y <= LAST; y++){
+    if (y % 5 === 0 || y === FIRST || y === LAST){
+      const cx = x0 + (y - FIRST + 0.5) * slot;
+      c.fillRect(cx - 1, bot + 6, 2, 6);
+      if (y !== 2020) c.fillText(String(y), cx, bot + 26);
+    }
+  }
+  c.globalAlpha = 1;
+  if (hov >= 0){ c.fillStyle = 'rgba(255,255,255,.06)'; c.fillRect(x0 + hov * slot, top - 4, slot, bot - top + 8); }
+  DATA.forEach((d, i) => {
+    const f = ease(clamp(prog - i, 0, 1)); if (f <= 0) return;
+    const v = d.wb - d.wd, cx = x0 + (i + 0.5) * slot, yv = Yv(v * f);
+    c.globalAlpha = hov >= 0 && i !== hov ? 0.4 : 1;
+    c.fillStyle = v < 0 ? COLORS.death : COLORS.birth;
+    c.fillRect(cx - bw / 2, Math.min(zero, yv), bw, Math.max(Math.abs(yv - zero), 1));
+  });
+  c.globalAlpha = 1;
+  if (hov >= 0){                                              // Wert des Jahres
+    const d = DATA[hov], v = d.wb - d.wd;
+    c.textAlign = 'right';
+    c.font = `300 ${FS.l}px ${FONT}`; c.fillStyle = v < 0 ? COLORS.death : COLORS.birth;
+    c.fillText(sgn(v), x1, ty);
+    const vw = c.measureText(sgn(v)).width;
+    c.font = `400 ${FS.m}px ${FONT}`; c.fillStyle = '#a4adbd';
+    c.fillText(String(d.y), x1 - vw - 18, ty);
+    c.font = `400 ${FS.s * 0.9}px ${FONT}`; c.fillStyle = '#7d879b';
+    c.fillText(fmt(d.wb) + ' Geborene − ' + fmt(d.wd) + ' Gestorbene', x1, ty + FS.l * 0.78);
+  }
+}
+
+/* ---- Schleife ---- */
+let last = performance.now(), lastYear = 0;
+function frame(now){
+  try { frameBody(now); } catch (e) { console.error(e); }
+  requestAnimationFrame(frame);
+}
+function frameBody(now){
+  if (cv.width === 0 || Math.abs(cv.clientWidth * Math.min(devicePixelRatio || 1, 2) - cv.width) > 1) resize();
+  const dt = Math.min(0.25, (now - last) / 1000); last = now;
+  if (!paused) vt += dt * 1000;
+  runTimers();
+  layout();
+  const s = state(t);
+  if (scene === 3){ const target = EVENTS[clamp(Math.floor(t), FIRST, LAST)] ? 0.4 : 1.0; ypsCur += (target - ypsCur) * Math.min(1, dt * 4); }
+  if (isAnim() && !paused){
+    t += dt * yps();
+    if (t >= END){ t = END; goScene(scene === 1 ? 2 : 4); }
+  } else if (isDash() && !paused && !dragging){
+    t += dt / 0.45;
+    if (t >= LAST){ t = LAST; setPaused(true); }
+  }
+  if (isAnim()){                                   // Punkte laufen auch bei Pause weiter, mit den Werten des gewählten Jahres
+    const P = PHASES[phase], k = yps(), d = s.d;
+    emit(dt, 'up',   d[P.up.key]   / DOT * k, true,  P.up.ck);
+    emit(dt, 'down', d[P.down.key] / DOT * k, false, P.down.ck);
+    stepParticles(dt);
+  }
+  const p = posPct(Math.min(t, LAST)) + '%';
+  headEl.style.left = p; fillEl.style.width = p;
+  const yy = clamp(Math.floor(t), FIRST, LAST);
+  if (yy !== lastYear){ if (scene === 3 && EVENTS[yy] && evPinned === null && (!paused || dragging)) showEvent(yy); headLbl.textContent = yy; track.setAttribute('aria-valuenow', yy); lastYear = yy; }
+  if (evEl.classList.contains('on') && !evHover && evPinned === null && vt > evHideAt) hideEvent();
+  if (scene === 3){ const on = evEl.classList.contains('on'); for (const y in mks){ mks[y].classList.toggle('seen', +y <= yy); mks[y].classList.toggle('act', on && evYear === +y); } }
+  draw(state(t));
+  drawBridge();
+}
+
+/* ---- Text-Szenen ---- */
+const Q2 = 'Wie hätte sich die Bevölkerung\nverändert ohne Ein- und Auswanderung?';
+const BQ = 'Könnte die Ein- und Auswanderung\ndas Geburtendefizit ausgleichen?';
+const qs = $('qs'), qtext = $('qtext'), btext = $('btext'), bnext = $('bnext'), br = $('br'), fin = $('fin');
+let typing = null, introTyped = false, bridgeDone = false, finDone = false;
+
+function typeInto(el, str, cb){
+  el.innerHTML = '<span></span><span class="caret"></span>';
+  const ty = typing = {str, sp: el.firstChild, el, cb, i: 0};
+  (function step(){
+    if (typing !== ty) return;
+    if (ty.i < str.length){
+      const ch = str[ty.i++]; ty.sp.textContent = str.slice(0, ty.i);
+      let d = 26 + Math.random() * 36;                           // Buchstabe
+      if (ch === ' ' || ch === '\n') d = 110 + Math.random() * 150;  // Pause zwischen Wörtern
+      else if (Math.random() < 0.07) d += 90 + Math.random() * 150; // kurzes Zögern
+      later(d, step);
+    } else { typing = null; ty.cb && ty.cb(); }
+  })();
+}
+function highlight(el, str, keys, instant){        // alles grau, nur die Kernwörter bleiben weiß
+  let out = '', i = 0;
+  while (i < str.length){
+    const k = keys.find(k => str.startsWith(k, i));
+    if (k){ out += '<span class="w">' + k + '</span>'; i += k.length; }
+    else { let j = i; while (j < str.length && !keys.some(k => str.startsWith(k, j))) j++; out += '<span class="g">' + str.slice(i, j) + '</span>'; i = j; }
+  }
+  if (instant){ el.classList.add('hl'); el.innerHTML = out; return; }
+  el.innerHTML = out;
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('hl')));
+}
+const KEYS1 = ['Bevölkerung', 'ohne Ein- und Auswanderung'], KEYS2 = ['Ein- und Auswanderung', 'Geburtendefizit'];
+
+function placeIntro(){                             // Block mittig platzieren, Text bleibt linksbündig
+  ctx.font = `300 ${FS.l}px ${FONT}`;
+  const wmax = Math.max(...Q2.split('\n').map(l => ctx.measureText(l).width));
+  document.documentElement.style.setProperty('--qleft', Math.max(40, (innerWidth - wmax) / 2) + 'px');
+}
+addEventListener('resize', placeIntro);
+function sceneIntro(instant){
+  qtext.classList.remove('hl'); introTyped = false;
+  qs.className = 'on';
+  qtext.innerHTML = '<span></span><span class="caret"></span>';
+  qtext.style.transition = 'none'; qtext.style.opacity = 0;
+  const fontReady = Promise.race([document.fonts.load('300 40px "IBM Plex Sans"'), new Promise(r => setTimeout(r, 1200))]);
+  const myScene = ++introRun;
+  fontReady.then(() => {                           // Position erst mit geladener Schrift bestimmen, dann statisch lassen
+    if (myScene !== introRun || scene !== 0) return;
+    placeIntro(); void qtext.offsetWidth;
+    qtext.style.transition = ''; qtext.style.opacity = 1;
+    if (instant){ introFull(); return; }
+    later(1200, () => typeInto(qtext, Q2, () => { introTyped = true; later(1500, () => goScene(1)); }));
+  });
+}
+let introRun = 0;
+function introFull(){
+  cancelSeq(); introTyped = true; qtext.classList.remove('hl');
+  qtext.innerHTML = '<span>' + Q2 + '</span><span class="caret"></span>';
+}
+function sceneAnim1(fromIntro){
+  setPhase(0);
+  qs.className = 'docked';
+  if (fromIntro){
+    if (!qtext.firstChild || qtext.querySelector('.caret')) { /* Text steht bereits */ }
+    later(1100, () => highlight(qtext, Q2, KEYS1));  // Fokus erst, wenn der Text oben links steht
+  } else {
+    qtext.style.opacity = 1; highlight(qtext, Q2, KEYS1, true);
+  }
+}
+function countUp(el, to, ms, cb){
+  const t0 = vt;
+  ticks.push(() => {
+    const p = clamp((vt - t0) / ms, 0, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = sgn(to * e);
+    if (p >= 1){ cb && cb(); return true; }
+  });
+}
+function bridgeEls(){ return [...document.querySelectorAll('#bl .l1,#bl .l2')]; }
+function finishBridge(){
+  cancelSeq();
+  bridgeEls().forEach(el => el.classList.add('in'));
+  $('bdef').textContent = sgn(cumN[LAST]);
+  btext.textContent = BQ; highlight(btext, BQ, KEYS2, true);
+  bnext.classList.add('on'); bridgeDone = true; bridgeFull = true;
+}
+let bridgeT0 = 0, bridgeFull = false;
+function showBridge(instant){
+  bridgeT0 = vt; bridgeFull = false;
+  const l = bridgeEls();
+  l.forEach(el => el.classList.remove('in'));
+  $('bdef').textContent = '0';
+  btext.innerHTML = ''; btext.classList.remove('hl'); btext.removeAttribute('style'); br.removeAttribute('style');
+  bnext.classList.remove('on'); bridgeDone = false;
+  qs.className = 'on bridge';
+  if (instant){ finishBridge(); return; }
+  later(500, () => {
+    l[0].classList.add('in'); l[1].classList.add('in');
+    later(700, () => countUp($('bdef'), cumN[LAST], 2600, () => {
+      later(1500, () => typeInto(btext, BQ, () => {
+        highlight(btext, BQ, KEYS2);
+        later(1800, () => { bnext.classList.add('on'); bridgeDone = true; later(8000, () => goScene(3)); });
+      }));
+    }));
+  });
+}
+function sceneAnim2(glide){
+  setPhase(1);
+  if (glide){
+    const r = br.getBoundingClientRect();
+    br.style.cssText = `right:auto;bottom:auto;left:${r.left}px;top:${r.top}px;transition:none`;
+    void br.offsetWidth;
+    br.style.transition = 'left 1s cubic-bezier(.65,0,.25,1), top 1s cubic-bezier(.65,0,.25,1)';
+    br.style.left = 'var(--pad)'; br.style.top = '28px';
+    btext.style.transition = 'font-size 1s cubic-bezier(.65,0,.25,1), font-weight 1s'; btext.style.fontSize = 'var(--fs-m)';
+  } else {
+    br.style.cssText = 'right:auto;bottom:auto;left:var(--pad);top:28px;transition:none';
+    btext.style.cssText = 'font-size:var(--fs-m)';
+    btext.textContent = BQ; highlight(btext, BQ, KEYS2, true);
+  }
+  qs.className = 'bridge docked2';
+}
+
+/* ---- Ergebnis: Wanderungssaldo gleicht das Geburtendefizit aus ---- */
+const fbL = $('fbL'), fbR = $('fbR'), fsL = $('fsL'), fsR = $('fsR'), fvL = $('fvL'), fvR = $('fvR');
+const fnL = $('fnL'), fnR = $('fnR'), flR = $('flR'), fcap = $('fcap'), fbtn = $('fbtn');
+const ease = x => x < .5 ? 2*x*x : 1 - Math.pow(-2*x + 2, 2) / 2;
+const sgn0 = n => Math.round(n) === 0 ? '0' : sgn(n);
+let finId = 0;
+const F = {a: 0, b: 0, m: 0};
+function finValues(){ const def = cumN[LAST], net = cumZ[LAST] - cumF[LAST]; return {def, net, rest: net + def}; }
+function renderFinal(){
+  const {def, net} = finValues();
+  const w = innerWidth, h = innerHeight, cy = h * 0.6, sideTop = Math.max(h * 0.1, 76);
+  const rBig = clamp(Math.min(w * 0.17, cy - sideTop - 190, h * 0.26), 36, 400);
+  const R = v => rBig * Math.sqrt(Math.abs(v) / net);
+  const s1 = ease(clamp(F.m / 0.4, 0, 1)), s2 = ease(clamp((F.m - 0.4) / 0.35, 0, 1)), s3 = ease(clamp((F.m - 0.75) / 0.25, 0, 1));
+  const vL = def * F.a * (1 - s2), vR = net * F.b + def * s2;
+  const xLeft = w * 0.25, cxm = w * 0.5;
+  const xLt = cxm - R(def), xRt = cxm + R(net);              // beide Kreise berühren sich genau in der Bildmitte
+  const xR = lerp(lerp(w * 0.75, xRt, s1), cxm, s3);
+  const xL = lerp(lerp(xLeft, xLt, s1), xR, s2);               // dann schiebt sich der rote Kreis in den cyanfarbenen
+  const gxR = lerp(w * 0.75, w * 0.5, s3);
+  const put = (el, x, y, r) => { el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.width = el.style.height = 2 * r + 'px'; el.style.visibility = r < 1.5 ? 'hidden' : ''; };
+  put(fbL, xL, cy, R(vL)); put(fbR, xR, cy, R(vR));
+  fbL.style.background = 'radial-gradient(circle, ' + hexA(COLORS.death, .08) + ', ' + hexA(COLORS.death, .34) + ')'; fbL.style.border = '2px solid ' + COLORS.death;
+  fbR.style.background = 'radial-gradient(circle, ' + hexA(COLORS.in, .08) + ', ' + hexA(COLORS.in, .34) + ')'; fbR.style.border = '2px solid ' + COLORS.in;
+  fvL.style.color = COLORS.death; fvR.style.color = COLORS.in;
+  fcap.querySelectorAll('b').forEach(b => b.style.color = COLORS.in);
+  fsL.style.left = xLeft + 'px'; fsL.style.top = sideTop + 'px';
+  fsR.style.left = gxR + 'px'; fsR.style.top = sideTop + 'px';
+  fvL.textContent = sgn0(vL); fvR.textContent = sgn(vR);
+  if (F.m > 0.75) fsL.style.setProperty('opacity', String(1 - s3), 'important'); else fsL.style.removeProperty('opacity');
+  flR.textContent = s2 >= 1 ? 'Überschuss durch Zuwanderung' : 'Wanderungssaldo';
+  fnR.textContent = s2 > 0 ? 'Wanderungssaldo − Geburtendefizit' : fmt(cumZ[LAST]) + ' Zuzüge − ' + fmt(cumF[LAST]) + ' Fortzüge';
+}
+function tween(ms, fn, id){
+  return new Promise(res => {
+    const t0 = vt;
+    ticks.push(() => {
+      if (id !== finId){ res(); return true; }
+      const p = clamp((vt - t0) / ms, 0, 1); fn(p); renderFinal();
+      if (p >= 1){ res(); return true; }
+    });
+  });
+}
+function finalText(){
+  const {rest} = finValues();
+  fnL.textContent = fmt(cumB[LAST]) + ' Lebendgeborene − ' + fmt(cumD[LAST]) + ' Gestorbene';
+  fcap.innerHTML = 'Die Zuwanderung gleicht das Geburtendefizit seit 1991 <b>vollständig</b> aus – und liegt noch um <b>' + fmt(rest) + '</b> Menschen darüber.';
+}
+function finishFinal(){
+  finId++; cancelSeq();
+  F.a = F.b = F.m = 1; finalText();
+  [fsL, fsR, fbL, fbR, fcap, fbtn].forEach(el => el.classList.add('in'));
+  renderFinal(); finDone = true;
+}
+async function showFinal(instant){
+  const id = ++finId; finDone = false;
+  F.a = F.b = F.m = 0;
+  [fsL, fsR, fbL, fbR, fcap, fbtn].forEach(el => el.classList.remove('in'));
+  fsL.style.removeProperty('opacity');
+  finalText(); renderFinal();
+  fin.classList.add('on');
+  if (instant){ finishFinal(); return; }
+  await sleep(1600); if (id !== finId) return;
+  fsL.classList.add('in'); fbL.classList.add('in');
+  await tween(2000, p => { F.a = ease(p); }, id); if (id !== finId) return;
+  await sleep(900); if (id !== finId) return;
+  fsR.classList.add('in'); fbR.classList.add('in');
+  await tween(2400, p => { F.b = ease(p); }, id); if (id !== finId) return;
+  await sleep(1800); if (id !== finId) return;
+  await tween(5200, p => { F.m = p; }, id); if (id !== finId) return;
+  await sleep(500); if (id !== finId) return;
+  fcap.classList.add('in');
+  await sleep(1200); if (id !== finId) return;
+  fbtn.classList.add('in'); finDone = true;
+}
+addEventListener('resize', () => { if (fin.classList.contains('on')) renderFinal(); });
+
+/* ---- Folien-Steuerung ---- */
+function goScene(n, opt){
+  opt = opt || {};
+  const prev = scene;
+  if (n === 2 && prev === 2) return;
+  if (n === 3 && prev === 2 && !bridgeDone) finishBridge();
+  cancelSeq(); finId++;
+  scene = n;
+  track.classList.toggle('ev', n === 3); if (n !== 3) hideEvent();
+  if (!panelOpen) setPaused(false);
+  if (n !== 4){ fin.classList.remove('on'); }
+  if (n !== 5) { dtabs.classList.remove('open'); }
+  switch (n){
+    case 0: sceneIntro(!!opt.instant); break;
+    case 1: sceneAnim1(prev === 0); break;
+    case 2: showBridge(!!opt.instant); break;
+    case 3: sceneAnim2(prev === 2); break;
+    case 4: qs.className = 'bridge docked2'; showFinal(!!opt.instant); break;
+    case 5: qs.className = ''; phase = 2; t = LAST; prefill(); if (!panelOpen) setPaused(true); break;
+  }
+  if (n !== 4 && n !== 5 && n !== 3) { /* qs wird von den Szenen gesetzt */ }
+  updateMenus();
+}
+function next(){
+  if (scene === 0){ if (!introTyped) introFull(); else goScene(1); }
+  else if (scene === 1) goScene(2);
+  else if (scene === 2){ if (!bridgeDone) finishBridge(); else goScene(3); }
+  else if (scene === 3) goScene(4);
+  else if (scene === 4){ if (!finDone) finishFinal(); else goScene(5); }
+}
+function prevScene(){ if (scene > 0) goScene(scene - 1, {instant: true}); }
+qs.addEventListener('click', next);
+bnext.addEventListener('click', e => { e.stopPropagation(); goScene(3); });
+$('fNext').onclick = () => goScene(5);
+$('fAgain').onclick = () => goScene(4);
+$('fRestart').onclick = () => goScene(0);
+
+/* ---- E-Menü ---- */
+const panel = $('panel'), dtabs = $('dtabs');
+const dotrng = $('dotrng'), dotlbl = $('dotlbl');
+function dotFromSlider(v){ return parseFloat((1000 * Math.pow(1000, v / 100)).toPrecision(2)); }
+function updateDot(){ DOT = dotFromSlider(+dotrng.value); dotlbl.textContent = '1 Punkt = ' + fmt(DOT) + ' Personen'; if (isAnim()) prefill(); }
+dotrng.value = 100 * Math.log(DOT / 1000) / Math.log(1000);
+dotrng.addEventListener('input', updateDot); updateDot();
+const szmin = $('szmin'), szmax = $('szmax');
+szmin.value = SZMIN; szmax.value = SZMAX;
+function updateSz(e){
+  SZMIN = +szmin.value; SZMAX = +szmax.value;
+  if (SZMAX < SZMIN){ if (e && e.target === szmin) SZMAX = szmax.value = SZMIN; else SZMIN = szmin.value = SZMAX; }
+  $('szminlbl').textContent = 'kleinster Punkt: ' + SZMIN.toFixed(1).replace('.', ',') + ' px Radius';
+  $('szmaxlbl').textContent = 'größter Punkt: ' + SZMAX.toFixed(1).replace('.', ',') + ' px Radius';
+}
+szmin.addEventListener('input', updateSz); szmax.addEventListener('input', updateSz); updateSz();
+szmin.addEventListener('input', saveSettings); szmax.addEventListener('input', saveSettings); dotrng.addEventListener('input', saveSettings);
+for (const k in COLORS){
+  const inp = $('c-' + k); inp.value = COLORS[k];
+  inp.addEventListener('input', () => { COLORS[k] = inp.value; applyColorVars(); if (fin.classList.contains('on')) renderFinal(); saveSettings(); });
+}
+const bgIn = $('c-bg');
+function applyBg(){
+  const c = BGS[scene], n = parseInt(c.slice(1), 16), rgb = (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255);
+  const r = document.documentElement.style;
+  r.setProperty('--bg', c); r.setProperty('--bg90', 'rgba(' + rgb + ',.9)'); r.setProperty('--bg80', 'rgba(' + rgb + ',.8)');
+  bgIn.value = c;
+}
+bgIn.addEventListener('input', () => { BGS[scene] = bgIn.value; applyBg(); saveSettings(); });
+$('copyset').onclick = () => {
+  const txt = JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS});
+  const done = () => { $('copyset').textContent = 'Kopiert ✓'; setTimeout(() => $('copyset').textContent = 'Einstellungen kopieren', 1800); };
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => prompt('Einstellungen kopieren:', txt)); else prompt('Einstellungen kopieren:', txt);
+};
+$('savefile').onclick = async () => {              // schreibt die aktuellen Werte als feste Standardwerte in die index.html
+  const btn = $('savefile'), label = btn.textContent;
+  const say = m => { btn.textContent = m; setTimeout(() => btn.textContent = label, 2600); };
+  if (!window.showOpenFilePicker){ say('Nur in Chrome/Edge'); return; }
+  try {
+    const [fh] = await showOpenFilePicker({multiple: false, types: [{description: 'index.html', accept: {'text/html': ['.html']}}]});
+    const src = await (await fh.getFile()).text();
+    const line = 'const DEFAULTS = ' + JSON.stringify({dot: DOT, szmin: SZMIN, szmax: SZMAX, colors: COLORS, bgs: BGS}) + ';';
+    if (!/const DEFAULTS = \{.*\};/.test(src)){ say('Falsche Datei?'); return; }
+    const out = src.replace(/const DEFAULTS = \{.*\};/, () => line);
+    const w = await fh.createWritable(); await w.write(out); await w.close();
+    say('Gespeichert ✓ – jetzt pushen');
+  } catch (e) { say('Abgebrochen'); }
+};
+$('resetset').onclick = () => { try { localStorage.removeItem('bev-einstellungen-v3'); } catch (e) {} location.reload(); };
+const scenesEl = $('scenes');
+SCENES.forEach((name, i) => {
+  const b = document.createElement('button'); b.textContent = (i + 1) + ' · ' + name;
+  b.onclick = () => { if (panelOpen) togglePanel(); goScene(i); };
+  scenesEl.appendChild(b);
+});
+DASH.forEach((name, i) => {
+  const b = document.createElement('button'); b.textContent = 'Dashboard von ' + name;
+  b.onclick = () => { dash = i; if (!isDash()) goScene(5); updateMenus(); };
+  dtabs.appendChild(b);
+});
+function updateMenus(){
+  applyBg();
+  [...scenesEl.children].forEach((b, i) => b.classList.toggle('on', i === scene));
+  [...dtabs.children].forEach((b, i) => b.classList.toggle('on', i === dash));
+  dtabs.classList.toggle('open', panelOpen && isDash());
+}
+function togglePanel(){
+  panelOpen = !panelOpen;
+  panel.classList.toggle('open', panelOpen);
+  setPaused(panelOpen);
+  updateMenus();
+}
+
+addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.code;
+  if (k === 'KeyE'){ e.preventDefault(); togglePanel(); }
+  else if (k === 'KeyD'){ e.preventDefault(); next(); }
+  else if (k === 'KeyA'){ e.preventDefault(); prevScene(); }
+  else if (k === 'Space'){ e.preventDefault(); if (isDash() && t >= LAST) { t = FIRST; setPaused(false); } else setPaused(!paused); }
+  else if ((k === 'ArrowRight' || k === 'ArrowLeft') && (isAnim() || isDash())){
+    e.preventDefault();
+    t = clamp(Math.floor(t) + (k === 'ArrowRight' ? 1 : -1), FIRST, LAST); prefill();
+  }
+});
+cv.addEventListener('pointerdown', e => {
+  if (!isDash() || !dashGeo) return;
+  const g = dashGeo;
+  if (e.clientX < g.x0 - 8 || e.clientX > g.x1 + 8 || e.clientY < g.y0 - 14 || e.clientY > g.y1 + 14) return;
+  t = clamp(Math.round(FIRST + (e.clientX - g.x0) / (g.x1 - g.x0) * (LAST - FIRST)), FIRST, LAST);
+  setPaused(true);
+});
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('button'); if (b) b.blur(); });
+
+goScene(0);
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "date": "2026-10-05",
+  "independent_decimal_check": {
+    "input": "FBS World2022 Originalauswahl; feste Brüche 9/13, 13/17, 6/11",
+    "saved_kcal": "199530869574200.88810150470412527963",
+    "full_year_rations": "298232360.41551896823308552358253874",
+    "reference_kcal": "460035342000000",
+    "passed": true
+  },
+  "image_export": {
+    "tested": "Tatsächlicher PNG-Blob der Website lokal gespeichert, Signatur, Maße und visuelle Darstellung geprüft",
+    "size": [
+      2000,
+      2000
+    ],
+    "bytes": 495639
+  },
+  "browser_checks": {
+    "desktop": "Neun Schritte, automatische Anfangsprogression, Pause/Weiter/Zurück, Maßnahmen-Deaktivierung, 0-%-Sensitivität und Reset, Produktauswahl getestet",
+    "mobile": "390 px iframe, verfügbare Breite 375 px nach Scrollbar. Body 375 / scrollWidth 375; Diagramm separat horizontal scrollbar. Maßnahmen, Suche und Pause getestet.",
+    "local_file": "Kein automatisierter file://-Test wegen Browser-URL-Policy. Alle lokalen Abhängigkeiten und keine fetch/import-Abrufe im Website-Ordner geprüft.",
+    "console": "Keine Anwendungsfehler im direkten Website-Fenster. Browser-iframe-Adapter zeigte in alter hoher Testhülle einen MutationObserver-Fehler; neue Hülle bei Ursprung 0/0 benutzt."
+  },
+  "new_source_files": {
+    "Mutungi_2022.pdf": {
+      "bytes": 2513719,
+      "sha256": "a689613b8e771ace728a7e126623509f5cb1863992a37e600380b0ae20992987"
+    },
+    "Tomaten_Pilot_2026.pdf": {
+      "bytes": 1535757,
+      "sha256": "f4597da44526998ae1c64e4f204abac72079021ce3314437748dc3de3b090f5b"
+    }
+  },
+  "credits": "Namen und Teamangaben offen auf Nutzerwunsch",
+  "older_outputs": "Version 1 unter archiv/version1; nicht Teil des neuen fachlichen Hauptpakets"
+}

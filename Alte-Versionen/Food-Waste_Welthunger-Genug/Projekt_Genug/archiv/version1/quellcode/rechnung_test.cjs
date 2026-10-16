@@ -1,0 +1,10 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),D=JSON.parse(fs.readFileSync(path.join(root,'website/daten/modell.json'),'utf8'));
+const Model=require('../website/modell.js'),m=new Model(D),eps=(a,b)=>assert.ok(Math.abs(a-b)<Math.max(1,Math.abs(b)*1e-10));
+eps(m.set(0,2371).people,0);eps(m.set(100,2371).people,775641909.8939998);eps(m.set(50,2371).people,387820954.9469999);
+eps(m.set(D.threshold_fraction*100,2371).ratio,1);assert.ok(m.set(100,3000).ratio<1);assert.ok(m.set(100,1800).ratio>1);
+assert.ok(m.set(50,1800).people>m.set(50,3000).people);assert.throws(()=>m.set(NaN,2371));assert.throws(()=>m.set(50,0));
+const missing=D.items.filter(i=>i.loss_1000t===null);assert.ok(missing.length>0);assert.ok(missing.every(i=>i.loss_kcal===null&&!i.included));
+assert.equal(new Set(D.items.map(i=>i.code)).size,D.items.length);assert.ok(D.items.every(i=>i.code<2900));
+eps(D.groups.reduce((s,g)=>s+g.energy_kcal,0),D.energy_kcal);eps(D.items.reduce((s,i)=>s+(i.loss_kcal??0),0),D.energy_kcal);
+console.log(JSON.stringify({passed:true,checks:['zero','full','half','threshold','high_requirement','low_requirement','sensitivity','invalid_inputs','missing_not_zero','no_aggregate_duplicates','group_energy_sum','item_energy_sum']},null,2));

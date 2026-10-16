@@ -1,0 +1,522 @@
+PAGE 1
+Thünen Report 89
+Aktuelle Forschung in der Gartenbauökonomie
+Digitalisierung und Automatisierung ‒ Welche  
+Chancen und Herausforderungen ergeben sich  
+für den Gartenbau?
+Tagungsband zum 3. Symposium für Ökonomie im Gartenbau am 
+15. November 2019 in Freising / Weihenstephan
+Walter Dirksmeyer, Klaus Menrad (eds.)
+
+PAGE 2
+Thünen Report 89
+Herausgeber/Redaktionsanschrift – Editor/address
+Johann Heinrich von Thünen-Institut
+Bundesallee 50
+38116 Braunschweig
+Germany
+thuenen-report@thuenen.de 
+www.thuenen.de
+ISSN 2196-2324 
+ISBN 978-3-86576-234-4
+DOI:10.3220/REP1634803385000
+urn:nbn:de:gbv:253-202110-dn064048-4
+Bibliografische Information:
+Die Deutsche Nationalbibliothek 
+verzeichnet diese Publikationen 
+in der Deutschen National- 
+bibliografie; detaillierte  
+bibliografische Daten sind im 
+Internet unter  
+www.dnb.de abrufbar.
+Bibliographic information:  
+The Deutsche Nationalbibliothek 
+(German National Library) lists 
+this publication in the German 
+National Bibliography; detailed 
+bibliographic data is available on 
+the Internet at www.dnb.de
+Bereits in dieser Reihe erschie-
+nene Bände finden Sie im Inter-
+net unter www.thuenen.de
+Volumes already published in 
+this series are available on the 
+Internet at www.thuenen.de
+Die Verantwortung für die  
+Inhalte liegt bei den jeweiligen 
+Verfassern bzw. Verfasserinnen.
+The respective authors are  
+responsible for the content of 
+their publications.
+Zitationsvorschlag – Suggested source citation:
+Dirksmeyer W, Menrad K (eds.) (2021) Aktuelle Forschung in der 
+Gartenbauökonomie : Digitalisierung und Automatisierung - Welche 
+Chancen und Herausforderungen ergeben sich für den Gartenbau? 
+Tagungsband zum 3. Symposium für Ökonomie im Gartenbau am  
+15. November 2019 in Freising / Weihenstephan. Braunschweig: 
+Johann Heinrich von Thünen-Institut, 190 p, Thünen Rep 89,
+DOI:10.3220/REP1634803385000
+PAGE 3
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 157 
+REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen 
+Obst- und Gemüseerzeugung 
+SABINE LUDWIG-OHM1, WALTER DIRKSMEYER1, KATHRIN KLOCKGETHER2 
+Zusammenfassung 
+Für ausgewählte Obst - und Gemüseprodukte (Möhre, Salat, Apfel, Erdbeere, Himbeere) wurden 
+die Lebensmittelverluste entlang der gärtnerischen Wertschöpfungskette (WSK) und deren Ursa-
+chen identifiziert sowie praxisorientierte Vorschläge für eine Verringerung dieser Verluste erarbei-
+tet. Die Ergebnisse zeigen, dass die Verluste auf Ebene der Erzeugung erheblich sein können und 
+dabei deutliche Abweichungen vom Mittelwert nach oben und unten auftreten. Im Freilandanbau 
+gehen im Durchschnitt mehr als 25 % der genussfähigen Salate und Möhren verloren. Bei den Obst-
+produkten sind diese Verlustwerte tendenziell niedriger, doch es zeigen sich größere Unterschiede 
+zwischen den leicht verderblichen Himbeeren und Erdbeeren, deren Verluste sich auf 15  % bzw. 
+15 bis 20 % belaufen, und den länger haltbaren und gut in die Verarbeitung absetzbaren Äpfeln mit 
+Verlusten zwischen 6 bis 16 %. Die Ursachen dieser Verluste liegen bei der Witterung und Extrem-
+wetterereignissen sowie der Marktsituation, die insbesondere bei kurzer Haltbarkeit einen großen 
+Einfluss auf die Höhe der Verluste hat. Gleiches gilt für die vorherrschenden Qualitätsstandards des 
+Lebensmitteleinzelhandels (LEH) und fehlende alternative Absatz- und Verwertungsmöglichkeiten 
+von genuss-, aber nicht marktfähiger Ware.  Wirksame Maßnahmen zur Reduzierung der Lebens-
+mittelverluste in den WSK für Obst und Gemüse sind der geschützte Anbau, Maßnahmen zur Ver-
+längerung der Produkthaltbarkeit, Anpassungen bei den marktüblichen Qualitätsstandards und die 
+Entwicklung neuer Geschäftsmodelle für die Verwertung und den Absatz von Überschussware und 
+von Produkten mit Schönheitsfehlern.  
+Schlüsselwörter: Lebensmittelabfälle, Nachhaltigkeit, Obst, Gemüse, Erzeugung  
+JEL-Codes: Q00, Q51 
+  
+                                                      
+1 Thünen-Institut für Betriebswirtschaft, Johann Heinrich von Thünen -Institut, Bundesforschungsinstitut für Ländliche 
+Räume, Wald und Fischerei, Bundesallee 63, 38116 Braunschweig. 
+E-Mail: sabine.ludwig-ohm@thuenen.de, walter.dirksmeyer@thuenen.de. 
+2  Bis 2018: Thünen-Institut für Betriebswirtschaft. 
+PAGE 4
+158  LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 
+1 Hintergrund und Problemstellung 
+Bei Obst und Gemüse treten im Vergleich zu anderen Lebensmitteln relativ hohe Lebensmittelver-
+luste auf. Daher rücken der Obst- und Gemüsesektor in den Fokus, um das Nachhaltigkeitsziel 12.3 
+der UN-Agenda 2030 – eine Halbierung der Lebensmittelabfälle auf Einzelhandels- und Verbrauchs-
+ebene und eine Verringerung der Nahrungsmittelverluste entlang der Produktions- und Lieferkette 
+– zu erreichen (UN, 2015).  
+In Deutschland schätzte die erste Studie zu Lebensmittelverlusten im Jahr 2012, dass etwa elf Mil-
+lionen Tonnen Lebensmittel pro Jahr verloren gehen (Hafner et al., 2012). Die Studie konzentrierte 
+sich auf die der Primärproduktion nachgelagerten Stufen der Wertschöpfungskette, schloss also 
+die landwirtschaftliche Produktion aus. Darauf aufbauende Forschungsarbeiten bilanzieren die 
+Verluste in der Primärproduktion im Allgemeinen, um sie in den Wertschöpfungsketten zu quanti-
+fizieren und zu überwachen, z.  B. für Monitoringzwecke in der Lebensmittelindustrie im Rahmen 
+der Erreichung der sog enannten Sustainable Development Goals (SDGs) der Vereinten Nationen 
+(Schmidt et al. , 2019). Andere Untersuchungen fokussier ten darauf, qualitative Einblicke in die 
+Gründe für Lebensmittelverluste in der Obst- und Gemüseproduktion zu erhalten (Beausang et al., 
+2017; WRAP, 2017).  
+Mit der Fallstudie Obst und Gemüse im Rahmen des vom Bundesministerium für Bildung und For-
+schung geförderten Verbundprojekts REFOWAS (Wege zur Reduzierung von Lebensmittelabfällen) 
+wurden von 2015 bis 2020 die Lebensmittelverluste auf Ebene der Erzeugung und entlang der WSK 
+für Obst und Gemüse quantifiziert, deren Ursachen identifiziert und darüber hinaus wirksame Ge-
+genmaßnahmen herausgearbeitet.  
+2 Methodik und Vorgehensweise 
+Die Lebensmittelverluste wurden mit Hilfe von Fallstudien analysiert. Die zu den qualitativen Me-
+thoden zählende Fallstudienforschung ist dazu geeignet, auf der Grundlage von kleinen Fallzahlen 
+Ursache-Wirkungs-Zusammenhänge aufzuzeigen (vgl. Göthlich, 2003). Mit der gewählten verglei-
+chenden Fallstudie werden Ähnlichkeiten und Unterschiede zwischen den Fällen herausgearbeitet. 
+Aus forschungsökonomischen Gründen mit Blick auf die Auswertungen der Fallstudien wird eine 
+Anzahl von vier bis zehn Fällen empfohlen (Borchardt und Göthlich, 2009). Mit zunehmender Fall-
+zahl sind zumeist nur noch geringe zusätzliche Erkenntnisgewinne verbunden. 
+Im Rahmen der Fallstudie wurden für fünf Obst - und Gemüseprodukte (Möhre, Salat, Apfel, Erd-
+beere und Himbeere) fragebogengeleitete Expert*inneninterviews mit Akteur*innen entlang der 
+gesamten WSK durchgeführt und deren Ergebnisse durch Expert *innenworkshops mit den inter-
+viewten Personen und weiteren Akteur*innen aus der Praxis, insbesondere aus der Beratung und 
+PAGE 5
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 159 
+der Vermarktung, validiert.3 Die gewählten Produkte repräsentieren  sowohl schnell verderbliche 
+als auch lagerfähige Produkte. Um regionale Besonderheiten in Produktions - und Vermarktungs-
+strukturen berücksichtigen zu können, wurden f ür jede W SK zwei wichtige Anbauregionen in die 
+Untersuchungen einbezogen.  
+Der Fokus der Untersuchungen lag auf der Analyse des Freilandanbaus. Je Produkt und Region wur-
+den etwa zehn Befragungen durchgeführt.4 Bei zusätzlichen Erhebungen im geschützten Anbau von 
+Erdbeeren und Himbeeren wurde d ie Anzahl der Befragungen je Kultur und Region  auf ca. fünf 
+verringert. Die zuvor durchgeführten Befragungen ließen erkennen, dass diese Anzahl ausreicht, 
+um solide Erkenntnisse im Kontext von Lebensmittelverlusten zu gewinnen. Im Freilandanbau führ-
+ten darüber hinausgehende Befragungen zu nur noch marginalen zusätzlichen Erkenntnissen.  
+Schwerpunktmäßig wurden Leitungspersonen auf Ebene der Erzeugung befragt, die z.  T. weitere 
+Funktionen innerhalb der WSK, wie den auf die jeweiligen Produkte spezialisierten Großhandel, 
+übernehmen. Für die nachgelagerten Stufen der WSK wurden weitere Expert*innen aus den Berei-
+chen Bündelung und Großhandel sowie Verarbeitungsindustrie und Lebensmitteleinzelhandel 
+(LEH) befragt, sodass insgesamt 136 Befragungen ausgewertet werden konnten (Tab. 1). 
+Tabelle 1: Anzahl Befragungen für die Fallstudie Obst und Gemüse  
+ 
+Anm.: 1  Großhändler und Erzeuger*innenorganisationen 
+2  Konfitüren-, Saft- und Convenience-Herstellende 
+Quelle: Eigene Ergebnisse. 
+                                                      
+3  Für die Durchführung aller Interviews und Expert*innenworkshops wurden die Landwirtschaftskammer Niedersachsen, 
+der Obstbauversuchsring des Alten Landes e. V. (OVR), die Landwirtschaftskammer Nordrhein-Westfalen, das Dienstleis-
+tungszentrum Ländlicher Raum Rheinpfalz (DLR) und das Kompetenzzentrum Obstbau-Bodensee (KOB) als Praxispartner 
+einbezogen, da diese über intensive Kontakte zu den Produktionsbetrieben und zu weiteren Akteur*innen der WSK ver-
+fügen. 
+4  Bei Freilandhimbeeren konnte aber auch die Schwelle von fünf Fällen nicht erreicht werden, da der Anbau von Himbee-
+ren im Freiland stark rückläufig ist. 
+Möhre Salat Apfel Erdbeere Himbeere Erdbeere Himbeere
+Erzeugerbetriebe aus
+Niedersachsen 10 9 10 11 3 6 5
+Nordrhein-Westfalen 10 10 2 5 5
+Rheinland-Pfalz 11
+Bodensee 10
+Bündler1 4 4 7 2 4
+Verarbeitungsindustrie² 5
+LEH 3
+produkt-
+über-
+greifend
+Produkt
+Freilandanbau Geschützter Anbau
+PAGE 6
+160  LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 
+3 Lebensmittelverluste bei Erzeugung im Freiland  
+Für die ausgewählten Produkte  wurden die Lebensmittelverluste im Freilandanbau quantifiziert, 
+deren Ursachen kulturübergreifend identifiziert und darauf aufbauend Maßnahmen erarbeitet, die 
+zu einer Verringerung der Lebensmittelverluste auf Ebene der Erzeugung beitragen können.  
+Tabelle 2 zeigt, dass die Lebensmittelverluste auf Erzeuger*innenebene erheblich sein können. Bei 
+der Produktion für den Frischmarkt gehen im Durchschnitt mehr als 25 % der genussfähigen Salate 
+und Möhren verloren. Beim Tafelobst gibt es größere Unterschiede zwischen den leicht verderbli-
+chen Himbeeren und Erdbeeren mit 15  % bzw. 15 bis 20  % und den länger haltbaren Äpfeln mit 
+nur 6 bis 16  % durchschnittlichen Verlusten. Insgesamt sind die Verluste bei den untersuchten 
+Obstprodukten tendenziell geringer als bei den Gemüseprodukten. Bei ungünstigen Witterungsbe-
+dingungen können die Verluste bis auf 50 % ansteigen. 
+Eine Unschärfe bei der Messung der Lebensmittelverluste resultiert aus den nicht eindeutig abzu-
+grenzenden Vorernteverlusten, die per Definition nicht zu den Lebensmittelverlusten zählen. Die 
+Betriebsleiter*innen konnten diese Vorernteverluste nicht von den Ernteverlusten trennen.5  
+Tabelle 2: Lebensmittelverluste auf Erzeuger*innenebene (Freilandanbau) 
+ 
+Quelle: Eigene Ergebnisse. 
+Als wesentlich für Lebensmittelverluste in der WSK Obst und Gemüse konnten folgende Ursachen 
+identifiziert werden: 
+• Witterung und Extremwetterereignisse können zu optischen Mängeln bis hin zum Totalausfall 
+führen. 
+• Die Marktsituation hat vor allem bei den Produkten mit kurzer Haltbarkeit einen großen Ein-
+fluss auf die Höhe der Verluste.  
+                                                      
+5 Derartige Abgrenzungsprobleme bei der Erfassung von Lebensmittelverlusten auf Ebene der Erzeugung sind nicht 
+untypisch (vgl. hierzu auch Leibetseder, 2012 und Beausang et al., 2017).  
+Gute Jahre Durchschnitt Schlechte Jahre
+Möhren 10 - 15 % 25 - 40 % > 50 %
+Salat 10 - 15 % 25 - 30 % 35 - 40 %
+Niedersachsen 5 - 10 % bis zu 40 %
+Nordrhein-Westfalen ca. 10 % 40 - 50 %
+Himbeeren 5 % 15 % bis zu 50 %
+Äpfel 6 - 16 %
+15 - 20 %Erdbeeren
+PAGE 7
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 161 
+• Das Management arbeitet mit Sicherheitsaufschlägen bei der Produktionsmenge, die bei Salat 
+etwa 10 bis 20 % und bei Erdbeeren 15  bis 20 % betragen, und in Jahren mit guter Witterung 
+zu einem Überangebot führen können.  
+• Die vorherrschenden hohen Qualitätsstandards des LEH bei Wuchsform, Optik und Größe, so -
+wie bei Pflanzenschutzmittelrückständen  – die sich in den vergangenen zehn Jahren deutlich 
+erhöht haben – sind mitverantwortlich für die Höhe des Anteils vermarktungsfähiger Ware.6  
+• Fehlende alternative Absatz - und Verwertungsmöglichkeiten von genussfähiger , nicht den 
+Standards entsprechender Frischware beeinflussen die Höhe der Lebensmittelverluste ebenso 
+wie die Lagerfähigkeit des Produktes. Tendenziell gibt es f ür Obst mehr alterna tive Verwer-
+tungsmöglichkeiten als für Gemüse.  
+Um diesen Ursachen entgegenzuwirken, wurden unterschiedliche Handlungsoptionen mit spür-
+barem Vermeidungspotenzial erarbeitet: 
+• Frostschutz- und Sommerberegnung oder Hagelschutznetze helfen, Spätfrost -, Trocken- und 
+Hagelschäden sowie Sonnenbrand zu vermeiden.  
+• Mit der geschützten Erzeugung verringert sich der Witterungseinfluss auf die Produktion, so-
+dass der Anteil vermarktungsfähiger Ware steigt.  
+• Fortschritte bei der Entwicklung von intelligenten Verpa ckungen könnten helfen, die Produkt-
+qualität länger zu erhalten.  
+• Eine frühzeitige und durchgehende Kühlkette  von der Erzeugungs- bis zur Handelsebene ist 
+wichtig, um Frische und Qualität von Obst und Gemüse zu erhalten.  
+• Frühzeitige Lieferverträge für den Frischmarkt – ähnlich dem Geschäftsmodell des Vertragsan-
+baus für die Vermarktungsindustrie  – könnten den Erzeuger*innenbetrieben die Absatzmen-
+genplanung erleichtern und helfen, weniger Überschüsse zu produzieren. 
+• Größere Toleranzen bei den LEH-Standards für Größe, Farbe, Form  könnten den Anteil ver-
+marktungsfähiger Ware deutlich erhöhen. Selbiges gilt mit Blick auf die vereinbarte Liefer-
+menge.  
+  
+                                                      
+6  Die Bedeutung der äußeren Qualität als ein wesentlicher Faktor für die Entstehung von Lebensmittelverlusten bei Obst 
+und Gemüse wird auch in den Untersuchungen von Runge und Lang, 2016, Meyer et al., 2018, und de Hooge et. al., 2018 
+bestätigt. 
+PAGE 8
+162  LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 
+4 Wirksamkeitsanalyse ausgewählter Maßnahmen zur Verringerung von 
+Lebensmittelverlusten 
+Die beschriebenen Maßna hmen zielen auf witterungsunabhängigere Produktionsbedingungen, 
+eine Verlängerung der Haltbarkeit und gemeinsame Aktionen mit den der Erzeugung nachgelager-
+ten Stufen der WSK. Die Wirksamkeit dieser Maßnahmen wird im Folgenden näher untersucht.  
+Die Wirksam keit des geschützten Anbaus wird durch weitere Fallstudienanalysen beurteilt. Für 
+zahlreiche andere Maßnahmen sind enge Kooperationen zwischen der Erzeugung, möglicherweise 
+dem Erfassungs- oder Großhandel und dem LEH unerlässlich, um nennenswerte Mengen vo n Le-
+bensmittelverlusten zu verringern. Daher war es eine wesentliche Aufgabe der Wirksamkeitsana-
+lyse, die verschiedenen Stakeholder zu gemeinsamen Gesprächen zusammenzuführen, um die 
+Rahmenbedingungen und Sichtweisen der jeweiligen Akteur*innen transparent zu machen und auf 
+dieser Grundlage die Umsetzbarkeit stufenübergreifender Handlungsmöglichkeiten auszuloten. 7 
+Hierzu wurde im Februar 2020 ein Workshop mit Expert*innen aus Gartenbaubetrieben und Er-
+zeugermärkten, vom Fachgroßhandel, der gartenbaulichen Beratung, dem LEH sowie Vertreter*in-
+nen staatlicher und berufsständischer Institutionen durchgeführt, auf dem stufenübergreifende 
+Maßnahmen zur Verbesserung der Haltbarkeit, Anpassung der marktüblichen Qualitätsstandards 
+und Entwicklung neuer Geschäftsmodelle diskutiert wurden. 
+4.1 Geschützter Anbau 
+Im geschützten Anbau gibt es eine höhere Ertragssicherheit, Qualitätsverbesserungen und eine 
+bessere Haltbarkeit der Früchte – wichtige Vorteile gegenüber der Freilandproduktion, um Lebens-
+mittelverluste zu verringern.  
+Lebensmittelverluste im geschützten Anbau 
+Im geschützten Erdbeeranbau liegen die durchschnittlichen Lebensmittelverluste bei 10  %. Die 
+mittleren Verluste bei geschützten Himbeeren betragen 7  %. Die Verlustanteile halbieren sich ge-
+genüber der Freilandproduktion, sodass bezogen auf die Gesamterntemenge Verluste in Höhe von 
+durchschnittlich 8 %-Punkten bei Himbeeren und bis zu 10 %-Punkten bei Erdbeeren vermieden 
+werden können (Tab. 3). 
+In guten Jahren bestehen nur geringe Unterschiede bei den Verlustanteilen zwischen Freilandpro-
+duktion und geschütztem Anbau. Sowohl für Erdbeeren als auch für Himbeeren belaufen sich die 
+Verluste in beiden Produktionssystemen auf lediglich 5 %. Dagegen erreichen in schlechten Jahren 
+die Verluste im geschützten Anbau bei Erdbeeren nur Werte bis zu 15 % und bei Himbeeren bis zu 
+                                                      
+7  Die Bedeutung einer besseren Kommunikation in der WSK für die Verringerung von Lebensmittelverlusten wird auch in 
+der Studie von Meyer et al., 2018, herausgestellt. 
+PAGE 9
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 163 
+20 %, während im Freilandanbau bei beiden Kulturen Ausfälle bis zu 50  % entstehen können 
+(Tab. 3).  
+Tabelle 3: Lebensmittelverluste im geschützten Anbau von Erdbeeren und Himbeeren im 
+Vergleich zum Freilandanbau 
+ 
+Quelle: Eigene Ergebnisse. 
+Kosten und Nutzen des geschützten Anbaus 
+Die in Tabelle 4 ausgewiesenen Investitionsausgaben belegen den stark erhöhten Kapitalbedarf für 
+geschützte Anlagen, der bei Erdbeeren rund 20 Euro/m² beträgt, während im Freiland keine spezi-
+ellen Investitionen erforderlich sind . Der Kapitalbedarf für geschützte Himbeeren  ist mit 
+11,70 Euro/m² nahezu dreimal so hoch wie für den Freilandanbau.  
+Tabelle 4: Kostenvergleich von Freiland- und geschütztem Anbau von Erd- und Himbeeren 
+ 
+Anm.: 1  Produktion in Pflanzgefäßen mit Substrat auf Stellagen. 
+2 Produktion in Pflanzgefäßen mit Substrat, die auf dem Boden stehen. 
+3  Die enthaltenen Arbeitskosten sind mit 13 Euro/AKh kalkuliert. 
+Die Standzeit (Nutzungsdauer) der Freilandhimbeeren beträgt 7 Jahre. 
+Die Nutzungsdauer für die Tunnelkonstruktion beträgt 8 Jahre, die Nutzungsdauer für die Tunnelfolie 4 Jahre. 
+Quelle: Eigene Berechnungen nach Linnemannstöns (2016a, 2016b, 2013 und 2009).  
+  
+Produkt Gute Jahre Durchschnitt Schlechte Jahre
+Erdbeere Freiland 5 - 10 % 15 - 20 % 40 - 50 %
+Geschützt 5 % 10 % bis 15 %
+Himbeere Freiland 5 % 15 % bis 50 %
+Geschützt 5 % 7 % bis 20 %
+Investitionsausgaben 199.418 Euro/ha 42.100 Euro/ha 117.375 Euro/ha
+Ertrag 22 bis 32 t/ha 40 bis 60 t/ha 8 bis 10 t/ha 17 bis 23 t/ha
+Kalkulationswert 26 t/ha 50 t/ha 9 t/ha 18 t/ha
+durchschnittliche 
+Lebensmittelverluste 20 % 10 % 15 % 7 %
+Einzelkosten3
+je ha 86.282 Euro/ha 145.914 Euro/ha 100.754 Euro/ha 214.882 Euro/ha
+je kg marktfähige Ware 3,32 Euro/kg 2,92 Euro/kg 11,19 Euro/kg 11,94 Euro/kg
+–
+Freilandanbau
+Geschützter Anbau
+auf Stellagen1
+Erdbeeren
+Geschützter
+einjähriger Anbau2
+Mehrjähriger
+Freilandanbau
+Himbeeren
+PAGE 10
+164  LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 
+Für eine umfassende Kostenbeurteilung des geschützten Anbaus ist die alleinige Betrachtung der 
+Investitionsausgaben jedoch unzulänglich, da sich mit dem geschützten Anbau auch die Anbauver-
+fahren verändern, sodass alle dem geschützten Anbau verursachungsgerecht zurechenbaren Kos-
+ten, die Einzelkosten, miteinander verglichen werden müssen. Beim Kostenvergleich zeigt sich, 
+dass h öhere Flächenerträge , geringere Lebensmittelverluste  und höhere Arbeitsproduktivitäten 
+durch höhere Pflückleistungen die höheren flächenbezogenen Einzelkoste n gegenüber dem Frei-
+landanbau weitestgehend kompensieren. Der geschützte Anbau von Erdbeeren verursacht leicht 
+niedrigere Kosten je Kilogramm marktfähiger Ware als der Freilandanbau, bei Hi mbeeren ist der 
+Freilandanbau etwas kostengünstiger (Tab. 4).  
+In diesen Kalkulationen bleiben erzielbare höhere Erzeugungspreise für Früchte aus dem geschütz-
+ten Anbau aufgrund besserer Produktqualitäten und Angebotszeiträumen außerhalb der Haupt-
+erntezeiten unberücksichtigt, da sie schwer zu quantifizieren sind. Zudem ist schwer abzuschätzen, 
+wie sich die Produktpreise bei zunehmendem Angebot entwickeln würden.  
+Die ökonomische Tragfähigkeit der geschützten, steuerbaren Produktion wird durch weitere Nut-
+zenaspekte begünstigt: 
+• Höhere Planungssicherheit bei der Arbeitsorg anisation und der Lieferfähigkeit (Menge und 
+Zeitpunkt). 
+• Geringere Lebensmittelverluste auf den nachgelagerten Stufen der WSK, da die Produkte eine 
+höhere Qualität und somit auch eine bessere Haltbarkeit aufweisen.  
+• Geringere Landnutzung aufgrund von höheren Flächenerträgen und besseren Produktqualitäten. 
+• Geringerer Einsatz von Pflanzenschutzmitteln. 
+• Attraktivere Arbeitsplätze durch bessere Arbeitsbedingungen gegenüber dem Freilandanbau. 
+Eine große Herausforderung der  geschützten Produktion gegenüber dem Freilandanbau ist die 
+hohe Kapitalbindung, die – vor dem Hintergrund unsicherer zukünftiger Preisentwicklungen – ein 
+hohes ökonomisches Risiko darstellt. Mögliche Aufschläge auf den Erzeugungspreis aufgrund bes-
+serer Produktqualität bei Ware a us geschütztem Anbau  können mit steigendem Flächenumfang 
+des geschützten Anbaus sinken. Letztendlich werden aber die Wirtschaftlichkeit und die Risikobe-
+reitschaft der Betriebsleitungen die Umsetzung des geschützten Anbaus in den Gartenbaubetrie-
+ben bestimmen.  
+Ungeklärt ist auch die gesellschaftliche  Akzeptanz des Anbaus in Folientunneln. Der regelmäßig 
+durchzuführende Folienwechsel führt zu einer Erhöhung des Abfallvolumens und des CO 2-Foot-
+prints. Dies ist ein Grund, weshalb Folientunnel in der Bevölkerung ein schlechtes Image haben, 
+sodass die mangelnde Akzeptanz des geschützten Anbaus ein großes Problem für eine Ausdehnung 
+des geschützten Anbaus werden könnte. 
+PAGE 11
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 165 
+4.2 Innovative Haltbarkeits- und Lagerungstechnologien 
+Mit der Ernte beginnen die Abbauprozesse in Obst- und Gemüseprodukten. Das hat Auswirkungen 
+auf die Produktqualität. Daher ist es ein wesentliches Ziel, die Frische der Produkte durch Einsatz 
+von (Lager-)Technologien zur Verbesserung der Haltbarkeit zu erhalten. Neben bewährten Maß-
+nahmen, die i. d. R. (hohe) Investitionen und viel Know-how erfordern und daher nicht überall ein-
+gesetzt werden, gibt es auch neuere Verfahren, die aktuell Einzug in die Praxis halten. All diesen 
+Maßnahmen ist gemein, dass sie produktspezifisch zu betrachten sind. Eine Üb ertragbarkeit auf 
+andere Produkte ist vielfach nicht möglich bzw. erfordert erst einmal zusätzliche Praxisversuche. 
+Kühlung und Lagerung 
+Auf Ebene der Erzeugung gibt es vielfältige, produktangepasste Kühl - und Lagertechnologien, um 
+Ernteprodukte schnell herab zu kühlen. Mit der Übertragbarkeit der langjährigen Erfahrungen im 
+CA-/ULO-Lager8 auf neue Produkte können weitere Erfolge erzielt werden. Beispielsweise kann 
+dadurch die Haltbarkeit von Johannisbeeren auf vier bis fünf Monate verlängert werden.  
+Bei der innovativen Smartfresh-Lagerungstechnologie wird die Wirkung der etablierten CA -/ULO-
+Lagermethode durch den Wirkstoff 1 -Methylcyclopropen (1 -MCP) ergänzt, der den natürlichen 
+Reifeprozess hemmt und bei Äpfeln gut funktioniert. Eine Lagerung von einem Jahr und länger ist 
+möglich.  
+Für andere, schnell verderbliche Produkte kann die Frische über sehr begrenzte Zeiträume nur 
+durch Einsatz von Eis- und Schnellkühlungsanlagen, eine durchgehende Kühlkette und kurze Trans-
+portwege gewährleistet werden. 
+Verpackung und Coating 
+Wenngleich bei losem Obst und Gemüse deutlich höhere Lebensmittelverluste zu verzeichnen sind 
+als bei verpackter Ware, steht das Thema produktschonende Verpackungen aktuell wegen des im 
+Verpackungsbereich stark verbreiteten Einsatzes von Kunststoffen und der daraus resultierenden 
+Müllproblematik stark in der Kritik.  
+Beim Coating erhalten die Produkte eine innovative Schu tzschicht aus pflanzlichen Stoffen 9, die 
+Wasserlust und Oxidation vermindern, sodass die Produkte länger frisch bleiben. 
+                                                      
+8  Im CA-Lager (CA: controlled atmosphere) herrschen kontrollierte Lagerbedingungen für Temperatur, Luftfeuchtigkeit so-
+wie den Sauerstoff- und Kohlendioxidgehalt der Luft. Durch eine Verringerung des Sauerstoffgehalts wird der Reifepro-
+zess der Lagerware verzögert. ULO-Lager (ULO: ultra-low oxygen) sind eine Weiterentwicklung des CA-Lagers, bei denen 
+der Sauerstoffgehalt der Luft auf das absolute Mindestmaß reduziert wird.  
+Äpfel können beispielsweise in CA-/ULO-Lagern ohne nennenswerte Qualitätsverluste bis zu 12 Monate gelagert werden.  
+9 Dabei handelt es sich um Lipide und Glycerolipide, die aus Schalen, Samen und dem Fruchtfleisch von Früchten gewonnen 
+werden.  
+PAGE 12
+166  LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 
+Für die Bewertung des Einsatzes von Verpackungen und Coatings sollten ganzheitliche Untersu-
+chungen die ökonomischen und ökologischen Kosten umfassend bewerten und die gesellschaftli-
+che Diskussion mit fundierten Erkenntnissen unterstützen. 
+Haltbarkeitsmessungen 
+Ein anderer Ansatz wird bei der Messung von Qualität und Haltbarkeit von Produkten mit Hilfe von 
+kostengünstigen Food-Scannern verfolgt (Goisser et al., 2020). Über die Messung von Reifegrad 
+und Haltbarkeit sollen insbesondere die Verluste am Ende der WSK – im LEH und bei den Verbrau-
+cher*innen – verringert werden. Da es sich beim Food-Scanner um eine in der Entwicklung befind-
+liche Innovation handelt, lässt sich deren Nutzen erst zu einem späteren Zeitpunkt beurteilen. Der 
+Food-Scanner wurde bislang am Beispiel von Tomaten untersucht. 
+4.3 Anpassungen bei marktüblichen Qualitätsstandards 
+Die gegenüber den gesetzlichen Vermarktungsnormen i. d. R. erheblich strengeren Qualitätsstan-
+dards des LEH haben einen großen Einfluss auf die Höhe der Lebensmittelverluste bei Obst und 
+Gemüse. Daher könnten g rößere Toleranzwerte bzgl. Optik und Größensortierungen, die an die 
+Variabilität der Natur produkte Obst und Gemüse angepasst sind, diese Verluste deutlich verrin-
+gern. Konkrete Vorschläge für derartige Anpassungen sind: 
+• Saisonale Anpassungen der Gewichts- und Qualitätsansprüche 
+Mit dem Verzicht auf starre Mindestgewichte und der Hinwendung zu sai sonalen Qualitäts-
+standards könnten die Besonderheiten der Freilandproduktion , beispielsweise die oftmals zu 
+leichten Salate im Früh jahr, besser berücksichtigt werden. Dies könnte durch s aisonal ange-
+passte Größensortierungen oder Mischpackungen verschiedener Produkte, die zudem die An-
+gebotspalette erweitern, erfolgen. 
+• Preisgestaltung nach Gewicht 
+Salate oder Kohlgemüse werden üblicherweise mit Stückpreisen, die ein vordefiniertes Gewicht 
+implizieren, vermarktet. Um auch kleinere und größere Produkte absetzen zu können, sollte 
+für diese Produkte eine Preisgestaltung nach Gewicht geprüft werden. Eine größere Vielfalt bei 
+den Produktgrößen bei größerer „Preisgerechtigkeit“ könnte für die große Anzahl an S ingle-
+haushalten in Deutschland attraktiv sein. 
+• Vermarktung ohne Blatt 
+Möhren, Kohlrabi und Radies werden üblicherweise mit Blättern vermarktet. Aus Frische- und 
+Haltbarkeitsgründen sollte darauf aber verzichtet werden, da über die anhängenden Blätter 
+erhebliche Mengen an Feuchtigkeit aus den Produkten abgegeben werden. Darüber hinaus 
+könnten bei der Erzeugung auch Pflanzenschutz- und Düngemittel, die teilweise allein für frisch 
+aussehende und gesunde Blätter eingesetzt werden müssen, eingespart werden.  
+  
+PAGE 13
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 167 
+4.4 Neue Geschäftsmodelle 
+Vor dem Hintergrund, dass es durch zunehmende Wetterextreme (Hagel, Sturm, Hitze) mehr und 
+häufiger Klasse 2 -Ware und nicht verkäufliche Ware geben wird, sollte über neue Geschäftsmo-
+delle nachgedacht werden, um zu verhindern, dass solche Ware – ebenso wie Überschussware und 
+„Misfits“10 – zu Lebensmittelverlusten wird: 
+• Regionale Verarbeitungsprodukte 
+Die regionale Verarbeitung von unregelmäßig anfallender Überschussware und „Misfits“ ist im 
+kleinen Maßstab für Hofläden etc. bereits etabliert. Demgegenüber ist die industrielle Verar-
+beitung auf eine kontinuierliche Belieferung mit Rohware ausgerichtet und nicht für unregel-
+mäßig anfallende oder maschinell nur schwer zu bearbeitende Ware geeignet.  
+Beispielhaft benannt wurden Ideen, dass sich Betriebe aus einer Anbauregion zusammenschlie-
+ßen und gemeinsam hochwertige Verarbeitungsprodukte mit regionaler Herkunftsangabe, z. B. 
+gefrostetes Beerenobst oder Apfelsaft, herstellen könnten.  
+• Zweitmarkt für „Misfits“ 
+Der Trend zu kleines, zu großes oder eigenwillig gewachsenes Obst und Gemüse als Ware mit 
+Schönheitsfehlern zu vermarkten, könnte zu einem Zweitmarkt für „Misfits“ ausgebaut werden. 
+5 Fazit 
+Lebensmittelverluste auf Ebene der Erzeugung können erheblich sein und insbesondere witte-
+rungsbedingt stark schwanken. Sie stellen auf allen Stufen der WSK immer auch ökonomische Ver-
+luste dar. Da aber auch Maßnahmen zur Verringerung von Lebensmittelverlusten i.  d. R. Kosten 
+verursachen, werden nur solche Maßnahmen durchgeführt, die aus einzelbetr ieblicher Sicht wirt-
+schaftlich vertretbar sind. Vielversprechende Maßnahmen zur Reduzierung von Lebensmittelver-
+lusten zielen auf eine witterungsunabhängige Produktion, eine Verlängerung der Haltbarkeit und 
+auf gemeinsame Aktivitäten mit den nachgelagerten Stufen der WSK. 
+Der geschützte Anbau ist eine wirksame Maßnahme, um Lebensmittelverluste deutlich zu verrin-
+gern. Dies konnte beispielhaft für die geschützte Produktion von Erdbeeren und Himbeeren darge-
+legt und quantifiziert werden. Bei einer ausgeprägten H ochskalierung des geschützten Anbaus 
+könnte die Herausforderung in einem verstärkten Wettbewerb und dadurch sinkenden Erzeu-
+gungspreisen bestehen.  
+Gleichfalls bedeutsam ist die Anpassung von marktüblichen Qualitätsstandards, die helfen kann, 
+größere Mengen  an Lebensmittelverlusten zu verhindern. Hierfür bedarf es intensiver 
+                                                      
+10  Als Misfits (Außenseiter, Sonderlinge) werden Obst- und Gemüseprodukte bezeichnet, die zwar ernährungsphysiologisch 
+unbedenklich sind, aber die Qualitätsanforderungen der Kaufenden – insbesondere des LEH – aufgrund von Schönheits-
+fehlern (zu groß, zu klein, unförmig etc.) nicht erfüllen.  
+PAGE 14
+168  LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 
+Kommunikation entlang der WSK bis hin zu den Konsumierenden, um auf Ebene des Handels und 
+des Konsums das Wissen und die Wertschätzung für Naturprodukte und deren optischer Variabili-
+tät zu steigern und gemeinsame Veränderungen mit allen LEH-Ketten anzustoßen.  
+Neue Geschäftsmodelle, die helfen können, größere Mengen an Lebensmittelverlusten zu verhin-
+dern, sollten in einem weiteren Analyseschritt auf ihre Marktchancen und ökonomische Tragfähig-
+keit untersucht werden.  
+  
+PAGE 15
+LUDWIG-OHM ET AL.: REFOWAS-Fallstudie zu Lebensmittelverlusten in der deutschen Obst- und Gemüseerzeugung 169 
+Literaturverzeichnis  
+Beausang C, Hall C, Toma L (2017) Food waste and losses in primary production: Qualitative insights from 
+horticulture. Resources, Conservation & Recycling 126: 177-185 
+Borchardt A, Göthlich S E. (2009) Erkenntnisgewinnung durch Fallstudien. in: Albers S, Klapper D, Konradt U, 
+Walter A, Wolf  J (ed): Methoden der empirischen Forschung, 3.  überarb. und erw.  Auflage, 
+Wiesbaden 
+de Hooge I E, van Dulm E, van Trijp H C M (2018) Cosmetic specifications in the fo od waste issue: Supply 
+chain considerations and practices concerning suboptimal food products. Journal of Cleaner 
+Production 183: 698-709 
+Göthlich S E (2003) Fallstudien als Forschungsmethode: Plädoyer für einen Methodenpluralismus in der 
+deutschen betriebswirtschaftlichen Forschung. Manuskripte aus den Instituten für Betriebs-
+wirtschaftslehre der Universität Kiel, Nr. 578 
+Goisser S, Mempel H, Bitsch V (2020) Food-Scanners as a Radical Innovation in German Fresh Produce Sup-
+ply Chains. International Journal on Food System Dynamics 11 (2): 101-116 
+Hafner G, Barabosz J, Schuller H, Leverenz D, Kölbig A, Schneider F, Lebersorger S, Scherhaufer S, Kranert 
+M, (2012) Ermittlung der weggeworfenen Lebensmittelmengen und Vorschläge zur Verminde-
+rung der Wegwerfrate bei  Lebensmitteln in Deutschland. Bundesministerium für Ernährung, 
+Landwirtschaft und Verbraucherschutz; Universität Stuttgart, Institut für Siedlungswasserbau, 
+Wassergüte- und Abfallwirtschaft. Stuttgart. 
+Leibetseder M (2012) Lebensmittelabfälle in der landw irtschaftlichen Produktion – Abschätzung des Ver-
+lusts von Obst und Gemüse in der Landwirtschaft und während des Transportes zum Händler. 
+Masterarbeit, Institut für Abfallwirtschaft, Universität für Bodenkultur Wien 
+Linnemannstöns L (2009) Terminkultur mit Long Canes im geschützten Anbau. In: Staatliche Lehr- und Ver-
+suchsanstalt für Wein - und Obstbau Weinsberg (Hrsg.) 5. Bundesbeerenobstseminar  
+27-28.01.2009, S.67-70 
+Linnemannstöns L (2013) Wirtschaftlichkeit des einjährigen Himbeeranbaus. Verband der Landwirtschafts-
+kammern e. V. (Hrsg.) Versuche im deutschen Gartenbau Jahrgang 2015: Baumschule, Obst-
+bau, 194-198 
+Linnemannstöns L (2016a) Anbau remontierender Erdbeeren in Zukunft nur noch im Tunnel auf Stellage? 
+Verband der Landwirtschaftskammern e.  V. (Hrsg.) Versuche im deutschen Garten bau Jahr-
+gang 2016: Baumschule, Obstbau, 119-124 
+Linnemannstöns L (2016b) Produktionskosten beim terminierten Anbau mit gekühlten Himbeerruten. Ver-
+band der Landwirtschaftskammern e.  V. (Hrsg.) Versuche im deutschen Gartenbau  Jahrgang 
+2016: Baumschule, Obstbau, 136-140 
+Meyer C H, Hamer M, Frieling D, Oertzen G (2018) Lebensmittelverluste von Obst, Gemüse, Kartoffeln zwi-
+schen Feld und Ladentheke – Ergebnisse einer Studie in Nordrhein -Westfalen. Landesamt für 
+Natur, Umwelt und Verbraucherschutz Nordrhein-Westfalen (LANUV), Fachbericht 85 
+Runge F, Lang H (2016) Lebensmittelverluste in der Landwirtschaft durch Ästhetik -Ansprüche an Obst und 
+Gemüse – Gründe, Ausmaß und Verbleib. Berichte über Landwirtschaft 94(3): 1-12 
+Schmidt T, Schneider F, Leverenz D, Hafner G (2019) Lebensmittelabfälle in Deutschland – Baseline 2015. 
+Johann Heinrich von Thünen-Institut (Hrsg.): Thünen-Report 71, Braunschweig 
+UN – United Nations (2015) Resolution Adopted by the General Assembly on 25 September 2015. Trans-
+forming Our World: The 2030 Agenda for Sustainable Development. UN Doc. A/RES/70/1 
+WRAP (2017) Food Waste in Primary Production – A Preliminary Study on Strawberries and Lettuce. WRAP 
+(Hrsg.), Banbury, UK.
