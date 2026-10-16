@@ -36,8 +36,9 @@ function fileHandleStore(handle){
   });
 }
 
+const onLocalServer = location.protocol === 'http:' && ['127.0.0.1', 'localhost'].includes(location.hostname);
 const serverReady = (async () => {
-  if (location.protocol !== 'http:' || location.hostname !== '127.0.0.1') return;
+  if (!onLocalServer) return;
   try{
     const response = await fetch(SETTINGS_ENDPOINT, {cache: 'no-store'});
     if (!response.ok) return;
@@ -135,7 +136,7 @@ function saveSettings(){
   saveState.revision++;
   settingsStatus('Änderung wird in ' + PROJECT_FILENAME + ' gespeichert …');
   if (saveState.serverToken){ flushSettings(); return; }
-  if (location.protocol === 'http:' && location.hostname === '127.0.0.1'){
+  if (onLocalServer){
     serverReady.then(() => saveState.serverToken ? flushSettings() : connectSettingsFile());
   }else connectSettingsFile();
 }

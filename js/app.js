@@ -100,7 +100,7 @@ function goScene(n, opt = {}){
   cancelSeq();
   finId++;
   drainingParticles = false;
-  const leavingAnimation = n === 4 && previous === 3 && !opt.instant;      // Animation 2 → Ergebnis: erst ausblenden, dann das Ergebnis einblenden
+  const leavingAnimation = (n === 2 && previous === 1 || n === 4 && previous === 3) && !opt.instant;   // Animation → nächste Folie: erst ausblenden, dann einblenden
   if (n !== 3){
     const faded = [cv, document.querySelector('.controls')];
     faded.forEach(el => { el.style.transition = leavingAnimation ? 'opacity .6s' : ''; el.style.opacity = leavingAnimation ? 0 : ''; });
@@ -119,7 +119,12 @@ function goScene(n, opt = {}){
   switch (n){
     case 0: sceneIntro(!!opt.instant); break;
     case 1: sceneAnim1(previous === 0); break;
-    case 2: showBridge(!!opt.instant); break;
+    case 2:
+      if (leavingAnimation){
+        qs.className = 'docked leaving';
+        later(600, () => showBridge(false));
+      }else showBridge(!!opt.instant);
+      break;
     case 3: sceneAnim2(previous === 2); break;
     case 4: {
       qs.className = 'bridge docked2' + (leavingAnimation ? ' leaving' : '');

@@ -68,7 +68,7 @@ function stepParticles(dt){
   }
 }
 function prefill(){                    // Strahlen sofort gefüllt darstellen (z. B. nach dem Springen im Zeitstrahl)
-  waitingForArrival = drainingParticles = false;
+  waitingForArrival = drainingParticles = endScheduled = false;
   outroSpeed = 1;
   particles.length = 0;
   acc.up = acc.down = 0;
@@ -84,8 +84,10 @@ function setPhase(i){ phase = i; restart(); }
 
 /* Variante 2, Ausklang: Der Zeitstrahl läuft unverändert bis 2025. Kurz davor kommen keine Punkte mehr nach und die vorhandenen
    werden schneller, sodass beim Erreichen von 2025 alle verschwunden sind. In diesem Moment stehen auch alle Zahlen auf dem Endwert. */
+const FINAL_HOLD = 2000;               // ms Pause auf dem Endstand, bevor die nächste Folie ausgeblendet wird
 const FINAL_LEAD = 1.3;                // Sekunden vor dem Ende, in denen keine Punkte mehr nachkommen
 let outroSpeed = 1;                    // Beschleunigung der Punkte im Ausklang
+let endScheduled = false;              // Wechsel zur nächsten Folie ist bereits angesetzt
 const animationEnd = () => animVariant === 2 ? LAST : END;
 const secondsLeft = () => (animationEnd() - t) / yps();
 const inOutro = () => animVariant === 2 && secondsLeft() < FINAL_LEAD;
@@ -122,7 +124,13 @@ function advanceAnimation(dt){
   }
   stepParticles(particleDt);
   const drained = animVariant === 2 ? visibleTimeLeft() <= 0 : particles.length === 0;
-  if (drainingParticles && !paused && drained) goScene(scene === 1 ? 2 : 4);
+  if (drainingParticles && !paused && drained && !endScheduled){
+    endScheduled = true;
+    later(animVariant === 2 ? FINAL_HOLD : 0, () => {
+      endScheduled = false;
+      if (drainingParticles) goScene(scene === 1 ? 2 : 4);
+    });
+  }
   if (waitingForArrival && !paused){
     const radius = R_MAX * Math.sqrt(Math.max(state(t).pop, 1) / REF_POP);
     waitingForArrival = !particles.some(p => {

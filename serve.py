@@ -17,14 +17,15 @@ DEFAULTS_PATTERN = re.compile(r'const DEFAULTS = \{[^\n]*\};')
 
 
 def validated_settings(value):
-    if not isinstance(value, dict) or set(value) != {'dot', 'szmin', 'szmax', 'speed', 'sound', 'colors', 'bgs'}:
+    required = {'dot', 'szmin', 'szmax', 'speed', 'colors', 'bgs'}
+    if not isinstance(value, dict) or not required <= set(value) <= required | {'sound'}:
         raise ValueError('Ungültige Einstellungen.')
     limits = {'dot': (1, 1000000), 'szmin': (.3, 6), 'szmax': (.5, 14), 'speed': (.5, 2.5)}
     for key, (lo, hi) in limits.items():
         number = value[key]
         if isinstance(number, bool) or not isinstance(number, (int, float)) or not lo <= number <= hi:
             raise ValueError('Ungültiger Wert: ' + key)
-    if value['sound'] not in {'click', 'tick', 'pop', 'wood', 'off'}:
+    if value.get('sound', 'click') not in {'click', 'tick', 'pop', 'wood', 'off'}:
         raise ValueError('Ungültiger Klang.')
     if value['szmin'] > value['szmax']:
         raise ValueError('Punktgrößen stimmen nicht überein.')
@@ -55,7 +56,7 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def valid_host(self):
-        return self.headers.get('Host') == f'127.0.0.1:{self.server.server_port}'
+        return self.headers.get('Host') in {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}
 
     def do_GET(self):
         if not self.valid_host():
@@ -69,9 +70,9 @@ class Handler(SimpleHTTPRequestHandler):
             super().do_GET()
 
     def do_POST(self):
-        origin = f'http://127.0.0.1:{self.server.server_port}'
+        origins = {f'http://127.0.0.1:{self.server.server_port}', f'http://localhost:{self.server.server_port}'}
         if (not self.valid_host() or self.path != '/__project_settings__'
-                or self.headers.get('Origin') != origin
+                or self.headers.get('Origin') not in origins
                 or self.headers.get('X-Project-Token') != TOKEN):
             self.reply_json(403, {'error': 'Kein Projektzugriff.'})
             return
