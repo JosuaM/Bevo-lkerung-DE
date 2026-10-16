@@ -11,9 +11,9 @@ function drawDash(){
   dashboardApi.d = byYear[dashboardApi.year];
   window.populationExplorer.render(dashboardApi);
 }
-let freezeCanvasUntil = 0;                         // beim Ausblenden von Animation 2 bleibt das letzte Bild stehen
+let canvasFrozen = false;                          // beim Ausblenden einer Animation bleibt das letzte Bild stehen
 function draw(){
-  if (performance.now() < freezeCanvasUntil) return;
+  if (canvasFrozen) return;
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
   if (isDash()) drawDash();
@@ -105,10 +105,18 @@ function goScene(n, opt = {}){
     const faded = [cv, document.querySelector('.controls')];
     faded.forEach(el => { el.style.transition = leavingAnimation ? 'opacity .6s' : ''; el.style.opacity = leavingAnimation ? 0 : ''; });
     if (leavingAnimation){
-      freezeCanvasUntil = performance.now() + 700;
-      later(700, () => faded.forEach(el => { el.style.transition = ''; el.style.opacity = ''; }));
-    }else freezeCanvasUntil = 0;
+      canvasFrozen = true;
+      later(700, () => {                           // erst das Bild löschen, dann die Deckkraft zurücksetzen (sonst blitzt das alte Bild auf)
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
+        canvasFrozen = false;
+        faded.forEach(el => { el.style.transition = ''; el.style.opacity = ''; });
+        document.body.classList.remove('leaving');
+      });
+    }
   }
+  if (!leavingAnimation){ canvasFrozen = false; document.body.classList.remove('leaving'); }
+  else document.body.classList.add('leaving');
   scene = n;
   document.body.dataset.scene = String(n);
   document.body.classList.toggle('exploring', n === 5);
@@ -219,6 +227,7 @@ function applyBackground(){
   const color = BGS[scene], n = parseInt(color.slice(1), 16), rgb = (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255);
   const root = document.documentElement.style;
   root.setProperty('--bg', color);
+  root.setProperty('--bg0', 'rgba(' + rgb + ',0)');
   root.setProperty('--bg90', 'rgba(' + rgb + ',.9)');
   root.setProperty('--bg80', 'rgba(' + rgb + ',.8)');
   bgInput.value = color;

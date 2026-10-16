@@ -1,7 +1,7 @@
 /* Bevölkerung Deutschlands 1991–2025 · Gestaltung der Folien (Dashboard: dashboards/explorer.css) */
 
 :root{
-  --bg:#121212; --bg90:rgba(18,18,18,.9); --bg80:rgba(18,18,18,.8);
+  --bg:#121212; --bg0:rgba(18,18,18,0); --bg90:rgba(18,18,18,.9); --bg80:rgba(18,18,18,.8);   /* --bg0: Hintergrund voll durchsichtig (Safari blendet „transparent“ sonst über Schwarz) */
   --ink:#f2f4f8; --mute:#7d879b; --ev:var(--c-in,#38e0ff);
   --pad:40px; --lw:2px;
   --fs-l:44px; --fs-m:26px; --fs-s:18px;      /* drei Schriftgrößen, per JS an die Fenstergröße angepasst */
@@ -39,7 +39,7 @@ body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
 #qs{position:fixed;inset:0;z-index:50;background:var(--bg);color:#fff;opacity:0;pointer-events:none;cursor:pointer;
   transition:opacity .7s,background .9s}
 #qs.on{opacity:1;pointer-events:auto}
-#qs.docked,#qs.docked2{opacity:1;background:transparent;pointer-events:none}
+#qs.docked,#qs.docked2{opacity:1;background:var(--bg0);pointer-events:none}
 #qs.bridge{transition-duration:.9s,.9s}
 #qs.leaving{opacity:0;transition:opacity .6s}
 #qtext,#btext{font-weight:300;line-height:1.25;color:#fff;white-space:pre;font-size:var(--fs-l)}
@@ -83,7 +83,7 @@ body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
 /* ---- Animationsfolien: Steuerung unten ---- */
 .controls{position:absolute;left:0;right:0;bottom:0;z-index:70;display:none;gap:18px;align-items:flex-start;padding:10px var(--pad) 14px;
   background:linear-gradient(transparent,var(--bg90) 55%)}
-body[data-scene="1"] .controls,body[data-scene="3"] .controls{display:flex}
+body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .controls{display:flex}
 #play{width:30px;height:30px;margin-top:22px;padding:0;background:transparent;border:0;display:grid;place-items:center}
 #play svg{width:20px;height:20px;fill:#fff}
 #play:hover svg{opacity:.7}
