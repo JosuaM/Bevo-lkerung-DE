@@ -658,8 +658,8 @@ function drawParticles(rNow){
   const rEx = rNow - 16 / SC, fade = 46 / SC, band = BAND();
   for (const p of particles){
     const {x, y} = particlePosition(p);
-    let a = clamp((Math.hypot(x - CX, y - CY) - rEx) / fade, 0, 1);
-    a = a * a * (3 - 2 * a);                                           // weicher Übergang in den Kreis
+    const sz = lerp(SZMIN, SZMAX, p.r) / SC;
+    let a = Math.hypot(x - CX, y - CY) - sz >= rNow ? 1 : 0;           // harter Schnitt am Kreisrand (kein Ausfaden)
     a *= clamp((H - 104 / SC - y) / 30, 0, 1);
     if (a <= 0.01) continue;
     ctx.globalAlpha = a * p.alpha; ctx.fillStyle = COLORS[p.ck];
