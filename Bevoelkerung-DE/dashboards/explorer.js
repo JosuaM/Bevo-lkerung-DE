@@ -19,7 +19,6 @@ window.populationExplorer = (() => {
   let view = 'population', detail = false, populationPercent = false;
   let api = null, lastKey = '', selectedEventYear = null;
   let hoverGeometry = null, valueHoverKey = '';
-  let twoLineHeading = true;                   // Überschrift zweizeilig (neu) oder einzeilig (alt), temporärer Vergleich
 
   /* ---- Einfädeln: nach jedem Wechsel der Ansicht laufen Linien und Balken von links ins Diagramm ---- */
   const REVEAL_MS = 1400;
@@ -254,19 +253,19 @@ window.populationExplorer = (() => {
     const {d, year, BASE, cumN, COLORS: c, fmt, sgn} = a;
     if (view === 'balance'){
       if (detail) return {
-        heading: 'Vier Größen hinter\nDeutschlands Bevölkerungsbilanz', unit: 'Menschen', rows: a.DATA,
+        heading: 'Vier Größen hinter Deutschlands Bevölkerungsbilanz', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten', c.birth, r => r.wb], ['Sterbefälle', c.death, r => -r.wd], ['Einwanderung', c.in, r => r.zu], ['Auswanderung', c.out, r => -r.fort]],
         metrics: metric('Geburten', fmt(d.wb), c.birth) + metric('Sterbefälle', fmt(d.wd), c.death)
           + metric('Einwanderung', fmt(d.zu), c.in) + metric('Auswanderung', fmt(d.fort), c.out),
       };
       return {
-        heading: 'Was hat Deutschlands\nBevölkerungsentwicklung beeinflusst?', unit: 'Menschen', rows: a.DATA,
+        heading: 'Was hat Deutschlands Bevölkerungsentwicklung beeinflusst?', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten − Sterbefälle', c.death, r => r.wb - r.wd], ['Einwanderung − Auswanderung', c.in, r => r.zu - r.fort]],
         metrics: metric('Geburten − Sterbefälle', sgn(d.wb - d.wd), c.death) + metric('Einwanderung −<br>Auswanderung', sgn(d.zu - d.fort), c.in)
           + total('Bilanz der beiden Salden', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),
       };
     }
-    const heading = 'Wie hat sich Deutschlands Bevölkerung\nmit und ohne Wanderung entwickelt?';
+    const heading = 'Wie hat sich Deutschlands Bevölkerung mit und ohne Wanderung entwickelt?';
     if (populationPercent){
       const modelShare = (BASE + cumN[year]) / d.wp * 100;
       return {
@@ -368,7 +367,7 @@ window.populationExplorer = (() => {
 
     const chartWidth = Math.max(280, Math.round(svg.clientWidth)), chartHeight = Math.max(220, Math.round(svg.clientHeight));
     const grow = revealProgress();
-    const key = [chartWidth, chartHeight, view, detail, populationPercent, year, ...Object.values(c), selectedEventYear, twoLineHeading, grow].join('|');
+    const key = [chartWidth, chartHeight, view, detail, populationPercent, year, ...Object.values(c), selectedEventYear, grow].join('|');
     if (key === lastKey) return;
     lastKey = key;
 
@@ -379,7 +378,7 @@ window.populationExplorer = (() => {
     });
     $('ex-year').textContent = year;
     const {heading, unit, rows, sets, metrics} = describeView(a);
-    $('ex-heading').textContent = twoLineHeading ? heading : heading.replace('\n', ' ');
+    $('ex-heading').textContent = heading;
     $('ex-metrics').innerHTML = metrics;
     renderSwitch();
     const displayedSeries = renderLegend(sets);
@@ -443,6 +442,5 @@ window.populationExplorer = (() => {
     svg.innerHTML = out;
   }
 
-  function setTwoLineHeading(on){ twoLineHeading = on; lastKey = ''; }
-  return {render, reveal, setTwoLineHeading};
+  return {render, reveal};
 })();

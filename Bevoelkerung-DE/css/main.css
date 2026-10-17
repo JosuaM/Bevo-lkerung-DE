@@ -32,10 +32,8 @@ button{font:inherit;font-size:var(--fs-s);cursor:pointer;color:var(--ink)}
 
 /* Variantenvergleich der Animationen (temporär) */
 #variantBox{position:fixed;top:14px;right:18px;z-index:130;display:none}
-body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox,body[data-scene="5"] #variantBox{display:block}
-#headingSel,body[data-scene="5"] #variantSel{display:none}
-body[data-scene="5"] #headingSel{display:block}
-#variantSel,#headingSel{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:7px 10px;color-scheme:dark;cursor:pointer}
+body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
+#variantSel{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:7px 10px;color-scheme:dark;cursor:pointer}
 
 /* ---- Fragen- und Zwischenbildschirme ---- */
 #qs{position:fixed;inset:0;z-index:50;background:var(--bg);color:#fff;opacity:0;pointer-events:none;cursor:pointer;

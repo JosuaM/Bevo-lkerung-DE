@@ -283,16 +283,6 @@ variantSelect.onchange = e => {
   try{ localStorage.setItem('bev-anim-variant', String(animVariant)); }catch{}
   e.target.blur();
 };
-const headingSelect = $('headingSel');
-let headingVariant = 2;
-try{ if (localStorage.getItem('bev-heading-variant') === '1') headingVariant = 1; }catch{}
-headingSelect.value = String(headingVariant);
-window.populationExplorer.setTwoLineHeading(headingVariant === 2);
-headingSelect.onchange = e => {
-  window.populationExplorer.setTwoLineHeading(e.target.value === '2');
-  try{ localStorage.setItem('bev-heading-variant', e.target.value); }catch{}
-  e.target.blur();
-};
 
 /* ---- Tastatur ---- */
 addEventListener('keydown', e => {
