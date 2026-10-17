@@ -19,6 +19,18 @@ window.populationExplorer = (() => {
   let view = 'population', detail = false, populationPercent = false;
   let api = null, lastKey = '', selectedEventYear = null;
   let hoverGeometry = null, valueHoverKey = '';
+  let twoLineHeading = true;                   // Überschrift zweizeilig (neu) oder einzeilig (alt), temporärer Vergleich
+
+  /* ---- Einfädeln: nach jedem Wechsel der Ansicht laufen Linien und Balken von links ins Diagramm ---- */
+  const REVEAL_MS = 1400;
+  let revealStart = -1;
+  function reveal(delay = 0){ revealStart = performance.now() + delay; lastKey = ''; }
+  function revealProgress(){
+    if (revealStart < 0) return 1;
+    const p = Math.max(0, Math.min(1, (performance.now() - revealStart) / REVEAL_MS));
+    if (p >= 1) revealStart = -1;
+    return p < .5 ? 4 * p * p * p : 1 - (-2 * p + 2) ** 3 / 2;
+  }
 
   /* ---- Skalierung: das Dashboard sieht in jeder Fenstergröße gleich aus (Referenz 1512 × 860) ---- */
   let zoom = 1;
@@ -223,7 +235,7 @@ window.populationExplorer = (() => {
     }
   });
   tabs.forEach((tab, i) => {
-    tab.onclick = () => { view = tab.dataset.view; lastKey = ''; render(api); };
+    tab.onclick = () => { if (view !== tab.dataset.view) reveal(); view = tab.dataset.view; lastKey = ''; render(api); };
     tab.onkeydown = e => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
       e.preventDefault(); e.stopPropagation();
@@ -242,19 +254,19 @@ window.populationExplorer = (() => {
     const {d, year, BASE, cumN, COLORS: c, fmt, sgn} = a;
     if (view === 'balance'){
       if (detail) return {
-        heading: 'Vier Größen hinter Deutschlands Bevölkerungsbilanz', unit: 'Menschen', rows: a.DATA,
+        heading: 'Vier Größen hinter\nDeutschlands Bevölkerungsbilanz', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten', c.birth, r => r.wb], ['Sterbefälle', c.death, r => -r.wd], ['Einwanderung', c.in, r => r.zu], ['Auswanderung', c.out, r => -r.fort]],
         metrics: metric('Geburten', fmt(d.wb), c.birth) + metric('Sterbefälle', fmt(d.wd), c.death)
           + metric('Einwanderung', fmt(d.zu), c.in) + metric('Auswanderung', fmt(d.fort), c.out),
       };
       return {
-        heading: 'Was hat Deutschlands Bevölkerungsentwicklung beeinflusst?', unit: 'Menschen', rows: a.DATA,
+        heading: 'Was hat Deutschlands\nBevölkerungsentwicklung beeinflusst?', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten − Sterbefälle', c.death, r => r.wb - r.wd], ['Einwanderung − Auswanderung', c.in, r => r.zu - r.fort]],
         metrics: metric('Geburten − Sterbefälle', sgn(d.wb - d.wd), c.death) + metric('Einwanderung −<br>Auswanderung', sgn(d.zu - d.fort), c.in)
           + total('Bilanz der beiden Salden', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),
       };
     }
-    const heading = 'Wie hat sich Deutschlands Bevölkerung mit und ohne Wanderung entwickelt?';
+    const heading = 'Wie hat sich Deutschlands Bevölkerung\nmit und ohne Wanderung entwickelt?';
     if (populationPercent){
       const modelShare = (BASE + cumN[year]) / d.wp * 100;
       return {
@@ -313,6 +325,7 @@ window.populationExplorer = (() => {
     box.setAttribute('aria-label', view === 'population' ? 'Darstellung der Bevölkerung' : 'Darstellung der Bilanz');
     box.innerHTML = labels.map((label, i) => `<button aria-pressed="${i === active}" data-option="${i}">${label}</button>`).join('');
     box.querySelectorAll('button').forEach(button => button.onclick = () => {
+      if (+button.dataset.option !== active) reveal();
       if (view === 'population') populationPercent = !!+button.dataset.option;
       else detail = !!+button.dataset.option;
       lastKey = '';
@@ -354,7 +367,8 @@ window.populationExplorer = (() => {
     cloud.draw({mode, d, surplus: Math.max(0, d.wp - (a.BASE + a.cumN[year])), colors: c});
 
     const chartWidth = Math.max(280, Math.round(svg.clientWidth)), chartHeight = Math.max(220, Math.round(svg.clientHeight));
-    const key = [chartWidth, chartHeight, view, detail, populationPercent, year, ...Object.values(c), selectedEventYear].join('|');
+    const grow = revealProgress();
+    const key = [chartWidth, chartHeight, view, detail, populationPercent, year, ...Object.values(c), selectedEventYear, twoLineHeading, grow].join('|');
     if (key === lastKey) return;
     lastKey = key;
 
@@ -365,7 +379,7 @@ window.populationExplorer = (() => {
     });
     $('ex-year').textContent = year;
     const {heading, unit, rows, sets, metrics} = describeView(a);
-    $('ex-heading').textContent = heading;
+    $('ex-heading').textContent = twoLineHeading ? heading : heading.replace('\n', ' ');
     $('ex-metrics').innerHTML = metrics;
     renderSwitch();
     const displayedSeries = renderLegend(sets);
@@ -382,8 +396,10 @@ window.populationExplorer = (() => {
     hoverGeometry = {rows, sets, X, Y, top, bottom, formatValue};
     clearValueHover();
 
+    // Einfädeln: die Kante läuft etwas über das Diagramm hinaus, damit auch der letzte Balken ganz hochwächst
+    const edge = grow * 1.12, barGrow = x => grow >= 1 ? 1 : Math.max(0, Math.min(1, (edge - (x - leftMargin) / plotWidth) / .12));
     let out = `<text x="8" y="15" text-anchor="start" fill="#a4adbd" font-size="${AXIS_FONT}">${unit}</text>`;
-    if (view === 'population') out += populationFill(rows, sets, X, Y, bottom, c);
+    let data = view === 'population' ? populationFill(rows, sets, X, Y, bottom, c) : '';
     for (const v of ticks){
       const y = Y(v);
       const label = view === 'population' && populationPercent ? percentFmt(v) : v === 0 ? '0' : compact(v);
@@ -403,26 +419,30 @@ window.populationExplorer = (() => {
       const slot = plotWidth / (LAST - FIRST + 1), barWidth = slot * .38 / (detail ? sets.length : 1);
       if (detail){
         sets.forEach((series, index) => {
-          out += `<path class="ex-individual-line" stroke-dasharray="${lineDash(index)}" d="${linearPath(rows, series, X, Y)}" fill="none" stroke="${series[1]}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
-          out += `<circle cx="${X(year)}" cy="${Y(series[2](d))}" r="4" fill="${series[1]}" stroke="#121212" stroke-width="2"/>`;
+          data += `<path class="ex-individual-line" stroke-dasharray="${lineDash(index)}" d="${linearPath(rows, series, X, Y)}" fill="none" stroke="${series[1]}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+          data += `<circle cx="${X(year)}" cy="${Y(series[2](d))}" r="4" fill="${series[1]}" stroke="#121212" stroke-width="2"/>`;
         });
       }else{
         rows.forEach(r => sets.forEach(s => {
-          const v = s[2](r), x = X(r.y) - barWidth / 2;
-          out += `<rect class="ex-bar ${r.y === year ? 'bar-selected' : ''}" data-baryear="${r.y}" x="${x}" y="${Math.min(Y(0), Y(v))}" width="${barWidth - 1}" height="${Math.max(1, Math.abs(Y(v) - Y(0)))}" fill="${s[1]}" opacity="${r.y === year ? 1 : .62}"></rect>`;
+          const v = s[2](r) * barGrow(X(r.y)), x = X(r.y) - barWidth / 2;
+          data += `<rect class="ex-bar ${r.y === year ? 'bar-selected' : ''}" data-baryear="${r.y}" x="${x}" y="${Math.min(Y(0), Y(v))}" width="${barWidth - 1}" height="${Math.max(1, Math.abs(Y(v) - Y(0)))}" fill="${s[1]}" opacity="${r.y === year ? 1 : .62}"></rect>`;
         }));
-        out += `<path class="ex-balance-line" d="${linearPath(rows, overallBalance, X, Y)}" fill="none" stroke="${overallBalance[1]}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" pointer-events="none"/>`;
+        data += `<path class="ex-balance-line" d="${linearPath(rows, overallBalance, X, Y)}" fill="none" stroke="${overallBalance[1]}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" pointer-events="none"/>`;
       }
     }else{
       sets.forEach((s, index) => {
-        out += `<path stroke-dasharray="${lineDash(index)}" d="${linearPath(rows, s, X, Y)}" fill="none" stroke="${s[1]}" stroke-width="2.5"/>`;
+        data += `<path stroke-dasharray="${lineDash(index)}" d="${linearPath(rows, s, X, Y)}" fill="none" stroke="${s[1]}" stroke-width="2.5"/>`;
       });
     }
+    if (view !== 'balance') sets.forEach(s => data += `<circle cx="${X(year)}" cy="${Y(s[2](d))}" r="5" fill="${s[1]}" stroke="#121212" stroke-width="2"/>`);
+    if (grow < 1) data = `<clipPath id="ex-reveal"><rect x="0" y="0" width="${leftMargin + plotWidth * Math.min(1, edge)}" height="${chartHeight}"/></clipPath>`
+      + `<g clip-path="url(#ex-reveal)">${data}</g>`;
     if (selectedEventYear !== year) out += `<path d="M${X(year)} ${top}V${bottom}" stroke="${WHITE}" stroke-dasharray="3 5" opacity=".5"/>`;
-    if (view !== 'balance') sets.forEach(s => out += `<circle cx="${X(year)}" cy="${Y(s[2](d))}" r="5" fill="${s[1]}" stroke="#121212" stroke-width="2"/>`);
+    out += data;
     out += '<g id="ex-value-marker" pointer-events="none" aria-hidden="true"></g>';
     svg.innerHTML = out;
   }
 
-  return {render};
+  function setTwoLineHeading(on){ twoLineHeading = on; lastKey = ''; }
+  return {render, reveal, setTwoLineHeading};
 })();

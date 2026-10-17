@@ -111,7 +111,7 @@ function showBridge(instant){
     lines.forEach(el => el.classList.add('in'));
     later(4800, () => {                              // der Zähler oben läuft in drawBridge mit den Balken
       typeInto(btext, BQ);
-      later(2600, () => { bnext.classList.add('on'); bridgeDone = true; });
+      later(1700, () => { bnext.classList.add('on'); bridgeDone = true; });
     });
   });
 }

@@ -32,8 +32,10 @@ button{font:inherit;font-size:var(--fs-s);cursor:pointer;color:var(--ink)}
 
 /* Variantenvergleich der Animationen (temporär) */
 #variantBox{position:fixed;top:14px;right:18px;z-index:130;display:none}
-body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
-#variantSel{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:7px 10px;color-scheme:dark;cursor:pointer}
+body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox,body[data-scene="5"] #variantBox{display:block}
+#headingSel,body[data-scene="5"] #variantSel{display:none}
+body[data-scene="5"] #headingSel{display:block}
+#variantSel,#headingSel{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid #3a4252;border-radius:5px;padding:7px 10px;color-scheme:dark;cursor:pointer}
 
 /* ---- Fragen- und Zwischenbildschirme ---- */
 #qs{position:fixed;inset:0;z-index:50;background:var(--bg);color:#fff;opacity:0;pointer-events:none;cursor:pointer;
@@ -73,7 +75,7 @@ body[data-scene="1"] #variantBox,body[data-scene="3"] #variantBox{display:block}
 /* Schaltflächen */
 #bnext,#fbtn button{background:transparent;border:1px solid #fff;border-radius:6px;padding:10px 16px}
 #bnext{display:block;margin:22px 0 0;opacity:0;pointer-events:none;
-  transition:opacity .5s,background .25s,color .25s,transform .25s,box-shadow .25s}
+  transition:opacity .3s,background .25s,color .25s,transform .25s,box-shadow .25s}
 #bnext.on{opacity:1;pointer-events:auto}
 #bnext:hover,#bnext:focus-visible,#fNext:hover,#fNext:focus-visible{background:#fff;color:#121212;transform:translateY(-3px);box-shadow:0 8px 24px #ffffff15}
 #bnext:active,#fNext:active{transform:translateY(0)}
@@ -134,10 +136,10 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
 #finalBalance>div:last-child{grid-column:3}
 #finalBalance span{display:block;margin-bottom:8px;font-size:var(--fs-s);color:var(--mute)}
 #finalBalance strong{font-size:var(--fs-m);font-weight:400;font-variant-numeric:tabular-nums}
-#fcap{position:absolute;left:50%;bottom:120px;width:min(900px,calc(100% - 80px));transform:translateX(-50%);text-align:center;
+#fcap{position:absolute;left:50%;bottom:108px;width:min(900px,calc(100% - 80px));transform:translateX(-50%);text-align:center;
   font-size:var(--fs-s);font-weight:300;line-height:1.35;opacity:0;transition:opacity 1s}
 #fcap b{font-weight:500}
-#fbtn{position:absolute;left:0;right:0;bottom:24px;display:flex;gap:12px;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s}
+#fbtn{position:absolute;left:0;right:0;bottom:44px;display:flex;gap:12px;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s}
 #fbtn.in{pointer-events:auto}
 
 #dashboardFade{position:fixed;inset:0;z-index:200;background:#000;opacity:0;pointer-events:none;transition:opacity .65s ease}

@@ -22,6 +22,7 @@ Obere Navigation startet die gewählte Folie neu. Folie „Differenz“ wartet a
 E: Einstellungen (mit „Folie neu starten“, auf der Differenz-Folie zusätzlich Klang der Balken); D: weiter; A: zurück; Leertaste: Pause; Pfeiltasten: Jahr auswählen und pausieren.
 Die Zeitleiste wird nur auf den beiden Animationsfolien angezeigt. Jahresauswahl pausiert Zeit und Punkte.
 Auf den Animationsfolien gibt es oben rechts ein temporäres Dropdown zum Vergleich zweier Varianten: 1 = Punkte faden am Kreisrand aus, Zahlen springen; 2 = harter Schnitt am Kreisrand, Zahlen zählen von Jahr zu Jahr (Standard).
+Im Dashboard vergleicht dasselbe Dropdown die Überschrift: 1 = einzeilig (alt), 2 = zweizeilig (Standard). Beim Öffnen des Dashboards und bei jedem Wechsel von Ansicht oder Darstellung fädeln Linien und Balken von links ein (`reveal` in `dashboards/explorer.js`).
 
 ## Gemeinsame Einstellungen
 
