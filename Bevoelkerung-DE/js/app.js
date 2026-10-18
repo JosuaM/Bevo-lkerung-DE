@@ -313,10 +313,14 @@ requestAnimationFrame(frame);
   const root = document.documentElement;
   let hideTimer = 0, locked = false;
   window.cursorLock = () => { locked = true; };
-  const hideCursor = () => root.classList.add('cursor-hidden');
-  root.classList.add('cursor-hidden');
-  document.addEventListener('mousemove', () => {
+  let base = null, last = null;
+  const hideCursor = () => { root.classList.add('cursor-hidden'); base = last; };
+  root.classList.add('cursor-hidden');                                 // Position beim Laden: der automatische Mausereignis-Start zählt nicht
+  document.addEventListener('mousemove', e => {
     if (locked) return;
+    last = {x: e.clientX, y: e.clientY};
+    if (!base) base = last;
+    if (root.classList.contains('cursor-hidden') && Math.hypot(e.clientX - base.x, e.clientY - base.y) < 4) return;
     root.classList.remove('cursor-hidden');
     clearTimeout(hideTimer);
     hideTimer = setTimeout(hideCursor, 1500);
