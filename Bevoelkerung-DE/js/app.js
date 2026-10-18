@@ -329,6 +329,7 @@ requestAnimationFrame(frame);
 
 /* Aufnahme-Neustart: Zeiger sofort weg, kurz warten, dann komplett neu laden (Frage 1) */
 $('recordRestart').onclick = () => {
+  enableClickSound();
   playClick();
   togglePanel();
   document.documentElement.classList.add('cursor-hidden');

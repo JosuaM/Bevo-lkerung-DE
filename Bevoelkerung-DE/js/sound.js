@@ -23,21 +23,20 @@ function playSound(){
   }catch{}
 }
 
-/* Mausklick-Geräusch (Neustart für Aufnahme): kurzer gefilterter Rauschimpuls */
+/* Mausklick-Geräusch: wird mit „Neustart für Aufnahme“ aktiv und bleibt über den Neustart hinweg, bis die Seite manuell neu geladen wird. */
+const CLICK_FLAG = 'clickSound';
+const CLICK_FILE = 'sounds/click.mp3';
+let clickSoundOn = false;
+try{
+  const nav = performance.getEntriesByType('navigation')[0];
+  if (nav && nav.type === 'reload') sessionStorage.removeItem(CLICK_FLAG);
+  clickSoundOn = sessionStorage.getItem(CLICK_FLAG) === '1';
+}catch{}
 function playClick(){
-  try{
-    audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
-    if (audioContext.state === 'suspended') audioContext.resume();
-    const now = audioContext.currentTime, length = .03;
-    const buffer = audioContext.createBuffer(1, Math.ceil(audioContext.sampleRate * length), audioContext.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
-    const source = audioContext.createBufferSource(), filter = audioContext.createBiquadFilter(), gain = audioContext.createGain();
-    source.buffer = buffer;
-    filter.type = 'bandpass';
-    filter.frequency.value = 2200;
-    gain.gain.value = .5;
-    source.connect(filter).connect(gain).connect(audioContext.destination);
-    source.start(now);
-  }catch{}
+  try{ const a = new Audio(CLICK_FILE); a.play().catch(() => {}); }catch{}
 }
+function enableClickSound(){
+  clickSoundOn = true;
+  try{ sessionStorage.setItem(CLICK_FLAG, '1'); }catch{}
+}
+document.addEventListener('pointerdown', () => { if (clickSoundOn) playClick(); }, true);
