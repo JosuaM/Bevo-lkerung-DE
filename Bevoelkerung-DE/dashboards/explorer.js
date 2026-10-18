@@ -56,11 +56,26 @@ window.populationExplorer = (() => {
     return values[i] * (1 - f) + values[i + 1] * f;
   };
   const linearPath = (rows, series, X, Y) => rows.map((r, i) => `${i === 0 ? 'M' : 'L'}${X(r.y)} ${Y(series[2](r))}`).join(' ');
+  // Sichtbare SVG-Fläche einschließlich CSS-Skalierung und xMidYMid-meet-Rändern.
+  // getScreenCTM berücksichtigt transformierte HTML-Vorfahren nicht in jedem Browser gleich.
+  const chartFrame = () => {
+    const rect = svg.getBoundingClientRect(), box = svg.viewBox.baseVal;
+    const scale = Math.min(rect.width / box.width, rect.height / box.height);
+    return {
+      left: rect.left + (rect.width - box.width * scale) / 2,
+      top: rect.top + (rect.height - box.height * scale) / 2,
+      x: box.x, y: box.y, scale,
+    };
+  };
   const svgPoint = e => {                      // Mauszeiger in Diagramm-Koordinaten
-    const point = svg.createSVGPoint();
-    point.x = e.clientX;
-    point.y = e.clientY;
-    return point.matrixTransform(svg.getScreenCTM().inverse());
+    const frame = chartFrame();
+    return {x: frame.x + (e.clientX - frame.left) / frame.scale,
+      y: frame.y + (e.clientY - frame.top) / frame.scale};
+  };
+  const tooltipPoint = (x, y) => {              // Diagramm-Koordinaten in Dashboard-Pixeln
+    const frame = chartFrame(), panel = svg.parentElement.getBoundingClientRect();
+    return {x: (frame.left - panel.left + (x - frame.x) * frame.scale) / zoom,
+      y: (frame.top - panel.top + (y - frame.y) * frame.scale) / zoom};
   };
   const choose = (year, fromEvent = false) => {
     selectedEventYear = fromEvent ? year : null;
@@ -78,7 +93,7 @@ window.populationExplorer = (() => {
     if (marker) marker.replaceChildren();
   }
   function showBalanceHover(local, position){
-    const {rows, sets, X, Y, top, formatValue} = hoverGeometry;
+    const {rows, sets, X, Y, top, bottom, formatValue} = hoverGeometry;
     const row = rows[Math.round(position)], x = X(row.y), zero = Y(0);
     const hoverSets = detail ? sets : [...sets, overallBalance];
     const near = hoverSets.some(series => {
@@ -89,18 +104,26 @@ window.populationExplorer = (() => {
     if (!near){ clearValueHover(); return false; }
     const panel = localRect(svg.parentElement), chart = localRect(svg);
     const groups = detail ? [sets.slice(0, 2), sets.slice(2)] : sets.map(series => [series]);
-    let nextTop = Math.max(8, chart.top - panel.top + top + 12);
+    const anchor = tooltipPoint(x, top);
+    let nextTop = Math.max(8, anchor.y + 12);
     groups.forEach((group, index) => {
       const box = valueTooltips[index];
       box.innerHTML = '<span>' + row.y + '</span>' + group.map(series =>
         '<span>' + series[0] + '</span><strong style="color:' + series[1] + '">' + api.sgn(series[2](row)) + '</strong>').join('');
       box.hidden = false;
-      box.style.left = Math.max(10, Math.min(panel.width - box.offsetWidth - 10, chart.left - panel.left + x + 18)) + 'px';
+      box.style.left = Math.max(10, Math.min(panel.width - box.offsetWidth - 10, anchor.x + 18)) + 'px';
       box.style.top = nextTop + 'px';
       nextTop += box.offsetHeight + 10;
     });
     valueHoverKey = 'balance-' + row.y;
-    svg.querySelector('#ex-value-marker').replaceChildren();
+    const marker = svg.querySelector('#ex-value-marker');
+    if (detail){
+      marker.innerHTML = `<line x1="${x}" x2="${x}" y1="${top}" y2="${bottom}" stroke="${WHITE}" stroke-width="1" stroke-dasharray="3 5" opacity=".4"/>`
+        + sets.map(series => {
+          const y = Y(series[2](row));
+          return `<line x1="${x}" x2="${x}" y1="${y - 5}" y2="${y + 5}" stroke="${series[1]}" stroke-width="2.5" stroke-linecap="round"/>`;
+        }).join('');
+    }else marker.replaceChildren();
     svg.querySelectorAll('.bar-hover').forEach(bar => bar.classList.remove('bar-hover'));
     if (!detail){
       const bar = [...svg.querySelectorAll('rect[data-baryear]')].reverse().find(rect => {
@@ -128,34 +151,32 @@ window.populationExplorer = (() => {
       if (changed) box.innerHTML = '<span>' + row.y + ' · Abstand zur tatsächlichen Bevölkerung</span><strong>' + percentFmt(100 - modelValue) + '</strong>';
       box.hidden = false;
       const upper = Y(100), lower = Y(modelValue), middle = (upper + lower) / 2;
-      const sx = chart.width / svg.viewBox.baseVal.width, sy = chart.height / svg.viewBox.baseVal.height;
-      const originX = chart.left - panel.left, originY = chart.top - panel.top;
-      const minLeft = originX + X(api.FIRST) * sx, maxLeft = originX + X(api.LAST) * sx - box.offsetWidth;
-      const left = Math.max(minLeft, Math.min(Math.max(minLeft, maxLeft), originX + x * sx - box.offsetWidth / 2));
-      const cardTop = Math.max(originY + top * sy + 12, Math.min(originY + bottom * sy - box.offsetHeight - 8, originY + middle * sy - box.offsetHeight / 2));
+      const minLeft = tooltipPoint(X(api.FIRST), top).x, maxLeft = tooltipPoint(X(api.LAST), top).x - box.offsetWidth;
+      const left = Math.max(minLeft, Math.min(Math.max(minLeft, maxLeft), tooltipPoint(x, middle).x - box.offsetWidth / 2));
+      const cardTop = Math.max(tooltipPoint(x, top).y + 12, Math.min(tooltipPoint(x, bottom).y - box.offsetHeight - 8, tooltipPoint(x, middle).y - box.offsetHeight / 2));
       box.style.left = left + 'px';
       box.style.top = cardTop + 'px';
       svg.querySelector('#ex-value-marker').innerHTML =
         `<defs><linearGradient id="ex-gap-line" gradientUnits="userSpaceOnUse" x1="0" y1="${upper}" x2="0" y2="${lower}"><stop offset="0" stop-color="${WHITE}"/><stop offset="1" stop-color="${model[1]}"/></linearGradient></defs>` +
         `<line x1="${x}" y1="${upper}" x2="${x}" y2="${lower}" stroke="url(#ex-gap-line)" stroke-width="1.5"/>` +
-        `<circle cx="${x}" cy="${lower}" r="5" fill="${model[1]}" stroke="#121212" stroke-width="2"/>`;
+        `<path d="M${x} ${upper - 5}v10 M${x} ${lower - 5}v10" stroke="url(#ex-gap-line)" stroke-width="2.5" stroke-linecap="round"/>`;
       valueHoverKey = key;
       return true;
     }
 
     const positions = sets.map((series, index) => {
-      const box = valueTooltips[index], y = Y(series[2](row));
+      const box = valueTooltips[index], y = Y(series[2](row)), anchor = tooltipPoint(x, y);
       if (changed) box.innerHTML = '<span>' + row.y + ' · ' + series[0] + '</span><strong style="color:' + series[1] + '">' + formatValue(series[2](row)) + '</strong>';
       box.hidden = false;
       return {
         box, series, y, direction: -1,
-        left: Math.max(10, Math.min(panel.width - box.offsetWidth - 10, chart.left - panel.left + x - box.offsetWidth / 2)),
-        top: Math.max(8, chart.top - panel.top + y - 42 - box.offsetHeight - 8),
+        left: Math.max(10, Math.min(panel.width - box.offsetWidth - 10, anchor.x - box.offsetWidth / 2)),
+        top: Math.max(8, tooltipPoint(x, y - 42).y - box.offsetHeight - 8),
       };
     });
     // Bei eng beieinanderliegenden Linien die zweite Karte unterhalb platzieren.
     if (positions[1].top < positions[0].top + positions[0].box.offsetHeight + 10){
-      positions[1].top = chart.top - panel.top + positions[1].y + 50;
+      positions[1].top = tooltipPoint(x, positions[1].y + 50).y;
       positions[1].direction = 1;
     }
     positions.forEach(item => { item.box.style.left = item.left + 'px'; item.box.style.top = item.top + 'px'; });
@@ -163,7 +184,7 @@ window.populationExplorer = (() => {
       valueHoverKey = key;
       svg.querySelector('#ex-value-marker').innerHTML = positions.map(({series, y, direction}) =>
         `<line class="value-stem" x1="${x}" x2="${x}" y1="${y}" y2="${Math.max(8, y + direction * 42)}" stroke="${series[1]}" stroke-width="2"/>` +
-        `<circle cx="${x}" cy="${y}" r="5" fill="${series[1]}" stroke="#121212" stroke-width="2"/>`).join('');
+        `<line x1="${x}" x2="${x}" y1="${y - 5}" y2="${y + 5}" stroke="${series[1]}" stroke-width="2.5" stroke-linecap="round"/>`).join('');
     }
     return true;
   }
@@ -260,7 +281,7 @@ window.populationExplorer = (() => {
         heading: 'Konnte die Ein- und Auswanderung Deutschlands Geburtendefizit ausgleichen?', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten − Sterbefälle', c.death, r => r.wb - r.wd], ['Einwanderung − Auswanderung', c.in, r => r.zu - r.fort]],
         metrics: metric('Einwanderung −<br>Auswanderung', sgn(d.zu - d.fort), c.in) + metric('Geburten − Sterbefälle', sgn(d.wb - d.wd), c.death)
-          + total('Bilanz', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),
+          + total('Bevölkerungsbilanz', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),
       };
     }
     const heading = 'Wie hat sich Deutschlands Bevölkerung mit und ohne Wanderung entwickelt?';
@@ -309,25 +330,51 @@ window.populationExplorer = (() => {
     $('ex-legend').innerHTML = series.map(([label, color], index) => {
       if (view === 'population' || detail || index === sets.length){
         const dash = index === sets.length ? '' : lineDash(index);
-        return `<span class="ex-key-line"><svg aria-hidden="true" viewBox="0 0 24 12"><line x1="0" x2="24" y1="6" y2="6" stroke="${color}" stroke-width="2.5" stroke-dasharray="${dash}"/></svg>${label}</span>`;
+        // Strich–Punkt–Strich vollständig zeigen: 10 + 4 + 2 + 4 + 10 = 30.
+        const width = view === 'balance' && detail && index === 3 ? 30 : 24;
+        return `<span class="ex-key-line"><svg aria-hidden="true" viewBox="0 0 ${width} 12" style="width:${width}px"><line x1="0" x2="${width}" y1="6" y2="6" stroke="${color}" stroke-width="2.5" stroke-dasharray="${dash}"/></svg>${label}</span>`;
       }
       return `<span style="--key:${color}">${label}</span>`;
     }).join('');
     return series;
   }
+  function moveSwitchHighlight(box, active){
+    const button = box.querySelectorAll('button')[active];
+    if (!button || !box.clientWidth) return;
+    const previous = Number(box.dataset.active || 0);
+    if (!box.dataset.direction || active !== previous) box.dataset.direction = active >= previous ? 'right' : 'left';
+    box.dataset.active = active;
+    box.style.setProperty('--switch-left', button.offsetLeft + 'px');
+    box.style.setProperty('--switch-right', Math.max(0, box.clientWidth - button.offsetLeft - button.offsetWidth) + 'px');
+    if (!box.dataset.ready) requestAnimationFrame(() => { box.dataset.ready = 'true'; });
+  }
   function renderSwitch(){
     const labels = view === 'population' ? ['Anzahl', 'Prozent'] : ['Bilanz', 'Einzelwerte'];
     const active = Number(view === 'population' ? populationPercent : detail);
     const box = $('ex-switch');
+    const viewChanged = box.dataset.view !== view;
+    if (viewChanged) box.dataset.ready = 'false';
+    box.dataset.view = view;
     box.setAttribute('aria-label', view === 'population' ? 'Darstellung der Bevölkerung' : 'Darstellung der Bilanz');
-    box.innerHTML = labels.map((label, i) => `<button aria-pressed="${i === active}" data-option="${i}">${label}</button>`).join('');
-    box.querySelectorAll('button').forEach(button => button.onclick = () => {
+    // Buttons erhalten: Die Markierung und der Tastaturfokus bleiben beim Zeichnen bestehen.
+    if (!box.childElementCount) box.innerHTML = labels.map((label, i) => `<button data-option="${i}">${label}</button>`).join('');
+    box.querySelectorAll('button').forEach((button, i) => {
+      button.textContent = labels[i];
+      button.setAttribute('aria-pressed', i === active);
+      button.onclick = () => {
       if (+button.dataset.option !== active) reveal();
       if (view === 'population') populationPercent = !!+button.dataset.option;
       else detail = !!+button.dataset.option;
       lastKey = '';
       render(api);
+      };
     });
+    moveSwitchHighlight(box, active);
+    if (viewChanged){
+      // Neue Beschriftung und Position sofort übernehmen; nur eigene Wechsel animieren.
+      getComputedStyle(box, '::before').left;
+      box.dataset.ready = 'true';
+    }
   }
   function populationFill(rows, sets, X, Y, bottom, c){
     const [actual, model] = sets;
@@ -361,12 +408,12 @@ window.populationExplorer = (() => {
     el.classList.toggle('ex-individual', view === 'balance' && detail);
     const {FIRST, LAST, year, d, COLORS: c} = a;
     const mode = view === 'balance' ? (detail ? 'detail' : 'balance') : 'surplus';
-    cloud.draw({mode, d, surplus: Math.max(0, d.wp - (a.BASE + a.cumN[year])), colors: c});
+    const cloudState = {mode, d, surplus: Math.max(0, d.wp - (a.BASE + a.cumN[year])), colors: c};
 
     const chartWidth = Math.max(280, Math.round(svg.clientWidth)), chartHeight = Math.max(220, Math.round(svg.clientHeight));
     const grow = revealProgress();
     const key = [chartWidth, chartHeight, view, detail, populationPercent, year, ...Object.values(c), selectedEventYear, grow].join('|');
-    if (key === lastKey) return;
+    if (key === lastKey){ cloud.draw(cloudState); return; }
     lastKey = key;
 
     tabs.forEach(tab => {
@@ -374,6 +421,7 @@ window.populationExplorer = (() => {
       tab.setAttribute('aria-selected', selected);
       tab.tabIndex = selected ? 0 : -1;
     });
+    moveSwitchHighlight(tabs[0].parentElement, Number(view === 'balance'));
     $('ex-year').textContent = year;
     const {heading, unit, rows, sets, metrics} = describeView(a);
     $('ex-heading').textContent = heading;
@@ -407,7 +455,7 @@ window.populationExplorer = (() => {
       out += `<line x1="${X(y)}" x2="${X(y)}" y1="${bottom + 3}" y2="${bottom + (major ? 12 : 8)}" stroke="${major ? '#a4adbd' : '#667183'}" stroke-width="${major ? 1.5 : 1}"/>`;
     }
     for (const y of [FIRST, 1995, 2000, 2005, 2010, 2015, 2020, LAST]){
-      out += `<text x="${X(y)}" y="${bottom + 42}" text-anchor="middle" fill="#a4adbd" font-size="${AXIS_FONT}">${y}</text>`;
+      out += `<text data-axisyear="${y}" x="${X(y)}" y="${bottom + 42}" text-anchor="middle" fill="#a4adbd" font-size="${AXIS_FONT}">${y}</text>`;
     }
     out += eventMarkers(markers, plotWidth, top, bottom, year);    // liegen hinter den Daten; Balken und Linien haben Vorrang
 
@@ -438,7 +486,13 @@ window.populationExplorer = (() => {
     out += data;
     out += '<g id="ex-value-marker" pointer-events="none" aria-hidden="true"></g>';
     svg.innerHTML = out;
+    const lastLabel = svg.querySelector(`[data-axisyear="${LAST}"]`).getBoundingClientRect();
+    const footer = el.querySelector('.ex-chart-footer');
+    footer.style.paddingRight = Math.max(0, (svg.getBoundingClientRect().right - lastLabel.right) / zoom) + 'px';
+    cloud.draw(cloudState);
   }
 
-  return {render, reveal};
+  return {render, reveal, particleSnapshot: cloud.snapshot,
+    prepareParticleArrival(){ view = 'population'; populationPercent = false; lastKey = ''; },
+  };
 })();

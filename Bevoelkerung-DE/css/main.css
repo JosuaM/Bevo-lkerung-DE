@@ -119,6 +119,9 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
 /* ---- Ergebnis-Folie ---- */
 #fin{position:fixed;inset:0;z-index:60;background:var(--bg);color:#fff;opacity:0;pointer-events:none;transition:opacity 1.4s}
 #fin.on{opacity:1;pointer-events:auto}
+#fin:not(.on){visibility:hidden}
+#fin.direct-navigation{transition:none}
+#navigation-fade{position:fixed;inset:0;z-index:110;background:var(--bg);pointer-events:none}
 #fin .in{opacity:1!important}
 #finalParticles{pointer-events:none}
 #fin .fside{position:absolute;width:42vw;text-align:center;transform:translateX(-50%);opacity:0;transition:opacity 1s}
@@ -136,8 +139,6 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
 #fbtn{position:absolute;left:0;right:0;bottom:44px;display:flex;gap:12px;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s}
 #fbtn.in{pointer-events:auto}
 
-#dashboardFade{position:fixed;inset:0;z-index:200;background:#000;opacity:0;pointer-events:none;transition:opacity .65s ease}
-#dashboardFade.active{opacity:1;pointer-events:auto}
 
 /* ---- E-Menü ---- */
 #panel{position:fixed;right:16px;bottom:100px;z-index:100;display:none;width:min(250px,calc(100vw - 32px));max-height:calc(100vh - 150px);
@@ -167,3 +168,6 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
 
 /* Mauszeiger standardmäßig ausgeblendet, erscheint nur kurz bei Bewegung */
 html.cursor-hidden, html.cursor-hidden *{cursor:none !important}
+
+#particle-transfer{position:fixed;inset:0;width:100%;height:100%;z-index:210;pointer-events:none}
+body.particle-transfer #stepper,body.particle-transfer #explorer,body.particle-transfer #fbtn{pointer-events:none}

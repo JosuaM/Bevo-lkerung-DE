@@ -271,10 +271,9 @@ function cloudRandom(i, salt = 0){
   seed = Math.imul(seed ^ (seed >>> 13), 1274126177);
   return ((seed ^ (seed >>> 16)) >>> 0) / 4294967296;
 }
-function cloudPoint(i, radius){
+function cloudPoint(i, radius, clock = vt / 1000){
   const angle = cloudRandom(i, 1) * Math.PI * 2;
   const r = radius * Math.sqrt(cloudRandom(i, 2));
-  const clock = vt / 1000;
   const contour = 1 + .12 * Math.sin(angle * 3 + clock * .22) + .07 * Math.cos(angle * 5 - clock * .17);
   return {
     x: Math.cos(angle) * r * contour * 1.06 + Math.sin(clock * (.32 + cloudRandom(i, 3) * .35) + i) * radius * .095,
@@ -283,6 +282,7 @@ function cloudPoint(i, radius){
 }
 function cloudDot(c, x, y, i, color, alpha = 1){
   const size = 1.1 + Math.pow(cloudRandom(i, 5), 2.1) * 5.6;
+  finalParticleSnapshot.push({x, y, i, size, color, alpha: alpha * (.4 + cloudRandom(i, 6) * .55)});
   c.globalAlpha = alpha * (.4 + cloudRandom(i, 6) * .55);
   c.fillStyle = color;
   c.beginPath();
@@ -305,11 +305,13 @@ function cloudArrival(i, point, growth, radius){
 }
 const finalCanvas = $('finalParticles'), finalCtx = finalCanvas.getContext('2d');
 const F = {a: 0, b: 0, m: 0};                      // Fortschritt: a Defizit, b Wanderungssaldo, m Zusammenführung
+const finalParticleSnapshot = [];
 function finValues(){
   const def = cumN[LAST], net = cumZ[LAST] - cumF[LAST];
   return {def, net, rest: net + def};
 }
 function drawFinalClouds(){
+  finalParticleSnapshot.length = 0;
   const c = finalCtx, w = innerWidth, h = innerHeight;
   if (finalCanvas.width !== Math.round(w * DPR) || finalCanvas.height !== Math.round(h * DPR)){
     finalCanvas.width = Math.round(w * DPR);

@@ -55,39 +55,38 @@ function persistSlideState(){
 addEventListener('pagehide', persistSlideState);
 addEventListener('beforeunload', persistSlideState);
 
-let dashboardTransition = false, dashboardTransitionId = 0;
-function enterDashboard(){                         // Ergebnis → Dashboard über einen schwarzen Vorhang
-  if (dashboardTransition) return;
-  dashboardTransition = true;
-  const id = ++dashboardTransitionId;
-  setPaused(true);
-  const curtain = $('dashboardFade');
-  curtain.classList.add('active');
-  setTimeout(() => {
-    if (id !== dashboardTransitionId) return;
-    if (scene !== 4){ curtain.classList.remove('active'); dashboardTransition = false; return; }
-    // Vorherige Folie hinter dem Vorhang sofort entfernen
-    const transition = fin.style.transition;
-    fin.style.transition = 'none';
-    goScene(5, {throughBlack: true});
-    void fin.offsetWidth;
-    fin.style.transition = transition;
-    setTimeout(() => {
-      if (id !== dashboardTransitionId) return;
-      curtain.classList.remove('active');
-      setTimeout(() => { dashboardTransition = false; }, 650);
-    }, 180);
-  }, 700);
+function enterDashboard(){
+  window.particleTransition.start();
 }
 
 let panelOpen = false;
+let navigationFade = null;
+async function fadeNavigation(n, opt){
+  navigationFade?.remove();
+  const curtain = document.createElement('div');
+  curtain.id = 'navigation-fade';
+  curtain.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(curtain);
+  navigationFade = curtain;
+  const duration = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 150;
+  await curtain.animate([{opacity: 0}, {opacity: 1}], {duration, fill: 'forwards', easing: 'ease-in-out'}).finished;
+  if (navigationFade !== curtain || !curtain.isConnected) return;
+  goScene(n, {...opt, navigationReady: true});
+  await curtain.animate([{opacity: 1}, {opacity: 0}], {duration, fill: 'forwards', easing: 'ease-in-out'}).finished;
+  curtain.remove();
+  if (navigationFade === curtain) navigationFade = null;
+}
 function goScene(n, opt = {}){
-  if (n === 5 && scene === 4 && !opt.throughBlack){ enterDashboard(); return; }
-  if (!opt.throughBlack){
-    dashboardTransitionId++;
-    dashboardTransition = false;
-    $('dashboardFade').classList.remove('active');
+  if (opt.navigation && !opt.navigationReady && n !== scene && (scene === 4 || n === 4)){
+    fadeNavigation(n, opt);
+    return;
   }
+  if (!opt.navigationReady){ navigationFade?.remove(); navigationFade = null; }
+  if (n === 5 && scene === 4 && opt.particleFlight && !opt.throughBlack){ enterDashboard(); return; }
+  if (!opt.throughBlack){
+    window.particleTransition.cancel();
+  }
+  fin.classList.toggle('direct-navigation', !!opt.navigation);
   if (bridgeHeadingAnimation){ bridgeHeadingAnimation.cancel(); bridgeHeadingAnimation = null; }
   const previous = scene;
   if (timelinePointer !== null && track.hasPointerCapture(timelinePointer)) track.releasePointerCapture(timelinePointer);
@@ -147,7 +146,7 @@ function goScene(n, opt = {}){
       t = LAST;
       prefill();
       setPaused(true);
-      window.populationExplorer.reveal(opt.throughBlack ? 450 : 0);   // nach dem schwarzen Vorhang erst einfädeln, wenn er sich öffnet
+      window.populationExplorer.reveal(opt.revealDelay ?? 0);   // Aufbau mit der sichtbaren Dashboard-Einblendung starten
       break;
   }
   updateMenus();
@@ -163,14 +162,14 @@ function next(){
 const prevScene = () => { if (scene > 0) goScene(scene - 1); };
 qs.addEventListener('click', () => { if (scene !== 2) next(); });
 bnext.addEventListener('click', e => { e.stopPropagation(); hideCursor(); goScene(3); });
-$('fNext').onclick = () => goScene(5);
+$('fNext').onclick = () => goScene(5, {particleFlight: true});
 
 /* ---- Navigation oben ---- */
 const stepper = $('stepper');
 SCENES.forEach((name, i) => {
   const button = document.createElement('button');
   button.innerHTML = '<span>' + name + '</span>';
-  button.onclick = () => goScene(i);
+  button.onclick = () => goScene(i, {navigation: true});
   stepper.appendChild(button);
 });
 
@@ -249,7 +248,7 @@ $('copyset').onclick = () => {
 SCENES.forEach((name, i) => {
   const button = document.createElement('button');
   button.textContent = (i + 1) + ' · ' + name;
-  button.onclick = () => { if (panelOpen) togglePanel(); goScene(i); };
+  button.onclick = () => { if (panelOpen) togglePanel(); goScene(i, {navigation: true}); };
   scenesEl.appendChild(button);
 });
 function updateMenus(){
