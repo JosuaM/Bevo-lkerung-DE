@@ -2,23 +2,12 @@
 
 /* ---- Tempo (Jahre pro Sekunde) ---- */
 const EVENT_SPEED = .36;               // Höchsttempo in Ereignisjahren
-const MAX_COUNT_RATE = 200000;         // Zahlen sollen in Ereignisjahren nicht schneller als etwa so viele Menschen pro Sekunde zählen
-const MIN_EVENT_SPEED = .2;
 let ypsCur = 1;                        // Animation 2: gleitendes Tempo, in Ereignisjahren deutlich langsamer
 const narrativeSpeed = () => 2 * timelineSpeed;
-function nearEvent(){                  // Variante 2: schon in der zweiten Hälfte des Vorjahrs ruhiger werden
-  const year = Math.floor(t);
-  return !!EVENTS[year] || (animVariant === 2 && !!EVENTS[year + 1] && t - year > .5);
-}
-function eventSpeed(){                 // große Sprünge (z. B. 2015) laufen langsamer, damit auch die Zahlen ruhig zählen
-  if (animVariant !== 2) return EVENT_SPEED;
-  const year = clamp(Math.floor(t), FIRST, LAST), now = byYear[year], next = byYear[Math.min(year + 1, LAST)];
-  const change = Math.max(...['zu', 'fort', 'wb', 'wd', 'wp'].map(key => Math.abs(next[key] - now[key])));
-  return clamp(MAX_COUNT_RATE / Math.max(change, 1), MIN_EVENT_SPEED, EVENT_SPEED);
-}
+const nearEvent = () => !!EVENTS[Math.floor(t)];
 function yps(){
   if (scene !== 3) return narrativeSpeed();
-  return nearEvent() ? Math.min(ypsCur, eventSpeed()) : ypsCur;
+  return nearEvent() ? Math.min(ypsCur, EVENT_SPEED) : ypsCur;
 }
 
 /* ---- Layout: statisch, nur der Kreisradius ändert sich ---- */
@@ -90,31 +79,19 @@ function prefill(){                    // Strahlen sofort gefüllt darstellen (z
 function restart(){ t = FIRST; prefill(); }
 function setPhase(i){ phase = i; restart(); }
 
-/* Variante 2, Ausklang: Zeitstrahl und Punkte behalten ihr Tempo. Gegen Ende kommen nur noch Punkte nach, die vor 2025 wieder
-   verschwinden; dadurch werden es zum Schluss weniger, und beim Erreichen von 2025 ist keiner mehr zu sehen. In diesem Moment
-   stehen auch alle Zahlen auf dem Endwert. */
-const FINAL_HOLD = 2000;               // ms Pause auf dem Endstand, bevor die nächste Folie ausgeblendet wird
+/* Ausklang: Ist das Ende erreicht, kommen keine Punkte mehr nach; sobald alle verschwunden sind, folgt die nächste Folie. */
 let startHold = 0;                     // Animationszeit (vt), vor der noch nichts startet: Folie ist noch nicht sichtbar
 let endScheduled = false;              // Wechsel zur nächsten Folie ist bereits angesetzt
-const animationEnd = () => animVariant === 2 ? LAST : END;
-const secondsLeft = () => (animationEnd() - t) / narrativeSpeed();    // in Partikelzeit: ein Partikel altert so, wie die Zeit mit Normaltempo läuft
-function visibleTimeLeft(){            // Sekunden, bis der letzte Punkt am Kreisrand bzw. rechten Bildrand verschwunden ist
-  const radius = R_MAX * Math.sqrt(Math.max(state(t).pop, 1) / REF_POP);
-  const entryEnd = (CX - radius + 14) / (CX + 14);
-  let left = 0;
-  for (const p of particles) left = Math.max(left, ((p.inflow ? entryEnd : 1) - p.age / p.life) * p.life);
-  return left;
-}
 
 /* Ein Bild lang weiterlaufen: Zeit, Tempo und Punkte (auch bei Pause laufen die Punkte mit den Werten des gewählten Jahres weiter). */
 function advanceAnimation(dt){
   if (vt < startHold) return;
-  if (scene === 3) ypsCur += ((nearEvent() ? eventSpeed() : narrativeSpeed()) - ypsCur) * Math.min(1, dt * 3);
+  if (scene === 3) ypsCur += ((nearEvent() ? EVENT_SPEED : narrativeSpeed()) - ypsCur) * Math.min(1, dt * 3);
   const animationDt = paused ? 0 : dt * yps();
   if (!paused && !waitingForArrival && !drainingParticles){
     t += animationDt;
-    if (t >= animationEnd()){
-      t = animationEnd();
+    if (t >= END){
+      t = END;
       drainingParticles = true;
       acc.up = acc.down = 0;
     }
@@ -122,15 +99,13 @@ function advanceAnimation(dt){
   const P = PHASES[phase], d = state(t).d;
   const particleDt = scene === 3 ? animationDt / narrativeSpeed() : (paused ? 0 : dt);
   if (!drainingParticles){
-    const maxLife = animVariant === 2 ? Math.max(secondsLeft(), 0) : Infinity;
-    emit(particleDt, 'up', d[P.up.key] / DOT, true, P.up.ck, maxLife);
-    if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT, false, P.down.ck, maxLife);
+    emit(particleDt, 'up', d[P.up.key] / DOT, true, P.up.ck, Infinity);
+    if (!waitingForArrival) emit(particleDt, 'down', d[P.down.key] / DOT, false, P.down.ck, Infinity);
   }
   stepParticles(particleDt);
-  const drained = animVariant === 2 ? visibleTimeLeft() <= 0 : particles.length === 0;
-  if (drainingParticles && !paused && drained && !endScheduled){
+  if (drainingParticles && !paused && particles.length === 0 && !endScheduled){
     endScheduled = true;
-    later(animVariant === 2 ? FINAL_HOLD : 0, () => {
+    later(0, () => {
       endScheduled = false;
       if (drainingParticles) goScene(scene === 1 ? 2 : 4);
     });
@@ -147,15 +122,10 @@ function advanceAnimation(dt){
 
 /* ---- Zeichnen ---- */
 function drawParticles(radius){
-  const fadeStart = radius - 16 / SC, fadeLength = 46 / SC;
   for (const p of particles){
     const {x, y} = particlePosition(p);
     const size = lerp(SZMIN, SZMAX, p.r) / SC, distance = Math.hypot(x - CX, y - CY);
-    let alpha;
-    if (animVariant === 1){
-      alpha = clamp((distance - fadeStart) / fadeLength, 0, 1);
-      alpha = alpha * alpha * (3 - 2 * alpha);                         // Variante 1: weicher Übergang in den Kreis
-    }else alpha = distance - size >= radius ? 1 : 0;                   // Variante 2: harter Schnitt am Kreisrand
+    let alpha = distance - size >= radius ? 1 : 0;                     // harter Schnitt am Kreisrand
     alpha *= clamp((H - 104 / SC - y) / 30, 0, 1);
     if (alpha <= .01) continue;
     ctx.globalAlpha = alpha * p.alpha;
@@ -192,11 +162,8 @@ function drawAnim(s){
   // Jahreswerte links / rechts, gleiche Höhe, mittig zwischen Kreis und Rand
   const numberY = CY - BAND() - (18 + FS.l * .5) * u, labelY = numberY - (FS.l * .5 + FS.m * .8 + 6) * u;
   const leftX = (CX - R_MAX) / 2, rightX = (CX + R_MAX + W) / 2;
-  // Variante 2: Zahlen laufen linear von Jahr zu Jahr; beim Erreichen eines Jahres steht exakt dessen Wert da.
-  const year = clamp(Math.floor(t), FIRST, LAST), nextYear = byYear[Math.min(year + 1, LAST)], fraction = clamp(t - year, 0, 1);
-  const shown = key => animVariant === 1 ? s.d[key] : lerp(byYear[year][key], nextYear[key], fraction);
   text(P.up.name, leftX, labelY, FS.m, '#a4adbd', 400);
-  text(fmt(shown(P.up.key)), leftX, numberY, FS.l, COLORS[P.up.ck], 300);
+  text(fmt(s.d[P.up.key]), leftX, numberY, FS.l, COLORS[P.up.ck], 300);
   text(P.down.name, rightX, labelY, FS.m, '#a4adbd', 400);
-  text(fmt(shown(P.down.key)), rightX, numberY, FS.l, COLORS[P.down.ck], 300);
+  text(fmt(s.d[P.down.key]), rightX, numberY, FS.l, COLORS[P.down.ck], 300);
 }

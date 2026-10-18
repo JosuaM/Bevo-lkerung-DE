@@ -135,11 +135,9 @@ window.populationExplorer = (() => {
       const cardTop = Math.max(originY + top * sy + 12, Math.min(originY + bottom * sy - box.offsetHeight - 8, originY + middle * sy - box.offsetHeight / 2));
       box.style.left = left + 'px';
       box.style.top = cardTop + 'px';
-      const edge = (left - originX + box.offsetWidth / 2) / sx;
-      const upperEnd = (cardTop - originY - 4) / sy, lowerEnd = (cardTop - originY + box.offsetHeight + 4) / sy;
       svg.querySelector('#ex-value-marker').innerHTML =
-        `<line x1="${x}" y1="${upper}" x2="${edge}" y2="${upperEnd}" stroke="${WHITE}" stroke-width="1.5"/>` +
-        `<line x1="${x}" y1="${lower}" x2="${edge}" y2="${lowerEnd}" stroke="${model[1]}" stroke-width="1.5"/>` +
+        `<defs><linearGradient id="ex-gap-line" gradientUnits="userSpaceOnUse" x1="0" y1="${upper}" x2="0" y2="${lower}"><stop offset="0" stop-color="${WHITE}"/><stop offset="1" stop-color="${model[1]}"/></linearGradient></defs>` +
+        `<line x1="${x}" y1="${upper}" x2="${x}" y2="${lower}" stroke="url(#ex-gap-line)" stroke-width="1.5"/>` +
         `<circle cx="${x}" cy="${lower}" r="5" fill="${model[1]}" stroke="#121212" stroke-width="2"/>`;
       valueHoverKey = key;
       return true;
@@ -255,14 +253,14 @@ window.populationExplorer = (() => {
       if (detail) return {
         heading: 'Vier Größen hinter Deutschlands Bevölkerungsbilanz', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten', c.birth, r => r.wb], ['Sterbefälle', c.death, r => -r.wd], ['Einwanderung', c.in, r => r.zu], ['Auswanderung', c.out, r => -r.fort]],
-        metrics: metric('Geburten', fmt(d.wb), c.birth) + metric('Sterbefälle', fmt(d.wd), c.death)
-          + metric('Einwanderung', fmt(d.zu), c.in) + metric('Auswanderung', fmt(d.fort), c.out),
+        metrics: metric('Einwanderung', fmt(d.zu), c.in) + metric('Auswanderung', fmt(d.fort), c.out)
+          + metric('Geburten', fmt(d.wb), c.birth) + metric('Sterbefälle', fmt(d.wd), c.death),
       };
       return {
         heading: 'Was hat Deutschlands Bevölkerungsentwicklung beeinflusst?', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten − Sterbefälle', c.death, r => r.wb - r.wd], ['Einwanderung − Auswanderung', c.in, r => r.zu - r.fort]],
-        metrics: metric('Geburten − Sterbefälle', sgn(d.wb - d.wd), c.death) + metric('Einwanderung −<br>Auswanderung', sgn(d.zu - d.fort), c.in)
-          + total('Bilanz der beiden Salden', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),
+        metrics: metric('Einwanderung −<br>Auswanderung', sgn(d.zu - d.fort), c.in) + metric('Geburten − Sterbefälle', sgn(d.wb - d.wd), c.death)
+          + total('Bilanz', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),
       };
     }
     const heading = 'Wie hat sich Deutschlands Bevölkerung mit und ohne Wanderung entwickelt?';

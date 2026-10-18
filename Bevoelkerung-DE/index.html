@@ -12,12 +12,6 @@
 </head>
 <body data-site-version="original" data-scene="0">
 <nav id="stepper" aria-label="Foliennavigation"></nav>
-<div id="variantBox">
-  <select id="variantSel" aria-label="Variante der Animation">
-    <option value="1">Variante 1 · Ausfaden, Zahlen springen</option>
-    <option value="2">Variante 2 · harter Schnitt, Zahlen zählen</option>
-  </select>
-</div>
 <div id="stage">
   <canvas id="c"></canvas>
   <div id="event"></div>
@@ -100,6 +94,9 @@
   <div class="sec" id="soundSec" hidden><h3>Klang der Balken</h3>
     <select id="soundSel" aria-label="Klang der Balken"></select>
   </div>
+  <div class="sec" id="eventSoundSec" hidden><h3>Klang der Ereignisse</h3>
+    <select id="eventSoundSel" aria-label="Klang der Ereignisse"></select>
+  </div>
   <div class="sec"><h3>Zeitstrahltempo</h3><div class="dotlbl" id="speedlbl"></div>
     <input type="range" id="speedrng" aria-label="Zeitstrahltempo" min="0.5" max="2.5" step="0.1">
     <div class="hint">Ereignisse bleiben langsam lesbar.</div>
@@ -132,7 +129,7 @@
 
 <!-- Gemeinsame Projektwerte: serve.py bzw. das E-Menü schreiben Änderungen automatisch in diese Zeile. -->
 <script>
-const DEFAULTS = {dot:3000,szmin:2,szmax:10,speed:1,sound:"tick",colors:{birth:"#4ade9a",death:"#ff7a7a",in:"#38e0ff",out:"#ffb454"},bgs:["#121212","#121212","#121212","#121212","#121212","#121212"]};
+const DEFAULTS = {dot:3000,szmin:2,szmax:10,speed:1,sound:"tick",evsound:"whoosh",colors:{birth:"#4ade9a",death:"#ff7a7a",in:"#38e0ff",out:"#ffb454"},bgs:["#121212","#121212","#121212","#121212","#121212","#121212"]};
 </script>
 <script src="js/data.js"></script>
 <script src="js/sound.js"></script>

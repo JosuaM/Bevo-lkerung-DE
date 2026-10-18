@@ -18,7 +18,7 @@ DEFAULTS_PATTERN = re.compile(r'const DEFAULTS = \{[^\n]*\};')
 
 def validated_settings(value):
     required = {'dot', 'szmin', 'szmax', 'speed', 'colors', 'bgs'}
-    if not isinstance(value, dict) or not required <= set(value) <= required | {'sound'}:
+    if not isinstance(value, dict) or not required <= set(value) <= required | {'sound', 'evsound'}:
         raise ValueError('Ungültige Einstellungen.')
     limits = {'dot': (1, 1000000), 'szmin': (.3, 6), 'szmax': (.5, 14), 'speed': (.5, 2.5)}
     for key, (lo, hi) in limits.items():
@@ -27,6 +27,8 @@ def validated_settings(value):
             raise ValueError('Ungültiger Wert: ' + key)
     if not re.fullmatch(r'[A-Za-z]{1,20}', str(value.get('sound', 'tick'))):
         raise ValueError('Ungültiger Klang.')
+    if not re.fullmatch(r'[A-Za-z]{1,20}', str(value.get('evsound', 'whoosh'))):
+        raise ValueError('Ungültiger Ereignisklang.')
     if value['szmin'] > value['szmax']:
         raise ValueError('Punktgrößen stimmen nicht überein.')
     colors, bgs = value['colors'], value['bgs']

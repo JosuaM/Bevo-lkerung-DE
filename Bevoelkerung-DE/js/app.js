@@ -240,6 +240,11 @@ for (const key in SOUNDS) soundSelect.add(new Option(SOUNDS[key].label, key));
 soundSelect.value = soundName;
 soundSelect.addEventListener('change', () => { soundName = soundSelect.value; playSound(); saveSettings(); soundSelect.blur(); });
 
+const eventSoundSelect = $('eventSoundSel');
+for (const key in EVENT_SOUNDS) eventSoundSelect.add(new Option(EVENT_SOUNDS[key].label, key));
+eventSoundSelect.value = eventSoundName;
+eventSoundSelect.addEventListener('change', () => { eventSoundName = eventSoundSelect.value; playEventSound(); saveSettings(); eventSoundSelect.blur(); });
+
 $('restartScene').onclick = () => { togglePanel(); goScene(scene); };
 $('resetset').onclick = () => location.reload();
 $('savefile').onclick = () => { saveState.revision++; connectSettingsFile(true); };
@@ -267,6 +272,7 @@ function updateMenus(){
   });
   [...scenesEl.children].forEach((button, i) => button.classList.toggle('on', i === scene));
   $('soundSec').hidden = scene !== 2;
+  $('eventSoundSec').hidden = scene !== 3;
 }
 function togglePanel(){
   panelOpen = !panelOpen;
@@ -274,15 +280,6 @@ function togglePanel(){
   setPaused(panelOpen);
   updateMenus();
 }
-
-/* ---- Variantenvergleich (temporär) ---- */
-const variantSelect = $('variantSel');
-variantSelect.value = String(animVariant);
-variantSelect.onchange = e => {
-  animVariant = +e.target.value;
-  try{ localStorage.setItem('bev-anim-variant', String(animVariant)); }catch{}
-  e.target.blur();
-};
 
 /* ---- Tastatur ---- */
 addEventListener('keydown', e => {

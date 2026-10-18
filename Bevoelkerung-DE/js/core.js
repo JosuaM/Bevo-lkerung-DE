@@ -34,7 +34,7 @@ if (DEFAULTS.szmax > 0) SZMAX = DEFAULTS.szmax;
 if (DEFAULTS.speed > 0) timelineSpeed = clamp(DEFAULTS.speed, .5, 2.5);
 
 function currentSettings(){
-  return {dot: DOT, szmin: SZMIN, szmax: SZMAX, speed: timelineSpeed, sound: soundName, colors: {...COLORS}, bgs: [...BGS]};
+  return {dot: DOT, szmin: SZMIN, szmax: SZMAX, speed: timelineSpeed, sound: soundName, evsound: eventSoundName, colors: {...COLORS}, bgs: [...BGS]};
 }
 
 /* ---- Abgeleitete Daten ---- */
@@ -50,8 +50,6 @@ DATA.forEach(d => {
 let t = FIRST;                         // aktuelle Zeit in Jahren (Animation: 1991 … 2025,999)
 let scene = 0;                         // 0 Frage · 1 Animation 1 · 2 Differenz · 3 Animation 2 · 4 Ergebnis · 5 Dashboard
 let phase = 0;                         // 0 ohne Wanderung · 1 tatsächliche Bevölkerung (· 2 Dashboard)
-let animVariant = 2;                   // Variantenvergleich: 1 Ausfaden, Zahlen springen · 2 harter Schnitt, Zahlen zählen
-try{ if (localStorage.getItem('bev-anim-variant') === '1') animVariant = 1; }catch{}
 const isAnim = () => scene === 1 || scene === 3;
 const isDash = () => scene === 5;
 const mouse = {x: -1, y: -1};
@@ -59,10 +57,6 @@ addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY;
 
 function state(time){
   const y = clamp(Math.floor(time), FIRST, LAST), f = clamp(time - y, 0, 1), d = byYear[y];
-  if (animVariant === 2 && isAnim()){            // Variante 2: Ist ein Jahr erreicht, steht dessen Stand zum Jahresende da
-    const next = byYear[Math.min(y + 1, LAST)];
-    return {y, f, d, pop: phase === 0 ? BASE + cumN[y] + f * (y < LAST ? next.wb - next.wd : 0) : lerp(d.wp, next.wp, f)};
-  }
   const previous = y === FIRST ? BASE : byYear[y - 1].wp;
   const pop = phase === 0 ? BASE + cumN[y - 1] + f * (d.wb - d.wd) : lerp(previous, d.wp, f);
   return {y, f, d, pop};
