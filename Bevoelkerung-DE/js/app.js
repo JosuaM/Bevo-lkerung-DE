@@ -316,13 +316,14 @@ requestAnimationFrame(frame);
   const hideCursor = () => { clearTimeout(hideTimer); root.classList.add('cursor-hidden'); base = last; };
   window.hideCursor = hideCursor;
   root.classList.add('cursor-hidden');                                 // Position beim Laden: der automatische Mausereignis-Start zählt nicht
-  let fresh = false;                                                   // nach „Neustart für Aufnahme“: erste Mausbewegung bringt den Zeiger zurück
+  let fresh = false;                                                   // nach „Neustart für Aufnahme“: Zeiger bleibt bis zu einer deutlichen Bewegung weg
   try { fresh = sessionStorage.getItem('cursorBack') === '1'; sessionStorage.removeItem('cursorBack'); } catch (_) {}
   document.addEventListener('mousemove', e => {
     if (locked) return;
     last = {x: e.clientX, y: e.clientY};
-    if (!base) base = fresh ? {x: -1e6, y: -1e6} : last;
-    if (root.classList.contains('cursor-hidden') && Math.hypot(e.clientX - base.x, e.clientY - base.y) < 4) return;
+    if (!base) base = last;
+    if (root.classList.contains('cursor-hidden') && Math.hypot(e.clientX - base.x, e.clientY - base.y) < (fresh ? 80 : 4)) return;
+    fresh = false;
     root.classList.remove('cursor-hidden');
     clearTimeout(hideTimer);
     hideTimer = setTimeout(hideCursor, 1500);
