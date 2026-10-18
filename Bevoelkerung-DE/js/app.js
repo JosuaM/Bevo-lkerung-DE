@@ -162,7 +162,7 @@ function next(){
 }
 const prevScene = () => { if (scene > 0) goScene(scene - 1); };
 qs.addEventListener('click', () => { if (scene !== 2) next(); });
-bnext.addEventListener('click', e => { e.stopPropagation(); goScene(3); });
+bnext.addEventListener('click', e => { e.stopPropagation(); hideCursor(); goScene(3); });
 $('fNext').onclick = () => goScene(5);
 
 /* ---- Navigation oben ---- */
@@ -254,7 +254,7 @@ SCENES.forEach((name, i) => {
 });
 function updateMenus(){
   applyBackground();
-  stepper.classList.toggle('persistent', scene >= 4);
+  stepper.classList.toggle('persistent', scene === 5 || scene === 4 && finDone);   // Ergebnis: erst mit dem Button
   [...stepper.children].forEach((button, i) => {
     button.classList.toggle('current', i === scene);
     if (i === scene) button.setAttribute('aria-current', 'step');
@@ -314,7 +314,8 @@ requestAnimationFrame(frame);
   let hideTimer = 0, locked = false;
   window.cursorLock = () => { locked = true; };
   let base = null, last = null;
-  const hideCursor = () => { root.classList.add('cursor-hidden'); base = last; };
+  const hideCursor = () => { clearTimeout(hideTimer); root.classList.add('cursor-hidden'); base = last; };
+  window.hideCursor = hideCursor;
   root.classList.add('cursor-hidden');                                 // Position beim Laden: der automatische Mausereignis-Start zählt nicht
   document.addEventListener('mousemove', e => {
     if (locked) return;

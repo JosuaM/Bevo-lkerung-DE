@@ -409,6 +409,7 @@ function finishFinal(){
   [fsL, fsR, fcap, fbtn, finalBalance].forEach(el => el.classList.add('in'));
   renderFinal();
   finDone = true;
+  updateMenus();
   persistSlideState();
 }
 async function showFinal(instant, delay = 0){
@@ -439,6 +440,7 @@ async function showFinal(instant, delay = 0){
   await sleep(1200); if (id !== finId) return;
   fbtn.classList.add('in');
   finDone = true;
+  updateMenus();
   persistSlideState();
 }
 addEventListener('resize', () => { if (fin.classList.contains('on')) renderFinal(); });
