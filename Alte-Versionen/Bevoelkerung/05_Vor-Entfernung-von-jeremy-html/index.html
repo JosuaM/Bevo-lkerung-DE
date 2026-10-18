@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bevölkerung Deutschlands 1991–2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<script>document.documentElement.classList.add('cursor-hidden')</script>
+<link rel="stylesheet" href="dashboards/explorer.css">
+</head>
+<body data-site-version="original" data-scene="0">
+<nav id="stepper" aria-label="Foliennavigation"></nav>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="event"></div>
+  <div id="qs">
+    <div id="qtext"></div>
+    <canvas id="bc"></canvas>
+    <div id="bl"><div class="l1">Geburtendefizit seit 1991</div><div class="l2" id="bdef"></div></div>
+    <div id="br"><div id="btext"></div><button id="bnext">Weiter →</button></div>
+  </div>
+  <div id="fin">
+    <canvas id="finalParticles" aria-hidden="true"></canvas>
+    <div class="fside" id="fsL"><div class="fl1">Geburtendefizit</div><div class="fl2" id="fvL"></div></div>
+    <div class="fside" id="fsR"><div class="fl1" id="flR">Wanderungssaldo</div><div class="fl2" id="fvR"></div></div>
+    <div id="finalBalance" aria-label="Bilanz des gesamten Zeitraums">
+      <div><span>Geburtendefizit</span><strong id="balanceDef"></strong></div>
+      <div><span>Wanderungssaldo</span><strong id="balanceNet"></strong></div>
+    </div>
+    <div id="fcap"></div>
+    <div id="fbtn"><button id="fNext">Weiter zum Dashboard</button></div>
+  </div>
+  <div class="controls">
+    <button id="play" aria-label="Pause"></button>
+    <div id="track" tabindex="0" role="slider" aria-label="Jahr" aria-valuemin="1991" aria-valuemax="2025">
+      <div id="rail"></div><div id="fill"></div>
+      <div id="head"><div class="stem"></div><div class="lbl" id="headlbl">1991</div></div>
+    </div>
+  </div>
+</div>
+
+
+<section id="explorer" aria-label="Bevölkerung erkunden">
+  <div class="ex-topline">
+    <h1 id="ex-heading"></h1>
+    <div class="ex-tabs" role="tablist" aria-label="Perspektive">
+      <button role="tab" data-view="population" aria-controls="ex-panel">Mit &amp; ohne Wanderung</button>
+      <button role="tab" data-view="balance" aria-controls="ex-panel">Bevölkerungsbilanz</button>
+    </div>
+  </div>
+  <div class="ex-grid">
+    <div class="ex-plot" role="tabpanel" id="ex-panel">
+      <svg id="ex-chart" viewBox="0 0 850 350" preserveAspectRatio="xMidYMid meet" role="img" tabindex="0" aria-label="Jahresdiagramm. Mit den Pfeiltasten das Jahr wählen."></svg>
+      <div id="ex-event-tooltip" role="tooltip" hidden>
+        <div class="ex-tooltip-heading"></div>
+        <div class="ex-tooltip-detail"><div><p></p></div></div>
+      </div>
+      <div class="ex-chart-footer">
+        <div class="ex-legend" id="ex-legend"></div>
+        <div id="ex-switch" role="group"></div>
+      </div>
+      <div class="ex-value-tooltip" hidden></div>
+      <div class="ex-value-tooltip" hidden></div>
+    </div>
+    <div class="ex-year-column">
+      <aside class="ex-card" aria-label="Jahreswerte und Ereignisse">
+        <div id="ex-side-values">
+          <div class="ex-yearbar"><span>Ausgewähltes Jahr</span></div>
+          <div id="ex-year"></div>
+          <div id="ex-metrics"></div>
+          <div class="ex-particle-slot">
+            <canvas id="ex-surplus-particles" role="button" tabindex="0" aria-label="Partikelwolke bewegen"></canvas>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <details class="ex-insight">
+    <summary>Warum Zuwanderung zählt <small>Bevölkerung · Arbeitskräfte · Sozialversicherung</small></summary>
+    <div class="ex-insight-grid">
+      <div><h3>Bevölkerungsrückgang abfedern</h3><p>Ein positiver Wanderungssaldo kann ausgleichen, dass mehr Menschen sterben als geboren werden. Wie weit das gelingt, zeigt die Bilanz für jedes Jahr.</p></div>
+      <div><h3>Arbeitskräfte gewinnen</h3><p>Zugewanderte können freie Stellen besetzen und helfen, den Rückgang der Arbeitskräfte durch den Renteneintritt älterer Jahrgänge abzumildern.</p></div>
+      <div><h3>Renten mitfinanzieren</h3><p>Wer sozialversicherungspflichtig arbeitet, zahlt Beiträge und trägt zur Finanzierung laufender Renten und weiterer Sozialleistungen bei.</p></div>
+    </div>
+    <p class="ex-insight-footer">Entscheidend sind Alter, Beschäftigung und Einkommen. Zuwanderung kann die Alterung abmildern, löst sie aber nicht allein.</p>
+  </details>
+</section>
+
+<div id="panel">
+  <div class="sec"><button id="restartScene">Folie neu starten</button>
+    <button id="recordRestart" style="margin-top:6px">Neustart für Aufnahme</button></div>
+  <div class="sec"><h3>Zeitstrahltempo</h3><div class="dotlbl" id="speedlbl"></div>
+    <input type="range" id="speedrng" aria-label="Zeitstrahltempo" min="0.5" max="2.5" step="0.1">
+    <div class="hint">Ereignisse bleiben langsam lesbar.</div>
+  </div>
+  <div class="sec"><h3>Punktgröße</h3>
+    <div class="dotlbl" id="dotlbl"></div>
+    <input type="range" id="dotrng" min="0" max="100" step="0.5">
+  </div>
+  <div class="sec"><h3>Punktdicke</h3>
+    <div class="dotlbl" id="szminlbl"></div>
+    <input type="range" id="szmin" min="0.3" max="6" step="0.1">
+    <div class="dotlbl" id="szmaxlbl"></div>
+    <input type="range" id="szmax" min="0.5" max="14" step="0.1">
+  </div>
+  <div class="sec"><h3>Farben</h3>
+    <div class="cols">
+      <label><input type="color" id="c-birth"> Geburten</label>
+      <label><input type="color" id="c-death"> Tode</label>
+      <label><input type="color" id="c-in"> Einwanderung</label>
+      <label><input type="color" id="c-out"> Auswanderung</label>
+      <label><input type="color" id="c-bg"> Hintergrund</label>
+    </div>
+  </div>
+  <div class="sec"><h3>Folien</h3><div id="scenes"></div></div>
+  <div class="hint">Die Farben gelten für alle Folien, der Hintergrund nur für die aktuelle. Änderungen werden automatisch in die freigegebene index.html gespeichert.<br>E Menü · Leertaste Pause · D weiter · A zurück · ← → Jahr</div>
+  <button id="resetset">Dateistand neu laden</button> <button id="copyset">Einstellungen kopieren</button>
+  <button id="savefile" title="Die Projektdatei einmal zum automatischen Speichern freigeben">index.html für Autospeichern freigeben</button>
+  <div class="hint" id="settings-status" role="status">Projektwerte aus der Datei geladen. Für automatisches Speichern Starten.command verwenden; alternativ index.html einmal freigeben.</div>
+</div>
+
+<!-- Gemeinsame Projektwerte: serve.py bzw. das E-Menü schreiben Änderungen automatisch in diese Zeile. -->
+<script>
+const DEFAULTS = {dot:3000,szmin:2,szmax:10,speed:1,colors:{birth:"#4ade9a",death:"#ff7a7a",in:"#38e0ff",out:"#ffb454"},bgs:["#121212","#121212","#121212","#121212","#121212","#121212"]};
+</script>
+<script src="js/data.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/core.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/animation.js"></script>
+<script src="js/scenes.js"></script>
+<script src="dashboards/particle-cloud.js"></script>
+<script src="dashboards/explorer.js"></script>
+<script src="js/dashboard-transition.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

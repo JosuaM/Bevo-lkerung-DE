@@ -32,7 +32,11 @@ Bilder: `03_…/Bilder` (`6_Dashboard_Explorer.png` zeigt den Explorer).
 Die Personen-Dashboards entfallen, aus dem Explorer wird das einzige Dashboard. Die Animationen sind überarbeitet (Ereignisse erscheinen am Zeitstrahl, die Daten reichen bis 2025) und die Einstellungen aus dem E-Menü werden über einen kleinen lokalen Server (`serve.py`, `Starten.command`) direkt in die Datei gespeichert.
 Bilder: `04_…/Bilder`.
 
-## 5 · Finale Version
+## 5 · Stand mit `jeremy.html`
+Letzter Stand der Webseite vor dem Entfernen der Weiterleitung `jeremy.html` (leitet auf `index.html` um; sonst identisch zu Stand 6, ohne `Data/`). Enthält bereits den Hinweis zur Jeremy-Version im README.
+Bilder: `05_…/Bilder` (noch leer).
+
+## 6 · Finale Version
 Siehe [`../../Bevoelkerung-DE`](../../Bevoelkerung-DE): neu gegliederter Code, Punkte werden am Kreisrand abgeschnitten, zählende Zahlen, abgestimmtes Ende der Animationen, Klang der Balken auf der Differenz-Folie, überarbeitete Ereignistexte und ein Dashboard, das sich der Fenstergröße anpasst.
 
 ## Hinweise zum Öffnen
