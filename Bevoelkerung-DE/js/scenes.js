@@ -119,8 +119,10 @@ function niceStep(raw){
   const power = Math.pow(10, Math.floor(Math.log10(raw))), mantissa = raw / power;
   return (mantissa <= 1 ? 1 : mantissa <= 2 ? 2 : mantissa <= 5 ? 5 : 10) * power;
 }
+let lastHovered = -1;
 function drawBridge(){
   if (scene !== 2){
+    lastHovered = -1;
     if (!bcClear){
       if (!bcLeave) bcLeave = performance.now();
       if (performance.now() - bcLeave > 700){
@@ -163,6 +165,7 @@ function drawBridge(){
     const i = Math.floor((mouse.x - x0) / slot);
     if (i >= 0 && i < n && progress > i + .4) hovered = i;
   }
+  if (hovered !== lastHovered){ lastHovered = hovered; if (hovered >= 0) playSound(); }
 
   const titleY = top - FS.l * .95;
   c.globalAlpha = axisAlpha;
