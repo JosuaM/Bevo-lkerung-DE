@@ -156,7 +156,7 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
 #szmaxlbl{margin-top:10px}
 #settings-status{margin-top:8px}
 #panel button{margin-top:6px;padding:3px 8px;font-size:11px}
-#restartScene,#savefile{background:none;border:1px solid #fff;color:#fff}
+#restartScene,#recordRestart,#savefile{background:none;border:1px solid #fff;color:#fff}
 #copyset,#resetset{background:none;border:1px solid #3a4252;color:var(--mute)}
 #scenes{display:flex;flex-direction:column;margin-left:5px;border-left:var(--lw) solid #3a4252}
 #scenes button{position:relative;text-align:left;background:none;border:0;color:var(--mute)}

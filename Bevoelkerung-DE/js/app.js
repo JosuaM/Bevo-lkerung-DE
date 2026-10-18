@@ -311,12 +311,22 @@ requestAnimationFrame(frame);
 /* ---- Mauszeiger: ausgeblendet, bei Bewegung kurz sichtbar ---- */
 {
   const root = document.documentElement;
-  let hideTimer = 0;
+  let hideTimer = 0, locked = false;
+  window.cursorLock = () => { locked = true; };
   const hideCursor = () => root.classList.add('cursor-hidden');
   root.classList.add('cursor-hidden');
   document.addEventListener('mousemove', () => {
+    if (locked) return;
     root.classList.remove('cursor-hidden');
     clearTimeout(hideTimer);
     hideTimer = setTimeout(hideCursor, 1500);
   });
 }
+
+/* Aufnahme-Neustart: Zeiger sofort weg, kurz warten, dann komplett neu laden (Frage 1) */
+$('recordRestart').onclick = () => {
+  togglePanel();
+  document.documentElement.classList.add('cursor-hidden');
+  cursorLock();
+  setTimeout(() => location.replace(location.pathname), 1500);
+};
