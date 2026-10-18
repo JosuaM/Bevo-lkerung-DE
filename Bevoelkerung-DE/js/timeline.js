@@ -103,7 +103,7 @@ function updateTimeline(){
   fillEl.style.width = position;
   const year = clamp(Math.floor(t), FIRST, LAST);
   if (year !== lastYear){
-    if (scene === 3 && EVENTS[year] && !paused && evPinned === null){ showEvent(year); playEventSound(); }
+    if (scene === 3 && EVENTS[year] && !paused && evPinned === null) showEvent(year);
     headLbl.textContent = year;
     track.setAttribute('aria-valuenow', year);
     lastYear = year;

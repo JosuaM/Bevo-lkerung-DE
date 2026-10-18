@@ -1,8 +1,8 @@
 /* Die sechs Folien: Frage, Animation 1, Differenz, Animation 2, Ergebnis (Dashboard: dashboards/explorer.js). */
 const Q2 = 'Wie hätte sich Deutschlands Bevölkerung\nohne Ein- und Auswanderung verändert?';
-const BQ = 'Konnte die Ein- und Auswanderung\nDeutschlands Geburtendefizit ausgleichen?';
+const BQ = 'Was hat Deutschlands\nBevölkerungsentwicklung beeinflusst?';
 const KEYS1 = ['Bevölkerung', 'ohne Ein- und Auswanderung'];
-const KEYS2 = ['Ein- und Auswanderung', 'Geburtendefizit'];
+const KEYS2 = ['Bevölkerungsentwicklung'];
 const qs = $('qs'), qtext = $('qtext'), btext = $('btext'), bnext = $('bnext'), br = $('br'), fin = $('fin');
 let introTyped = false, introRun = 0, bridgeDone = false, finDone = false, resultVisited = false;
 

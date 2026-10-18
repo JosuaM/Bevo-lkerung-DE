@@ -257,7 +257,7 @@ window.populationExplorer = (() => {
           + metric('Geburten', fmt(d.wb), c.birth) + metric('Sterbefälle', fmt(d.wd), c.death),
       };
       return {
-        heading: 'Was hat Deutschlands Bevölkerungsentwicklung beeinflusst?', unit: 'Menschen', rows: a.DATA,
+        heading: 'Konnte die Ein- und Auswanderung Deutschlands Geburtendefizit ausgleichen?', unit: 'Menschen', rows: a.DATA,
         sets: [['Geburten − Sterbefälle', c.death, r => r.wb - r.wd], ['Einwanderung − Auswanderung', c.in, r => r.zu - r.fort]],
         metrics: metric('Einwanderung −<br>Auswanderung', sgn(d.zu - d.fort), c.in) + metric('Geburten − Sterbefälle', sgn(d.wb - d.wd), c.death)
           + total('Bilanz', sgn(d.wb - d.wd + d.zu - d.fort), WHITE),

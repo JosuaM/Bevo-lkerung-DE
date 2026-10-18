@@ -19,9 +19,9 @@ Schriftgrößen über `FS` (Folien) bzw. feste Stufen in `explorer.css`, Farben 
 ## Steuerung
 
 Obere Navigation startet die gewählte Folie neu. Folie „Differenz“ wartet auf „Weiter“.
-E: Einstellungen (mit „Folie neu starten“, auf der Differenz-Folie zusätzlich Klang der Balken, auf Animation 2 Klang der Ereignisse); D: weiter; A: zurück; Leertaste: Pause; Pfeiltasten: Jahr auswählen und pausieren.
+E: Einstellungen (mit „Folie neu starten“); D: weiter; A: zurück; Leertaste: Pause; Pfeiltasten: Jahr auswählen und pausieren.
 Die Zeitleiste wird nur auf den beiden Animationsfolien angezeigt. Jahresauswahl pausiert Zeit und Punkte.
-Die Punkte werden am Kreisrand hart abgeschnitten (kein Ein-/Ausfaden), die Zahlen springen. Erscheint auf Animation 2 ein Ereignis, läuft ein Klang (`EVENT_SOUNDS` in `js/sound.js`, im E-Menü wählbar, gespeichert als `evsound`).
+Die Punkte werden am Kreisrand hart abgeschnitten (kein Ein-/Ausfaden), die Zahlen springen. Die Balken der Differenz-Folie ticken mit einem festen, hellen Ton (`js/sound.js`, nicht wählbar); Ereignisse haben keinen Klang.
 Im Dashboard: Beim Öffnen des Dashboards und bei jedem Wechsel von Ansicht oder Darstellung fädeln Linien und Balken von links ein (`reveal` in `dashboards/explorer.js`).
 
 ## Gemeinsame Einstellungen

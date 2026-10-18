@@ -34,7 +34,7 @@ if (DEFAULTS.szmax > 0) SZMAX = DEFAULTS.szmax;
 if (DEFAULTS.speed > 0) timelineSpeed = clamp(DEFAULTS.speed, .5, 2.5);
 
 function currentSettings(){
-  return {dot: DOT, szmin: SZMIN, szmax: SZMAX, speed: timelineSpeed, sound: soundName, evsound: eventSoundName, colors: {...COLORS}, bgs: [...BGS]};
+  return {dot: DOT, szmin: SZMIN, szmax: SZMAX, speed: timelineSpeed, colors: {...COLORS}, bgs: [...BGS]};
 }
 
 /* ---- Abgeleitete Daten ---- */
