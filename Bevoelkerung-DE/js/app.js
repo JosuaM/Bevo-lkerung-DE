@@ -307,3 +307,16 @@ if (isAnim() && Number.isFinite(startYear) && startYear > FIRST && startYear <= 
   if (restored?.paused) setPaused(true);
 }
 requestAnimationFrame(frame);
+
+/* ---- Mauszeiger: ausgeblendet, bei Bewegung kurz sichtbar ---- */
+{
+  const root = document.documentElement;
+  let hideTimer = 0;
+  const hideCursor = () => root.classList.add('cursor-hidden');
+  root.classList.add('cursor-hidden');
+  document.addEventListener('mousemove', () => {
+    root.classList.remove('cursor-hidden');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideCursor, 1500);
+  });
+}

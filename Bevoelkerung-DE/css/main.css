@@ -164,3 +164,6 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
   transform:translateX(-100%) translateX(12px)}
 #scenes button:hover,#scenes button.on{color:#fff}
 #scenes button.on::before{background:#fff}
+
+/* Mauszeiger standardmäßig ausgeblendet, erscheint nur kurz bei Bewegung */
+html.cursor-hidden, html.cursor-hidden *{cursor:none !important}
