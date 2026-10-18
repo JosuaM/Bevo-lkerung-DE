@@ -32,4 +32,4 @@ Rohdaten und Quellen: `Data/`. Dashboard: `dashboards/`.
 
 ## Website-Version
 
-Die einzige Version heißt **Original** (`index.html`, `dashboards/explorer.js`) und basiert auf der bisherigen Jeremy-Version. Die frühere Adresse `jeremy.html` leitet zur Hauptversion weiter.
+Die einzige Version heißt **Original** (`index.html`, `dashboards/explorer.js`) und basiert auf der bisherigen Jeremy-Version.

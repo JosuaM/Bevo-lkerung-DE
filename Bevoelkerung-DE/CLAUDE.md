@@ -32,7 +32,7 @@ Beim direkten Öffnen als HTML-Datei ist in Chrome/Edge einmal eine Dateifreigab
 
 ## Website-Version
 
-Die einzige Version heißt **Original** (`index.html`) und basiert auf der bisherigen Jeremy-Version. Die frühere Adresse `jeremy.html` leitet zur Hauptversion weiter.
+Die einzige Version heißt **Original** (`index.html`) und basiert auf der bisherigen Jeremy-Version.
 
 ## Gestaltungsentscheidung: Dashboard-Partikel
 
