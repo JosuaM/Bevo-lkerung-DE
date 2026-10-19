@@ -87,7 +87,13 @@ window.populationExplorer = (() => {
   function clearValueHover(){
     svg.querySelectorAll('.bar-hover').forEach(bar => bar.classList.remove('bar-hover'));
     svg.classList.remove('value-hover');
-    valueTooltips.forEach(box => box.hidden = true);
+    valueTooltips.forEach(box => {
+      if (box.hidden) return;
+      if (!box.classList.contains('instant')){ box.hidden = true; return; }
+      box.classList.add('fading');             // Bilanz: kurz ausblenden statt abrupt verschwinden
+      clearTimeout(box.fadeTimer);
+      box.fadeTimer = setTimeout(() => { box.hidden = true; box.classList.remove('fading'); }, 140);
+    });
     valueHoverKey = '';
     const marker = svg.querySelector('#ex-value-marker');
     if (marker) marker.replaceChildren();
@@ -109,6 +115,7 @@ window.populationExplorer = (() => {
     const changed = 'balance-' + row.y !== valueHoverKey;
     groups.forEach((group, index) => {
       const box = valueTooltips[index];
+      clearTimeout(box.fadeTimer); box.classList.remove('fading');
       box.classList.add('instant');           // Bilanz: Karte sofort zeigen, ohne Einblenden
       if (changed) box.innerHTML = '<span>' + row.y + '</span>' + group.map(series =>
         '<span>' + series[0] + '</span><strong style="color:' + series[1] + '">' + api.sgn(series[2](row)) + '</strong>').join('');
@@ -146,7 +153,11 @@ window.populationExplorer = (() => {
     if (!nearest){ clearValueHover(); return false; }
     const row = rows[Math.round(position)], x = X(row.y), key = String(row.y), changed = key !== valueHoverKey;
     const panel = localRect(svg.parentElement), chart = localRect(svg);
-    valueTooltips.forEach(box => box.classList.remove('instant'));
+    valueTooltips.forEach(box => {
+      clearTimeout(box.fadeTimer);
+      if (box.classList.contains('fading')) box.hidden = true;
+      box.classList.remove('instant', 'fading');
+    });
 
     if (populationPercent){                    // eine Karte zwischen den Linien: Abstand zur tatsächlichen Bevölkerung
       const box = valueTooltip, model = sets[1], modelValue = model[2](row);
