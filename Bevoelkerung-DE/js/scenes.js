@@ -367,6 +367,14 @@ const fsL = $('fsL'), fsR = $('fsR'), fvL = $('fvL'), fvR = $('fvR'), flR = $('f
 const finalBalance = $('finalBalance');
 const sgn0 = n => Math.round(n) === 0 ? '0' : sgn(n);
 let finId = 0;                                     // macht laufende Ergebnis-Abläufe ungültig, sobald die Folie wechselt
+let finTicks = 0;                                  // Zählschritte, für die schon ein Tick erklungen ist
+
+/* Beim Hoch- und Runterzählen derselbe Tick wie bei den Balken der Differenz-Folie: je Zähler 35 Schritte (ein Schritt pro Jahr). */
+function finalTick(){
+  const n = LAST - FIRST + 1, merge = ease(clamp((F.m - .4) / .35, 0, 1));
+  const steps = Math.floor(F.a * n) + Math.floor(F.b * n) + Math.floor(merge * n);
+  if (steps > finTicks){ finTicks = steps; if (!paused) playSound(); }
+}
 
 function renderFinal(){
   const {def, net} = finValues();
@@ -393,6 +401,7 @@ function tween(ms, step, id){
       if (id !== finId){ resolve(); return true; }
       const p = clamp((vt - start) / ms, 0, 1);
       step(p);
+      finalTick();
       renderFinal();
       if (p >= 1){ resolve(); return true; }
     });
@@ -421,6 +430,7 @@ async function showFinal(instant, delay = 0){
   const id = ++finId;
   finDone = false;
   F.a = F.b = F.m = 0;
+  finTicks = 0;
   const parts = [fsL, fsR, fcap, fbtn, finalBalance];
   parts.forEach(el => { el.style.transition = 'none'; el.classList.remove('in'); });   // Reste eines früheren Durchlaufs sofort ausblenden
   fsL.style.removeProperty('opacity');

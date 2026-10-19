@@ -18,7 +18,7 @@ Schriftgrößen über `FS` (Folien) bzw. feste Stufen in `explorer.css`, Farben 
 
 ## Steuerung
 
-Obere Navigation startet die gewählte Folie neu. Folie „Differenz“ wartet auf „Weiter“.
+Obere Navigation startet die gewählte Folie neu. Folie „Differenz“ wartet auf „Weiter“. Auf „Ergebnis“ erklingt beim Hoch- und Runterzählen derselbe Tick wie bei den Differenz-Balken.
 E: Einstellungen (mit „Folie neu starten“); D: weiter; A: zurück; Leertaste: Pause; Pfeiltasten: Jahr auswählen und pausieren.
 Die Zeitleiste wird nur auf den beiden Animationsfolien angezeigt. Jahresauswahl pausiert Zeit und Punkte.
 Die Punkte werden am Kreisrand hart abgeschnitten (kein Ein-/Ausfaden), die Zahlen springen. Die Balken der Differenz-Folie ticken mit einem festen, hellen Ton (`js/sound.js`, nicht wählbar); Ereignisse haben keinen Klang. „Neustart für Aufnahme“ schaltet zusätzlich ein Mausklick-Geräusch (`sounds/click.mp3`) für jeden Klick ein; es bleibt über den Neustart aktiv, bis die Seite manuell neu geladen wird.

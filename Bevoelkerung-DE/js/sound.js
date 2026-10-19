@@ -1,4 +1,4 @@
-/* Klang der Balken auf der Differenz-Folie: kurzer, hoher Tick, synthetisch erzeugt (keine Audiodatei). */
+/* Klang der Balken auf der Differenz-Folie und beim Zählen auf der Ergebnis-Folie: kurzer, hoher Tick, synthetisch erzeugt (keine Audiodatei). */
 const SOUND = {wave: 'square', from: 3600, to: 3000, length: .015, volume: .03};
 let audioContext = null;
 
