@@ -106,9 +106,11 @@ window.populationExplorer = (() => {
     const groups = detail ? [sets.slice(0, 2), sets.slice(2)] : sets.map(series => [series]);
     const anchor = tooltipPoint(x, top);
     let nextTop = Math.max(8, anchor.y + 12);
+    const changed = 'balance-' + row.y !== valueHoverKey;
     groups.forEach((group, index) => {
       const box = valueTooltips[index];
-      box.innerHTML = '<span>' + row.y + '</span>' + group.map(series =>
+      box.classList.add('instant');           // Bilanz: Karte sofort zeigen, ohne Einblenden
+      if (changed) box.innerHTML = '<span>' + row.y + '</span>' + group.map(series =>
         '<span>' + series[0] + '</span><strong style="color:' + series[1] + '">' + api.sgn(series[2](row)) + '</strong>').join('');
       box.hidden = false;
       box.style.left = Math.max(10, Math.min(panel.width - box.offsetWidth - 10, anchor.x + 18)) + 'px';
@@ -144,6 +146,7 @@ window.populationExplorer = (() => {
     if (!nearest){ clearValueHover(); return false; }
     const row = rows[Math.round(position)], x = X(row.y), key = String(row.y), changed = key !== valueHoverKey;
     const panel = localRect(svg.parentElement), chart = localRect(svg);
+    valueTooltips.forEach(box => box.classList.remove('instant'));
 
     if (populationPercent){                    // eine Karte zwischen den Linien: Abstand zur tatsächlichen Bevölkerung
       const box = valueTooltip, model = sets[1], modelValue = model[2](row);
