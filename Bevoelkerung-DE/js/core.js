@@ -25,7 +25,7 @@ const BGS = Array(SCENES.length).fill('#121212');      // Hintergrund je Folie
 let DOT = 3000;                                        // Personen pro Punkt
 let SZMIN = 2, SZMAX = 10;                             // Punktradius (px): kleinster / größter Punkt
 let timelineSpeed = 1;
-let clickVolume = 100;                                 // Lautstärke des Mausklick-Geräuschs (0–100 %)
+let clickVolume = 50;                                  // Lautstärke des Mausklick-Geräuschs (0–100 %)
 const isHex = value => /^#[0-9a-f]{6}$/i.test(value || '');
 for (const key in COLORS) if (DEFAULTS.colors && isHex(DEFAULTS.colors[key])) COLORS[key] = DEFAULTS.colors[key];
 if (DEFAULTS.bgs) DEFAULTS.bgs.forEach((color, i) => { if (i < BGS.length && isHex(color)) BGS[i] = color; });
