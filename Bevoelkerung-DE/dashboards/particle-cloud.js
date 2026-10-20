@@ -2,6 +2,7 @@
    Klick: kurze Ausdehnung · Doppelklick: Drehung · Maus: Punkte weichen aus. */
 function createParticleCloud(canvas, getZoom){
   const ctx = canvas.getContext('2d');
+  const scrollContainer = canvas.closest('#explorer');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const PARTICLES = 240, BALANCE_PARTICLES = 180;
   const pointer = {active: false, x: 0, y: 0};
@@ -47,6 +48,7 @@ function createParticleCloud(canvas, getZoom){
   canvas.addEventListener('pointerleave', release);
   canvas.addEventListener('pointercancel', release);
   addEventListener('blur', release);
+  scrollContainer?.addEventListener('scroll', release, {passive: true});
 
   const clamp01 = x => Math.max(0, Math.min(1, x));
   const smoothstep5 = p => p ** 3 * (10 - 15 * p + 6 * p ** 2);
@@ -75,7 +77,12 @@ function createParticleCloud(canvas, getZoom){
     // Layoutwechsel ausgleichen: Die sichtbare Wolke bleibt zunächst an ihrer alten
     // Position und gleitet zur neuen. Schnelles Zurückwechseln setzt am aktuellen Ort an.
     const zoom = getZoom(), rect = canvas.getBoundingClientRect();
-    const origin = {x: rect.left - travelOffset.x * zoom, y: rect.top - travelOffset.y * zoom};
+    // Im Inhaltskoordinatensystem messen: Scrollen verschiebt nur den sichtbaren
+    // Ausschnitt und darf keinen Partikelflug oder Canvas-Versatz auslösen.
+    const origin = {
+      x: rect.left + (scrollContainer?.scrollLeft || 0) * zoom - travelOffset.x * zoom,
+      y: rect.top + (scrollContainer?.scrollTop || 0) * zoom - travelOffset.y * zoom,
+    };
     if (layoutOrigin && lastTime && now - lastTime <= .5 && !reducedMotion.matches){
       const dx = (layoutOrigin.x - origin.x) / zoom, dy = (layoutOrigin.y - origin.y) / zoom;
       const distance = Math.hypot(dx, dy);
