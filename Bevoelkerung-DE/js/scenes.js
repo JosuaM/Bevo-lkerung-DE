@@ -383,7 +383,7 @@ function renderFinal(){
   const deficit = def * F.a * (1 - merge), surplus = net * F.b + def * merge;
   fvL.style.color = COLORS.death;
   fvR.style.color = COLORS.in;
-  fcap.querySelectorAll('b').forEach(b => b.style.color = COLORS.in);
+  fcap.style.setProperty('--final-accent', COLORS.in);
   fsL.style.left = innerWidth * .25 + 'px';
   fsL.style.top = sideTop + 'px';
   fsR.style.left = lerp(innerWidth * .75, innerWidth * .5, settle) + 'px';
@@ -409,6 +409,7 @@ function tween(ms, step, id){
 }
 function finalText(){
   const {def, net, rest} = finValues();
+  fcap.style.setProperty('--final-accent', COLORS.in);
   $('balanceDef').textContent = sgn(def);
   $('balanceDef').style.color = COLORS.death;
   $('balanceNet').textContent = sgn(net);

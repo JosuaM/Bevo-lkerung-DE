@@ -134,8 +134,9 @@ body[data-scene="1"] .controls,body[data-scene="3"] .controls,body.leaving .cont
 #finalBalance span{display:block;margin-bottom:8px;font-size:var(--fs-s);color:var(--mute)}
 #finalBalance strong{font-size:var(--fs-m);font-weight:400;font-variant-numeric:tabular-nums}
 #fcap{position:absolute;left:50%;bottom:108px;width:min(900px,calc(100% - 80px));transform:translateX(-50%);text-align:center;
-  font-size:var(--fs-s);font-weight:300;line-height:1.35;opacity:0;transition:opacity 1s}
-#fcap b{font-weight:500}
+  font-size:var(--fs-s);font-weight:400;line-height:1.35;opacity:0;transition:opacity 1s;
+  isolation:isolate;will-change:opacity;contain:paint}
+#fcap b{font-weight:inherit;color:var(--final-accent);animation:none;transition:none}
 #fbtn{position:absolute;left:0;right:0;bottom:44px;display:flex;gap:12px;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s}
 #fbtn.in{pointer-events:auto}
 
