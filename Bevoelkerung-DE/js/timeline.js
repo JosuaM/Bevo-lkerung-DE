@@ -4,6 +4,10 @@ const ICON_PLAY = '<svg viewBox="0 0 20 20"><path d="M4 2 L17 10 L4 18 Z"/></svg
 const ICON_PAUSE = '<svg viewBox="0 0 20 20"><path d="M4 2h4v16H4zM12 2h4v16h-4z"/></svg>';
 
 function setPaused(value){
+  if (!value && paused && isAnim()){
+    hideEvent();
+    lastYear = 0; // Das aktuelle Ereignis beim Fortsetzen wieder an das laufende Jahr binden.
+  }
   paused = value;
   playBtn.innerHTML = value ? ICON_PLAY : ICON_PAUSE;
   playBtn.setAttribute('aria-label', value ? 'Abspielen' : 'Pause');
@@ -96,7 +100,7 @@ track.addEventListener('lostpointercapture', stopDragging);
 
 /* ---- Anzeige pro Bild aktualisieren ---- */
 let lastYear = 0;
-const eventTextTop = () => ((CY + R_MAX * Math.sqrt(83.6e6 / REF_POP)) * SC + 24) + 'px';   // fest, unabhängig vom wachsenden Kreis
+const eventTextTop = () => ((CY + R_MAX * Math.sqrt(83.6e6 / REF_POP)) * SC + 24 * UI) + 'px';   // fest, unabhängig vom wachsenden Kreis
 function updateTimeline(){
   const position = posPct(Math.min(t, LAST)) + '%';
   headEl.style.left = position;
@@ -108,7 +112,13 @@ function updateTimeline(){
     track.setAttribute('aria-valuenow', year);
     lastYear = year;
   }
-  if (evEl.classList.contains('on') && !evHover && evPinned === null && vt > evHideAt) hideEvent();
+  const activeEvent = scene === 3 && evYear === year && !!EVENTS[year];
+  if (evEl.classList.contains('on') && !evHover && evPinned === null){
+    if (scene === 3 && !paused){
+      // Ereignisse bleiben bis zum nächsten Jahresstrich sichtbar, genauso lange wie die Slomo.
+      if (!activeEvent) hideEvent();
+    }else if (!activeEvent && vt > evHideAt) hideEvent();
+  }
   if (scene === 3){
     for (const y in marks){
       marks[y].classList.toggle('seen', +y <= year);

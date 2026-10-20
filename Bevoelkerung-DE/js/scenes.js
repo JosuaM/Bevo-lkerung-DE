@@ -69,6 +69,11 @@ function sceneAnim1(fromIntro){
   startHold = 0;
   setPhase(0);
   beginEntrance();
+  startHold = entranceAt + 850;
+  const controls = document.querySelector('.controls');
+  controls.style.transition = 'none';
+  controls.style.opacity = 0;
+  later(850, () => { controls.style.transition = 'opacity .65s ease'; controls.style.opacity = 1; });
   qs.className = 'docked';
   if (fromIntro){
     later(1100, () => highlight(qtext, Q2, KEYS1));  // Fokus erst, wenn der Text oben steht
@@ -150,7 +155,7 @@ function drawBridge(){
   if (axisAlpha <= 0) return;
   const n = LAST - FIRST + 1;
   const progress = clamp((elapsed - 700) / 2800, 0, 1) * n;             // ... dann die Balken nach und nach
-  const x0 = 130, x1 = w - 60, top = h * .74, bottom = h - 62;
+  const x0 = 130 * UI, x1 = w - 60 * UI, top = h * .74, bottom = h - 62 * UI;
   const bars = Math.min(n, Math.ceil(progress));
   if (bridgeFull || paused) bridgeBars = bars;
   else if (bars > bridgeBars){ bridgeBars = bars; playSound(); }
@@ -239,32 +244,55 @@ function sceneAnim2(glide){
   beginEntrance();
   const controls = document.querySelector('.controls'), fading = [cv, controls];
   fading.forEach(el => { el.style.transition = 'none'; el.style.opacity = glide ? 0 : ''; });
-  if (!glide){ dockQuestion(null); return; }
+  if (!glide){ startHold = entranceAt + 850; dockQuestion(null); return; }
   // Nach der Differenzfolie: erst blendet „Weiter“ aus, dann gleitet die Frage nach oben, danach blenden Kreis, Zahlen und
   // Zeitleiste weich ein. Die Animation startet erst, wenn sie sichtbar wird.
-  startHold = vt + 250 + 1000;
+  startHold = vt + 250 + 800;
+  entranceAt = startHold;
+  startHold += 850;
   bnext.style.transitionDuration = '.25s';
   bnext.classList.remove('on');
   later(250, () => {
     dockQuestion(btext.getBoundingClientRect());
-    later(1000, () => fading.forEach(el => { el.style.transition = 'opacity 1s ease'; el.style.opacity = 1; }));
+    later(800, () => {
+      // Der Canvas blendet Kategorien und Zahlen selbst vor dem restlichen Inhalt ein.
+      cv.style.transition = 'none'; cv.style.opacity = 1;
+      later(850, () => { controls.style.transition = 'opacity .65s ease'; controls.style.opacity = 1; });
+    });
   });
 }
-function dockQuestion(previousBox){                // Frage von der Differenzfolie nach oben setzen, weich per Gleitbewegung
+function dockQuestion(previousBox){
+  // Jede Textzeile einzeln vermessen: Beim Zentrieren legt die kürzere Zeile
+  // einen anderen Weg zurück. Ein Transform auf dem ganzen Block lässt sie springen.
+  let lines = [], previousLines = [];
+  if (previousBox){
+    btext.replaceChildren(...BQ.split('\n').map(line => {
+      const row = document.createElement('span');
+      row.style.display = 'block';
+      const content = document.createElement('span');
+      content.style.cssText = 'display:inline-block;transform-origin:0 0';
+      content.textContent = line;
+      row.appendChild(content);
+      lines.push(content);
+      return row;
+    }));
+    previousLines = lines.map(line => line.getBoundingClientRect());
+  }
   br.removeAttribute('style');
   btext.style.cssText = 'font-size:var(--fs-m);transform-origin:0 0';
   btext.classList.remove('hl');
-  btext.textContent = BQ;
-  if (previousBox) later(1100, () => highlight(btext, BQ, KEYS2));
-  else highlight(btext, BQ, KEYS2, true);
+  if (!previousBox) btext.textContent = BQ;
   qs.className = 'bridge docked2';
-  if (!previousBox) return;
-  const target = btext.getBoundingClientRect();
-  const scale = previousBox.width / Math.max(target.width, 1);
-  bridgeHeadingAnimation = btext.animate([
-    {transform: `translate(${previousBox.left - target.left}px,${previousBox.top - target.top}px) scale(${scale})`},
-    {transform: 'translate(0,0) scale(1)'},
-  ], {duration: 1000, easing: 'cubic-bezier(.65,0,.25,1)'});
+  if (!previousBox){ highlight(btext, BQ, KEYS2, true); return; }
+  const animations = lines.map((line, index) => {
+    const from = previousLines[index], to = line.getBoundingClientRect();
+    return line.animate([
+      {transform: `translate(${from.left - to.left}px,${from.top - to.top}px) scale(${from.width / Math.max(to.width, 1)})`},
+      {transform: 'translate(0,0) scale(1)'},
+    ], {duration: 800, easing: 'cubic-bezier(.65,0,.25,1)'});
+  });
+  bridgeHeadingAnimation = {cancel(){ animations.forEach(animation => animation.cancel()); }};
+  later(850, () => highlight(btext, BQ, KEYS2));
 }
 
 /* ---- Folie 4: Ergebnis ---- */

@@ -64,11 +64,14 @@ function state(time){
 
 /* ---- Schriftgrößen: genau drei Stufen ---- */
 const FS = {l: 44, m: 26, s: 18};
+let UI = 1;
 function calcFS(){
-  FS.l = clamp(Math.min(innerWidth * .034, innerHeight * .062), 26, 54);
+  const uiScale = UI = Math.min(innerWidth / 1512, innerHeight / 860);
+  FS.l = 51.408 * uiScale;
   FS.m = FS.l * .58;
   FS.s = FS.l * .4;
   const root = document.documentElement.style;
+  root.setProperty('--ui', uiScale + 'px');
   root.setProperty('--fs-l', FS.l + 'px');
   root.setProperty('--fs-m', FS.m + 'px');
   root.setProperty('--fs-s', FS.s + 'px');
@@ -91,7 +94,7 @@ function resize(){
   cv.width = width * DPR;
   cv.height = height * DPR;
   ctx.setTransform(DPR * SC, 0, 0, DPR * SC, 0, 0);
-  HB = (28 + 2.5 * FS.m + 16) / SC;                  // Platz oben für die angedockte Frage
+  HB = (76 * UI + 2.5 * FS.m) / SC;                  // Platz oben für die angedockte Frage
 }
 addEventListener('resize', resize);
 resize();

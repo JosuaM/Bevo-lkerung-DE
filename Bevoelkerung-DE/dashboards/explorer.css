@@ -5,14 +5,14 @@
   --fs-l:51.408px; --fs-m:29.817px; --fs-s:20.563px;
   display:none;position:fixed;left:0;top:0;z-index:30;overflow:auto;scrollbar-width:none;color:var(--ink);
   width:calc(100vw / var(--ex-z,1));height:calc(100vh / var(--ex-z,1));
-  padding:calc(108px / var(--ex-z,1)) calc(var(--pad) / var(--ex-z,1)) calc(24px / var(--ex-z,1));
+  padding:108px 40px 24px;
   transform:scale(var(--ex-z,1));transform-origin:0 0;
 }
 #explorer::-webkit-scrollbar{display:none}
 .exploring #explorer{display:block}
 .exploring #c{visibility:hidden}
 #explorer [hidden]{display:none!important}
-#explorer h1{margin:0;font-size:calc(var(--fs-m)*.85);font-weight:400;line-height:1.3}
+#explorer h1{margin:0;font-size:calc(var(--fs-m)*.72);font-weight:400;line-height:1.3}
 #explorer p{margin:0;color:#a4adbd;font-size:14px;line-height:1.5}
 #explorer button{padding:9px 14px;border:1px solid #3a4252;border-radius:6px;background:transparent;font-size:14px;color:#a4adbd}
 #explorer button:hover{border-color:#a4adbd;color:#fff}
@@ -89,14 +89,14 @@
 
 /* ---- Karten beim Überfahren ---- */
 #ex-event-tooltip{position:absolute;z-index:5;box-sizing:border-box;width:max-content;min-width:280px;padding:12px 15px;
-  border:1px solid #495563;border-radius:10px;background:#20252c;box-shadow:0 10px 32px #0006;
+  border:1px solid #495563;border-radius:10px;background:rgba(32,37,44,.8);box-shadow:0 10px 32px #0006;
   font-size:12px;color:#eef2f6;pointer-events:none;transition:width .4s,box-shadow .4s}
 .ex-tooltip-heading{font-size:calc(var(--fs-s)*.85);font-weight:400;line-height:1.4;color:#eef2f6;white-space:nowrap}
 .ex-tooltip-detail{display:grid;grid-template-rows:1fr}
 .ex-tooltip-detail>div{overflow:hidden}
 #explorer .ex-tooltip-detail p{padding-top:9px;font-size:calc(var(--fs-s)*.8);line-height:1.5;color:#a4adbd}
 .ex-value-tooltip{position:absolute;z-index:7;min-width:190px;padding:10px 13px;border:1px solid #495563;border-radius:10px;
-  background:#20252c;box-shadow:0 6px 24px #0004;pointer-events:none;animation:valueCardIn .22s ease both}
+  background:rgba(32,37,44,.8);box-shadow:0 6px 24px #0004;pointer-events:none;animation:valueCardIn .22s ease both}
 .ex-value-tooltip.instant{animation:none;transition:opacity .14s ease-out}
 .ex-value-tooltip.fading{opacity:0}
 .ex-value-tooltip span{display:block;margin-bottom:4px;font-size:12px;color:#a4adbd}

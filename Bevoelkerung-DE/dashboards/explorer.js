@@ -109,7 +109,8 @@ window.populationExplorer = (() => {
     });
     if (!near){ clearValueHover(); return false; }
     const panel = localRect(svg.parentElement), chart = localRect(svg);
-    const groups = detail ? [sets.slice(0, 2), sets.slice(2)] : sets.map(series => [series]);
+    const ordered = [...sets].sort((a, b) => Y(a[2](row)) - Y(b[2](row)));
+    const groups = detail ? [ordered.slice(0, 2), ordered.slice(2)] : ordered.map(series => [series]);
     const anchor = tooltipPoint(x, top);
     let nextTop = Math.max(8, anchor.y + 12);
     const changed = 'balance-' + row.y !== valueHoverKey;

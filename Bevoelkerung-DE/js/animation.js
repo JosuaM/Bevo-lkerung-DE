@@ -13,7 +13,7 @@ function yps(){
 /* ---- Layout: statisch, nur der Kreisradius ändert sich ---- */
 let R_MAX = 190, CX = 640, CY = 360;
 function layout(){
-  const free = H - HB - 112 / SC;
+  const free = H - HB - 112 * UI / SC;
   R_MAX = clamp(free / 2 - 34, 90, 200);
   CX = W / 2;
   CY = HB + free / 2;
@@ -22,10 +22,12 @@ const BAND = () => R_MAX * .6;         // beide Strahlen gleich breit
 
 /* ---- Punkte ---- */
 const particles = [], acc = {up: 0, down: 0}, MAX_PARTICLES = 16000;
+let entranceAt = 0;
 let waitingForArrival = false;         // Einlauf: Auswanderung startet erst, wenn die ersten Punkte den Kreis erreichen
 let drainingParticles = false;         // Ende: Strahlen laufen leer, bevor die nächste Folie kommt
 
 function beginEntrance(){
+  entranceAt = vt;
   particles.length = 0;
   acc.up = acc.down = 0;
   waitingForArrival = true;
@@ -121,14 +123,15 @@ function advanceAnimation(dt){
 }
 
 /* ---- Zeichnen ---- */
+const entranceContentAlpha = () => ease(clamp((vt - entranceAt - 850) / 650, 0, 1));
 function drawParticles(radius){
   for (const p of particles){
     const {x, y} = particlePosition(p);
     const size = lerp(SZMIN, SZMAX, p.r) / SC, distance = Math.hypot(x - CX, y - CY);
     let alpha = distance - size >= radius ? 1 : 0;                     // harter Schnitt am Kreisrand
-    alpha *= clamp((H - 104 / SC - y) / 30, 0, 1);
+    alpha *= clamp((H - 104 * UI / SC - y) / 30, 0, 1);
     if (alpha <= .01) continue;
-    ctx.globalAlpha = alpha * p.alpha;
+    ctx.globalAlpha = alpha * p.alpha * entranceContentAlpha();
     ctx.fillStyle = COLORS[p.ck];
     ctx.beginPath();
     ctx.arc(x, y, size, 0, 6.2832);
@@ -145,13 +148,24 @@ function text(str, x, y, size, color, weight, align){
 }
 function drawAnim(s){
   const P = PHASES[phase], u = 1 / SC;
+  const elapsed = vt - entranceAt;
+  // Sanfte Deckkraftkurve mit ruhigem Anfang und Ende auf beiden Animationsfolien.
+  const labelProgress = clamp(elapsed / 750, 0, 1);
+  const labelsAlpha = labelProgress ** 3 * (labelProgress * (labelProgress * 6 - 15) + 10);
+  const contentAlpha = entranceContentAlpha();
+  const labelFade = ease(clamp((elapsed - 650) / 2200, 0, 1));
+  const labelColor = `rgb(${[164, 173, 189].map(channel => Math.round(lerp(255, channel, labelFade))).join(",")})`;
+  ctx.save();
+  ctx.globalAlpha = contentAlpha;
   const radius = R_MAX * Math.sqrt(Math.max(s.pop, 1) / REF_POP);
   ctx.lineWidth = 2 * u;
   ctx.strokeStyle = '#fff';
   ctx.beginPath();
   ctx.arc(CX, CY, radius, 0, 6.2832);
   ctx.stroke();
+  ctx.save();
   drawParticles(radius);
+  ctx.restore();
 
   // Kreis-Beschriftung (fest, nur der Kreis wächst/schrumpft)
   text('Bevölkerungsstand', CX, CY - (FS.l * .78 + FS.m * .75) * u, FS.m * 1.1, '#a4adbd', 400);
@@ -160,10 +174,13 @@ function drawAnim(s){
   text(P.label, CX, CY + (FS.l * .78 + FS.s) * u, FS.s * 1.1, '#7d879b', 400);
 
   // Jahreswerte links / rechts, gleiche Höhe, mittig zwischen Kreis und Rand
-  const numberY = CY - BAND() - (18 + FS.l * .5) * u, labelY = numberY - (FS.l * .5 + FS.m * .8 + 6) * u;
+  const numberY = CY - BAND() - (18 * UI + FS.l * .5) * u, labelY = numberY - (FS.l * .5 + FS.m * .8 + 6 * UI) * u;
   const leftX = (CX - R_MAX) / 2, rightX = (CX + R_MAX + W) / 2;
-  text(P.up.name, leftX, labelY, FS.m, '#a4adbd', 400);
+  ctx.globalAlpha = labelsAlpha;
+  text(P.up.name, leftX, labelY, FS.m, labelColor, 400);
+  text(P.down.name, rightX, labelY, FS.m, labelColor, 400);
+  ctx.globalAlpha = contentAlpha;
   text(fmt(s.d[P.up.key]), leftX, numberY, FS.l, COLORS[P.up.ck], 300);
-  text(P.down.name, rightX, labelY, FS.m, '#a4adbd', 400);
   text(fmt(s.d[P.down.key]), rightX, numberY, FS.l, COLORS[P.down.ck], 300);
+  ctx.restore();
 }
