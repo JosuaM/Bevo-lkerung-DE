@@ -49,7 +49,7 @@ const EVENTS = {
          s: 'Das Asylrecht wird eingeschränkt, die Einwanderung sinkt.',
          d: 'Wer aus einem sicheren Drittstaat einreist, kann seitdem an der Grenze zurückgewiesen werden. Die Zahl der Asylanträge geht in den Folgejahren deutlich zurück.'},
   2011: {t: 'Arbeitnehmerfreizügigkeit',
-         s: 'Menschen aus Osteuropa dürfen ohne Arbeitserlaubnis in Deutschland arbeiten, die Einwanderung steigt.',
+         s: 'Menschen aus Osteuropa dürfen ohne Arbeitserlaubnis in Deutschland arbeiten.',
          d: 'Seit Mai 2011 gilt die volle Arbeitnehmerfreizügigkeit für die 2004 beigetretenen EU-Staaten. Im selben Jahr korrigiert der Zensus die Bevölkerungszahl um rund 1,4 Millionen Menschen nach unten.'},
   2012: {t: 'Eurokrise',
          s: 'Aufgrund der Wirtschaftskrise suchen Menschen aus Südeuropa Arbeit in Deutschland.',

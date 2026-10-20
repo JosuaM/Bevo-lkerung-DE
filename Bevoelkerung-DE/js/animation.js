@@ -128,7 +128,7 @@ function drawParticles(radius){
   for (const p of particles){
     const {x, y} = particlePosition(p);
     const size = lerp(SZMIN, SZMAX, p.r) / SC, distance = Math.hypot(x - CX, y - CY);
-    let alpha = distance - size >= radius ? 1 : 0;                     // harter Schnitt am Kreisrand
+    let alpha = distance - size >= radius ? 1 : 0; // Partikel verschwinden am Kreisrand.
     alpha *= clamp((H - 104 * UI / SC - y) / 30, 0, 1);
     if (alpha <= .01) continue;
     ctx.globalAlpha = alpha * p.alpha * entranceContentAlpha();
@@ -161,7 +161,7 @@ function drawAnim(s){
   ctx.lineWidth = 2 * u;
   ctx.strokeStyle = '#fff';
   ctx.beginPath();
-  ctx.arc(CX, CY, radius, 0, 6.2832);
+  ctx.arc(CX, CY, radius, 0, Math.PI * 2);
   ctx.stroke();
   ctx.save();
   drawParticles(radius);
