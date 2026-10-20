@@ -185,6 +185,16 @@ function updateTimelineSpeed(){
 speedRange.addEventListener('input', () => { updateTimelineSpeed(); saveSettings(); });
 updateTimelineSpeed();
 
+const clickRange = $('clickrng');
+clickRange.value = clickVolume;
+function updateClickVolume(){
+  clickVolume = +clickRange.value;
+  $('clicklbl').textContent = clickVolume === 0 ? 'Aus' : clickVolume + ' %';
+}
+clickRange.addEventListener('input', () => { updateClickVolume(); saveSettings(); });
+clickRange.addEventListener('change', playClick);
+updateClickVolume();
+
 const dotRange = $('dotrng');
 const dotFromSlider = v => parseFloat((1000 * Math.pow(1000, v / 100)).toPrecision(2));
 function updateDot(){

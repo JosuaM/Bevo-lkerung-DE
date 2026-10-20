@@ -33,7 +33,7 @@ try{
   clickSoundOn = sessionStorage.getItem(CLICK_FLAG) === '1';
 }catch{}
 function playClick(){
-  try{ const a = new Audio(CLICK_FILE); a.play().catch(() => {}); }catch{}
+  try{ if (clickVolume <= 0) return; const a = new Audio(CLICK_FILE); a.volume = clickVolume / 100; a.play().catch(() => {}); }catch{}
 }
 function enableClickSound(){
   clickSoundOn = true;

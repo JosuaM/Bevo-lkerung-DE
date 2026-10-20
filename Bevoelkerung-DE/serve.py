@@ -18,13 +18,15 @@ DEFAULTS_PATTERN = re.compile(r'const DEFAULTS = \{[^\n]*\};')
 
 def validated_settings(value):
     required = {'dot', 'szmin', 'szmax', 'speed', 'colors', 'bgs'}
-    if not isinstance(value, dict) or not required <= set(value) <= required | {'sound', 'evsound'}:
+    if not isinstance(value, dict) or not required <= set(value) <= required | {'click', 'sound', 'evsound'}:
         raise ValueError('Ungültige Einstellungen.')
     limits = {'dot': (1, 1000000), 'szmin': (.3, 6), 'szmax': (.5, 14), 'speed': (.5, 2.5)}
     for key, (lo, hi) in limits.items():
         number = value[key]
         if isinstance(number, bool) or not isinstance(number, (int, float)) or not lo <= number <= hi:
             raise ValueError('Ungültiger Wert: ' + key)
+    if 'click' in value and (isinstance(value['click'], bool) or not isinstance(value['click'], (int, float)) or not 0 <= value['click'] <= 100):
+        raise ValueError('Ungültiger Wert: click')
     if value['szmin'] > value['szmax']:
         raise ValueError('Punktgrößen stimmen nicht überein.')
     colors, bgs = value['colors'], value['bgs']
